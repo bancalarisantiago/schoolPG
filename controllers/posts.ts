@@ -1,5 +1,8 @@
-import PersonModel from "../models/models";
+//import PersonModel from "../models/models";
 import axios from "axios"
+
+const models = require("../models/models")
+
 // https://www.restapitutorial.com/httpstatuscodes.html ---> status codes
 
 // interface User {
@@ -32,11 +35,11 @@ const getUsers = async function() {
 
 export const getPosts = async (req:any, res:any) => {
   try{
-    const postMessages = await PersonModel.find();
+    const postMessages = await models.UserModel.find();
 
         const users = await getUsers();
 
-          users.map((e: any) => PersonModel.create({
+          users.map((e: any) => models.UserModel.create({
             name:{ first: e.name.first, last: e.name.last},
             gender: e.gender,
             location: {
@@ -60,7 +63,7 @@ export const createPost = async (req:any, res:any) => {
     const {name, gender, location, birthdate, email} = req.body;
     try {
 
-        const newPerson = new PersonModel({
+        const newPerson = new models.UserModel({
             name,
             gender,
             location,

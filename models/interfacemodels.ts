@@ -22,7 +22,7 @@ interface Login {
     password: string | number; // Regular expression ????
 }
 
-export interface IPerson extends Document {
+export interface IUser extends Document {
       name: Fullname;
       userType: number;
       gender: string;
@@ -37,7 +37,7 @@ export interface IPerson extends Document {
 }
 
 
-export interface IStudent extends IPerson , Document {
+export interface IStudent extends IUser, Document {
     person: Types.ObjectId;
     tutors: Types.ObjectId;
     degree: string;
