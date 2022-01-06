@@ -7,8 +7,8 @@ const models = require("../models/models");
 
 const getUsersApi = async function () {
   try {
-    const user = await axios.get("https://randomuser.me/api/?results=15");
-
+    const user = await axios.get("https://randomuser.me/api/?results=5");
+    
     return user.data.results;
   } catch {
     return "Error de busqueda";
