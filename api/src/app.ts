@@ -1,0 +1,19 @@
+import express, { Application } from "express";
+import cors from "cors";
+import morgan from "morgan";
+import router from "./routes/user";
+const app: Application = express();
+
+//settings
+app.set("port", 5000);
+
+//midlewares
+app.use(morgan("dev"));
+app.use(express.json({ limit: "30mb" })); // support json encoded bodies
+app.use(express.urlencoded({ limit: "30mb", extended: true })); // support encoded bodies
+app.use(cors()); // cors middleware sirve para permitir peticiones de otros dominios
+
+//routes
+app.use("/posts", router);
+
+export default app;
