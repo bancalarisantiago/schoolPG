@@ -1,132 +1,22 @@
-import mongoose from "mongoose";
-import { IUser, IStudent } from "./interfacemodels"
 
-const Schema = mongoose.Schema;
+//Models
 
-const schemaUser = new Schema({
-  name: {
-    first: {
-      type: String,
-      required: true,
-    },
-    last: {
-      type: String,
-      required: true,
-    },
-  },
-  userType: {
-    type: Number, // 1 - Admin // 2 - Teacher // 3 - Tutor // 4 - Student
-    //required: true
-  },
-  gender: {
-      type: String,
-  },
-  location: {
-    number: { type: Number , required: true },
-    streetName: { type: String, required: true },
-    locality: { type: String, required: true },
-    postalCode: { type: String, required: true },
-  },
-  birthdate: {
-    date: {
-      type: String,
-      //required: true,
-    },
-    age: {
-      type: Number,
-      //required: true,
-    },
-  },
-  document: {
-    type: Number,
-    //required: true,
-  },
-  email: {
-    type: String,
-    //required: true,
-  },
-  phone: {
-      type: String,
-      //required: true
-  },
-  cellphone: {
-    type: String,
-  },
-  login: {
-    username: {
-      type: String,
-      //required: true,
-    },
-    password: {
-      type: String,
-      //required: true,
-    },
-  },
-  picture: {
-      type: String,
-      //required: true,
-  },
-
-
-});
-
-const UserModel = mongoose.model<IUser>("User", schemaUser);
-
-
-const schemaStudent = new Schema({
-  user: {
-        type: Schema.Types.ObjectId, ref: "User"
-    },
-    tutors: {
-      type: Schema.Types.ObjectId, ref: "Tutor"
-    },
-    degree: {
-      type: String,
-    }
-})
-
-const StudentModel = mongoose.model<IStudent>("Student", schemaStudent)
-
-
-
-const schemaTutor = new Schema({
-  user: {
-      type: Schema.Types.ObjectId, ref: "User"
-  },
-  childInCharge: {
-    type: Schema.Types.ObjectId, ref: "Student"
-  },
-
-})
-
-
-const TutorModel = mongoose.model("Tutor", schemaTutor)
-
-
-const schemaTeacher = new Schema({
-  user: {
-      type: Schema.Types.ObjectId, ref: "User"
-  },
- 
-})
-
-const TeacherModel = mongoose.model("Teacher", schemaTeacher)
-
-const schemaAdmin = new Schema({
-  user: {
-      type: Schema.Types.ObjectId, ref: "User"
-  },
- 
-})
-
-const AdminModel = mongoose.model("Admin", schemaAdmin)
-
-
+import SchoolModel from "./school";
+import UserModel from "./user";
+import StudentModel from "./student";
+import TutorModel from "./tutor";
+import TeacherModel from "./teacher";
+import AdminModel from "./admin";
+import DegreeModel from "./degree";
+import SubjectModel from "./subject"
 
 module.exports = {
+  SchoolModel,
   UserModel,
   StudentModel,
   TutorModel,
   TeacherModel,
-  AdminModel
+  AdminModel,
+  DegreeModel,
+  SubjectModel
 }
