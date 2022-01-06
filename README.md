@@ -1,6 +1,3 @@
-APLICACION
-TEST
-
 Api Dependencies
 
 "dependencies": {
