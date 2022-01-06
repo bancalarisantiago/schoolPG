@@ -1,18 +1,14 @@
 //import PersonModel from "../models/models";
 import axios from "axios"
 
-const models = require("../models/models")
+const models = require("../../models/models")
 
 // https://www.restapitutorial.com/httpstatuscodes.html ---> status codes
 
-// interface User {
-//   title: string,
-// }
 
-
-const getUsers = async function() {
+const getUsersApi = async function() {
   try {
-      const user = await axios.get("https://randomuser.me/api/?results=5")
+      const user = await axios.get("https://randomuser.me/api/?results=15")
       
       return user.data.results
   } catch {
@@ -33,11 +29,11 @@ const getUsers = async function() {
 
 
 
-export const getPosts = async (req:any, res:any) => {
+export const getUsers = async (req:any, res:any) => {
   try{
     const postMessages = await models.UserModel.find();
 
-        const users = await getUsers();
+        const users = await getUsersApi();
 
           users.map((e: any) => models.UserModel.create({
             name:{ first: e.name.first, last: e.name.last},
@@ -59,7 +55,7 @@ export const getPosts = async (req:any, res:any) => {
 
 
 
-export const createPost = async (req:any, res:any) => {
+export const createUser = async (req:any, res:any) => {
     const {name, gender, location, birthdate, email} = req.body;
     try {
 

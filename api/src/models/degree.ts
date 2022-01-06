@@ -17,9 +17,7 @@ const schemaDegree = new Schema({
       subjects: {
         type: [{type:Schema.Types.ObjectId, ref: "Subject"}]
       },
-      schedule: {
-        
-      }
+     
   })
   
 const DegreeModel = mongoose.model<IDegree>("Degree", schemaDegree)
