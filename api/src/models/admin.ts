@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
     
 const schemaAdmin = new Schema({
     user: {
-        type: Schema.Types.ObjectId, ref: "User"
+        type: mongoose.Types.ObjectId, ref: "User"
     },
   })
   

@@ -5,10 +5,10 @@ const Schema = mongoose.Schema;
 
 const schemaStudent = new Schema({
     user:{
-          type: Schema.Types.ObjectId, ref: "User"
+          type: mongoose.Types.ObjectId, ref: "User"
       },
       tutors: {
-        type: Schema.Types.ObjectId, ref: "Tutor"
+        type: mongoose.Types.ObjectId, ref: "Tutor"
       },
       degree: {
         type: String,
