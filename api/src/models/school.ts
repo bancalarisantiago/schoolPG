@@ -49,30 +49,30 @@ const schemaSchool = new Schema({
     },
     dataBase: {
       users: [{
-        type: Schema.Types.ObjectId, ref: "User"
+        type: mongoose.Types.ObjectId, ref: "User"
       }],
       admins: [{
-        type: Schema.Types.ObjectId, ref: "Admin"
+        type: mongoose.Types.ObjectId, ref: "Admin"
       }],
       students: [{
-        type: Schema.Types.ObjectId, ref: "Student"
+        type: mongoose.Types.ObjectId, ref: "Student"
       }],
       teachers: [{
-        type: Schema.Types.ObjectId, ref: "Teacher"
+        type: mongoose.Types.ObjectId, ref: "Teacher"
       }],
       tutors: [{
-        type: Schema.Types.ObjectId, ref: "Tutor"
+        type: mongoose.Types.ObjectId, ref: "Tutor"
       }],
       degrees: [{
-        type: Schema.Types.ObjectId, ref: "Degree"
+        type: mongoose.Types.ObjectId, ref: "Degree"
       }],
       subjects: [{
-        type: Schema.Types.ObjectId, ref: "Subject"
+        type: mongoose.Types.ObjectId, ref: "Subject"
       }]
     }
    
 })
 
-const SchoolModel = mongoose.model<ISchool>("School", schemaSchool);
+const School = mongoose.model<ISchool>("school", schemaSchool);
 
-export default SchoolModel
+export default School

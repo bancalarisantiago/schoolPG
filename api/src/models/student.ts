@@ -12,9 +12,10 @@ const schemaStudent = new Schema({
       },
       degree: {
         type: String,
-      }
+      },
+
   })
   
-  const StudentModel = mongoose.model<IStudent>("Student", schemaStudent)
+  const Student = mongoose.model<IStudent>("student", schemaStudent)
   
-  export default StudentModel;
+  export default Student;

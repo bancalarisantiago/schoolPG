@@ -28,12 +28,12 @@ const getUsersApi = async function () {
 
 export const getUsers = async (req: any, res: any) => {
   try {
-    const postMessages = await models.UserModel.find();
+    const postMessages = await models.User.find();
 
     const users = await getUsersApi();
 
     users.map((e: any) =>
-      models.UserModel.create({
+      models.User.create({
         name: { first: e.name.first, last: e.name.last },
         gender: e.gender,
         location: {
@@ -54,15 +54,15 @@ export const getUsers = async (req: any, res: any) => {
 export const createUser = async (req: any, res: any) => {
   const { name, gender, location, birthdate, email } = req.body;
   try {
-    const newPerson = new models.UserModel({
+    const newUser = new models.User({
       name,
       gender,
       location,
       birthdate,
       email,
     });
-    newPerson.save();
-    res.status(200).json(newPerson);
+    newUser.save();
+    res.status(200).json(newUser);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }

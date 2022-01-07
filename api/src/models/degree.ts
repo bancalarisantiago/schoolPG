@@ -9,17 +9,17 @@ const schemaDegree = new Schema({
         required: true
       },
       students: {
-        type: [{type:Schema.Types.ObjectId, ref: "Student"}]
+        type: [{type:mongoose.Types.ObjectId, ref: "Student"}]
       },
       teachers: {
-        type: [{type:Schema.Types.ObjectId, ref: "Teacher"}]
+        type: [{type:mongoose.Types.ObjectId, ref: "Teacher"}]
       },
       subjects: {
-        type: [{type:Schema.Types.ObjectId, ref: "Subject"}]
+        type: [{type:mongoose.Types.ObjectId, ref: "Subject"}]
       },
      
   })
   
-const DegreeModel = mongoose.model<IDegree>("Degree", schemaDegree)
+const Degree = mongoose.model<IDegree>("degree", schemaDegree)
   
-export default DegreeModel;  
+export default Degree;  

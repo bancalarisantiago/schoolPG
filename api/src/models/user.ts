@@ -20,7 +20,7 @@ const schemaUser = new Schema({
       //required: true
     },
     school: {
-      type: Schema.Types.ObjectId, ref: 'School'
+      type: mongoose.Types.ObjectId, ref: 'School'
     },
     gender: {
         type: String,
@@ -72,6 +72,6 @@ const schemaUser = new Schema({
     },
   });
   
-  const UserModel = mongoose.model<IUser>("User", schemaUser);
+  const User = mongoose.model<IUser>("user", schemaUser);
 
-  export default UserModel;
+  export default User;

@@ -2,7 +2,7 @@ const models = require ("../models/models")
 
 export const getAllSchools = async (req: any, res: any) => {
     try   {
-        const allSchools = await models.SchoolModel.find({})
+        const allSchools = await models.School.find({})
 
         res.status(200).json(allSchools);
       } catch (error: any) {
@@ -23,7 +23,7 @@ export const createSchool =  async (req: any, res: any) => {
         phone
         } = req.body;
     try {
-      const newSchool = new models.SchoolModel({
+      const newSchool = new models.School({
         name,
         schoolNumber,
         location,

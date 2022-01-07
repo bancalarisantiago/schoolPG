@@ -9,6 +9,6 @@ const schemaCalendar = new Schema({
      
   })
   
-const CalendarModel = mongoose.model<ICalendar>("Calendar", schemaCalendar)
+const Calendar = mongoose.model<ICalendar>("calendar", schemaCalendar)
   
-export default CalendarModel;
+export default Calendar;
