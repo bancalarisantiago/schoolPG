@@ -3,8 +3,8 @@ import { IUser } from "./interfacemodels"
 
 const Schema = mongoose.Schema;
 
-
 const schemaUser = new Schema({
+
     name: {
       first: {
         type: String,
@@ -18,6 +18,9 @@ const schemaUser = new Schema({
     userType: {
       type: Number, // 1 - Admin // 2 - Teacher // 3 - Tutor // 4 - Student
       //required: true
+    },
+    school: {
+      type: Schema.Types.ObjectId, ref: 'School'
     },
     gender: {
         type: String,
@@ -67,8 +70,6 @@ const schemaUser = new Schema({
         type: String,
         //required: true,
     },
-  
-  
   });
   
   const UserModel = mongoose.model<IUser>("User", schemaUser);
