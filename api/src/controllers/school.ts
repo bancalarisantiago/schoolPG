@@ -1,30 +1,13 @@
 const models = require ("../models/models")
 
-
 export const getAllSchools = async (req: any, res: any) => {
     try   {
-        const allSchools = await models.SchoolModel.find({});
-   // const users = await getUsersApi();
+        const allSchools = await models.SchoolModel.find({})
 
-    // users.map((e: any) =>
-    //   models.UserModel.create({
-    //     name: { first: e.name.first, last: e.name.last },
-    //     gender: e.gender,
-    //     location: {
-    //       number: e.location.street.number,
-    //       streetName: e.location.street.name,
-    //       locality: e.location.state,
-    //       postalCode: String(e.location.postcode),
-    //     },
-    //   })
-    // );
-    console.log(allSchools)
-    res.status(200).json(allSchools);
-  } catch (error: any) {
-    res.status(404).json({ message: error.message });
-  }
-
-
+        res.status(200).json(allSchools);
+      } catch (error: any) {
+        res.status(404).json({ message: error.message });
+      }
 }
 
 

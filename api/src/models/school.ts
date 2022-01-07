@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 //School
 
 const schemaSchool = new Schema({
+  
   name: {
     schoolName: {
       type: String,
@@ -47,25 +48,27 @@ const schemaSchool = new Schema({
       //required: true
     },
     dataBase: {
-      admins: {
+      users: [{
+        type: Schema.Types.ObjectId, ref: "User"
+      }],
+      admins: [{
         type: Schema.Types.ObjectId, ref: "Admin"
-      },
-      students: {
+      }],
+      students: [{
         type: Schema.Types.ObjectId, ref: "Student"
-      },
-      teachers: {
+      }],
+      teachers: [{
         type: Schema.Types.ObjectId, ref: "Teacher"
-      },
-      tutors: {
+      }],
+      tutors: [{
         type: Schema.Types.ObjectId, ref: "Tutor"
-      },
-      degrees: {
+      }],
+      degrees: [{
         type: Schema.Types.ObjectId, ref: "Degree"
-      },
-      subjects: {
+      }],
+      subjects: [{
         type: Schema.Types.ObjectId, ref: "Subject"
-      }
-
+      }]
     }
    
 })

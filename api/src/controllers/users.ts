@@ -7,7 +7,7 @@ const models = require("../models/models");
 
 const getUsersApi = async function () {
   try {
-    const user = await axios.get("https://randomuser.me/api/?results=5");
+    const user = await axios.get("https://randomuser.me/api/?results=10");
     
     return user.data.results;
   } catch {
