@@ -12,6 +12,6 @@ const schemaTeacher = new Schema({
    
   })
   
-  const TeacherModel = mongoose.model<ITeacher>("Teacher", schemaTeacher)
+  const Teacher = mongoose.model<ITeacher>("teacher", schemaTeacher)
   
-  export default TeacherModel;
+  export default Teacher;

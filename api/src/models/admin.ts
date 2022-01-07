@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
     
 const schemaAdmin = new Schema({
     user: {
-        type: Schema.Types.ObjectId, ref: "User"
+        type: mongoose.Types.ObjectId, ref: "User"
     },
   })
   
-const AdminModel = mongoose.model<IAdmin>("Admin", schemaAdmin)
+const Admin = mongoose.model<IAdmin>("admin", schemaAdmin)
 
-export default AdminModel;
+export default Admin;
   

@@ -19,7 +19,7 @@ export const createAdmin =  async (req: any, res: any) => {
         // const idUser = "61d77a7c9436030a804c4ce4"
         // const queryUser = await models.User.findOne({_id : idUser})
             
-      const newAdmin = new models.AdminModel({
+      const newAdmin = new models.Admin({
           
             name: { first: name.first, last: name.last },
             gender,

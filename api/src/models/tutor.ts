@@ -13,6 +13,6 @@ const schemaTutor = new Schema({
   
   })
   
-  const TutorModel = mongoose.model<ITutor>("Tutor", schemaTutor)
+  const Tutor = mongoose.model<ITutor>("tutor", schemaTutor)
   
-  export default TutorModel;
+  export default Tutor;

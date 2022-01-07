@@ -5,16 +5,17 @@ const Schema = mongoose.Schema;
 
 const schemaStudent = new Schema({
     user:{
-          type: Schema.Types.ObjectId, ref: "User"
+          type: mongoose.Types.ObjectId, ref: "User"
       },
       tutors: {
-        type: Schema.Types.ObjectId, ref: "Tutor"
+        type: mongoose.Types.ObjectId, ref: "Tutor"
       },
       degree: {
         type: String,
-      }
+      },
+
   })
   
-  const StudentModel = mongoose.model<IStudent>("Student", schemaStudent)
+  const Student = mongoose.model<IStudent>("student", schemaStudent)
   
-  export default StudentModel;
+  export default Student;

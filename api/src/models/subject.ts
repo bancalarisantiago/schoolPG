@@ -9,12 +9,12 @@ const schemaSubject = new Schema({
         required: true
     },
     degrees:{
-        type: [{type:Schema.Types.ObjectId, ref: "Degree"}]
+        type: [{type:mongoose.Types.ObjectId, ref: "Degree"}]
     }
    
   })
   
-const SubjectModel = mongoose.model<ISubject>("Subject", schemaSubject)
+const Subject = mongoose.model<ISubject>("subject", schemaSubject)
 
-export default SubjectModel;
+export default Subject;
   

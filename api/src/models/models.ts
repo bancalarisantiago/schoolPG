@@ -1,22 +1,22 @@
 
 //Models
 
-import SchoolModel from "./school";
-import UserModel from "./user";
-import StudentModel from "./student";
-import TutorModel from "./tutor";
-import TeacherModel from "./teacher";
-import AdminModel from "./admin";
-import DegreeModel from "./degree";
-import SubjectModel from "./subject"
+import School from "./school";
+import User from "./user";
+import Student from "./student";
+import Tutor from "./tutor";
+import Teacher from "./teacher";
+import Admin from "./admin";
+import Degree from "./degree";
+import Subject from "./subject"
 
 module.exports = {
-  SchoolModel,
-  UserModel,
-  StudentModel,
-  TutorModel,
-  TeacherModel,
-  AdminModel,
-  DegreeModel,
-  SubjectModel
+  School,
+  User,
+  Student,
+  Tutor,
+  Teacher,
+  Admin,
+  Degree,
+  Subject
 }
