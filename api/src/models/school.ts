@@ -73,6 +73,6 @@ const schemaSchool = new Schema({
    
 })
 
-const School = mongoose.model<ISchool>("school", schemaSchool);
+const School = mongoose.model<ISchool>("School", schemaSchool);
 
 export default School
