@@ -9,7 +9,7 @@ const schemaAdmin = new Schema({
     },
   })
   
-const Admin = mongoose.model<IAdmin>("admin", schemaAdmin)
+const Admin = mongoose.model<IAdmin>("Admin", schemaAdmin)
 
 export default Admin;
   

@@ -16,6 +16,6 @@ const schemaStudent = new Schema({
 
   })
   
-  const Student = mongoose.model<IStudent>("student", schemaStudent)
+  const Student = mongoose.model<IStudent>("Student", schemaStudent)
   
   export default Student;

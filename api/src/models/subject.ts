@@ -14,7 +14,7 @@ const schemaSubject = new Schema({
    
   })
   
-const Subject = mongoose.model<ISubject>("subject", schemaSubject)
+const Subject = mongoose.model<ISubject>("Subject", schemaSubject)
 
 export default Subject;
   
