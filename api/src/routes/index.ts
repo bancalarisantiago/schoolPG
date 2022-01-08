@@ -1,6 +1,6 @@
 import { Router } from "express";
-import userRoutes from "./user";
-import schoolRoutes from "./school";
+import userRoutes from "./rUsers";
+import schoolRoutes from "./rSchool";
 const router = Router();
 
 router.use("/", userRoutes);

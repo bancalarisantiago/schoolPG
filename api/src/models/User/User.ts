@@ -1,5 +1,5 @@
 //from modules
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 //interface
 import { IUser } from "./IUser";
@@ -27,10 +27,10 @@ const schemaUser = new Schema({
     type: String,
   },
   location: {
-    number: { type: Number, required: true },
-    streetName: { type: String, required: true },
-    locality: { type: String, required: true },
-    postalCode: { type: String, required: true },
+    number: { type: Number },
+    streetName: { type: String },
+    locality: { type: String },
+    postalCode: { type: String },
   },
   birthdate: {
     date: {
@@ -65,7 +65,6 @@ const schemaUser = new Schema({
   },
   picture: {
     type: String,
-    required: true,
   },
   childInCharge: [
     {
@@ -85,6 +84,4 @@ const schemaUser = new Schema({
   },
 });
 
-const User = mongoose.model<IUser>("User", schemaUser);
-
-export default User;
+export default model<IUser>("User", schemaUser);
