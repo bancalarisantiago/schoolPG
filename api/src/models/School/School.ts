@@ -37,7 +37,7 @@ const schemaSchool = new Schema({
   },
   cellphone: {
     type: String,
-    //required: true
+    required: true,
   },
   dataBase: {
     admins: [

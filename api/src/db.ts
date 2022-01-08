@@ -8,6 +8,6 @@ const uri =
   "mongodb+srv://ischool:escuelita420@cluster0.pfkbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }) // conexion a la base de datos
+  .connect(uri) // conexion a la base de datos
   .then(() => app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))) // escucha en el puerto
   .catch((err: any) => console.log(err)); // error en la conexion
