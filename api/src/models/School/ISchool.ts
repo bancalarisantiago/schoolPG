@@ -10,11 +10,11 @@ export interface ISchool extends Document {
   phone: string;
   cellphone: string;
   dataBase: {
-    admins: Types.ObjectId;
-    students: Types.ObjectId;
-    teachers: Types.ObjectId;
-    tutors: Types.ObjectId;
-    degrees: Types.ObjectId;
-    subjects: Types.ObjectId;
+    admins: Types.ObjectId[];
+    students: Types.ObjectId[];
+    teachers: Types.ObjectId[];
+    tutors: Types.ObjectId[];
+    degrees: Types.ObjectId[];
+    subjects: Types.ObjectId[];
   };
 }
