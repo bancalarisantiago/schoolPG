@@ -11,7 +11,7 @@ export default function FormLogin(): JSX.Element {
     <div className={styles.main}>
       <div className={styles.submain}>
         <p className={styles.welcome}>
-          Bienvenido a<p className={styles.pgname}>PGSchool</p>
+          Bienvenido a<span className={styles.pgname}>PGSchool</span>
         </p>
         <form>
           <Input placeHolder={"Correo Electronico"} name={"correo"} />

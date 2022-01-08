@@ -10,7 +10,7 @@ interface IProps {
 
 export default function Input({ placeHolder, name, type, xtraClass }: IProps) {
   return (
-    <div>
+    <div className={styles.main}>
       <input
         name={name}
         placeholder={placeHolder}

@@ -1,5 +1,19 @@
+.main {
+  height: 200px;
+}
+
 .modernInput {
   width: 100%;
-  margin-top: 3rem;
+  height: 25%;
+  margin-top: 10%;
+  padding-left: 2%;
+  font-size: large;
+  background-color: var(--semi-white);
   border-bottom: 2px solid var(--blue-palette-intensity5);
+}
+
+@media (max-height: 900px) {
+  .main {
+    height: 100px;
+  }
 }
