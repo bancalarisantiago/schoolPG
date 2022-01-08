@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router";
 
 //pages
 import Login from "./pages/Desktop/Login/Login";
-import FormLogin from "./components/Desktop/FormLogin/FormLogin";
 
 function App() {
   return (

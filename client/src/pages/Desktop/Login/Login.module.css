@@ -63,6 +63,12 @@
   width: 50%;
 }
 
+.aboutUs {
+  color: var(--semi-white);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 @media (max-height: 530px) {
   .info {
     top: 20%;
