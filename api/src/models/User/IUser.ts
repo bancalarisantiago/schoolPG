@@ -29,7 +29,7 @@ export interface IUser extends Document {
   cellphone: string;
   login: Login;
   picture: string;
-  childInCharge?: number[];
-  tutors?: number[];
-  degree?: string[];
+  childInCharge?: Types.ObjectId[];
+  tutors?: Types.ObjectId[];
+  degree?: Types.ObjectId[];
 }
