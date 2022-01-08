@@ -1,0 +1,32 @@
+.main {
+  --z-index-1: -1;
+  --z-index1: 1;
+  --z-index2: 2;
+  --z-index3: 3;
+  --z-index4: 4;
+  --z-index5: 5;
+  --z-index6: 6;
+  --z-index7: 7;
+  --z-index8: 8;
+  --z-index9: 9;
+  --general-bg: url("./assets/SchoolPG-general-bg.png");
+  --red-palette-intensity9: #ad2b35;
+  --red-palette-intensity8: #be2f3a;
+  --red-palette-intensity7: #d13440;
+  --red-palette-intensity6: #e63946;
+  --red-palette-intensity5: #e95e66;
+  --red-palette-intensity4: #eb8285;
+  --red-palette-intensity3: #efcac4;
+  --red-palette-intensity2: #f0e2d9;
+  --red-palette-intensity1: #f1faee;
+  --blue-palette-intensity9: #03045e;
+  --blue-palette-intensity8: #023e8a;
+  --blue-palette-intensity7: #0077b6;
+  --blue-palette-intensity6: #0096c7;
+  --blue-palette-intensity5: #00b4d8;
+  --blue-palette-intensity4: #48cae4;
+  --blue-palette-intensity3: #90e0ef;
+  --blue-palette-intensity2: #ade8f4;
+  --blue-palette-intensity1: #caf0f8;
+  --semi-white: #f1f1f1;
+}

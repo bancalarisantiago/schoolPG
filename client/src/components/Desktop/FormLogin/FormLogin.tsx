@@ -2,9 +2,9 @@
 import styles from "./FormLogin.module.css";
 //modules
 
-//assets
-import logo from "../../../assets/logo.png";
-import logoSpie from "../../../assets/logo-sin-pie.png";
+//components
+import Input from "../ReusableComponents/Input/Input";
+import Button from "../ReusableComponents/Button/Button";
 
 export default function FormLogin(): JSX.Element {
   return (
@@ -14,18 +14,11 @@ export default function FormLogin(): JSX.Element {
           Bienvenido a<p className={styles.pgname}>PGSchool</p>
         </p>
         <form>
-          <input
-            name="correo"
-            placeholder="Correo Electronico"
-            autoComplete="off"
-            className={styles.modernInput}
-          />
-          <input
-            name="contraseña"
-            type="password"
-            placeholder="Contraseña"
-            autoComplete="off"
-            className={styles.modernInput}
+          <Input placeHolder={"Correo Electronico"} name={"correo"} />
+          <Input
+            placeHolder={"Contraseña"}
+            name={"contraseña"}
+            type={"password"}
           />
           <div className={styles.termsandconditions}>
             <p className={styles.terms}>
@@ -34,9 +27,7 @@ export default function FormLogin(): JSX.Element {
               <span className={styles.legal}> las politicas de privacidad</span>
             </p>
           </div>
-          <div className={styles.componentBut}>
-            <button className={styles.logbut}>login</button>
-          </div>
+          <Button content={"login"} />
         </form>
       </div>
     </div>

@@ -1,0 +1,5 @@
+.modernInput {
+  width: 100%;
+  margin-top: 3rem;
+  border-bottom: 2px solid var(--blue-palette-intensity5);
+}

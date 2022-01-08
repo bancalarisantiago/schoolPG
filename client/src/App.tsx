@@ -1,3 +1,5 @@
+//css
+import styles from "./App.module.css";
 //from modules
 import { Routes, Route } from "react-router";
 
@@ -7,7 +9,7 @@ import FormLogin from "./components/Desktop/FormLogin/FormLogin";
 
 function App() {
   return (
-    <div>
+    <div className={styles.main}>
       <FormLogin />
       {/* <Routes>
         <Route path="/" element={<Login />} />
