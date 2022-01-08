@@ -1,17 +1,17 @@
+//css
+import styles from "./App.module.css";
 //from modules
 import { Routes, Route } from "react-router";
 
 //pages
-//import Login from "./pages/Login";
-import FormLogin from "./components/Desktop/FormLogin/FormLogin";
+import Login from "./pages/Desktop/Login/Login";
 
 function App() {
   return (
-    <div>
-      <FormLogin />
-      {/* <Routes>
+    <div className={styles.main}>
+      <Routes>
         <Route path="/" element={<Login />} />
-      </Routes> */}
+      </Routes>
     </div>
   );
 }

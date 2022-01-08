@@ -1,14 +1,15 @@
-//import PersonModel from "../models/models";
+//from modules
 import axios from "axios";
 
-const models = require("../models/models");
+//models
+import User from "../models/User/User";
 
 // https://www.restapitutorial.com/httpstatuscodes.html ---> status codes
 
 const getUsersApi = async function () {
   try {
     const user = await axios.get("https://randomuser.me/api/?results=10");
-    
+
     return user.data.results;
   } catch {
     return "Error de busqueda";
@@ -28,12 +29,12 @@ const getUsersApi = async function () {
 
 export const getUsers = async (req: any, res: any) => {
   try {
-    const postMessages = await models.User.find();
+    const postMessages = await User.find();
 
     const users = await getUsersApi();
 
     users.map((e: any) =>
-      models.User.create({
+      User.create({
         name: { first: e.name.first, last: e.name.last },
         gender: e.gender,
         location: {
@@ -52,14 +53,34 @@ export const getUsers = async (req: any, res: any) => {
 };
 
 export const createUser = async (req: any, res: any) => {
-  const { name, gender, location, birthdate, email } = req.body;
+  const {
+    name,
+    userType,
+    gender,
+    location,
+    birthdate,
+    document,
+    username,
+    email,
+    password,
+    phone,
+    cellphone,
+    picture,
+  } = req.body;
   try {
-    const newUser = new models.User({
+    const newUser = new User({
       name,
+      userType,
       gender,
       location,
       birthdate,
+      document,
+      username,
       email,
+      password,
+      phone,
+      cellphone,
+      picture,
     });
     newUser.save();
     res.status(200).json(newUser);

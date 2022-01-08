@@ -1,5 +1,6 @@
 .main {
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,52 +12,54 @@
 }
 
 .welcome {
+  font-size: x-large;
   font-weight: 700;
 }
 
 .pgname {
-  color: #4fabd2;
-  font-size: xx-large;
-}
-
-.modernInput {
-  width: 100%;
-  margin-top: 3rem;
-  border-bottom: 2px solid #4fabd2;
+  color: var(--blue-palette-intensity5);
+  display: block;
+  font-size: 250%;
 }
 
 .termsandconditions {
-  padding: 5rem;
+  padding: 10%;
 }
 
 .terms {
-  font-size: xx-small;
+  font-size: large;
   text-align: center;
   text-transform: uppercase;
+}
+
+@media (max-height: 900px) {
+  .submain {
+    height: max-content;
+  }
+  .pgname {
+    font-size: 150%;
+  }
+  .termsandconditions {
+    padding: 5%;
+  }
+  .terms {
+    font-size: small;
+  }
+}
+
+@media (max-width: 740px) {
+  .pgname {
+    font-size: 150%;
+  }
+  .termsandconditions {
+    padding: 5%;
+  }
+  .terms {
+    font-size: small;
+  }
 }
 
 .legal {
   font-weight: bold;
   cursor: pointer;
-}
-
-.componentBut {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.logbut {
-  width: 80%;
-  height: 2rem;
-  color: #f1f1f1;
-  background-color: #4fabd2;
-  border-radius: 5px;
-  text-transform: capitalize;
-  cursor: pointer;
-}
-
-.logbut:hover {
-  background-color: #317592;
-  transition: 1s ease-in-out;
 }

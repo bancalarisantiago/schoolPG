@@ -1,0 +1,26 @@
+.componentBut {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logbut {
+  width: 80%;
+  color: var(--semi-white);
+  background-color: var(--blue-palette-intensity5);
+  border-radius: 5px;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: xx-large;
+}
+
+@media (max-height: 900px) {
+  .logbut {
+    transform: scale(0.7);
+  }
+}
+
+.logbut:hover {
+  background-color: var(--blue-palette-intensity7);
+  transition: 1s ease-in-out;
+}
