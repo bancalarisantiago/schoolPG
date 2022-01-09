@@ -1,7 +1,7 @@
 //types
 import { Request, Response } from "express";
 import { ISchool } from "../models/School/ISchool";
-import User from "../models/User/User";
+
 
 //models
 import School from "../models/School/School";

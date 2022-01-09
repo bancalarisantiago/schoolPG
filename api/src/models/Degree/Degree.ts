@@ -9,6 +9,9 @@ const schemaDegree = new Schema({
     type: String,
     required: true,
   },
+  shifts: {
+    type: [{ type: mongoose.Types.ObjectId, ref: "Shift" }],
+  },
   students: {
     type: [{ type: mongoose.Types.ObjectId, ref: "Student" }],
   },
