@@ -79,3 +79,26 @@ const addRelation = async (userId: string, schoolId: string) => {
   return user && school ? "ok" : "error";
 };
 
+
+export const addUserToDegree = async (req: Request, res: Response) => {
+  const { degreeId, userId } = req.body;
+
+  (await addRelationUserToDegree(userId, degreeId)) === "ok"
+    ? res.send({ message: "relation was created succesfully" })
+    : res.send({ error: "relation wasn'\t created succesfully" });
+};
+
+
+const addRelationUserToDegree = async (userId: string, degreeId: string) => {
+  const user = await User.findByIdAndUpdate(new toId(userId), {$push:{
+    degree: new toId(degreeId),
+  }});
+
+  const type = user?.userType + "s";
+  const degree = await Degree.findByIdAndUpdate(new toId(degreeId), {
+    $push: {
+      [type]: new toId(userId),
+    },
+  });
+  return user && degree ? "ok" : "error";
+};

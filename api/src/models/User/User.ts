@@ -78,10 +78,10 @@ const schemaUser = new Schema({
       ref: "User",
     },
   ],
-  degree: {
+  degree: [{
     type: mongoose.Types.ObjectId,
     ref: "Degree",
-  },
+  }],
 });
 
 export default model<IUser>("User", schemaUser);
