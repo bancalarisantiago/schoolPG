@@ -32,7 +32,7 @@ export const getDegrees = async (req: Request, res: Response) => {
 
 
 export const getDegreeById = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { id } = req.body;
     const populateQuery = [{path: "teachers", model: "User"},
                           {path: "students", model: "User"},
                           {path: "tutors", model: "User"}
