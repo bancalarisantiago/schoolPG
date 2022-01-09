@@ -12,11 +12,14 @@ const schemaDegree = new Schema({
   shifts: {
     type: [{ type: mongoose.Types.ObjectId, ref: "Shift" }],
   },
+  tutors:{
+    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+  },
   students: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Student" }],
+    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
   },
   teachers: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Teacher" }],
+    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
   },
   subjects: {
     type: [{ type: mongoose.Types.ObjectId, ref: "Subject" }],

@@ -30,3 +30,20 @@ export const getDegrees = async (req: Request, res: Response) => {
       }
 }
 
+
+export const getDegreeById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const populateQuery = [{path: "teachers", model: "User"},
+                          {path: "students", model: "User"},
+                          {path: "tutors", model: "User"}
+                        ]
+
+
+  try {
+      const degree = await Degree.findById(id).populate(populateQuery).lean();
+      console.log(degree);
+      res.status(200).json(degree);
+    } catch (error: any) {
+      res.status(404).json({ message: error.message });
+    }
+}
