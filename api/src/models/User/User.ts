@@ -1,5 +1,6 @@
 //from modules
 import mongoose, { Schema, model } from "mongoose";
+import bcrypt from "bcryptjs";
 
 //interface
 import { IUser } from "./IUser";
@@ -78,10 +79,25 @@ const schemaUser = new Schema({
       ref: "User",
     },
   ],
-  degree: [{
-    type: mongoose.Types.ObjectId,
-    ref: "Degree",
-  }],
+  degree: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Degree",
+    },
+  ],
 });
+
+schemaUser.methods.encryptPassword = async (
+  password: string
+): Promise<string> => {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
+};
+
+schemaUser.methods.validatePassword = async function (
+  password: string
+): Promise<boolean> {
+  return await bcrypt.compare(password, this.password);
+};
 
 export default model<IUser>("User", schemaUser);
