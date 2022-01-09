@@ -7,8 +7,10 @@ import { Request, Response } from "express";
 
 //models
 import User from "../models/User/User";
+import School from "../models/School/School";
+import { IUser } from "models/User/IUser";
 
-export const getUsers = async (req: any, res: any) => {
+export const getUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await User.find({});
     res.status(200).json(allUsers);
@@ -17,7 +19,7 @@ export const getUsers = async (req: any, res: any) => {
   }
 };
 
-export const createUser = async (req: any, res: any) => {
+export const createUser = async (req: Request, res: Response) => {
   const {
     name,
     userType,
@@ -31,7 +33,7 @@ export const createUser = async (req: any, res: any) => {
     phone,
     cellphone,
     picture,
-  } = req.body;
+  }: IUser = req.body;
   try {
     const newUser = new User({
       name,
@@ -55,10 +57,25 @@ export const createUser = async (req: any, res: any) => {
 };
 
 export const addUserToSchool = async (req: Request, res: Response) => {
-  //id y el id del user
   const { schoolId, userId } = req.body;
+
+  (await addRelation(userId, schoolId)) === "ok"
+    ? res.send({ message: "relation was created succesfully" })
+    : res.send({ error: "relation wasn'\t created succesfully" });
+};
+
+const addRelation = async (userId: string, schoolId: string) => {
   const user = await User.findByIdAndUpdate(new toId(userId), {
     school: new toId(schoolId),
   });
-  console.log(user);
+
+  const type = user?.userType + "s";
+
+  const school = await School.findByIdAndUpdate(new toId(schoolId), {
+    $push: {
+      [type]: new toId(userId),
+    },
+  });
+
+  return user && school ? "ok" : "error";
 };
