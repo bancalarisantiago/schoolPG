@@ -39,44 +39,43 @@ const schemaSchool = new Schema({
     type: String,
     required: true,
   },
-  dataBase: {
-    admins: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    students: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    teachers: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    tutors: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    degrees: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Degree",
-      },
-    ],
-    subjects: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Subject",
-      },
-    ],
-  },
+
+  admins: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  students: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  teachers: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  tutors: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  degrees: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Degree",
+    },
+  ],
+  subjects: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Subject",
+    },
+  ],
 });
 
 const School = mongoose.model<ISchool>("School", schemaSchool);

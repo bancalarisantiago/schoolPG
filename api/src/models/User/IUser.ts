@@ -24,7 +24,9 @@ export interface IUser extends Document {
   location: Location;
   birthdate: string;
   document: number;
+  username: string;
   email: string;
+  password: string;
   phone: string;
   cellphone: string;
   login: Login;

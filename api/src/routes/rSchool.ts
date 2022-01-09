@@ -1,12 +1,10 @@
 //from modules
-import express from "express";
+import { Router } from "express";
 
 //controller
 import { getAllSchools, createSchool } from "../controllers/cSchool";
 
-const mongoose = require("mongoose");
-const router = express.Router();
-const toId = mongoose.Types.ObjectId;
+const router = Router();
 
 router.get("/school", getAllSchools);
 router.post("/school", createSchool);
