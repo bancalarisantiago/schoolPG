@@ -8,7 +8,8 @@ const router = Router();
 
 router.get("/user", getUsers);
 router.post("/user", createUser);
-router.put("/user", addUserToSchool);
+router.put("/user/school", addUserToSchool);
+//router.put("/user/degree", addUserToDegree);
 
 
 export default router;
