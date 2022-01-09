@@ -4,21 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"concurrently \"tsc -w\" \"nodemon dist/index.js\"",
-    "start": "nodemon ./src/db.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "dev": "concurrently \"tsc -w\" \"nodemon ./src/db.ts\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/dotenv": "^8.2.0",
-    "@types/jsonwebtoken": "^8.5.6",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
-    "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
@@ -26,17 +19,21 @@
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.5",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.19.2",
     "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.6",
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.3",
-    "@types/node": "^17.0.8"
+    "@types/node": "^17.0.8",
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
   }
-} 
+}
