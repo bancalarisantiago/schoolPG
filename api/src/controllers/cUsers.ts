@@ -56,6 +56,30 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
+// export const addUserToSchool = async (req: Request, res: Response) => {
+//   const { schoolId, userId } = req.body;
+
+//   (await addRelation(userId, schoolId)) === "ok"
+//     ? res.send({ message: "relation was created succesfully" })
+//     : res.send({ error: "relation wasn'\t created succesfully" });
+// };
+
+// const addRelation = async (userId: string, schoolId: string) => {
+//   const user = await User.findByIdAndUpdate(new toId(userId), {
+//     school: new toId(schoolId),
+//   });
+
+//   const type = user?.userType + "s";
+
+//   const school = await School.findByIdAndUpdate(new toId(schoolId), {
+//     $push: {
+//       [type]: new toId(userId),
+//     },
+//   });
+
+//   return user && school ? "ok" : "error";
+// };
+
 export const addUserToSchool = async (req: Request, res: Response) => {
   const { schoolId, userId } = req.body;
 

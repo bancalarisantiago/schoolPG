@@ -10,4 +10,5 @@ router.get("/user", getUsers);
 router.post("/user", createUser);
 router.put("/user", addUserToSchool);
 
+
 export default router;
