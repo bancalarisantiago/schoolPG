@@ -2,6 +2,10 @@ TEST
 
 Api Dependencies
 
+El mati se la come
+es por eso que en 1998 la guerra fria se llevo a mas
+de la mitad del activo del pais
+
 "dependencies": {
 "axios": "^0.24.0",
 "body-parser": "^1.19.1",
@@ -22,20 +26,3 @@ Api Dependencies
 "@types/mongoose": "^5.11.97",
 "@types/node": "^17.0.8"
 }
-
-Client Dependecies
-
-"dependencies": {
-"@testing-library/jest-dom": "^5.16.1",
-"@testing-library/react": "^12.1.2",
-"@testing-library/user-event": "^13.5.0",
-"@types/jest": "^27.4.0",
-"@types/node": "^16.11.19",
-"@types/react": "^17.0.38",
-"@types/react-dom": "^17.0.11",
-"react": "^17.0.2",
-"react-dom": "^17.0.2",
-"react-scripts": "5.0.0",
-"typescript": "^4.5.4",
-"web-vitals": "^2.1.2"
-},

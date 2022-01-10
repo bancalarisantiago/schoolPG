@@ -8,7 +8,11 @@ import { Request, Response } from "express";
 //models
 import User from "../models/User/User";
 import School from "../models/School/School";
+import Degree from "../models/Degree/Degree";
 import { IUser } from "models/User/IUser";
+
+//from modules
+import jwt from "jsonwebtoken";
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -33,9 +37,9 @@ export const createUser = async (req: Request, res: Response) => {
     phone,
     cellphone,
     picture,
-  }: IUser = req.body;
+  } = req.body;
   try {
-    const newUser = new User({
+    const newUser: IUser = new User({
       name,
       userType,
       gender,
@@ -49,36 +53,19 @@ export const createUser = async (req: Request, res: Response) => {
       cellphone,
       picture,
     });
-    newUser.save();
-    res.status(200).json(newUser);
+    newUser.password = await newUser.encryptPassword(password);
+    const savedUser = await newUser.save();
+
+    //token
+    const token: string = jwt.sign(
+      { _id: savedUser._id },
+      process.env.TOKEN_SECRET || "token de minima seguridad"
+    );
+    res.setHeader("auth-token", token).json(savedUser);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
 };
-
-// export const addUserToSchool = async (req: Request, res: Response) => {
-//   const { schoolId, userId } = req.body;
-
-//   (await addRelation(userId, schoolId)) === "ok"
-//     ? res.send({ message: "relation was created succesfully" })
-//     : res.send({ error: "relation wasn'\t created succesfully" });
-// };
-
-// const addRelation = async (userId: string, schoolId: string) => {
-//   const user = await User.findByIdAndUpdate(new toId(userId), {
-//     school: new toId(schoolId),
-//   });
-
-//   const type = user?.userType + "s";
-
-//   const school = await School.findByIdAndUpdate(new toId(schoolId), {
-//     $push: {
-//       [type]: new toId(userId),
-//     },
-//   });
-
-//   return user && school ? "ok" : "error";
-// };
 
 export const addUserToSchool = async (req: Request, res: Response) => {
   const { schoolId, userId } = req.body;
@@ -94,16 +81,13 @@ const addRelation = async (userId: string, schoolId: string) => {
   });
 
   const type = user?.userType + "s";
-
   const school = await School.findByIdAndUpdate(new toId(schoolId), {
     $push: {
       [type]: new toId(userId),
     },
   });
-
   return user && school ? "ok" : "error";
 };
-
 
 export const addRelationTutorChild = async (req: Request, res: Response)=>{
   const { tutorId, childId} = req.body;
@@ -123,3 +107,28 @@ export const addRelationTutorChild = async (req: Request, res: Response)=>{
     tutor && student? res.send({tutor, student}): res.send("tutor or student wasn't found")
     
 }
+
+export const addUserToDegree = async (req: Request, res: Response) => {
+  const { degreeId, userId } = req.body;
+
+  (await addRelationUserToDegree(userId, degreeId)) === "ok"
+    ? res.send({ message: "relation was created succesfully" })
+    : res.send({ error: "relation wasn'\t created succesfully" });
+};
+
+const addRelationUserToDegree = async (userId: string, degreeId: string) => {
+  const user = await User.findByIdAndUpdate(new toId(userId), {
+    $push: {
+      degree: new toId(degreeId),
+    },
+  });
+
+  const type = user?.userType + "s";
+  const degree = await Degree.findByIdAndUpdate(new toId(degreeId), {
+    $push: {
+      [type]: new toId(userId),
+    },
+  });
+  return user && degree ? "ok" : "error";
+};
+
