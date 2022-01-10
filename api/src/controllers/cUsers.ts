@@ -11,6 +11,9 @@ import School from "../models/School/School";
 import Degree from "../models/Degree/Degree";
 import { IUser } from "models/User/IUser";
 
+//from modules
+import jwt from "jsonwebtoken";
+
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await User.find({});
@@ -34,9 +37,9 @@ export const createUser = async (req: Request, res: Response) => {
     phone,
     cellphone,
     picture,
-  }: IUser = req.body;
+  } = req.body;
   try {
-    const newUser = new User({
+    const newUser: IUser = new User({
       name,
       userType,
       gender,
@@ -50,8 +53,15 @@ export const createUser = async (req: Request, res: Response) => {
       cellphone,
       picture,
     });
-    newUser.save();
-    res.status(200).json(newUser);
+    newUser.password = await newUser.encryptPassword(password);
+    const savedUser = await newUser.save();
+
+    //token
+    const token: string = jwt.sign(
+      { _id: savedUser._id },
+      process.env.TOKEN_SECRET || "token de minima seguridad"
+    );
+    res.setHeader("auth-token", token).json(savedUser);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
@@ -79,7 +89,6 @@ const addRelation = async (userId: string, schoolId: string) => {
   return user && school ? "ok" : "error";
 };
 
-
 export const addUserToDegree = async (req: Request, res: Response) => {
   const { degreeId, userId } = req.body;
 
@@ -88,11 +97,12 @@ export const addUserToDegree = async (req: Request, res: Response) => {
     : res.send({ error: "relation wasn'\t created succesfully" });
 };
 
-
 const addRelationUserToDegree = async (userId: string, degreeId: string) => {
-  const user = await User.findByIdAndUpdate(new toId(userId), {$push:{
-    degree: new toId(degreeId),
-  }});
+  const user = await User.findByIdAndUpdate(new toId(userId), {
+    $push: {
+      degree: new toId(degreeId),
+    },
+  });
 
   const type = user?.userType + "s";
   const degree = await Degree.findByIdAndUpdate(new toId(degreeId), {
