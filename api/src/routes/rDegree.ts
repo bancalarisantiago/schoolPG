@@ -1,11 +1,15 @@
 //from modules
 import { Router } from "express";
-import { tokenValidation } from "libs/verifyToken";
+import { tokenValidation } from "../libs/verifyToken/verifyToken";
 
 //controllers
 
-import { getDegrees, createDegree, getDegreeById, addSubjectToDegree } from "../controllers/cDegree";
-
+import {
+  getDegrees,
+  createDegree,
+  getDegreeById,
+  addSubjectToDegree,
+} from "../controllers/cDegree";
 
 const router = Router();
 
@@ -13,7 +17,7 @@ const router = Router();
 router.get("/degree", getDegrees);
 router.get("/degree/id", getDegreeById);
 router.post("/degree", createDegree);
-router.put("/degree/id/subject", addSubjectToDegree)
+router.put("/degree/id/subject", addSubjectToDegree);
 
 /* router.get("/degree", tokenValidation, getDegrees);
 router.get("/degree/id", tokenValidation, getDegreeById);

@@ -1,5 +1,4 @@
 //from modules
-import { verify } from "crypto";
 import { Router } from "express";
 
 //controllers
@@ -9,7 +8,7 @@ import {
   addUserToSchool,
   addUserToDegree,
 } from "../controllers/cUsers";
-import { tokenValidation } from "../libs/verifyToken";
+import { tokenValidation } from "../libs/verifyToken/verifyToken";
 
 const router = Router();
 
