@@ -89,6 +89,25 @@ const addRelation = async (userId: string, schoolId: string) => {
   return user && school ? "ok" : "error";
 };
 
+export const addRelationTutorChild = async (req: Request, res: Response)=>{
+  const { tutorId, childId} = req.body;
+
+    const tutor = await User.findByIdAndUpdate(new toId(tutorId), {
+      $push:{
+        childInCharge: new toId(childId),
+      },
+    });
+    
+
+    const student = await User.findByIdAndUpdate(new toId(childId), {
+      $push:{
+        tutors: new toId(tutorId)
+      }
+    })
+    tutor && student? res.send({tutor, student}): res.send("tutor or student wasn't found")
+    
+}
+
 export const addUserToDegree = async (req: Request, res: Response) => {
   const { degreeId, userId } = req.body;
 
@@ -112,3 +131,4 @@ const addRelationUserToDegree = async (userId: string, degreeId: string) => {
   });
   return user && degree ? "ok" : "error";
 };
+

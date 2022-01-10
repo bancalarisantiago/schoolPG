@@ -8,6 +8,7 @@ import {
   createUser,
   addUserToSchool,
   addUserToDegree,
+  addRelationTutorChild
 } from "../controllers/cUsers";
 import { tokenValidation } from "../libs/verifyToken";
 
@@ -15,9 +16,14 @@ const router = Router();
 
 //private routes
 router.post("/user", createUser);
+
+router.put("/user", addUserToSchool);
+router.put("/user/relationTutorToChild", addRelationTutorChild)
+
 router.get("/user", getUsers);
 router.put("/user/school", addUserToSchool);
 router.put("/user/degree", addUserToDegree);
+
 
 /* router.get("/user",tokenValidation, getUsers);
 router.post("/user",tokenValidation, createUser);
