@@ -1,1 +1,3 @@
-export interface ISubject extends Document {}
+export interface ISubject extends Document {
+    name: string;
+}
