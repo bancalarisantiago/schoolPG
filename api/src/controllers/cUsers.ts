@@ -11,6 +11,9 @@ import School from "../models/School/School";
 import Degree from "../models/Degree/Degree";
 import { IUser } from "models/User/IUser";
 
+//from modules
+import jwt from "jsonwebtoken";
+
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await User.find({});
@@ -53,7 +56,12 @@ export const createUser = async (req: Request, res: Response) => {
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
 
-    res.status(200).json(newUser);
+    //token
+    const token: string = jwt.sign(
+      { _id: savedUser._id },
+      process.env.TOKEN_SECRET || "token de minima seguridad"
+    );
+    res.setHeader("auth-token", token).json(savedUser);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
