@@ -1,6 +1,6 @@
 //from modules
 import { Router } from "express";
-import { tokenValidation } from "libs/verifyToken";
+import { tokenValidation } from "../libs/verifyToken/verifyToken";
 
 //controller
 import { getAllSchools, createSchool } from "../controllers/cSchool";
