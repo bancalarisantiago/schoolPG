@@ -33,7 +33,7 @@ export const getSubjectById = async (req: Request, res: Response) => {
 
         try{
 
-          const subject = await Subject.findById(id).populate({path: "degrees", model: "Degree"})
+          const subject = await Subject.findById(id).populate({path: "courses", model: "Course"})
         
         console.log(subject);
         res.status(200).json(subject);

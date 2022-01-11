@@ -2,9 +2,9 @@
 import mongoose, { Schema } from "mongoose";
 
 //interface
-import { IDegree } from "./IDegree";
+import { ICourse } from "./ICourse";
 
-const schemaDegree = new Schema({
+const schemaCourse = new Schema({
   name: {
     type: String,
     required: true,
@@ -26,6 +26,6 @@ const schemaDegree = new Schema({
   },
 });
 
-const Degree = mongoose.model<IDegree>("Degree", schemaDegree);
+const Course = mongoose.model<ICourse>("Course", schemaCourse);
 
-export default Degree;
+export default Course;

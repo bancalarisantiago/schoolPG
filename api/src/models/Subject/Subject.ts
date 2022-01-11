@@ -9,8 +9,8 @@ const schemaSubject = new Schema({
     type: String,
     required: true,
   },
-  degrees: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Degree" }],
+  courses: {
+    type: [{ type: mongoose.Types.ObjectId, ref: "Course" }],
   },
 });
 

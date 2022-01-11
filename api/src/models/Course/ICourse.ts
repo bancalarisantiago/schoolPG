@@ -1,6 +1,6 @@
 import { Document, Types } from "mongoose";
 
-export interface IDegree extends Document {
+export interface ICourse extends Document {
   name: string;
   students: Types.ObjectId[],
   teachers:Types.ObjectId[],  

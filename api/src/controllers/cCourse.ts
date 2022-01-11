@@ -4,37 +4,37 @@ const toId = Types.ObjectId;
 
 //types
 import { Request, Response } from "express";
-import { IDegree } from "../models/Degree/IDegree";
+import { ICourse } from "../models/Course/ICourse";
 
 //models
-import Degree from "../models/Degree/Degree";
+import Course from "../models/Course/Course";
 import Subject from "../models/Subject/Subject"
 
-export const createDegree = (req: Request, res: Response) => {
-    const { name }: IDegree = req.body;
+export const createCourse = (req: Request, res: Response) => {
+    const { name }: ICourse = req.body;
     console.log(name)
         try {
-            const newDegree = new Degree({
+            const newCourse = new Course({
                 name
             })
-            newDegree.save();
-            res.status(200).json(newDegree);
+            newCourse.save();
+            res.status(200).json(newCourse);
             } catch (error: any) {
         res.status(404).json({ message: error.message });
   } 
 }
 
-export const getDegrees = async (req: Request, res: Response) => {
+export const getCourses = async (req: Request, res: Response) => {
     try {
-        const allDegrees = await Degree.find({});
-        res.status(200).json(allDegrees);
+        const allCourses = await Course.find({});
+        res.status(200).json(allCourses);
       } catch (error: any) {
         res.status(404).json({ message: error.message });
       }
 }
 
 
-export const getDegreeById = async (req: Request, res: Response) => {
+export const getCourseById = async (req: Request, res: Response) => {
     const { id } = req.body;
     const populateQuery = [{path: "teachers", model: "User"},
                           {path: "students", model: "User"},
@@ -42,27 +42,27 @@ export const getDegreeById = async (req: Request, res: Response) => {
                           {path: "subjects", model: "Subject"}
                         ]
   try {
-      const degree = await Degree.findById(id).populate(populateQuery).lean();
-      console.log(degree);
-      res.status(200).json(degree);
+      const course = await Course.findById(id).populate(populateQuery).lean();
+      console.log(course);
+      res.status(200).json(course);
     } catch (error: any) {
       res.status(404).json({ message: error.message });
     }
 }
 
-export const addSubjectToDegree = async (req: Request, res: Response) => {
-      const { degreeId, subjectId } = req.body;
+export const addSubjectToCourse = async (req: Request, res: Response) => {
+      const { courseId, subjectId } = req.body;
    
       try {
 
-        const degree = await Degree.findByIdAndUpdate(new toId(degreeId), {
+        const course = await Course.findByIdAndUpdate(new toId(courseId), {
               $push: {
                 subjects: new toId(subjectId),
               },
             });
         const subject = await Subject.findByIdAndUpdate(new toId(subjectId), {
           $push: {
-            degrees: new toId(degreeId),
+            courses: new toId(courseId),
           },
         });
           res.status(200).json({ message: "relation was created succesfully" })
