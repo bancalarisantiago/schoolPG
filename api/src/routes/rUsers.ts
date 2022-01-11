@@ -6,7 +6,7 @@ import {
   getUsers,
   createUser,
   addUserToSchool,
-  addUserToDegree,
+  addUserToCourse,
   addRelationTutorChild
 } from "../controllers/cUsers";
 import { tokenValidation } from "../libs/verifyToken/verifyToken";
@@ -21,11 +21,11 @@ router.put("/user/relationTutorToChild", addRelationTutorChild)
 
 router.get("/user", getUsers);
 router.put("/user/school", addUserToSchool);
-router.put("/user/degree", addUserToDegree);
+router.put("/user/course", addUserToCourse);
 
 
 /* router.get("/user",tokenValidation, getUsers);
 router.post("/user",tokenValidation, createUser);
 router.put("/user/school",tokenValidation, addUserToSchool);
-router.put("/user/degree",tokenValidation, addUserToDegree); */
+router.put("/user/course",tokenValidation, addUserToCourse); */
 export default router;

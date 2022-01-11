@@ -67,22 +67,17 @@ const schemaUser = new Schema({
   picture: {
     type: String,
   },
-  childInCharge: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-    },
-  ],
   tutors: [
     {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
+      name: String,
+      cellphone: String,
+      email: String
     },
   ],
-  degree: [
+  course: [
     {
       type: mongoose.Types.ObjectId,
-      ref: "Degree",
+      ref: "Course",
     },
   ],
 });

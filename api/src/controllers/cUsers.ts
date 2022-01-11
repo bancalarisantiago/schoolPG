@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 //models
 import User from "../models/User/User";
 import School from "../models/School/School";
-import Degree from "../models/Degree/Degree";
+import Course from "../models/Course/Course";
 import { IUser } from "models/User/IUser";
 
 //from modules
@@ -108,27 +108,27 @@ export const addRelationTutorChild = async (req: Request, res: Response)=>{
     
 }
 
-export const addUserToDegree = async (req: Request, res: Response) => {
-  const { degreeId, userId } = req.body;
+export const addUserToCourse = async (req: Request, res: Response) => {
+  const { courseId, userId } = req.body;
 
-  (await addRelationUserToDegree(userId, degreeId)) === "ok"
+  (await addRelationUserToCourse(userId, courseId)) === "ok"
     ? res.send({ message: "relation was created succesfully" })
     : res.send({ error: "relation wasn'\t created succesfully" });
 };
 
-const addRelationUserToDegree = async (userId: string, degreeId: string) => {
+const addRelationUserToCourse = async (userId: string, courseId: string) => {
   const user = await User.findByIdAndUpdate(new toId(userId), {
     $push: {
-      degree: new toId(degreeId),
+      course: new toId(courseId),
     },
   });
 
   const type = user?.userType + "s";
-  const degree = await Degree.findByIdAndUpdate(new toId(degreeId), {
+  const course = await Course.findByIdAndUpdate(new toId(courseId), {
     $push: {
       [type]: new toId(userId),
     },
   });
-  return user && degree ? "ok" : "error";
+  return user && course ? "ok" : "error";
 };
 
