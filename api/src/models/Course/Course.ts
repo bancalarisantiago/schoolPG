@@ -30,7 +30,10 @@ const schemaCourse = new Schema({
           type: String,
         },
         attended: {
-          type: Boolean
+          type: Boolean,
+        },
+        late: {
+          type: Boolean,
         }
     }]
   }]

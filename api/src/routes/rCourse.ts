@@ -9,6 +9,7 @@ import {
   createCourse,
   getCourseById,
   addSubjectToCourse,
+  attendanceUpdate
 } from "../controllers/cCourse";
 
 const router = Router();
@@ -18,6 +19,7 @@ router.get("/course", getCourses);
 router.get("/course/id", getCourseById);
 router.post("/course", createCourse);
 router.put("/course/id/subject", addSubjectToCourse);
+router.put("/course/:id", attendanceUpdate)
 
 /* router.get("/course", tokenValidation, getCourses);
 router.get("/course/id", tokenValidation, getCourseById);

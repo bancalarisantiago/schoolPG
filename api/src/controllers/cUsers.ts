@@ -58,7 +58,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 
           
-        console.log( await User.find({}))
+        
     //token
     const token: string = jwt.sign(
       { _id: savedUser._id },
