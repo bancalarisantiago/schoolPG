@@ -56,6 +56,9 @@ export const createUser = async (req: Request, res: Response) => {
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
 
+
+          
+        console.log( await User.find({}))
     //token
     const token: string = jwt.sign(
       { _id: savedUser._id },

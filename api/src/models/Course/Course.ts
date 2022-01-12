@@ -10,19 +10,16 @@ const schemaCourse = new Schema({
     required: true,
   },
   shifts: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Shift" }],
-  },
-  tutors:{
-    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+    type: String,
   },
   students: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   teachers: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   subjects: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Subject" }],
+    type: [{ type: Schema.Types.ObjectId, ref: "Subject" }],
   },
 });
 

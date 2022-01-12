@@ -10,8 +10,11 @@ const schemaSubject = new Schema({
     required: true,
   },
   courses: {
-    type: [{ type: mongoose.Types.ObjectId, ref: "Course" }],
+    type: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   },
+  teachers: {
+    type: [{ type: Schema.Types.ObjectId, ref: "USer" }],
+  }
 });
 
 const Subject = mongoose.model<ISubject>("Subject", schemaSubject);
