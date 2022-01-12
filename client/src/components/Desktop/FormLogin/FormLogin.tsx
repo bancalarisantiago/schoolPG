@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import axios from "axios";
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "localhost:5000/api",
+  baseURL: "http://localhost:5000/api",
 });
 
 //types
@@ -36,9 +36,9 @@ export default function FormLogin(): JSX.Element {
     });
   };
 
-  const handleSubmit = (e: SubmitEvent): void => {
+  const handleSubmit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
-    const user = instance.post("/signin", credential, {
+    const user = await instance.post("/login", credential, {
       withCredentials: true,
     });
     console.log(user);
