@@ -7,7 +7,7 @@ interface Fullname {
 
 interface Login {
   username: string;
-  password: string | number; // Regular expression ????
+  password: string; // Regular expression ????
 }
 
 interface Location {

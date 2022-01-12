@@ -43,7 +43,7 @@ export const getCourseById = async (req: Request, res: Response) => {
                         ]
   try {
       const course = await Course.findById(id).populate(populateQuery).lean();
-      console.log(course);
+      
       res.status(200).json(course);
     } catch (error: any) {
       res.status(404).json({ message: error.message });
@@ -71,5 +71,26 @@ export const addSubjectToCourse = async (req: Request, res: Response) => {
 
         res.status(404).json({ error: "relation wasn'\t created succesfully" });
       }
+
+}
+
+
+export const attendanceUpdate = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { classAttend } = req.body;
+   
+    
+        try {
+          const course = await Course.findByIdAndUpdate(id,
+            {
+              $push: {
+                classes: classAttend
+              }
+            })
+            
+            res.status(200).json(course)
+        } catch(error) {
+          res.status(404).json(error)
+        }
 
 }

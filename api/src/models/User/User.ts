@@ -1,5 +1,5 @@
 //from modules
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema, model} from "mongoose";
 import bcrypt from "bcryptjs";
 
 //interface
@@ -95,4 +95,6 @@ schemaUser.methods.validatePassword = async function (
   return await bcrypt.compare(password, this.password);
 };
 
-export default model<IUser>("User", schemaUser);
+const User = model<IUser>("User", schemaUser);
+
+export default User

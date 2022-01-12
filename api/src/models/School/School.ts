@@ -1,5 +1,5 @@
 //from modules
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 //interface
 import { ISchool } from "./ISchool";
@@ -41,38 +41,38 @@ const schemaSchool = new Schema({
   },
 
   admins: [
-    {
-      type: mongoose.Types.ObjectId,
+    { 
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
   students: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
   teachers: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
   tutors: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
   degrees: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Degree",
     },
   ],
   subjects: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Subject",
     },
   ],
