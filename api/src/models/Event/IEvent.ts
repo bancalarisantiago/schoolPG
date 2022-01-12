@@ -6,7 +6,7 @@ export interface IEvent extends Document {
     title: string;
     fromTime: string;
     tillTime: string;
-    start: string,
-    end: string,
-    user: Types.ObjectId,
+    start: string;
+    end: string;
+    user: Types.ObjectId;
 }
