@@ -43,6 +43,7 @@
 
 .info {
   position: absolute;
+  z-index: var(--z-index1);
   margin: 20px;
   top: 30%;
 }

@@ -9,7 +9,6 @@ import useHelper from "./useHelper";
 export default function FormLogin(): JSX.Element {
   const { userState, credential, handleChange, handleSubmit } = useHelper();
 
-  console.log(userState);
   return (
     <div className={styles.main}>
       <div className={styles.submain}>
