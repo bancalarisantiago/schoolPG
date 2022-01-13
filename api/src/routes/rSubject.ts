@@ -7,9 +7,9 @@ import {getSubjects, createSubject, getSubjectById, deleteSubjectById  } from ".
 const router = Router();
 
 router.get("/subject", getSubjects);
+router.post("/subject", createSubject);
 router.get("/subject/:id", getSubjectById);
 router.delete("/subject/:id", deleteSubjectById);
-router.post("/subject", createSubject);
 
 
 export default router;

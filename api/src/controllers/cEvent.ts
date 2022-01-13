@@ -56,7 +56,7 @@ export const updateEvent = async (req: Request,res: Response) => {
 
 export const deleteEvent = async (req: Request,res: Response) => {
 
-        const { id } = req.body; // req.body?
+        const { id } = req.params; 
         try{
             const event = await Event.findById(id);
             if(!event) {
