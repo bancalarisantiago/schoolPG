@@ -64,10 +64,10 @@ const schemaSchool = new Schema({
       ref: "User",
     },
   ],
-  degrees: [
+  courses: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Degree",
+      ref: "Course",
     },
   ],
   subjects: [

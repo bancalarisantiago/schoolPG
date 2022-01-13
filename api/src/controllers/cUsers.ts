@@ -23,6 +23,21 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const populateQuery = [
+                        {path: "course", model: "Course"}
+                      ]
+try {
+    const user = await User.findById(id).populate(populateQuery).lean();
+  
+    res.status(200).json(user);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+
 export const createUser = async (req: Request, res: Response) => {
   const {
     name,
@@ -70,8 +85,48 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
+
+export const updateUser = async (req: Request,res: Response) => {
+
+  const { id } = req.params; // req.body?
+
+  try{
+
+      const user = await User.findById(id);
+      if(!user) {
+          return res.status(404).json({msg: "Event not found"})
+      }
+      const newUser = {
+          ...req.body
+      };
+      const userUpdated = await User.findByIdAndUpdate(id, newUser, {new : true})
+      res.status(200).json(userUpdated)
+  } catch(error) {
+      console.log(error)
+      res.status(404).json(error)
+  }
+
+}
+
+export const deleteUserById = async (req: Request,res: Response) => {
+
+  const { id } = req.params; // req.body?
+  try{
+      const user = await User.findById(id);
+      if(!user) {
+          return res.status(404).json({msg: "Event not found"})
+      }
+      const userDeleted = await user.delete();
+      res.status(200).json(userDeleted)
+  } catch(error) {
+      console.log(error)
+      res.status(404).json(error)
+  }
+}
+
 export const addUserToSchool = async (req: Request, res: Response) => {
-  const { schoolId, userId } = req.body;
+  const { schoolId, userId } = req.params;
+
 
   (await addRelation(userId, schoolId)) === "ok"
     ? res.send({ message: "relation was created succesfully" })
@@ -93,7 +148,7 @@ const addRelation = async (userId: string, schoolId: string) => {
 };
 
 export const addRelationTutorChild = async (req: Request, res: Response)=>{
-  const { tutorId, childId} = req.body;
+  const { tutorId, childId} = req.params;
 
     const tutor = await User.findByIdAndUpdate(new toId(tutorId), {
       $push:{
@@ -112,7 +167,7 @@ export const addRelationTutorChild = async (req: Request, res: Response)=>{
 }
 
 export const addUserToCourse = async (req: Request, res: Response) => {
-  const { courseId, userId } = req.body;
+  const { courseId, userId } = req.params;
 
   (await addRelationUserToCourse(userId, courseId)) === "ok"
     ? res.send({ message: "relation was created succesfully" })

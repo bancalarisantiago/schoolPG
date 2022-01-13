@@ -24,21 +24,39 @@ export const createSubject = async (req: Request, res: Response) => {
 
 export const getSubjects = async (req: Request, res: Response) => {
 
-
+  try {
+    const allSubjects = await Subject.find({});
+    res.status(200).json(allSubjects);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
  }
 
 
 export const getSubjectById = async (req: Request, res: Response) => {
-        const { id } = req.body;
+        const { id } = req.params;
 
         try{
-
           const subject = await Subject.findById(id).populate({path: "courses", model: "Course"})
-        
-        console.log(subject);
         res.status(200).json(subject);
         } catch (error: any) {
         res.status(404).json({ message: error.message });
         }
 
  }
+
+ export const deleteSubjectById = async (req: Request,res: Response) => {
+
+  const { id } = req.params; // req.body?
+  try{
+      const subject = await Subject.findById(id);
+      if(!subject) {
+          return res.status(404).json({msg: "Event not found"})
+      }
+      const subjectDeleted = await subject.delete();
+      res.status(200).json(subjectDeleted)
+  } catch(error) {
+      console.log(error)
+      res.status(404).json(error)
+  }
+}

@@ -4,7 +4,10 @@ import { Router } from "express";
 //controllers
 import {
   getUsers,
+  getUserById,
   createUser,
+  updateUser,
+  deleteUserById,
   addUserToSchool,
   addUserToCourse,
   addRelationTutorChild
@@ -14,14 +17,14 @@ import { tokenValidation } from "../libs/verifyToken/verifyToken";
 const router = Router();
 
 //private routes
-router.post("/user", createUser);
-
-router.put("/user", addUserToSchool);
-router.put("/user/relationTutorToChild", addRelationTutorChild)
-
 router.get("/user", getUsers);
-router.put("/user/school", addUserToSchool);
-router.put("/user/course", addUserToCourse);
+router.put("/user/:id", updateUser)
+router.get("/user/:id",getUserById)
+router.delete("/user/:id",deleteUserById)
+router.post("/user", createUser);
+//router.put("/user/relationTutorToChild", addRelationTutorChild) 
+router.put("/user/school/:schoolId/:userId", addUserToSchool);
+router.put("/user/course/:courseId/:userId", addUserToCourse);
 
 
 /* router.get("/user",tokenValidation, getUsers);

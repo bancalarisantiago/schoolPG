@@ -38,7 +38,6 @@ export const getCourseById = async (req: Request, res: Response) => {
     const { id } = req.body;
     const populateQuery = [{path: "teachers", model: "User"},
                           {path: "students", model: "User"},
-                          {path: "tutors", model: "User"},
                           {path: "subjects", model: "Subject"}
                         ]
   try {
