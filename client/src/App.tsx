@@ -5,12 +5,14 @@ import { Routes, Route } from "react-router";
 
 //pages
 import Login from "./pages/Desktop/Login/Login";
+import Home from './pages/Desktop/Home/Home'
 
 function App() {
   return (
     <div className={styles.main}>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />}/>
+        <Route path='/home' element={<Home/>}/>
       </Routes>
     </div>
   );
