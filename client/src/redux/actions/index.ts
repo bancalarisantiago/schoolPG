@@ -2,8 +2,6 @@
 import axios from "axios";
 //types
 import { ICredential } from "../../interfaces";
-import { Action, ActionCreator } from "redux";
-import { ThunkActionDispatch } from "redux-thunk";
 
 const instance = axios.create({
   withCredentials: true,
