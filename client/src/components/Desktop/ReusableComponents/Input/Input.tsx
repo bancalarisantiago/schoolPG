@@ -1,5 +1,7 @@
 //css
 import styles from "./Input.module.css";
+//from modules
+import { useState } from "react";
 //types
 import { ICredential, ChangeEvent } from "../../../../interfaces";
 
@@ -20,6 +22,8 @@ export default function Input({
   handleChange,
   xtraClass,
 }: IProps) {
+  const [show, setShow] = useState<boolean>(false);
+
   const a = () => {
     if (name === "email") {
       return credential.email;
@@ -29,15 +33,23 @@ export default function Input({
   };
   return (
     <div className={styles.main}>
-      <input
-        name={name}
-        placeholder={placeHolder}
-        autoComplete="off"
-        type={type || "text"}
-        className={styles.modernInput}
-        value={a()}
-        onChange={handleChange}
-      />
+      <div className={styles.cont}>
+        <input
+          name={name}
+          placeholder={placeHolder}
+          autoComplete="off"
+          type={show ? "text" : type || "text"}
+          className={styles.modernInput}
+          value={a()}
+          onChange={handleChange}
+        />
+        {type === "password" && (
+          <label
+            onClick={(e) => setShow(!show)}
+            className={show ? styles.hide : styles.show}
+          ></label>
+        )}
+      </div>
     </div>
   );
 }

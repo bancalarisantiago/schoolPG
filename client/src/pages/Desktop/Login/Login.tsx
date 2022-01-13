@@ -5,9 +5,6 @@ import styles from "./Login.module.css";
 import BgImage from "../../../components/Desktop/BgImage/BgIMage";
 import FormLogin from "../../../components/Desktop/FormLogin/FormLogin";
 
-//assets
-import logo from "../../../assets/logo.png";
-
 //from modules
 import { NavLink } from "react-router-dom";
 

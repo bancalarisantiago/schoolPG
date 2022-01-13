@@ -12,6 +12,35 @@
   border-bottom: 2px solid var(--blue-palette-intensity5);
 }
 
+.cont {
+  position: relative;
+}
+
+.hide,
+.show {
+  display: transparent;
+}
+
+.hide::before,
+.show::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  width: 30px;
+  height: 30px;
+  background: url("../../../../assets/show.png");
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.hide::before {
+  background: url("../../../../assets/hide.png");
+  background-position: center;
+  background-size: cover;
+}
+
 @media (max-height: 900px) {
   .main {
     height: 100px;

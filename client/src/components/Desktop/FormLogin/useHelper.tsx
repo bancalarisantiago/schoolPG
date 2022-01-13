@@ -1,14 +1,21 @@
 //from modules
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //actions
 import { getUserByLogin } from "../../../redux/actions";
 //types
-import { ICredential, SubmitEvent, ChangeEvent } from "../../../interfaces";
+import {
+  ICredential,
+  SubmitEvent,
+  ChangeEvent,
+  IState,
+} from "../../../interfaces";
 
 const useHelper = () => {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state);
+  const userSession = useSelector((state: IState) => state.userSession);
+  const navigate = useNavigate();
   const [credential, setcredential] = useState<ICredential>({
     email: "",
     password: "",
@@ -24,11 +31,15 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
-    dispatch(getUserByLogin(credential));
+    const authLogin = await dispatch(getUserByLogin(credential));
+
+    typeof authLogin !== "string"
+      ? navigate("/panel")
+      : console.log({ message: "Email or password is invalid" });
   };
 
   return {
-    userState,
+    userSession,
     credential,
     setcredential,
     handleChange,
