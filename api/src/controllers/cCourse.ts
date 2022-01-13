@@ -35,7 +35,7 @@ export const getCourses = async (req: Request, res: Response) => {
 
 
 export const getCourseById = async (req: Request, res: Response) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const populateQuery = [{path: "teachers", model: "User"},
                           {path: "students", model: "User"},
                           {path: "subjects", model: "Subject"}
@@ -50,7 +50,7 @@ export const getCourseById = async (req: Request, res: Response) => {
 }
 
 export const addSubjectToCourse = async (req: Request, res: Response) => {
-      const { courseId, subjectId } = req.body;
+      const { courseId, subjectId } = req.params;
    
       try {
 

@@ -1,7 +1,14 @@
 import { Document, Types } from "mongoose";
 
+interface Location {
+    number: number;
+    streetName: string;
+    locality: string;
+    postalCode: string;
+}
+
 export interface ISchool extends Document {
-  name: String;
+  name: string;
   location: Location;
   description: string;
   orientation: string;
