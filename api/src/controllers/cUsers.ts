@@ -15,13 +15,14 @@ import { IUser } from "models/User/IUser";
 import jwt from "jsonwebtoken";
 
 export const getUsers = async (req: Request, res: Response) => {
-  try {
-    const allUsers = await User.find({});
-    res.status(200).json(allUsers);
-  } catch (error: any) {
-    res.status(404).json({ message: error.message });
+  const {prop, sort} = req.body
+  try{
+      const userFilters = await User.find(prop).sort(sort)
+      res.status(200).json(userFilters)
+    }catch(error:any){
+    res.status(404).json({message: error.message})
   }
-};
+}
 
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
