@@ -12,8 +12,10 @@ export interface IState {
 
 export type SubmitEvent = React.SyntheticEvent;
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
-
+export type ClickEvent = React.MouseEvent<HTMLElement>;
 export interface ICredential {
   email: string;
   password: string;
 }
+
+//for components
