@@ -1,0 +1,173 @@
+.sidebar {
+  position: absolute;
+  left: 1.5rem;
+  background-image: linear-gradient(
+    to right top,
+    #1a1a1a,
+    #1e1e1e,
+    #212123,
+    #252527,
+    #29292c,
+    #2c2c30,
+    #2f2f33,
+    #323237,
+    #35353b,
+    #38383f,
+    #3c3c43,
+    #3f3f47
+  );
+  width: 17rem;
+  height: 97%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title,
+.management,
+.option,
+.optionselected,
+.selected {
+  color: var(--semi-white);
+  text-transform: capitalize;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: large;
+  font-weight: 500;
+  padding: 1rem 0;
+  margin-bottom: 0.5rem;
+  position: relative;
+  border-radius: 0;
+  border-bottom: 1px solid var(--semi-white);
+}
+
+.management,
+.selected {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: 0.5s;
+}
+.management:hover {
+  background-color: gray;
+}
+
+.selected {
+  background-image: linear-gradient(
+    to right top,
+    #1f78e9,
+    #227dea,
+    #2681eb,
+    #2b86ec,
+    #308aed,
+    #378fef,
+    #3d93f0,
+    #4498f2,
+    #4d9ef5,
+    #55a4f9,
+    #5eaafc,
+    #66b0ff
+  );
+}
+
+.more,
+.less {
+  position: absolute;
+  top: 1rem;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  transition: 0.5s;
+}
+
+.less {
+  transform: rotate(-180deg);
+}
+
+.option,
+.optionselected {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+.option:hover::before {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  background-color: var(--semi-white);
+  height: 2px;
+  width: 5rem;
+  animation: underline 0.5s linear;
+}
+
+.optionselected::before {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  background-color: var(--semi-white);
+  height: 2px;
+  width: 5rem;
+}
+
+@keyframes underline {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 5rem;
+  }
+}
+
+.dropdownHide {
+  /*   position: absolute;
+    right: 10px;
+    animation: hide 0.4s linear;
+    visibility: hidden; */
+  display: none;
+}
+/* 
+  @keyframes hide {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    50% {
+      transform: translateY(-1rem);
+      opacity: 0.6666;
+      visibility: visible;
+    }
+    100% {
+      transform: translateY(-2rem);
+      opacity: 0.3333;
+    }
+  } */
+
+.dropdownShow {
+  animation: show 0.5s linear;
+}
+@keyframes show {
+  0% {
+    transform: translateY(-1.8rem);
+    opacity: 0.3333;
+  }
+  50% {
+    transform: translateY(-0.9rem);
+    opacity: 0.6666;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.test {
+  transition: 1s;
+}

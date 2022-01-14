@@ -18,3 +18,5 @@ export default function rootReducer(
 ) {
   return cases[type] ? cases[type](state, payload) : state;
 }
+
+export type RootState = ReturnType<typeof rootReducer>;
