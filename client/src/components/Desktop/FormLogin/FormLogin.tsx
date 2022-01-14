@@ -1,5 +1,4 @@
 //components
-import Input from "../ReusableComponents/Input/Input";
 import Button from "../ReusableComponents/Button/Button";
 //css
 import styles from "./FormLogin.module.css";

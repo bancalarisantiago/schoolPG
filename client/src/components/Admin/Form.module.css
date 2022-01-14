@@ -1,0 +1,25 @@
+.main {
+ display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(#0077b6 / 65%);
+  margin: 10px 10% 0px 10%;
+  padding: 100px 100px 30px 100px;
+  position: fixed;
+  border-style: solid;
+  border-color: #0077b6;
+}
+
+.backButton {
+  display: flex;
+  flex-direction: row;
+  color: #0c0b0b;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  background-color:  #e63946;
+}
+
+.inputNames {
+  color: #eb8285;
+}
