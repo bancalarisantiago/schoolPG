@@ -7,8 +7,8 @@ export const initialState: IState = {
 
 const cases: any = {};
 
-cases[GET_USER_LOGGED] = (state: any, payload: any) => ({
-  ...state,
+cases[GET_USER_LOGGED] = (initialState: IState, payload: any) => ({
+  ...initialState,
   userSession: payload,
 });
 
