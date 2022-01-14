@@ -7,7 +7,7 @@ import styles from "./FormLogin.module.css";
 import useHelper from "./useHelper";
 
 export default function FormLogin(): JSX.Element {
-  const { userState, credential, handleChange, handleSubmit } = useHelper();
+  const { userSession, credential, handleChange, handleSubmit } = useHelper();
 
   return (
     <div className={styles.main}>
@@ -27,6 +27,9 @@ export default function FormLogin(): JSX.Element {
             type={"password"}
             {...{ handleChange, credential }}
           />
+          {typeof userSession === "string" && (
+            <p className={styles.error}>{userSession}</p>
+          )}
           <div className={styles.termsandconditions}>
             <p className={styles.terms}>
               ingresando a la app aceptas los
@@ -34,6 +37,7 @@ export default function FormLogin(): JSX.Element {
               <span className={styles.legal}> las politicas de privacidad</span>
             </p>
           </div>
+
           <Button content={"login"} />
         </form>
       </div>

@@ -34,6 +34,13 @@
   text-transform: uppercase;
 }
 
+.error {
+  text-align: center;
+  font-weight: 700;
+  font-size: large;
+  color: var(--red-palette-intensity5);
+}
+
 @media (max-height: 900px) {
   .submain {
     height: max-content;

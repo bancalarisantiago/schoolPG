@@ -38,14 +38,19 @@
 .pgs {
   margin-left: 10px;
   font-size: x-large;
+  font-weight: 600;
   color: var(--semi-white);
 }
 
 .info {
   position: absolute;
   z-index: var(--z-index1);
-  margin: 20px;
-  top: 30%;
+
+ 
+
+  margin: 50px;
+  top: 35%;
+
 }
 
 .future,
