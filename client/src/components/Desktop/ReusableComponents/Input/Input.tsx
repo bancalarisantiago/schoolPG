@@ -4,7 +4,9 @@ import styles from "./Input.module.css";
 import { useState } from "react";
 //types
 import { ICredential, ChangeEvent } from "../../../../interfaces";
-
+//assets
+import ShowPass from "../../../../assets/show.png";
+import HidePass from "../../../../assets/hide.png";
 interface IProps {
   placeHolder: string;
   name: string;

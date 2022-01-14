@@ -45,8 +45,12 @@
 .info {
   position: absolute;
   z-index: var(--z-index1);
+
+ 
+
   margin: 50px;
   top: 35%;
+
 }
 
 .future,
