@@ -1,10 +1,10 @@
 import { Document, Types } from "mongoose";
 
 interface Location {
-    number: number;
-    streetName: string;
-    locality: string;
-    postalCode: string;
+  number: number;
+  streetName: string;
+  locality: string;
+  postalCode: string;
 }
 
 export interface ISchool extends Document {
@@ -19,8 +19,7 @@ export interface ISchool extends Document {
   admins: Types.ObjectId[];
   students: Types.ObjectId[];
   teachers: Types.ObjectId[];
-  tutors: Types.ObjectId[];
+  /* tutors: Types.ObjectId[]; */
   courses: Types.ObjectId[];
   subjects: Types.ObjectId[];
-
 }

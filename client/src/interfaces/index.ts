@@ -8,6 +8,7 @@ export interface IActions {
 //Reducer
 export interface IState {
   userSession: any;
+  userSchool: any;
 }
 
 export type SubmitEvent = React.SyntheticEvent;
@@ -16,6 +17,10 @@ export type ClickEvent = React.MouseEvent<HTMLElement>;
 export interface ICredential {
   email: string;
   password: string;
+}
+
+export interface ISchoolId {
+  id: string;
 }
 
 //for components

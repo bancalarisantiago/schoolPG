@@ -1,0 +1,123 @@
+.main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 98%;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.users,
+.students,
+.teachers,
+.tutors {
+  position: relative;
+  width: 23%;
+  height: 8rem;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0 5px 10px rgba(128, 128, 128, 0.445);
+}
+
+.users::before,
+.students::before,
+.teachers::before,
+.tutors::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  width: 2rem;
+  height: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(128, 128, 128, 0.445);
+  background: var(--red-palette-intensity5) url("../../../assets/teacher.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.users::before {
+  background: rgb(37, 34, 34) url("../../../assets/stats.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.students::before {
+  background: var(--blue-palette-intensity4) url("../../../assets/student.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.tutors::before {
+  background: #4fa953 url("../../../assets/users.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.statname,
+.statnum {
+  width: 90%;
+  text-align: end;
+  padding: 1rem 1rem 0;
+  text-transform: capitalize;
+  font-size: large;
+  font-weight: 600;
+  color: #6e737a;
+}
+
+.statnum {
+  color: #45474b;
+  font-size: xx-large;
+}
+
+@media (min-width: 510px) {
+  .info {
+    width: 99%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .users,
+  .students,
+  .teachers,
+  .tutors {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+@media (min-width: 1080px) {
+  .info {
+    width: 99%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .users,
+  .students,
+  .teachers,
+  .tutors {
+    width: 48%;
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .info {
+    width: 99%;
+  }
+  .users,
+  .students,
+  .teachers,
+  .tutors {
+    width: 23%;
+    margin: 1rem 0;
+  }
+}

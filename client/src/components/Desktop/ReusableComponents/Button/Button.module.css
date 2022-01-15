@@ -39,7 +39,7 @@ button span::before {
   position: absolute;
   width: 8%;
   height: 500%;
-  background: white;
+  background: #fafafa;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-60deg);

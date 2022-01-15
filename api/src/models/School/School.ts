@@ -41,7 +41,7 @@ const schemaSchool = new Schema({
   },
 
   admins: [
-    { 
+    {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
@@ -58,12 +58,12 @@ const schemaSchool = new Schema({
       ref: "User",
     },
   ],
-  tutors: [
+  /* tutors: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-  ],
+  ], */
   courses: [
     {
       type: Schema.Types.ObjectId,

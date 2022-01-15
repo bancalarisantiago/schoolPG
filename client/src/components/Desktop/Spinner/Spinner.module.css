@@ -1,0 +1,21 @@
+.spinner {
+  border: 5px solid var(--semi-white);
+  border-top: 5px solid black;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.8s linear infinite;
+  margin: 20px auto;
+}
+.spiner:hover {
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

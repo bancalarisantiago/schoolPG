@@ -1,12 +1,29 @@
 .header {
-  width: 97%;
+  width: 98%;
   height: 4rem;
   display: flex;
-  border: 2px solid gray;
+  border: 2px solid rgb(124, 120, 120);
+  box-shadow: 0px 3px 5px gray;
   border-radius: 10px;
   padding: 10px;
+  position: sticky;
+  z-index: var(--z-index5);
+  background-color: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(35px);
+  top: 0;
 }
 
+@media (max-width: 2000px) {
+  .header {
+    width: 97%;
+  }
+}
+@media (max-width: 900px) {
+  .header {
+    width: 95%;
+  }
+}
 .name,
 .options {
   border-radius: 10px;
@@ -18,11 +35,13 @@
   position: relative;
   padding-left: 2.5rem;
   font-weight: 600;
+  text-transform: capitalize;
 }
 .reroute {
   color: #45474b;
   font-size: large;
   font-weight: 700;
+  text-transform: capitalize;
 }
 .route::before {
   content: " ";
@@ -36,7 +55,8 @@
   background-position: center;
 }
 
-.options {
+.options,
+.pic {
   display: flex;
   justify-content: flex-end;
   position: relative;
@@ -44,8 +64,17 @@
 
 .userprofile,
 .configs {
-  background-color: violet;
   display: inline;
+  cursor: pointer;
+}
+
+.pic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  top: 13px;
   cursor: pointer;
 }
 

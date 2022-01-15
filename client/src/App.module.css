@@ -29,4 +29,19 @@
   --blue-palette-intensity2: #ade8f4;
   --blue-palette-intensity1: #caf0f8;
   --semi-white: #f0f2f5;
+  ---blue-gradient: linear-gradient(
+    to right top,
+    #1f78e9,
+    #227dea,
+    #2681eb,
+    #2b86ec,
+    #308aed,
+    #378fef,
+    #3d93f0,
+    #4498f2,
+    #4d9ef5,
+    #55a4f9,
+    #5eaafc,
+    #66b0ff
+  );
 }
