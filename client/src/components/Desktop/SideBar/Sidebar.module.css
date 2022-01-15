@@ -24,6 +24,12 @@
   align-items: center;
 }
 
+@media (max-width: 1080px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 .title,
 .management,
 .option,

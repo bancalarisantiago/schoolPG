@@ -4,12 +4,14 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   background-color: var(--semi-white);
 }
-.outlet {
-  margin-left: 296px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.content {
+  width: 85%;
+  height: 97%;
+  margin: 0 1.7rem 0 20rem;
+  display: grid;
+
 }
