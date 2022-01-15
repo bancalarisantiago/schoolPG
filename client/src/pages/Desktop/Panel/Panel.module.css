@@ -4,17 +4,26 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   background-color: var(--semi-white);
 }
 
 .content {
-  width: 85%;
+  width: 80%;
   height: 97%;
-  margin: 0 1.7rem 0 20rem;
-  margin: 0 2rem 0 20rem;
+  margin: 0 1rem 0 20rem;
   border-radius: 10px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1080px) {

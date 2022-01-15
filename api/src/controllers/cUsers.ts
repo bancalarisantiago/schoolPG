@@ -15,29 +15,26 @@ import { IUser } from "models/User/IUser";
 import jwt from "jsonwebtoken";
 
 export const getUsers = async (req: Request, res: Response) => {
-  const {prop, sort} = req.body
-  try{
-      const userFilters = await User.find(prop).sort(sort)
-      res.status(200).json(userFilters)
-    }catch(error:any){
-    res.status(404).json({message: error.message})
+  const { prop, sort } = req.body;
+  try {
+    const userFilters = await User.find(prop).sort(sort);
+    res.status(200).json(userFilters);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
   }
-}
+};
 
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const populateQuery = [
-                        {path: "course", model: "Course"}
-                      ]
-try {
+  const populateQuery = [{ path: "course", model: "Course" }];
+  try {
     const user = await User.findById(id).populate(populateQuery).lean();
-  
+
     res.status(200).json(user);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
-}
-
+};
 
 export const createUser = async (req: Request, res: Response) => {
   const {
@@ -72,9 +69,6 @@ export const createUser = async (req: Request, res: Response) => {
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
 
-
-          
-        
     //token
     const token: string = jwt.sign(
       { _id: savedUser._id },
@@ -86,48 +80,44 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-
-export const updateUser = async (req: Request,res: Response) => {
-
+export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params; // req.body?
 
-  try{
-
-      const user = await User.findById(id);
-      if(!user) {
-          return res.status(404).json({msg: "Event not found"})
-      }
-      const newUser = {
-          ...req.body
-      };
-      const userUpdated = await User.findByIdAndUpdate(id, newUser, {new : true})
-      res.status(200).json(userUpdated)
-  } catch(error) {
-      console.log(error)
-      res.status(404).json(error)
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+    const newUser = {
+      ...req.body,
+    };
+    const userUpdated = await User.findByIdAndUpdate(id, newUser, {
+      new: true,
+    });
+    res.status(200).json(userUpdated);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json(error);
   }
+};
 
-}
-
-export const deleteUserById = async (req: Request,res: Response) => {
-
+export const deleteUserById = async (req: Request, res: Response) => {
   const { id } = req.params; // req.body?
-  try{
-      const user = await User.findById(id);
-      if(!user) {
-          return res.status(404).json({msg: "Event not found"})
-      }
-      const userDeleted = await user.delete();
-      res.status(200).json(userDeleted)
-  } catch(error) {
-      console.log(error)
-      res.status(404).json(error)
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+    const userDeleted = await user.delete();
+    res.status(200).json(userDeleted);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json(error);
   }
-}
+};
 
 export const addUserToSchool = async (req: Request, res: Response) => {
   const { schoolId, userId } = req.params;
-
 
   (await addRelation(userId, schoolId)) === "ok"
     ? res.send({ message: "relation was created succesfully" })
@@ -148,24 +138,24 @@ const addRelation = async (userId: string, schoolId: string) => {
   return user && school ? "ok" : "error";
 };
 
-export const addRelationTutorChild = async (req: Request, res: Response)=>{
-  const { tutorId, childId} = req.params;
+export const addRelationTutorChild = async (req: Request, res: Response) => {
+  const { tutorId, childId } = req.params;
 
-    const tutor = await User.findByIdAndUpdate(new toId(tutorId), {
-      $push:{
-        childInCharge: new toId(childId),
-      },
-    });
-    
+  const tutor = await User.findByIdAndUpdate(new toId(tutorId), {
+    $push: {
+      childInCharge: new toId(childId),
+    },
+  });
 
-    const student = await User.findByIdAndUpdate(new toId(childId), {
-      $push:{
-        tutors: new toId(tutorId)
-      }
-    })
-    tutor && student? res.send({tutor, student}): res.send("tutor or student wasn't found")
-    
-}
+  const student = await User.findByIdAndUpdate(new toId(childId), {
+    $push: {
+      tutors: new toId(tutorId),
+    },
+  });
+  tutor && student
+    ? res.send({ tutor, student })
+    : res.send("tutor or student wasn't found");
+};
 
 export const addUserToCourse = async (req: Request, res: Response) => {
   const { courseId, userId } = req.params;
@@ -190,4 +180,3 @@ const addRelationUserToCourse = async (userId: string, courseId: string) => {
   });
   return user && course ? "ok" : "error";
 };
-

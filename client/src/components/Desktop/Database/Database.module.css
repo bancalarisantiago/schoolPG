@@ -1,0 +1,107 @@
+.database {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  width: 98%;
+  height: max-content;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: var(---blue-gradient);
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  border-radius: 10px;
+  top: -30px;
+  width: 95%;
+  height: 5rem;
+}
+
+.title {
+  position: absolute;
+  left: 10px;
+  color: var(--semi-white);
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.search {
+  position: absolute;
+  text-align: center;
+  right: 20px;
+  width: 15rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background-color: var(--semi-white);
+}
+
+.information {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #adadad;
+}
+
+.pname,
+.pemail,
+.ptel {
+  width: 30%;
+  text-align: center;
+  margin-left: 4rem;
+  text-transform: uppercase;
+  color: #adadad;
+}
+
+.tables {
+  width: 100%;
+  height: 32rem;
+  padding: 1rem;
+  overflow-y: auto;
+  /* background-color: black; */
+}
+
+.user {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #adadad;
+}
+
+.namepic {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.cellphone {
+  width: 10%;
+  text-transform: capitalize;
+}
+
+.email {
+  width: 30%;
+}
+
+.profilepic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

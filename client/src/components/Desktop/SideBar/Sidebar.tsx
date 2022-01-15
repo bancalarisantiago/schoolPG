@@ -8,12 +8,30 @@ import useHelper from "./useHelper";
 import down from "../../../assets/down.png";
 import { NavLink } from "react-router-dom";
 
-const Sidebar: React.FC = () => {
-  const { show, underline, handleUnderline, handleClick } = useHelper();
+//components
+import Spinner from "../Spinner/Spinner";
 
+const Sidebar: React.FC = () => {
+  const { show, underline, school, ctime, handleUnderline, handleClick } =
+    useHelper();
+  var d = new Date().toLocaleDateString();
   return (
     <div className={styles.sidebar}>
       <h2 className={styles.title}>Panel de Administracion</h2>
+      <div className={styles.datehour}>
+        <span className={styles.date}>{d}</span>
+        <span className={styles.hour}>{ctime}</span>
+      </div>
+
+      <div className={styles.logoDiv}>
+        {!school.logo ? (
+          <Spinner />
+        ) : (
+          <img src={school.logo} alt="logo" className={styles.logo} />
+        )}
+      </div>
+      <p className={styles.schoolname}>{school.name}</p>
+
       <ul>
         <NavLink to="/panel">
           <li
@@ -29,7 +47,7 @@ const Sidebar: React.FC = () => {
           value="0"
           onClick={handleClick}
         >
-          gestion de alumnos
+          alumnos
           <img
             className={show[0] ? styles.less : styles.more}
             src={down}
@@ -62,7 +80,7 @@ const Sidebar: React.FC = () => {
           value="1"
           onClick={handleClick}
         >
-          gestion de profesores
+          profesores
           <img
             className={show[1] ? styles.less : styles.more}
             src={down}
@@ -94,7 +112,7 @@ const Sidebar: React.FC = () => {
           value="2"
           onClick={handleClick}
         >
-          gestion de admin
+          administradores
           <img
             className={show[2] ? styles.less : styles.more}
             src={down}
@@ -126,7 +144,7 @@ const Sidebar: React.FC = () => {
           value="3"
           onClick={handleClick}
         >
-          gestion de curso
+          cursos
           <img
             className={show[3] ? styles.less : styles.more}
             src={down}
@@ -158,7 +176,7 @@ const Sidebar: React.FC = () => {
           value="4"
           onClick={handleClick}
         >
-          gestion de materias
+          materias
           <img
             className={show[4] ? styles.less : styles.more}
             src={down}
@@ -190,7 +208,7 @@ const Sidebar: React.FC = () => {
           value="5"
           onClick={handleClick}
         >
-          gestion de calendario
+          calendario
           <img
             className={show[5] ? styles.less : styles.more}
             src={down}

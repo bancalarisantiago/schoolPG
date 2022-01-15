@@ -43,12 +43,12 @@ export default function Input({
           value={a()}
           onChange={handleChange}
         />
-        {/* {type === "password" && (
+        {type === "password" && (
           <label
             onClick={(e) => setShow(!show)}
             className={show ? styles.hide : styles.show}
           ></label>
-        )} */}
+        )}
       </div>
     </div>
   );
