@@ -1,5 +1,5 @@
-import Button from "../ReusableComponents/Button/Button";
-import Input from "../ReusableComponents/Input/Input";
+import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
+import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
 import styles from "./AddStudent.module.css";
 
 const AddStudent: React.FC = () => {
