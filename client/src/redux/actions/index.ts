@@ -10,10 +10,21 @@ const instance = axios.create({
 });
 
 export const GET_USER_LOGGED = "GET_USER_LOGGED";
+export const GET_SCHOOL = 'GET_SCHOOL'
 
 export const getUserByLogin =
   (payload: ICredential) => async (dispatch: Dispatch) => {
     const r = await instance.post("/login", payload);
+    dispatch({
+      type: GET_USER_LOGGED,
+      payload: r.data,
+    });
+    return r.data;
+  };
+
+  export const getSchool =
+  () => async (dispatch: Dispatch) => {
+    const r = await instance.post("/login");
     dispatch({
       type: GET_USER_LOGGED,
       payload: r.data,
