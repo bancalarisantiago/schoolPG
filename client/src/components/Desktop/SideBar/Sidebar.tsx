@@ -15,13 +15,15 @@ const Sidebar: React.FC = () => {
     <div className={styles.sidebar}>
       <h2 className={styles.title}>Panel de Administracion</h2>
       <ul>
-        <li
-          className={show[6] ? styles.selected : styles.management}
-          value="6"
-          onClick={handleClick}
-        >
-          panel general
-        </li>
+        <NavLink to="/panel">
+          <li
+            className={show[6] ? styles.selected : styles.management}
+            value="6"
+            onClick={handleClick}
+          >
+            panel general
+          </li>
+        </NavLink>
         <li
           className={show[0] ? styles.selected : styles.management}
           value="0"
@@ -44,13 +46,16 @@ const Sidebar: React.FC = () => {
               añadir alumno
             </li>
           </NavLink>
-          <li
-            className={underline[1] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="1"
-          >
-            modificar alumno
-          </li>
+
+          <NavLink to="update-student">
+            <li
+              className={underline[1] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="1"
+            >
+              modificar alumno
+            </li>
+          </NavLink>
         </ul>
         <li
           className={show[1] ? styles.selected : styles.management}
@@ -65,20 +70,24 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[1] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[2] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="2"
-          >
-            añadir profesor
-          </li>
-          <li
-            className={underline[3] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="3"
-          >
-            modificar profesor
-          </li>
+          <NavLink to="add-teacher">
+            <li
+              className={underline[2] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="2"
+            >
+              añadir profesor
+            </li>
+          </NavLink>
+          <NavLink to="update-teacher">
+            <li
+              className={underline[3] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="3"
+            >
+              modificar profesor
+            </li>
+          </NavLink>
         </ul>
         <li
           className={show[2] ? styles.selected : styles.management}
@@ -93,20 +102,24 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[2] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[4] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="4"
-          >
-            añadir admin
-          </li>
-          <li
-            className={underline[5] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="5"
-          >
-            modificar admin
-          </li>
+          <NavLink to="add-admin">
+            <li
+              className={underline[4] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="4"
+            >
+              añadir admin
+            </li>
+          </NavLink>
+          <NavLink to="update-admin">
+            <li
+              className={underline[5] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="5"
+            >
+              modificar admin
+            </li>
+          </NavLink>
         </ul>
         <li
           className={show[3] ? styles.selected : styles.management}
@@ -121,20 +134,24 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[3] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[6] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="6"
-          >
-            añadir curso
-          </li>
-          <li
-            className={underline[7] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="7"
-          >
-            modificar curso
-          </li>
+          <NavLink to="add-course">
+            <li
+              className={underline[6] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="6"
+            >
+              añadir curso
+            </li>
+          </NavLink>
+          <NavLink to="update-course">
+            <li
+              className={underline[7] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="7"
+            >
+              modificar curso
+            </li>
+          </NavLink>
         </ul>
         <li
           className={show[4] ? styles.selected : styles.management}
@@ -149,20 +166,24 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[4] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[8] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="8"
-          >
-            añadir materias
-          </li>
-          <li
-            className={underline[9] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="9"
-          >
-            modificar materias
-          </li>
+          <NavLink to="add-subject">
+            <li
+              className={underline[8] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="8"
+            >
+              añadir materias
+            </li>
+          </NavLink>
+          <NavLink to="update-subject">
+            <li
+              className={underline[9] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="9"
+            >
+              modificar materias
+            </li>
+          </NavLink>
         </ul>
         <li
           className={show[5] ? styles.selected : styles.management}
@@ -177,20 +198,24 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[5] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[10] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="10"
-          >
-            añadir evento
-          </li>
-          <li
-            className={underline[11] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="11"
-          >
-            modificar calendario
-          </li>
+          <NavLink to="add-event">
+            <li
+              className={underline[10] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="10"
+            >
+              añadir evento
+            </li>
+          </NavLink>
+          <NavLink to="update-event">
+            <li
+              className={underline[11] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="11"
+            >
+              modificar calendario
+            </li>
+          </NavLink>
         </ul>
       </ul>
     </div>
