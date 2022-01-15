@@ -4,5 +4,13 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   background-color: var(--semi-white);
+}
+
+.content {
+  width: 85%;
+  height: 97%;
+  margin: 0 1.7rem 0 20rem;
+  display: grid;
 }
