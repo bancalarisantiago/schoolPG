@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -11,8 +14,11 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
@@ -46,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "^3.13.1",
     "@types/react-redux": "^7.1.22",
     "@types/redux-devtools-extension": "^2.13.2"
   }
