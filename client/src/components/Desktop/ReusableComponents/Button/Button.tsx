@@ -1,15 +1,16 @@
-//css
-import styles from "./Button.module.css";
+import "./Button.module.css";
 
-interface IButton {
-  content: string;
-  xtraClass?: string;
+interface IProps {
+  text: string;
 }
 
-export default function Button({ content, xtraClass }: IButton) {
+function Button({ text }: IProps) {
   return (
-    <div className={styles.componentBut}>
-      <button className={styles.logbut}>{content}</button>
-    </div>
+    <button>
+      {text}
+      <span></span>
+    </button>
   );
 }
+
+export default Button;

@@ -1,26 +1,61 @@
-.componentBut {
-  width: 100%;
+button {
+  border: none;
+  display: block;
+  position: relative;
+  padding: 0.7em 2.4em;
+  font-size: 18px;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: royalblue;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 500;
+  width: 150px;
+  height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
-.logbut {
-  width: 80%;
-  color: var(--semi-white);
-  background-color: var(--blue-palette-intensity5);
-  border-radius: 5px;
-  text-transform: capitalize;
-  cursor: pointer;
-  font-size: xx-large;
+button span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* width: 100%;
+  height: 100%; */
+  background: transparent;
+  z-index: -1;
+  border: 4px solid royalblue;
 }
 
-@media (max-height: 900px) {
-  .logbut {
-    transform: scale(0.7);
-  }
+button span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8%;
+  height: 500%;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transition: all 0.3s;
 }
 
-.logbut:hover {
-  background-color: var(--blue-palette-intensity7);
-  transition: 1s ease-in-out;
+button:hover span::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 100%;
+  background: royalblue;
+}
+
+button:hover {
+  color: white;
+}
+
+button:active span::before {
+  background: #2751cd;
 }
