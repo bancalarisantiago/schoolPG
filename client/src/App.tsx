@@ -4,6 +4,8 @@ import styles from "./App.module.css";
 import React from "react";
 import { Routes, Route } from "react-router";
 import { useLocation } from "react-router-dom";
+//import Modal from "react-modal"
+
 
 //pages
 import Login from "./pages/Desktop/Login/Login";
@@ -20,6 +22,10 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
+
+
+
+//Modal.setAppElement("#root")
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
