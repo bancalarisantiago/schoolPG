@@ -35,13 +35,15 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[0] ? styles.dropdownShow : styles.dropdownHide}>
-          <li
-            className={underline[0] ? styles.optionselected : styles.option}
-            onClick={handleUnderline}
-            value="0"
-          >
-            <NavLink to="add-student">añadir alumno</NavLink>
-          </li>
+          <NavLink to="add-student">
+            <li
+              className={underline[0] ? styles.optionselected : styles.option}
+              onClick={handleUnderline}
+              value="0"
+            >
+              añadir alumno
+            </li>
+          </NavLink>
           <li
             className={underline[1] ? styles.optionselected : styles.option}
             onClick={handleUnderline}

@@ -7,10 +7,8 @@ interface IProps {
 function Input({ name }: IProps) {
   return (
     <div className={styles.group}>
-      <input type="text" required />
-      <span className="highlight"></span>
-      {/* <span className={styles.bar}></span> */}
-      <label>{name}</label>
+      <input className={styles.input} type="text" required />
+      <label className={styles.name}>{name}</label>
     </div>
   );
 }

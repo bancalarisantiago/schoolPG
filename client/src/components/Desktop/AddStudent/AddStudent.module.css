@@ -1,16 +1,54 @@
 .container {
-  width: 1068px;
-  height: 100%;
-  padding: 16px;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid #000;
+}
+
+.submain {
+  width: 90%;
+  height: 65%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px gray;
+}
+.titlebox {
+  position: absolute;
+  top: -30px;
+  display: flex;
+  align-items: center;
+  width: 95%;
+  height: 10%;
+  background-image: var(---blue-gradient);
+  border-radius: 10px;
+  box-shadow: 0 3px 15px #3790ef8c;
+}
+.title {
+  position: relative;
+  padding-left: 3.5rem;
+  font-size: x-large;
+  font-weight: 700;
+  color: var(--semi-white);
+}
+.title::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  background-image: url("../../../assets/add-user.png");
+  background-position: center;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
 }
 .inputs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2rem, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 32px;
 }

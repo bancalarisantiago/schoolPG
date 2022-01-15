@@ -11,6 +11,7 @@ const useHelper = () => {
   const navigate = useNavigate();
   useEffect(() => {
     !validate.accessToken && navigate("/login");
+    !validate.user.school && navigate("/create-school");
   }, [navigate, validate.accessToken]);
   return {};
 };
