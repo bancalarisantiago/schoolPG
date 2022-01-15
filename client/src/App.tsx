@@ -22,7 +22,7 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
-
+import AddSchool from "./pages/Desktop/AddSchool/AddSchool"
 
 
 //Modal.setAppElement("#root")
@@ -37,6 +37,8 @@ const App: React.FC = () => {
         <Route path="panel" element={<Panel />}>
           <Route path="add-student" element={<AddStudent />} />
           <Route path="update-student" element={<UpdateStudent />} />
+
+          <Route path="add-school" element={<AddSchool />} />
 
           <Route path="add-teacher" element={<AddTeacher />} />
           <Route path="update-teacher" element={<UpdateTeacher />} />
