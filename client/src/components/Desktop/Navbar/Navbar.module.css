@@ -1,0 +1,73 @@
+.header {
+  width: 97%;
+  height: 4rem;
+  display: flex;
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.name,
+.options {
+  border-radius: 10px;
+  flex: 1;
+}
+
+.route {
+  color: #6e737a;
+  position: relative;
+  padding-left: 2.5rem;
+  font-weight: 600;
+}
+.reroute {
+  color: #45474b;
+  font-size: large;
+  font-weight: 700;
+}
+.route::before {
+  content: " ";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 10px;
+  top: 2px;
+  background: url("../../../assets/home.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.options {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.userprofile,
+.configs {
+  background-color: violet;
+  display: inline;
+  cursor: pointer;
+}
+
+.userprofile::before {
+  content: " ";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  background: url("../../../assets/user.png");
+  background-size: contain;
+  background-position: center;
+}
+.configs::before {
+  content: " ";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 60px;
+  top: 15px;
+  background: url("../../../assets/settings.png");
+  background-size: contain;
+  background-position: center;
+}
