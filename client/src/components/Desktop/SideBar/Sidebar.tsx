@@ -6,6 +6,7 @@ import useHelper from "./useHelper";
 
 //assets
 import down from "../../../assets/down.png";
+import { NavLink } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
   const { show, underline, handleUnderline, handleClick } = useHelper();
@@ -39,7 +40,7 @@ const Sidebar: React.FC = () => {
             onClick={handleUnderline}
             value="0"
           >
-            añadir alumno
+            <NavLink to="add-student">añadir alumno</NavLink>
           </li>
           <li
             className={underline[1] ? styles.optionselected : styles.option}

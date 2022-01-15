@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 //pages
 import Login from "./pages/Desktop/Login/Login";
 import Panel from "./pages/Desktop/Panel/Panel";
+import AddStudent from "./components/Desktop/AddStudent/AddStudent";
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
@@ -16,7 +17,11 @@ const App: React.FC = () => {
     <div className={styles.main}>
       <Routes>
         {location === "/login" && <Route path="/login" element={<Login />} />}
-        <Route path="/panel" element={<Panel />} />
+        <Route path="panel" element={<Panel />}>
+          {/* <Route index element={<AddStudent />} /> */}
+          <Route path="add-student" element={<AddStudent />} />
+          {/* <Route path="*" element={<h2>Hola</h2>} /> */}
+        </Route>
       </Routes>
     </div>
   );

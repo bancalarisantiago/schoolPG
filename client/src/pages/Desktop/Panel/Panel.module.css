@@ -6,3 +6,10 @@
   align-items: center;
   background-color: var(--semi-white);
 }
+.outlet {
+  margin-left: 296px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

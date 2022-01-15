@@ -5,13 +5,16 @@ import "../../../styles/theme.css";
 
 //components
 import Sidebar from "../../../components/Desktop/SideBar/Sidebar";
-import Navbar from "../../../components/Desktop/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
 
 const Panel: React.FC = () => {
   return (
     <div className={styles.main}>
       <Sidebar />
-      <Navbar />
+      {/* <Navbar /> */}
+      <div className={styles.outlet}>
+        <Outlet />
+      </div>
     </div>
   );
 };
