@@ -1,7 +1,8 @@
 .main {
   width: 100%;
   height: 100%;
-  background: var(--blue-palette-intensity5) var(--general-bg);
+  background: var(--blue-palette-intensity5)
+    url("../../../assets/SchoolPG-general-bg.jpg");
   background-position: center;
   background-size: cover;
 }

@@ -30,3 +30,22 @@ export interface IUser {
 }
 
 //for components
+
+export interface Location {
+  number: number;
+  streetName: string;
+  locality: string;
+  postalCode: string;
+}
+
+
+export interface Schools {
+  name: string;
+  location: Location;
+  description: string;
+  orientation: string;
+  logo: string;
+  email: string;
+  phone: string;
+  cellphone: string
+}
