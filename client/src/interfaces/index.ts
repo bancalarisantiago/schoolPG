@@ -34,15 +34,25 @@ export interface IUser {
   filter: string;
 }
 
+export interface ICreateSchool {
+  name: string;
+  location: Location;
+  description: string;
+  orientation: string;
+  logo: string;
+  email: string;
+  phone: string;
+  cellphone: string;
+}
+
 //for components
 
 export interface Location {
-  number: number;
+  streetNumber: string;
   streetName: string;
   locality: string;
   postalCode: string;
 }
-
 
 export interface Schools {
   name: string;
@@ -52,5 +62,5 @@ export interface Schools {
   logo: string;
   email: string;
   phone: string;
-  cellphone: string
+  cellphone: string;
 }

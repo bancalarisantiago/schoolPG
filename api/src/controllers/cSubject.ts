@@ -53,7 +53,7 @@ export const getSubjectById = async (req: Request, res: Response) => {
 
  export const deleteSubjectById = async (req: Request,res: Response) => {
 
-  const { id } = req.params; // req.body?
+  const { id } = req.params;
   try{
       const subject = await Subject.findById(id);
       if(!subject) {
