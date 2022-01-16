@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IState } from "../../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByDni, getUsers, createCourse, getSubject } from "../../../redux/actions";
-
+import { useLocation } from "react-router-dom";
    interface ILState{
         name: string
         shifts:string
