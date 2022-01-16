@@ -11,12 +11,12 @@ const AddStudent: React.FC = () => {
         </div>
 
         <form className={styles.inputs}>
-          <Input name="Nombre" />
-          <Input name="Apellido" />
-          <Input name="DNI" />
-          <Input name="Nombre de Usuario" />
-          <Input name="Contraseña" />
-          <Input name="e-mail" />
+          <Input text="Nombre" />
+          <Input text="Apellido" />
+          <Input text="DNI" />
+          <Input text="Nombre de Usuario" />
+          <Input text="Contraseña" />
+          <Input text="e-mail" />
           <Button text="Añadir Alumno" />
         </form>
       </div>

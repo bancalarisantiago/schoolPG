@@ -5,13 +5,12 @@ import "../../../styles/theme.css";
 import useHelper from "./useHelper";
 
 //from modules
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 //components
 import Sidebar from "../../../components/Desktop/SideBar/Sidebar";
 import Navbar from "../../../components/Desktop/Navbar/Navbar";
-import SchoolInfo from "../SchoolInfo/SchoolInfo";
-import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
+import { useEffect } from "react";
 
 const Panel: React.FC = () => {
   const { validate, location, school } = useHelper();
