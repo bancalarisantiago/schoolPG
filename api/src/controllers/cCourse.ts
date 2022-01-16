@@ -12,7 +12,7 @@ import Subject from "../models/Subject/Subject"
 
 export const createCourse = (req: Request, res: Response) => {
     const { name }: ICourse = req.body;
-    console.log(name)
+    
         try {
             const newCourse = new Course({
                 name
