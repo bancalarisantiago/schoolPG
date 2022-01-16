@@ -2,6 +2,9 @@ import styles from "./Input.module.css";
 
 interface IProps {
   name: string;
+  value?: string;
+  disabled?: boolean;
+  type?: string;
 }
 
 function Input({ name }: IProps) {

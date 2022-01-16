@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
       <p className={styles.schoolname}>{school.name}</p>
 
       <ul>
-        <NavLink to="/panel">
+        <NavLink to="general">
           <li
             className={show[6] ? styles.selected : styles.management}
             value="6"

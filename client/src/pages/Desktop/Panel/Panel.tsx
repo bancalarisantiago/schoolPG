@@ -21,13 +21,6 @@ const Panel: React.FC = () => {
       <Sidebar />
       <div className={styles.content}>
         <Navbar validate={validate} location={location} />
-        {school.name ? (
-          <SchoolInfo />
-        ) : (
-          <div className={styles.loading}>
-            <Loading />
-          </div>
-        )}
         <Outlet />
       </div>
     </div>
