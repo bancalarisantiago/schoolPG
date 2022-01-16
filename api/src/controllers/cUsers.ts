@@ -180,3 +180,21 @@ const addRelationUserToCourse = async (userId: string, courseId: string) => {
   });
   return user && course ? "ok" : "error";
 };
+
+export const getUserBy = async (req: Request, res: Response) => {
+  const { userType, filter } = req.body;
+
+  const s = filter.toLowerCase();
+  const regex = new RegExp(filter, "i");
+  const user = await User.find({ userType: userType }).find(
+    {
+      "name.first": { $regex: regex },
+    } || { "name.last": { $regex: regex } } || {
+        username: { $regex: regex },
+      } || { email: { $regex: regex } } || { document: { $regex: regex } } || {
+        cellphone: { $regex: regex },
+      }
+  );
+
+  user ? res.send(user) : res.send("User not found");
+};

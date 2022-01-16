@@ -15,7 +15,7 @@ import Loading from "../../../components/Desktop/ReusableComponents/Loading/Load
 
 const Panel: React.FC = () => {
   const { validate, location, school } = useHelper();
-  console.log(school);
+
   return (
     <div className={styles.main}>
       <Sidebar />
