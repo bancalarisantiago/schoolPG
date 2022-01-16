@@ -38,6 +38,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.main}>
       <Routes>
+      
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
         <Route path="panel" element={<Panel />}>
