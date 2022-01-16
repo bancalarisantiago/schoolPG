@@ -9,6 +9,7 @@ export interface IActions {
 export interface IState {
   userSession: any;
   userSchool: any;
+  matchUsers: any;
 }
 
 export type SubmitEvent = React.SyntheticEvent;
@@ -21,6 +22,11 @@ export interface ICredential {
 
 export interface ISchoolId {
   id: string;
+}
+
+export interface IUser {
+  userType: string;
+  filter: string;
 }
 
 //for components
