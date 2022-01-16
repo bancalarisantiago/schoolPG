@@ -11,7 +11,7 @@ interface Login {
 }
 
 interface Location {
-  number: number;
+  streetNumber: string;
   streetName: string;
   locality: string;
   postalCode: number;
