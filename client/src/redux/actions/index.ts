@@ -2,7 +2,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 //types
-import { ICredential, ISchoolId, IUser } from "../../interfaces";
+import { ICreateSchool, ICredential, ISchoolId, IUser } from "../../interfaces";
 
 const instance = axios.create({
   withCredentials: true,
@@ -47,6 +47,10 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
     type: MATCH_USERS,
     payload: r.data,
   });
+};
+
+export const createSchool = (payload: ICreateSchool) => async () => {
+  const r = await instance.post("/school", payload);
 };
 
 export const createCourse = (course:any)=>{
@@ -118,3 +122,4 @@ export const getSubject = ()=>{
       }
   }
 }
+
