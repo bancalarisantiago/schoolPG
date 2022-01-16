@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router";
 import { useLocation } from "react-router-dom";
 //import Modal from "react-modal"
 
-
 //pages
 import Login from "./pages/Desktop/Login/Login";
 import Panel from "./pages/Desktop/Panel/Panel";
@@ -24,7 +23,11 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
+import General from "./pages/Desktop/General/General";
+import SchoolInfo from "./pages/Desktop/SchoolInfo/SchoolInfo";
+import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
+
 
 
 
@@ -39,7 +42,10 @@ const App: React.FC = () => {
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
         <Route path="panel" element={<Panel />}>
+          <Route index element={<SchoolInfo />} />
           <Route path="create-school" element={<CreateSchool />} />
+
+          <Route path="general" element={<SchoolInfo />} />
 
           <Route path="add-student" element={<AddStudent />} />
           <Route path="update-student" element={<UpdateStudent />} />
@@ -59,8 +65,11 @@ const App: React.FC = () => {
           <Route path="add-subject" element={<AddSubject />} />
           <Route path="update-subject" element={<UpdateSubject />} />
 
+          <Route path="*" element={<Error />} />
           <Route path="profile" element={<Profile />} />
+
         </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

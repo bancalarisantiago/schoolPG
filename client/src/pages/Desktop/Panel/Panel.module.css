@@ -19,13 +19,6 @@
   align-items: center;
 }
 
-.loading {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media (max-width: 1080px) {
   .content {
     margin: 0 1.7rem;
