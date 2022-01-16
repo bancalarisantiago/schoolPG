@@ -24,7 +24,7 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
-
+import AboutUs from "./pages/Desktop/AboutUs/AboutUs"
 
 
 //Modal.setAppElement("#root")
@@ -34,6 +34,7 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.main}>
+      <AboutUs/>
       <Routes>
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
