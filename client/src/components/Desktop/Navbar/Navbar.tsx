@@ -1,5 +1,7 @@
 //css
 import styles from "./Navbar.module.css";
+//from modules
+import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC<{ location: String; validate: any }> = ({
   validate,
@@ -14,15 +16,18 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
 
       <div className={styles.options}>
         {validate.user.picture ? (
-          <img
-            src={validate.user.picture}
-            className={styles.pic}
-            alt="profile"
-          />
+          <NavLink to="/panel/profile">
+            <img
+              src={validate.user.picture}
+              className={styles.pic}
+              alt="profile"
+            />
+          </NavLink>
         ) : (
-          <p className={styles.userprofile}> </p>
+          <NavLink to="/panel/profile">
+            <p className={styles.userprofile}> </p>
+          </NavLink>
         )}
-
         <p className={styles.configs}> </p>
       </div>
     </div>

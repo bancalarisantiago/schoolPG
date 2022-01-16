@@ -15,19 +15,12 @@ import Loading from "../../../components/Desktop/ReusableComponents/Loading/Load
 
 const Panel: React.FC = () => {
   const { validate, location, school } = useHelper();
-  console.log(school);
+
   return (
     <div className={styles.main}>
       <Sidebar />
       <div className={styles.content}>
         <Navbar validate={validate} location={location} />
-        {school.name ? (
-          <SchoolInfo />
-        ) : (
-          <div className={styles.loading}>
-            <Loading />
-          </div>
-        )}
         <Outlet />
       </div>
     </div>

@@ -79,6 +79,13 @@
   font-size: xx-large;
 }
 
+.loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (min-width: 510px) {
   .info {
     width: 99%;
