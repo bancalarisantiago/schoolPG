@@ -55,6 +55,24 @@ const useHelper = () => {
        const newSchool = await axios.post("http://localhost:5000/api/school", input)
 
     };
+
+     // $ npm install @emailjs/browser --save
+
+    // init("user_zMyhB0L8PQmWO0uaVJjQO")
+
+    // const handleSubmitMail = async (e: SubmitEvent) => {
+    //     e.preventDefault();
+    //         const form: any = {name: "NUEVO USUARIO ",
+    //         from_name: "I SCHOOL APP",
+    //     reply_to: "bancalarisantiago@gmail.com"};
+            
+    //    emailjs.send('service_zstwmji', "template_wutf4po", form )
+    //    .then((result) => {
+    //     console.log(result.text);
+    // }, (error) => {
+    //     console.log(error.text);
+    // });
+    
     return {
         handleChange,
         handleInputChange,
