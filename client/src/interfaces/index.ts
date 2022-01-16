@@ -43,7 +43,7 @@ export interface ICreateSchool {
 //for components
 
 export interface Location {
-  number: number;
+  number: string;
   streetName: string;
   locality: string;
   postalCode: string;

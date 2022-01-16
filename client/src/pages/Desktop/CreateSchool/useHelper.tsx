@@ -23,7 +23,7 @@ const useHelper = () => {
   //   }, []);
 
   const [location, setLocation] = useState<Location>({
-    number: 0,
+    number: "",
     streetName: "",
     locality: "",
     postalCode: "",

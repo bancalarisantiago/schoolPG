@@ -1,13 +1,16 @@
 //components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
-
+//helper
 import useHelper from "./useHelper";
+//css
 import styles from "./CreateSchool.module.css";
+//assets
+import Logo from "../../../assets/logo.png";
 
 const CreateSchool: React.FC = () => {
   const { handleChange, handleInputChange, handleSubmit, input, location } =
     useHelper();
-
+  console.log(input);
   return (
     <div className={styles.main}>
       <div className={styles.formDiv}>
@@ -129,7 +132,68 @@ const CreateSchool: React.FC = () => {
         </div>
       </div>
       <div className={styles.previewDiv}>
-        <div className={styles.preview}></div>
+        <div className={styles.preview}>
+          <div className={styles.top}>
+            <div className={styles.imgDiv}>
+              <img
+                src={input.logo.length ? input.logo : Logo}
+                alt="logo"
+                className={styles.logo}
+              />
+            </div>
+            <p className={styles.name}>
+              {input.name.length ? input.name : "Nombre de la institucion"}
+            </p>
+          </div>
+          <ul className={styles.info}>
+            <div className={styles.left}>
+              <p className={styles.section}>informacion de contacto</p>
+              <li className={styles.liTag}>
+                <span className={styles.default}>Telefono Celular: </span>
+                {input.cellphone.length ? input.cellphone : "Numero Celular"}
+              </li>
+              <li className={styles.liTag}>
+                <span className={styles.default}>Telefono Fijo: </span>
+                {input.phone.length ? input.phone : "Numero Fijo"}
+              </li>
+              <li className={styles.liTag}>
+                <span className={styles.default}>Correo Electronico: </span>
+                {input.email.length ? input.email : "Correo de contacto"}
+              </li>
+            </div>
+            <div className={styles.right}>
+              <p className={styles.section}>informacion general</p>
+              <li className={styles.liTag}>
+                <span className={styles.default}>Localidad: </span>
+                {location.locality.length ? location.locality : "Ciudad"} /{" "}
+                {location.postalCode.length
+                  ? location.postalCode
+                  : "Codigo Postal"}
+              </li>
+              <li className={styles.liTag}>
+                <span className={styles.default}>Direccion: </span>
+                {location.streetName.length
+                  ? location.streetName
+                  : "Calle"}{" "}
+                {location.number.length ? location.number : "Numeracion"}
+              </li>
+            </div>
+          </ul>
+          <div className={styles.bottom}>
+            <p className={styles.pTag}>
+              <span className={styles.default}>Orientacion: </span>
+              {input.orientation.length
+                ? input.orientation
+                : "Orientacion"}{" "}
+            </p>
+            <p className={styles.pTag}>
+              <span className={styles.default}>Descripcion: </span>
+              {input.description.length
+                ? input.description
+                : "Descripcion"}{" "}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
