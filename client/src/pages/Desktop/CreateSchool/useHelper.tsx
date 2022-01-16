@@ -1,67 +1,70 @@
-import { useState , useEffect} from "react";
-import { useSelector } from "react-redux"
+//from modules
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+//actions
+import { createSchool } from "../../../redux/actions";
 
-import {Location, Schools, ChangeEvent, SubmitEvent, IState} from "../../../interfaces/"
-
+import {
+  Location,
+  Schools,
+  ChangeEvent,
+  SubmitEvent,
+  IState,
+} from "../../../interfaces/";
 
 const useHelper = () => {
-    const school = useSelector((state: IState) => state.userSession);
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const school = useSelector((state: IState) => state.userSession);
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (!school.id) navigate("/panel/general");
-//   }, []);
-    
+  //   useEffect(() => {
+  //     if (!school.id) navigate("/panel/general");
+  //   }, []);
 
-    const [location, setLocation] = useState<Location>({
-        number: 0,
-        streetName: "",
-        locality: "",
-        postalCode: ""
-    })
-    const [input, setInput] = useState<Schools>({
-        name: "",
-        location: location,
-        description: "",
-        orientation: "",
-        cellphone: "",
-        phone: "",
-        email: "",
-        logo: ""
+  const [location, setLocation] = useState<Location>({
+    number: 0,
+    streetName: "",
+    locality: "",
+    postalCode: "",
+  });
+  const [input, setInput] = useState<Schools>({
+    name: "",
+    location: location,
+    description: "",
+    orientation: "",
+    cellphone: "",
+    phone: "",
+    email: "",
+    logo: "",
+  });
+
+  const handleInputChange = (e: any) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
     });
+  };
 
+  const handleChange = (e: ChangeEvent) => {
+    setLocation({
+      ...location,
+      [e.target.name]: e.target.value,
+    });
+    setInput({ ...input, location });
+  };
 
-    const handleInputChange = (e: any) => {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value,
-        })
+  const handleSubmit = async (e: SubmitEvent) => {
+    e.preventDefault();
+    dispatch(createSchool(input));
+  };
+  return {
+    handleChange,
+    handleInputChange,
+    handleSubmit,
+    input,
+    location,
+  };
+};
 
-    }
-
-    const handleChange = (e: ChangeEvent) => {
-        setLocation({
-            ...location,
-            [e.target.name]: e.target.value
-        })
-        setInput({ ...input, location })
-    }
-
-
-    const handleSubmit = async (e: SubmitEvent) => {
-        e.preventDefault();
-       const newSchool = await axios.post("http://localhost:5000/api/school", input)
-
-    };
-    return {
-        handleChange,
-        handleInputChange,
-        handleSubmit,
-        input,
-        location
-    }
-}
-
-export default useHelper
+export default useHelper;
