@@ -52,19 +52,6 @@ const SchoolInfo: React.FC = () => {
         <Loading />
       </div>
     );
-      <Database
-        school={school}
-        userType={"estudiantes"}
-        schoolType={"students"}
-      />
-      <Database
-        school={school}
-        userType={"profesores"}
-        schoolType={"teachers"}
-      />
-      <Database school={school} userType={"admins"} schoolType={"admins"} />
-    </div>
-  );
 };
 
 export default SchoolInfo;
