@@ -1,0 +1,156 @@
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.formDiv,
+.previewDiv {
+  width: 45%;
+  height: 90%;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../../assets/SchoolPG-general-bg.jpg");
+  position: relative;
+}
+
+.form,
+.preview {
+  width: 96%;
+  height: 96%;
+  background-color: var(--semi-white);
+  border-radius: 10px;
+}
+
+.form {
+  background-color: var(--semi-white);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+
+.formHtml {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  position: absolute;
+  top: -40px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  width: 90%;
+  height: 4rem;
+  background: var(---blue-gradient);
+}
+
+.welcome {
+  font-size: large;
+  font-weight: 600;
+  padding-left: 2rem;
+  color: var(--semi-white);
+}
+
+.inputsDiv {
+  width: 90%;
+  height: 85%;
+  overflow: auto;
+  border: 2px solid rgb(47, 44, 44);
+  border-radius: 10px;
+}
+
+.inputC {
+  display: flex;
+}
+
+.inputTag {
+  width: 45%;
+  margin: 1rem;
+  height: 2.5rem;
+  padding-left: 1rem;
+  background-color: var(--semi-white);
+  border-bottom: 2px solid var(--blue-palette-intensity5);
+}
+.inputTag::placeholder {
+  color: rgb(29, 28, 28);
+}
+.inputTag:focus {
+  border-bottom: 2px solid rgb(31, 134, 82);
+}
+
+.textareaC {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.textareaTag {
+  width: 40%;
+  background-color: var(--semi-white);
+  border: 2px solid var(--blue-palette-intensity5);
+  border-radius: 10px;
+  overflow: auto;
+  resize: none;
+  padding: 1rem;
+}
+.textareaTag:focus {
+  border: 2px solid rgb(31, 134, 82);
+}
+
+.butDiv {
+  width: 100%;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1440px) {
+  .main {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .formDiv {
+    width: 80%;
+    position: absolute;
+    top: 50px;
+  }
+  .previewDiv {
+    width: 80%;
+    position: absolute;
+    top: 110%;
+  }
+
+  .inputC {
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputTag {
+    width: 80%;
+  }
+  .textareaC {
+    flex-direction: column;
+    align-items: center;
+    height: 24rem;
+  }
+  .textareaTag {
+    width: 80%;
+    height: 10rem;
+    margin-bottom: 2rem;
+  }
+  .butDiv {
+    margin: 1.5rem 0;
+  }
+}

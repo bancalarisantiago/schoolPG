@@ -12,6 +12,7 @@ import Subject from "../models/Subject/Subject"
 
 export const createCourse = (req: Request, res: Response) => {
     const { name, shifts, students, teachers, subjects }: ICourse = req.body;
+
         try {
             const newCourse = new Course({
                 name, shifts, students, teachers, subjects
