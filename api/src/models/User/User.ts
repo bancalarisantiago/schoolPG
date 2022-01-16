@@ -1,5 +1,5 @@
 //from modules
-import mongoose, { Schema, model} from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 
 //interface
@@ -39,7 +39,7 @@ const schemaUser = new Schema({
     },
   },
   document: {
-    type: Number,
+    type: String,
     required: true,
   },
   username: {
@@ -71,7 +71,7 @@ const schemaUser = new Schema({
     {
       name: String,
       cellphone: String,
-      email: String
+      email: String,
     },
   ],
   course: [
@@ -97,4 +97,4 @@ schemaUser.methods.validatePassword = async function (
 
 const User = model<IUser>("User", schemaUser);
 
-export default User
+export default User;

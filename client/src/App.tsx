@@ -22,6 +22,7 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
+import Profile from "./pages/Desktop/Profile/Profile";
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
@@ -51,6 +52,8 @@ const App: React.FC = () => {
 
           <Route path="add-subject" element={<AddSubject />} />
           <Route path="update-subject" element={<UpdateSubject />} />
+
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </div>

@@ -38,11 +38,7 @@ const SchoolInfo: React.FC = () => {
         userType={"profesores"}
         schoolType={"teachers"}
       />
-      <Database
-        school={school}
-        userType={"administradores"}
-        schoolType={"admins"}
-      />
+      <Database school={school} userType={"admins"} schoolType={"admins"} />
     </div>
   );
 };

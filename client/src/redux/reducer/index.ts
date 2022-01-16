@@ -1,9 +1,10 @@
 import { IState } from "../../interfaces";
-import { GET_USER_LOGGED, GET_SCHOOL } from "../actions";
+import { GET_USER_LOGGED, GET_SCHOOL, MATCH_USERS } from "../actions";
 
 export const initialState: IState = {
   userSession: {},
   userSchool: {},
+  matchUsers: {},
 };
 
 const cases: any = {};
@@ -16,6 +17,11 @@ cases[GET_USER_LOGGED] = (initialState: IState, payload: any) => ({
 cases[GET_SCHOOL] = (initialState: IState, payload: any) => ({
   ...initialState,
   userSchool: payload,
+});
+
+cases[MATCH_USERS] = (initialState: IState, payload: any) => ({
+  ...initialState,
+  matchUsers: payload,
 });
 
 export default function rootReducer(
