@@ -41,8 +41,7 @@ const App: React.FC = () => {
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
         <Route path="panel" element={<Panel />}>
-          <Route index element={<SchoolInfo />} />
-          <Route path="create-school" element={<CreateSchool />} />
+          <Route index element={<CreateSchool />} />
 
           <Route path="general" element={<SchoolInfo />} />
 
