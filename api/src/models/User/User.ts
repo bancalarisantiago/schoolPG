@@ -28,7 +28,7 @@ const schemaUser = new Schema({
     type: String,
   },
   location: {
-    number: { type: Number },
+    streetNumber: { type: String },
     streetName: { type: String },
     locality: { type: String },
     postalCode: { type: String },
@@ -80,6 +80,12 @@ const schemaUser = new Schema({
       ref: "Course",
     },
   ],
+  subject: [
+    {
+    type: mongoose.Types.ObjectId,
+    ref: "Course",
+  }
+],
 });
 
 schemaUser.methods.encryptPassword = async (

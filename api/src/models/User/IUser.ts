@@ -11,7 +11,7 @@ interface Login {
 }
 
 interface Location {
-  number: number;
+  streetNumber: string;
   streetName: string;
   locality: string;
   postalCode: number;
@@ -30,7 +30,7 @@ export interface IUser extends Document {
   gender: string;
   location: Location;
   birthdate: string;
-  document: number;
+  document: string;
   username: string;
   email: string;
   password: string;
@@ -41,6 +41,7 @@ export interface IUser extends Document {
   childInCharge?: Types.ObjectId[];
   tutors?: Tutor[];
   course?: Types.ObjectId[];
+  subjects?: Types.ObjectId[];
   encryptPassword(password: string): Promise<string>;
   validatePassword(password: string): Promise<boolean>;
 }

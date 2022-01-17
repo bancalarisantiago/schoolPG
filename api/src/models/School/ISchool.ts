@@ -1,7 +1,7 @@
 import { Document, Types } from "mongoose";
 
 interface Location {
-  number: number;
+  streetNumber: string;
   streetName: string;
   locality: string;
   postalCode: string;

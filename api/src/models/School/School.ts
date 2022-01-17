@@ -10,7 +10,7 @@ const schemaSchool = new Schema({
     required: true,
   },
   location: {
-    number: { type: Number, required: true },
+    streetNumber: { type: String, required: true },
     streetName: { type: String, required: true },
     locality: { type: String, required: true },
     postalCode: { type: String, required: true },
@@ -30,6 +30,7 @@ const schemaSchool = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   phone: {
     type: String,

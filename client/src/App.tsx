@@ -23,6 +23,8 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
+import AboutUs from "./pages/Desktop/AboutUs/AboutUs"
+import General from "./pages/Desktop/General/General";
 import SchoolInfo from "./pages/Desktop/SchoolInfo/SchoolInfo";
 import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
@@ -35,11 +37,13 @@ const App: React.FC = () => {
   return (
     <div className={styles.main}>
       <Routes>
+
+      <Route path="addCourse" element={<AddCourse />} />
+
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
         <Route path="panel" element={<Panel />}>
           <Route index element={<CreateSchool />} />
-          <Route path="create-school" element={<CreateSchool />} />
 
           <Route path="general" element={<SchoolInfo />} />
 
