@@ -11,11 +11,11 @@ import Course from "../models/Course/Course";
 import Subject from "../models/Subject/Subject"
 
 export const createCourse = (req: Request, res: Response) => {
-    const { name }: ICourse = req.body;
-    
+    const { name, shifts, students, teachers, subjects }: ICourse = req.body;
+
         try {
             const newCourse = new Course({
-                name
+                name, shifts, students, teachers, subjects
             })
             newCourse.save();
             res.status(200).json(newCourse);
