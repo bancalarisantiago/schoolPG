@@ -30,7 +30,7 @@ export interface IUser extends Document {
   gender: string;
   location: Location;
   birthdate: string;
-  document: number;
+  document: string;
   username: string;
   email: string;
   password: string;
