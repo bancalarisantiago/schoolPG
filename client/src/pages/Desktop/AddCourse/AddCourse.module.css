@@ -1,0 +1,171 @@
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submain {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top,
+.bottom {
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.inputsDiv,
+.selectStudents,
+.selectTeachers,
+.selectSubjects {
+  width: 45%;
+  height: 90%;
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px gray;
+  background: url("../../../assets/SchoolPG-general-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.firstForm,
+.divCont,
+.teacherCont,
+.subjectCont {
+  width: 95%;
+  height: 95%;
+  border-radius: 10px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.divCont {
+  justify-content: flex-start;
+}
+
+.input {
+  margin: 2rem;
+}
+
+.butt {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.buttTag {
+  border: 2px solid var(--blue-palette-intensity7);
+  border-radius: 10px;
+  transition: 1s;
+  color: var(--blue-palette-intensity7);
+}
+
+.buttTag:hover {
+  color: black;
+  box-shadow: 3px 3px 15px gray;
+}
+
+.searchbar {
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+
+@media (max-width: 1600px) {
+  .searchbar {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .input {
+    margin: 1rem 0;
+  }
+  .butt {
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+  }
+}
+
+.selectCont {
+  display: flex;
+  margin: 1rem 0;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.selectTag {
+  background-color: #fafafa;
+  color: var(--blue-palette-intensity7);
+  border-bottom: 3px solid var(--blue-palette-intensity7);
+}
+
+.list {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.student {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 10%;
+}
+
+.name {
+  padding-right: 1rem;
+}
+
+.close {
+  width: 20px;
+  height: 20px;
+}
+
+.close:hover {
+  color: darkslateblue;
+}
+
+.selectTag2 {
+  background-color: #fafafa;
+  color: var(--blue-palette-intensity7);
+  border-bottom: 3px solid var(--blue-palette-intensity7);
+  width: 50%;
+  height: 70%;
+}
+
+.selectTeacher {
+  width: 90%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newList {
+  width: 90%;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: max-content;
+  overflow-y: auto;
+}
+.closeButt {
+  display: inline;
+}
+.closeButt:hover {
+  color: darkslateblue;
+}
