@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
+
+import { IState } from "../../../interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserByDni, getUsers, createCourse, getSubject } from "../../../redux/actions";
+
+   interface ILState{
+
 import { useDispatch, useSelector } from "react-redux";
 import { IInitialState } from "../../redux/reducer";
 import { getUserByDni, getUsers, createCourse, getSubject } from "../../redux/action/action";
 
-   interface IState{
-        name: string
-        shifts:string
-        students:string[]
-        teachers:string[]
-        subjects:string[]
+   interface IState {
+        name: string;
+        shifts:string;
+        students:string[];
+        teachers:string[];
+        subjects:string[];
     }
 
     interface IListState{
-        student:any[]
-        teachers:any[]
-        subjects:any[]
+        student:any[];
+        teachers:any[];
+        subjects:any[];
     }
 
 const useHelper = ()=>{
@@ -22,6 +29,9 @@ const useHelper = ()=>{
     const [stateDni, setStateDni] = useState({
         document: ""
     })
+
+
+    const [state, setState] = useState<ILState>({
 
     const [state, setState] = useState<IState>({
         name:"",
@@ -39,9 +49,15 @@ const useHelper = ()=>{
     })
 
     console.log(list)
+
+    const teachers = useSelector((state:IState) => state.teachers)
+    const student = useSelector((state:IState) => state.students)  
+    const subjects = useSelector((state:IState) => state.subjects)
+
     const teachers = useSelector((state:IInitialState) => state.teachers)
     const student = useSelector((state:IInitialState) => state.students)  
     const subjects = useSelector((state:IInitialState) => state.subjects)
+
 
     const dispatch = useDispatch()
 

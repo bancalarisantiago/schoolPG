@@ -10,6 +10,11 @@ export interface IState {
   userSession: any;
   userSchool: any;
   matchUsers: any;
+  students: any[]
+  teachers:any[]
+  backupData: any[]
+  courses: any[]
+  subjects: any[]
 }
 
 export type SubmitEvent = React.SyntheticEvent;
