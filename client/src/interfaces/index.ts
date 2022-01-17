@@ -65,3 +65,20 @@ export interface Schools {
   phone: string;
   cellphone: string;
 }
+
+interface Fullname {
+  first: string;
+  last: string;
+}
+export interface IStudentForm {
+    name: Fullname;
+    document: string;
+    email: string;
+    username: string;
+    password: string;
+    userType: string;
+}
+
+export interface ICreateStudent {
+
+}

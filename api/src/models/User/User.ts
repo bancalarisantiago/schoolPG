@@ -28,7 +28,7 @@ const schemaUser = new Schema({
     type: String,
   },
   location: {
-    number: { type: String },
+    streetNumber: { type: String },
     streetName: { type: String },
     locality: { type: String },
     postalCode: { type: String },
