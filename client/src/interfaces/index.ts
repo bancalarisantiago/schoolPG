@@ -79,6 +79,16 @@ export interface IStudentForm {
     userType: string;
 }
 
+export interface IAdminForm {
+  name: Fullname;
+  document: string;
+  email: string;
+  username: string;
+  password: string;
+  userType: string;
+}
+
+
 export interface ITeacherForm {
   name: Fullname;
   document: string;
@@ -89,5 +99,9 @@ export interface ITeacherForm {
 }
 
 export interface ICreateStudent {
+
+}
+
+export interface ICreateAdmin {
 
 }
