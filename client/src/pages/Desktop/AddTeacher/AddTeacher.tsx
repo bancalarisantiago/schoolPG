@@ -6,7 +6,19 @@ import useHelper from "./useHelper"
 
 const AddTeacher: React.FC = () => {
 
-  const { handleInputChange ,handleNameChange, handleSubmit,  input, name } = useHelper();
+  const { 
+    handleInputChange,
+    handleNameChange, 
+    handleSubmit,  
+    input, 
+    name , 
+    handleInputOnChangeList,
+    deleteFromList, 
+    courseState, 
+    subjectState, 
+    clicked } = useHelper();
+
+  
 
   return (
     <div className={styles.container}>
@@ -56,11 +68,49 @@ const AddTeacher: React.FC = () => {
             value={input.email}
             onChange={handleInputChange}  
             />
-            <select>
-              <option>HOLa</option>
+            <select
+            name="subjects"
+            onChange={handleInputOnChangeList}
+            >
+              <option disabled selected={clicked.subject}>Seleccionar Materia</option>
+              {subjectState?.map((c:any) => 
+                    <option key={c.name}>{c.name}</option> )}
             </select>
-          <Button text="Añadir Alumno" />
+            <div>
+              <ul>
+              {input?.subject.map((p: any )=> {
+                let subject = input.subject.find((ele:any) => ele === p )
+                return <li key={`${subject}key`}>{subject}
+                <button type='button'  value={subject} onClick={deleteFromList}>X</button>
+                </li>
+              }
+              )}
+              </ul>
+          </div>
+            <select
+            name="courses"
+            onChange={handleInputOnChangeList}
+            ><option disabled selected={clicked.course}>Seleccionar Curso</option>
+              {courseState?.map((c:any) => 
+                    <option key={c.name}>{c.name}</option> )}
+              
+            </select>
+           
+          <Button text="Añadir Profesor" />
         </form>
+
+            <div>
+              <ul>
+              {input?.courses.map((p: any )=> {
+                let course = input.courses.find((ele:any) => ele === p )
+                return <li key={`${course}key`}>{course}
+                <button type='button'  value={course} onClick={deleteFromList}>X</button>
+                </li>
+              }
+              )}
+              </ul>
+          </div>
+  
       </div>
     </div>
   );
