@@ -1,6 +1,6 @@
 .group {
   position: relative;
-  width: 300px;
+  width: 200px;
 }
 .input {
   font-size: 18px;
@@ -65,4 +65,12 @@
 .input:focus ~ .bar:before,
 .input:focus ~ .bar:after {
   width: 50%;
+}
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

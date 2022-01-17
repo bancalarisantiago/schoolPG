@@ -29,7 +29,6 @@ import SchoolInfo from "./pages/Desktop/SchoolInfo/SchoolInfo";
 import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
 
-
 //Modal.setAppElement("#root")
 
 const App: React.FC = () => {
@@ -68,7 +67,6 @@ const App: React.FC = () => {
 
           <Route path="*" element={<Error />} />
           <Route path="profile" element={<Profile />} />
-
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

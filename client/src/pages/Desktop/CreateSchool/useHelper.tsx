@@ -1,3 +1,4 @@
+
 //from modules
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +16,7 @@ import {
 
 const useHelper = () => {
   const dispatch = useDispatch();
+
   const school = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
 
@@ -45,6 +47,7 @@ const useHelper = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    navigate("/panel/general");
   };
 
   const handleChange = (e: ChangeEvent) => {
@@ -75,6 +78,7 @@ const useHelper = () => {
   // }, (error) => {
   //     console.log(error.text);
   // });
+
 
   return {
     handleChange,
