@@ -18,9 +18,9 @@ const useHelper = () => {
   const school = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     if (!school.id) navigate("/panel/general");
-  //   }, []);
+  useEffect(() => {
+    if (!school.id) navigate("/panel/general");
+  }, []);
 
   const [location, setLocation] = useState<Location>({
     number: "",
@@ -44,6 +44,7 @@ const useHelper = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    navigate("/panel/general");
   };
 
   const handleChange = (e: ChangeEvent) => {
