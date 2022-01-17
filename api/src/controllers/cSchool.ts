@@ -8,7 +8,7 @@ import School from "../models/School/School";
 export const getAllSchools = async (req: Request, res: Response) => {
   try {
     const allSchools = await School.find({});
-    console.log(allSchools);
+    
     res.status(200).json(allSchools);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
@@ -45,7 +45,7 @@ export const createSchool = async (req: Request, res: Response) => {
 };
 
 export const updateSchool = async (req: Request, res: Response) => {
-  const { id } = req.params; // req.body?
+  const { id } = req.params; 
 
   try {
     const school = await School.findById(id);

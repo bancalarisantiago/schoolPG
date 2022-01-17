@@ -5,7 +5,6 @@ export const getAllEvents = async (req: Request,res: Response) => {
         try {
             const allEvents = await Event.find({});
 
-            console.log(allEvents)
             res.status(200).json(allEvents)
         } catch(error) {
             console.log(error)
@@ -30,20 +29,16 @@ export const createEvent = async (req: Request,res: Response) => {
 }
 export const updateEvent = async (req: Request,res: Response) => {
 
-        const { id } = req.params; // req.body?
+        const { id } = req.params; 
 
         try{
-
             const event = await Event.findById(id);
-
             if(!event) {
                 return res.status(404).json({msg: "Event not found"})
             }
-
             const newEvent = {
                 ...req.body
             };
-
             const eventUpdated = await Event.findByIdAndUpdate(id, newEvent, {new : true})
             res.status(200).json(eventUpdated)
         } catch(error) {

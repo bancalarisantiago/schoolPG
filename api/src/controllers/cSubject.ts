@@ -3,8 +3,14 @@ import { Request, Response } from "express";
 import { ISubject } from "../models/Subject/ISubject";
 
 
+//database
+import { Types } from "mongoose";
+const toId = Types.ObjectId;
+
 //models
+import User from "../models/User/User"
 import Subject from "../models/Subject/Subject";
+import Course from "models/Course/Course";
 
 
 export const createSubject = async (req: Request, res: Response) => { 
@@ -47,7 +53,7 @@ export const getSubjectById = async (req: Request, res: Response) => {
 
  export const deleteSubjectById = async (req: Request,res: Response) => {
 
-  const { id } = req.params; // req.body?
+  const { id } = req.params;
   try{
       const subject = await Subject.findById(id);
       if(!subject) {
@@ -60,3 +66,14 @@ export const getSubjectById = async (req: Request, res: Response) => {
       res.status(404).json(error)
   }
 }
+
+export const addCourseToSubject = async (req: Request, res:Response) =>{
+  const { subjectId, courseId } = req.params
+    const subject = await Subject.findByIdAndUpdate(new toId(subjectId), {
+      $push: {
+        courses: new toId(courseId),
+      },
+    });
+  subject? res.send({ message: "relation was created succesfully" }):
+  res.send({ error: "relation wasn'\t created succesfully" }); 
+ }

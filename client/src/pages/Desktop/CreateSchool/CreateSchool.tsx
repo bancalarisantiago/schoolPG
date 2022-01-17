@@ -33,8 +33,8 @@ const CreateSchool: React.FC = () => {
                   className={styles.inputTag}
                   autoComplete="off"
                   placeholder="Numeracion"
-                  name="number"
-                  value={location.number}
+                  name="streetNumber"
+                  value={location.streetNumber}
                   onChange={handleChange}
                 />
               </div>
