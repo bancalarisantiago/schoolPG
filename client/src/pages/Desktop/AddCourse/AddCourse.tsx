@@ -48,7 +48,7 @@ return (
         <label>
         <select name="Students" id="Students" onChange={handleSelect}>
         <option value="" >Students</option>
-        {student.map((e)=>(
+        {student.map((e : any)=>(
         <option key={e._id} value={e._id}>{e.name.first} {e.name.last}</option>
         ))}
         </select>
@@ -76,7 +76,7 @@ return (
         <label>
         <select name="Teachers" id="Teachers" onChange={handleSelectTeacher}>
         <option>Teachers</option>
-        {teachers.map((e)=>(
+        {teachers.map((e: any)=>(
         <option key={e._id} value={e._id}>{e.name.first} {e.name.last}</option>
         ))}
         </select>
@@ -92,7 +92,7 @@ return (
         <label>
         <select name="Subjects" id="Subjects" onChange={handleSelectSubjects}>
         <option>Subjects</option>
-        {subjects.map((e)=>(
+        {subjects.map((e: any)=>(
         <option key={e._id} value={e._id}>{e.name}</option>
         ))}
         </select>

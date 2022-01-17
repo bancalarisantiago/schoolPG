@@ -79,6 +79,15 @@ export interface IStudentForm {
     userType: string;
 }
 
+export interface ITeacherForm {
+  name: Fullname;
+  document: string;
+  email: string;
+  username: string;
+  password: string;
+  userType: string;
+}
+
 export interface ICreateStudent {
 
 }
