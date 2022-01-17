@@ -1,5 +1,6 @@
 //components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
+
 //helper
 import useHelper from "./useHelper";
 //css
@@ -197,6 +198,7 @@ const CreateSchool: React.FC = () => {
       </div>
     </div>
   );
+
 };
 
 export default CreateSchool;

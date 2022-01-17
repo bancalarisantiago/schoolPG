@@ -14,6 +14,7 @@ const AddStudent: React.FC = () => {
         <div className={styles.titlebox}>
           <p className={styles.title}>Añadir Alumno</p>
         </div>
+
         <form className={styles.inputs} onSubmit={handleSubmit}>
           <Input 
             name="first"
@@ -56,6 +57,7 @@ const AddStudent: React.FC = () => {
             value={input.email}
             onChange={handleInputChange}  
             />
+
           <Button text="Añadir Alumno" />
         </form>
       </div>
