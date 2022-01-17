@@ -86,16 +86,6 @@ export const getUsers = ()=>{
   }
 }
 
-export const getUsersByFilters = (props:Object)=>{
-  return async function (dispatch:any){
-  try{
-          const students =  await axios.get("http://localhost:5000/api/user", props)
-          dispatch({type: GET_USERS, payload: students.data})
-      } catch(err){
-      console.log(err)
-      }
-  }
-}
 
 export const getUserByDni = (payload:any)=>{
   return async function(dispatch:any){
@@ -104,6 +94,18 @@ export const getUserByDni = (payload:any)=>{
               payload})
       } catch(error){
           console.log(error)
+      }
+  }
+}
+
+
+export const getUsersByFilters = (props:Object)=>{
+  return async function (dispatch:any){
+  try{
+          const students =  await axios.get("http://localhost:5000/api/user", props)
+          dispatch({type: GET_USERS, payload: students.data})
+      } catch(err){
+      console.log(err)
       }
   }
 }
@@ -122,4 +124,9 @@ export const getSubject = ()=>{
 export const createSchool = (payload: ICreateSchool) => async () => {
   const r = await instance.post("/school", payload);
 };
+
+
+
+
+
 

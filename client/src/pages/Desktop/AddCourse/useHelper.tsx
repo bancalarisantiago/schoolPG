@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
+
 import { IState } from "../../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByDni, getUsers, createCourse, getSubject } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
-   interface ILState{
-        name: string
-        shifts:string
-        students:string[]
-        teachers:string[]
-        subjects:string[]
+import { IInitialState } from "../../redux/reducer";
+
+   interface IState {
+        name: string;
+        shifts:string;
+        students:string[];
+        teachers:string[];
+        subjects:string[];
     }
 
     interface IListState{
-        student:any[]
-        teachers:any[]
-        subjects:any[]
+        student:any[];
+        teachers:any[];
+        subjects:any[];
+
     }
 
 const useHelper = ()=>{
@@ -23,7 +27,8 @@ const useHelper = ()=>{
         document: ""
     })
 
-    const [state, setState] = useState<ILState>({
+
+    const [state, setState] = useState<IState>({
         name:"",
         shifts:"",
         students:[],
@@ -31,17 +36,20 @@ const useHelper = ()=>{
         subjects:[]
     })
 
-    console.log(state)
+  
     const [list, setList] = useState<IListState>({
         student:[],
         teachers:[],
         subjects:[]
     })
 
-    console.log(list)
-    const teachers = useSelector((state:IState) => state.teachers)
-    const student = useSelector((state:IState) => state.students)  
-    const subjects = useSelector((state:IState) => state.subjects)
+
+
+    const teachers = useSelector((state:IInitialState) => state.teachers)
+    const student = useSelector((state:IInitialState) => state.students)  
+    const subjects = useSelector((state:IInitialState) => state.subjects)
+
+
 
     const dispatch = useDispatch()
 
@@ -68,9 +76,9 @@ const handleSelect =  (e:any)=>{
     else {
         setState({...state, students:[...state.students, e.target.value]})
         let objetStudent = student.filter((elemento)=> elemento._id === e.target.value)
-        console.log(state)
+        
         setList({...list, student: [...list.student, ...objetStudent]})
-        console.log(list)
+        
     }
 }
 
@@ -101,9 +109,9 @@ const handleDelete = (result:any) =>{
 }
 
 const handleDeleteTeacher = (result:any)=>{
-    console.log(result)
+   
     const filterTeachers = state.teachers.filter((e)=> e !== result)
-    console.log(filterTeachers)
+   
     setState({...state, teachers: filterTeachers})
     let objetTeachers = list.teachers.filter((e:any)=> e._id !== result)
     setList({...list, teachers: objetTeachers})
