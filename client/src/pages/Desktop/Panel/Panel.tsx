@@ -6,24 +6,32 @@ import useHelper from "./useHelper";
 
 //from modules
 import { Outlet } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 //components
 import Sidebar from "../../../components/Desktop/SideBar/Sidebar";
 import Navbar from "../../../components/Desktop/Navbar/Navbar";
-import SchoolInfo from "../SchoolInfo/SchoolInfo";
-import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
 
 const Panel: React.FC = () => {
-  const { validate, location, school } = useHelper();
-
+  const { validate, location } = useHelper();
+  const navigate = useNavigate();
+  useEffect(() => {
+    !validate.accessToken && navigate("/login");
+  }, []);
   return (
-    <div className={styles.main}>
-      <Sidebar />
-      <div className={styles.content}>
-        <Navbar validate={validate} location={location} />
-        <Outlet />
-      </div>
-    </div>
+    <>
+      {validate.accessToken ? (
+        <div className={styles.main}>
+          <Sidebar />
+          <div className={styles.content}>
+            <Navbar validate={validate} location={location} />
+            <Outlet />
+          </div>
+        </div>
+      ) : (
+        <>Error</>
+      )}
+    </>
   );
 };
 
