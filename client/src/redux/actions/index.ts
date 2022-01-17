@@ -87,18 +87,6 @@ export const getUsers = ()=>{
 }
 
 
-export const getUserByDni = (payload:any)=>{
-  return async function(dispatch:any){
-      try{
-          dispatch({type:GET_USER_BY_DNI, 
-              payload})
-      } catch(error){
-          console.log(error)
-      }
-  }
-}
-
-
 export const getUsersByFilters = (props:Object)=>{
   return async function (dispatch:any){
   try{
@@ -106,6 +94,17 @@ export const getUsersByFilters = (props:Object)=>{
           dispatch({type: GET_USERS, payload: students.data})
       } catch(err){
       console.log(err)
+      }
+  }
+}
+
+export const getUserByDni = (payload:any)=>{
+  return async function(dispatch:any){
+      try{
+          dispatch({type:GET_USER_BY_DNI, 
+              payload})
+      } catch(error){
+          console.log(error)
       }
   }
 }
@@ -124,9 +123,5 @@ export const getSubject = ()=>{
 export const createSchool = (payload: ICreateSchool) => async () => {
   const r = await instance.post("/school", payload);
 };
-
-
-
-
 
 

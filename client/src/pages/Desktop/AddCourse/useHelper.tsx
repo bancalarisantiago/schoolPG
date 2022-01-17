@@ -4,6 +4,7 @@ import { IState } from "../../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByDni, getUsers, createCourse, getSubject } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
+
 import { IInitialState } from "../../redux/reducer";
 
    interface IState {
@@ -19,6 +20,7 @@ import { IInitialState } from "../../redux/reducer";
         teachers:any[];
         subjects:any[];
 
+
     }
 
 const useHelper = ()=>{
@@ -28,7 +30,9 @@ const useHelper = ()=>{
     })
 
 
+
     const [state, setState] = useState<IState>({
+
         name:"",
         shifts:"",
         students:[],
@@ -36,7 +40,6 @@ const useHelper = ()=>{
         subjects:[]
     })
 
-  
     const [list, setList] = useState<IListState>({
         student:[],
         teachers:[],
@@ -76,9 +79,10 @@ const handleSelect =  (e:any)=>{
     else {
         setState({...state, students:[...state.students, e.target.value]})
         let objetStudent = student.filter((elemento)=> elemento._id === e.target.value)
-        
+
         setList({...list, student: [...list.student, ...objetStudent]})
-        
+     
+
     }
 }
 
@@ -109,9 +113,9 @@ const handleDelete = (result:any) =>{
 }
 
 const handleDeleteTeacher = (result:any)=>{
-   
+
     const filterTeachers = state.teachers.filter((e)=> e !== result)
-   
+
     setState({...state, teachers: filterTeachers})
     let objetTeachers = list.teachers.filter((e:any)=> e._id !== result)
     setList({...list, teachers: objetTeachers})
