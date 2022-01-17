@@ -18,7 +18,7 @@ const useHelper = () => {
     !validate.accessToken && navigate("/login");
     validate.accessToken
       ? !validate.user.school
-        ? navigate("/create-school")
+        ? navigate("/panel")
         : dispatch(getSchoolById(validate.user.school))
       : navigate("/login");
   }, [navigate, validate.accessToken]);

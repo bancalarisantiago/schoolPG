@@ -1,4 +1,3 @@
-
 //from modules
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,11 +42,11 @@ const useHelper = () => {
   });
 
   const handleInputChange = (e: any) => {
+    console.log(e.target.name, e.target.value);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    navigate("/panel/general");
   };
 
   const handleChange = (e: ChangeEvent) => {
@@ -60,7 +59,8 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    dispatch(createSchool(input));
+    dispatch(createSchool({ ...input, userId: school.user._id }));
+    navigate("/login");
   };
   // $ npm install @emailjs/browser --save
 
@@ -78,7 +78,6 @@ const useHelper = () => {
   // }, (error) => {
   //     console.log(error.text);
   // });
-
 
   return {
     handleChange,

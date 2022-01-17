@@ -8,10 +8,7 @@ const useHelper = () => {
 
   const totalUsers = (): number => {
     return school
-      ? school.admins.length +
-          school.students.length +
-          school.tutors.length +
-          school.teachers.length
+      ? school.admins.length + school.students.length + school.teachers.length
       : " curso no cargado";
   };
 

@@ -22,4 +22,5 @@ export interface ISchool extends Document {
   /* tutors: Types.ObjectId[]; */
   courses: Types.ObjectId[];
   subjects: Types.ObjectId[];
+  userId: Types.ObjectId;
 }
