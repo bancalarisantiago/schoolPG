@@ -9,7 +9,7 @@ import { Request, Response } from "express";
 import User from "../models/User/User";
 import School from "../models/School/School";
 import Course from "../models/Course/Course";
-import { IUser } from "models/User/IUser";
+import { IUser } from "../models/User/IUser";
 
 //from modules
 import jwt from "jsonwebtoken";

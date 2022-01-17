@@ -1,6 +1,6 @@
 //from modules
 import { Router } from "express";
-import { tokenValidation } from "libs/verifyToken/verifyToken";
+import { tokenValidation } from "../libs/verifyToken/verifyToken";
 
 //controllers
 import { login, tokenRefresh, logout } from "../controllers/cAuth";

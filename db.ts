@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import app from "./index";
 
 const uri =
-  "mongodb+srv://ischool:escuelita420@cluster0.pfkbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://CorregidorOscar:81MycBZ303VyaTFp@cluster0.qejah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  
 
 mongoose
   .connect(uri) // conexion a la base de datos

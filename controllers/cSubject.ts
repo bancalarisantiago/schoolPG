@@ -10,7 +10,7 @@ const toId = Types.ObjectId;
 //models
 import User from "../models/User/User"
 import Subject from "../models/Subject/Subject";
-import Course from "models/Course/Course";
+import Course from "../models/Course/Course";
 
 
 export const createSubject = async (req: Request, res: Response) => { 
