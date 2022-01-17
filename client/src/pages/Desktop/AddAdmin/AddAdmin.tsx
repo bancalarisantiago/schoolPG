@@ -4,7 +4,7 @@ import styles from "./AddAdmin.module.css";
 
 import useHelper from "./useHelper"
 
-const AddStudent: React.FC = () => {
+const AddAdmin: React.FC = () => {
 
   const { handleInputChange ,handleNameChange, handleSubmit,  input, name } = useHelper();
 
@@ -63,4 +63,4 @@ const AddStudent: React.FC = () => {
   );
 };
 
-export default AddStudent;
+export default AddAdmin;
