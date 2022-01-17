@@ -11,6 +11,7 @@ const useHelper = (schoolType: string) => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState<string>("");
+
   const handleChange = async (e: ChangeEvent) => {
     const { value } = e.currentTarget;
     setUser(value);
