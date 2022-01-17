@@ -75,6 +75,7 @@ export const getSchoolById = async (req: Request, res: Response) => {
     { path: "students", model: "User" },
     { path: "teachers", model: "User" },
     { path: "admins", model: "User" },
+    { path: "courses", model: "Course" }
   ];
   try {
     const school = await School.findById(id).populate(populateQuery).lean();

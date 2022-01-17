@@ -86,6 +86,8 @@ export interface ITeacherForm {
   username: string;
   password: string;
   userType: string;
+  courses?: any;
+  subject?: any;
 }
 
 export interface ICreateStudent {
