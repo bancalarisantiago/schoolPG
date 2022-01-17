@@ -86,6 +86,7 @@ export const getUsers = ()=>{
   }
 }
 
+
 export const getUsersByFilters = (props:Object)=>{
   return async function (dispatch:any){
   try{
@@ -122,4 +123,5 @@ export const getSubject = ()=>{
 export const createSchool = (payload: ICreateSchool) => async () => {
   const r = await instance.post("/school", payload);
 };
+
 
