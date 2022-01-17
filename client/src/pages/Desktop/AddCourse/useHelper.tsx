@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserByDni, getUsers, createCourse, getSubject } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
 
-import { IInitialState } from "../../redux/reducer";
-
-   interface IState {
+   interface IStateLocal {
         name: string;
         shifts:string;
         students:string[];
@@ -20,7 +18,6 @@ import { IInitialState } from "../../redux/reducer";
         teachers:any[];
         subjects:any[];
 
-
     }
 
 const useHelper = ()=>{
@@ -31,7 +28,7 @@ const useHelper = ()=>{
 
 
 
-    const [state, setState] = useState<IState>({
+    const [state, setState] = useState<IStateLocal>({
 
         name:"",
         shifts:"",
@@ -48,9 +45,9 @@ const useHelper = ()=>{
 
 
 
-    const teachers = useSelector((state:IInitialState) => state.teachers)
-    const student = useSelector((state:IInitialState) => state.students)  
-    const subjects = useSelector((state:IInitialState) => state.subjects)
+    const teachers = useSelector((state:IState) => state.teachers)
+    const student = useSelector((state:IState) => state.students)  
+    const subjects = useSelector((state:IState) => state.subjects)
 
 
 
@@ -78,7 +75,7 @@ const handleSelect =  (e:any)=>{
     if(state.students.includes(e.target.value)) alert("the student is already to list")
     else {
         setState({...state, students:[...state.students, e.target.value]})
-        let objetStudent = student.filter((elemento)=> elemento._id === e.target.value)
+        let objetStudent = student.filter((elemento: any)=> elemento._id === e.target.value)
 
         setList({...list, student: [...list.student, ...objetStudent]})
      
@@ -90,7 +87,7 @@ const handleSelectTeacher = (e:any)=>{
     if(state.teachers.includes(e.target.value)) alert("the teacher is already to list")
     else{
         setState({...state, teachers:[...state.teachers, e.target.value]})
-        let objetTeacers = teachers.filter((elemento)=> elemento._id === e.target.value)
+        let objetTeacers = teachers.filter((elemento : any)=> elemento._id === e.target.value)
         setList({...list, teachers: [...list.teachers, ...objetTeacers]})
     }
 }
@@ -125,7 +122,7 @@ const handleSelectSubjects = (e:any)=>{
     if(state.subjects.includes(e.target.value)) alert("the subject is already to list")
     else{
         setState({...state, subjects:[...state.subjects, e.target.value]})
-        let objetTeacers = subjects.filter((elemento)=> elemento._id === e.target.value)
+        let objetTeacers = subjects.filter((elemento:any)=> elemento._id === e.target.value)
         setList({...list, subjects: [...list.subjects, ...objetTeacers]})
     }
 }

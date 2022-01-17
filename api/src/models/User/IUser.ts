@@ -41,6 +41,7 @@ export interface IUser extends Document {
   childInCharge?: Types.ObjectId[];
   tutors?: Tutor[];
   course?: Types.ObjectId[];
+  subjects?: Types.ObjectId[];
   encryptPassword(password: string): Promise<string>;
   validatePassword(password: string): Promise<boolean>;
 }
