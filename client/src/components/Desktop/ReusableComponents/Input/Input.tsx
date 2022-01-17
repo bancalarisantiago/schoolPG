@@ -6,9 +6,17 @@ interface IProps {
   value?: string;
   disabled?: boolean;
   type?: string;
+  onChange?: any;
 }
 
-function Input({ text, name, value, disabled = false, type }: IProps) {
+function Input({
+  text,
+  name,
+  value,
+  disabled = false,
+  type,
+  onChange,
+}: IProps) {
   return (
     <div className={styles.group}>
       <input
@@ -17,6 +25,7 @@ function Input({ text, name, value, disabled = false, type }: IProps) {
         required
         value={value}
         name={name}
+        onChange={onChange}
       />
       <label className={`${styles.name} ${disabled ? styles.disabled : ""}`}>
         {text}

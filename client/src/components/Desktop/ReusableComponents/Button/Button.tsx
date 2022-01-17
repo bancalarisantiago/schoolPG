@@ -1,14 +1,18 @@
-import "./Button.module.css";
+import styles from "./Button.module.css";
 
 interface IProps {
-  text: string;
+  text?: string;
+  disabled?: boolean;
 }
 
-function Button({ text }: IProps) {
+function Button({ text, disabled }: IProps) {
   return (
-    <button>
+    <button
+      disabled={disabled}
+      className={`${styles.button} ${disabled ? styles.disabled : ""}`}
+    >
       {text}
-      <span></span>
+      <span className={styles.span}></span>
     </button>
   );
 }

@@ -1,4 +1,4 @@
-button {
+.button {
   border: none;
   display: block;
   position: relative;
@@ -20,7 +20,7 @@ button {
   padding: 5px;
 }
 
-button span {
+.button .span {
   position: absolute;
   left: 0;
   top: 0;
@@ -33,7 +33,7 @@ button span {
   border: 4px solid royalblue;
 }
 
-button span::before {
+.button .span::before {
   content: "";
   display: block;
   position: absolute;
@@ -46,16 +46,25 @@ button span::before {
   transition: all 0.3s;
 }
 
-button:hover span::before {
+.button:hover .span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
   background: royalblue;
 }
 
-button:hover {
+.button:hover {
   color: white;
 }
 
-button:active span::before {
+.button:active .span::before {
   background: #2751cd;
+}
+
+.disabled:hover {
+  background: red;
+  cursor: default;
+}
+.disabled:hover .span::before {
+  background: red;
+  cursor: default;
 }

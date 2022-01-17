@@ -1,74 +1,13 @@
 //css
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
-import { IState } from "../../../interfaces";
 import styles from "./UpdateStudent.module.css";
 import useHelper from "./useHelper";
 
-interface IUTeacherInputs {
-  name: string;
-  lastName: string;
-  userName: string;
-  password: string;
-  document: string;
-  email: string;
-  number: string;
-  streetName: string;
-  locality: string;
-  postalCode: string;
-  gender: string;
-  birthdate: string;
-  cellphone: string;
-  picture: string;
-}
 const UpdateStudent: React.FC = () => {
-  const {} = useHelper();
-  const [input, setInput] = useState<IUTeacherInputs>({
-    name: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    document: "",
-    email: "",
-    number: "",
-    streetName: "",
-    locality: "",
-    postalCode: "",
-    gender: "",
-    birthdate: "",
-    cellphone: "",
-    picture: "",
-  });
-  const [error, setError] = useState<IUTeacherInputs>({
-    name: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    document: "",
-    email: "",
-    number: "",
-    streetName: "",
-    locality: "",
-    postalCode: "",
-    gender: "",
-    birthdate: "",
-    cellphone: "",
-    picture: "",
-  });
-  const validate = (name: string) => {
-    switch (name) {
-      case "name": {
-        let name = "";
-        if (!input.name) name = "Nombre es requerido.";
-        else if (input.name.length < 3)
-          name = "Nombre debe tener mas de 2 caracteres";
-        // return { ...errors, name };
-      }
-      default:
-        break;
-    }
-  };
+  const { inputFieldValues, handleChange, disabled, errors } = useHelper();
+
   return (
     <div className={styles.container}>
       <div className={styles.submain}>
@@ -79,23 +18,24 @@ const UpdateStudent: React.FC = () => {
           <div className={styles.formCard}>
             <form>
               <div className={styles.inputs}>
-                <Input text="Nombre" name="name" />
-                <Input text="Apellido" name="lastName" />
-                <Input text="Nombre de Usuario" name="userName" />
-                <Input text="Contraseña" name="password" />
-                <Input text="DNI" type="number" name="document" />
-                <Input text="e-mail" name="email" />
-                <Input text="Calle" name="streetName" />
-                <Input text="Numero" type="number" name="number" />
-                <Input text="Localidad" name="locality" />
-                <Input text="Codigo Postal" name="postalCode" />
-                <Input text="Genero" name="gender" />
-                <Input text="Cumpleaños" type="date" name="birthdate" />
-                <Input text="Celular" name="cellphone" />
-                <Input text="Foto" name="picture" />
+                {inputFieldValues.map((e, ind) => {
+                  return (
+                    <div>
+                      <Input
+                        type={e.type ? e.type : ""}
+                        text={e.text}
+                        name={e.name}
+                        onChange={handleChange}
+                      />
+                      {errors[e.name] && (
+                        <p className={styles.errorsP}>{errors[e.name]}</p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
-              <Button text="Actualizar Informacion" />
+              <Button text="Actualizar Informacion" disabled={disabled} />
             </form>
           </div>
           <div className={styles.infoCard}>
@@ -123,7 +63,7 @@ const UpdateStudent: React.FC = () => {
                 text="DNI"
                 type="number"
                 name="document"
-                value="Castro"
+                value="123"
                 disabled={true}
               />
               <Input
@@ -140,9 +80,9 @@ const UpdateStudent: React.FC = () => {
               />
               <Input
                 text="Numero"
-                type="number"
-                name="number"
-                value="Castro"
+                // type="number"
+                name="streetNumber"
+                value="123"
                 disabled={true}
               />
               <Input
@@ -165,7 +105,7 @@ const UpdateStudent: React.FC = () => {
               />
               <Input
                 text="Cumpleaños"
-                type="date"
+                // type="date"
                 name="birthdate"
                 value="Castro"
                 disabled={true}
