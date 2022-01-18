@@ -4,15 +4,41 @@ import Button from "../../../components/Desktop/ReusableComponents/Button/Button
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
 import styles from "./UpdateStudent.module.css";
 import useHelper from "./useHelper";
+import ButtonBack from "../../../components/Desktop/ReusableComponents/ButtonBack/ButtonBack";
+import Database from "../../../components/Desktop/Database/Database";
 
 const UpdateStudent: React.FC = () => {
-  const { inputFieldValues, handleChange, disabled, errors } = useHelper();
+  const {
+    inputFieldValues,
+    handleChange,
+    disabled,
+    input,
+    errors,
+    searching,
+    setSearching,
+    school,
+  } = useHelper();
 
+  if (searching) {
+    return (
+      <div>
+        searching <button onClick={() => setSearching(false)}>student</button>
+        {/* <Database
+          school={school}
+          userType={"estudiantes"}
+          schoolType={"students"}
+        /> */}
+      </div>
+    );
+  }
   return (
     <div className={styles.container}>
       <div className={styles.submain}>
         <div className={styles.titlebox}>
           <p className={styles.title}>Actualizar Estudiante</p>
+          <div className={styles.backbox}>
+            <ButtonBack onClick={() => setSearching(true)}>student</ButtonBack>
+          </div>
         </div>
         <div className={styles.cards}>
           <div className={styles.formCard}>
@@ -23,9 +49,12 @@ const UpdateStudent: React.FC = () => {
                     <div>
                       <Input
                         type={e.type ? e.type : ""}
-                        text={e.text}
+                        placeholder={e.text}
                         name={e.name}
                         onChange={handleChange}
+                        autoComplete="off"
+                        value={input[e.name]}
+                        // disabled={e.name === "birthdate" ? true : false}
                       />
                       {errors[e.name] && (
                         <p className={styles.errorsP}>{errors[e.name]}</p>
@@ -40,7 +69,15 @@ const UpdateStudent: React.FC = () => {
           </div>
           <div className={styles.infoCard}>
             <div className={styles.inputs}>
-              <Input text="Nombre" name="name" value="Castro" disabled={true} />
+              {inputFieldValues.map((e) => (
+                <Input
+                  placeholder={e.text}
+                  name={e.name}
+                  disabled={true}
+                  value={"Hola"}
+                />
+              ))}
+              {/* <Input text="Nombre" name="name" value="Castro" disabled={true} />
               <Input
                 text="Apellido"
                 name="lastName"
@@ -121,7 +158,7 @@ const UpdateStudent: React.FC = () => {
                 name="picture"
                 value="Castro"
                 disabled={true}
-              />
+              /> */}
             </div>
           </div>
         </div>
