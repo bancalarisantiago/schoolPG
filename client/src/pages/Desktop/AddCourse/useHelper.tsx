@@ -73,7 +73,7 @@ const useHelper = () => {
 
   const handleSelect = (e: any) => {
     if (state.students.includes(e.target.value))
-      alert("the student is already to list");
+      alert("Ya se encuentra en la lista");
     else {
       setState({ ...state, students: [...state.students, e.target.value] });
       let objetStudent = student.filter(
@@ -82,11 +82,12 @@ const useHelper = () => {
 
       setList({ ...list, student: [...list.student, ...objetStudent] });
     }
+    e.target.value = "default"
   };
 
   const handleSelectTeacher = (e: any) => {
     if (state.teachers.includes(e.target.value))
-      alert("the teacher is already to list");
+      alert("Ya se encuentra en la lista");
     else {
       setState({ ...state, teachers: [...state.teachers, e.target.value] });
       let objetTeacers = teachers.filter(
@@ -94,6 +95,7 @@ const useHelper = () => {
       );
       setList({ ...list, teachers: [...list.teachers, ...objetTeacers] });
     }
+    e.target.value = "default"
   };
 
   const handleSearch = (e: any) => {
@@ -123,7 +125,7 @@ const useHelper = () => {
 
   const handleSelectSubjects = (e: any) => {
     if (state.subjects.includes(e.target.value))
-      alert("the subject is already to list");
+      alert("Ya se encuentra en la lista");
     else {
       setState({ ...state, subjects: [...state.subjects, e.target.value] });
       let objetTeacers = subjects.filter(
@@ -131,6 +133,7 @@ const useHelper = () => {
       );
       setList({ ...list, subjects: [...list.subjects, ...objetTeacers] });
     }
+    e.target.value = "default"
   };
 
   const handleDeleteSubject = (result: any) => {

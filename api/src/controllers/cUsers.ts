@@ -9,7 +9,8 @@ import { Request, Response } from "express";
 import User from "../models/User/User";
 import School from "../models/School/School";
 import Course from "../models/Course/Course";
-import { IUser } from "models/User/IUser";
+import Subject from "../models/Subject/Subject";
+import { IUser } from "../models/User/IUser";
 
 //from modules
 import jwt from "jsonwebtoken";
@@ -50,6 +51,9 @@ export const createUser = async (req: Request, res: Response) => {
     phone,
     cellphone,
     picture,
+    schoolId,
+    courses,
+    subject,
   } = req.body;
   try {
     const newUser: IUser = new User({
@@ -66,8 +70,49 @@ export const createUser = async (req: Request, res: Response) => {
       cellphone,
       picture,
     });
+
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
+
+    const type = userType + "s";
+
+    await School.findByIdAndUpdate(new toId(schoolId), {
+      $push: {
+        [type]: new toId(newUser._id),
+      },
+    });
+
+    await User.findByIdAndUpdate(new toId(newUser._id), {
+      school: new toId(schoolId),
+      $push: {
+        course: courses.length
+          ? courses.map((m: any) => new toId(m._id)).flat()
+          : [],
+        subject: subject.length
+          ? subject.map((m: any) => new toId(m._id)).flat()
+          : [],
+      },
+    });
+
+    courses.length
+      ? courses.forEach(
+          async (fe: any) =>
+            await Course.findByIdAndUpdate(new toId(fe._id), {
+              $push: {
+                [type]: new toId(newUser._id),
+              },
+            })
+        )
+      : "";
+
+    subject.length
+      ? subject.map(
+          async (m: any) =>
+            await Subject.findByIdAndUpdate(new toId(m._id), {
+              teachers: new toId(newUser._id),
+            })
+        )
+      : "";
 
     //token
     const token: string = jwt.sign(

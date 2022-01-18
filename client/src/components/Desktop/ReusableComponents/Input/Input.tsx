@@ -9,6 +9,7 @@ interface IProps {
   value?: any;
   disabled?: boolean;
   type?: string;
+  addClass?: string;
 }
 
 function Input({
