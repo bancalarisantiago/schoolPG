@@ -127,8 +127,11 @@ export const createSchool = (payload: ICreateSchool) => async () => {
 
 export const createStudent = (payload: ICreateStudent) => async () => {
   const r = await instance.post("/user", payload);
+
 };
 
 export const createTeacher= (payload: ICreateStudent) => async () => {
   const r = await instance.post("/user", payload);
+
+  getUsers();
 };

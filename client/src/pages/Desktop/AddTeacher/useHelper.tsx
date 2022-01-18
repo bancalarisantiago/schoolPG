@@ -50,15 +50,19 @@ const useHelper = () => {
       if(name === 'courses') {
         if(!input.courses.includes(value)) {
           input.courses.push(value)
+        } else {
+          alert("El curso ya esta seleccionada")
         }
       }
       if(name === 'subjects') {
         if(!input.subject.includes(value)) {   
           input.subject.push(value)
+        } else {
+          alert("La materia ya esta seleccionada")
         }
       }
-      event.target.value = "default"
       setInput({...input})
+      event.target.value = "default"
     }
 
     function deleteFromList(event:any) {
@@ -76,6 +80,21 @@ const useHelper = () => {
     e.preventDefault();
     const teacher = {...input, password : input.document}   
     dispatch(createTeacher(teacher));
+    alert("El profesor se creo de manera exitosa")
+    setInput({
+      name: name,
+      document: "",
+      email: "",
+      username: "",
+      userType: "teacher",
+      password: "",
+      courses: [],
+      subject: [],
+    })
+    setName({
+      first: "",
+      last: ""
+  })
   };
 
     return {

@@ -6,7 +6,6 @@ import useHelper from "./useHelper"
 
 const AddTeacher: React.FC = () => {
 
-
   const { 
     handleInputChange,
     handleNameChange, 
@@ -19,13 +18,11 @@ const AddTeacher: React.FC = () => {
     subjectState, 
     } = useHelper();
 
-  
-
   return (
     <div className={styles.container}>
       <div className={styles.submain}>
         <div className={styles.titlebox}>
-          <p className={styles.title}>Añadir Maestro</p>
+          <p className={styles.title}>Añadir Profesor</p>
         </div>
         <form className={styles.inputs} onSubmit={handleSubmit}>
           <Input 
@@ -71,12 +68,10 @@ const AddTeacher: React.FC = () => {
             />
             <select
             name="subjects"
-            id="subjects"
             defaultValue={"default"}
             onChange={handleInputOnChangeList}
             >
               <option value="default" disabled >Seleccionar Materia</option>
-              <option>prueba</option>
               {subjectState?.map((c:any) => 
                     <option key={c.name}>{c.name}</option> )}
             </select>
@@ -93,7 +88,6 @@ const AddTeacher: React.FC = () => {
           </div>
             <select
             name="courses"
-            id="courses"
             defaultValue={"default"}
             onChange={handleInputOnChangeList}
             ><option value="default" disabled >Seleccionar Curso</option>
