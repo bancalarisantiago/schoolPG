@@ -126,7 +126,7 @@ const AddCourse: React.FC = () => {
                   onChange={handleSelectTeacher}
                   className={styles.selectTag2}
                 >
-                  <option>Profesores</option>
+                  <option value="default" disabled>Profesores</option>
                   {teachers.map((e: any) => (
                     <option key={e._id} value={e._id}>
                       {e.name.first} {e.name.last}
@@ -162,7 +162,7 @@ const AddCourse: React.FC = () => {
                   onChange={handleSelectSubjects}
                   className={styles.selectTag2}
                 >
-                  <option>Materias</option>
+                  <option value="default" disabled>Materias</option>
                   {subjects.map((e: any) => (
                     <option key={e._id} value={e._id}>
                       {e.name}
