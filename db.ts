@@ -8,9 +8,9 @@ const uri =
 
 mongoose
   .connect(uri) // conexion a la base de datos
-  .then(() =>
-    app.listen(process.env.PORT || 5000, () =>
-      console.log(`Listening on port: ${process.env.PORT || 5000}`)
-    )
-  ) // escucha en el puerto
+  // .then(() =>
+  //   app.listen(process.env.PORT || 5000, () =>
+  //     console.log(`Listening on port: ${process.env.PORT || 5000}`)
+  //   )
+  // ) // escucha en el puerto
   .catch((err: any) => console.log(err)); // error en la conexion

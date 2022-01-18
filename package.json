@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node db.ts",
+    "start": "node index.ts",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "dev": "concurrently \"tsc -w\" \"nodemon ./db.ts\""
+    "dev": "concurrently \"tsc -w\" \"nodemon ./index.ts\""
   },
   "author": "",
   "license": "ISC",
