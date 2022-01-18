@@ -8,7 +8,7 @@ const path =require("path")
 
 import router from "./routes/index";
 
-const PORT = process.env.PORT || 8080; // Step 1
+const PORT = process.env.PORT || 5000; // Step 1
 import mongoose from "mongoose";
 const uri = process.env.MONGODB_URI ||
   // "mongodb+srv://CorregidorOscar:81MycBZ303VyaTFp@cluster0.qejah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -24,8 +24,8 @@ mongoose.connect(uri) // conexion a la base de datos
 const app = express();
 
 const corsOptions = {
-  // origin: "http://localhost:3000",
-  origin: "https://pgschool.herokuapp.com",
+  origin: ["http://localhost:3000","https://pgschool.herokuapp.com"],
+  // origin: "https://pgschool.herokuapp.com",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 app.listen(PORT, function () {
-	console.log('App is listening on port 5000');
+	console.log(`App is listening on port ${PORT}`);
 });
 export default app;
 
