@@ -46,29 +46,47 @@ const useHelper = () => {
     const { name, value } = event.target;
 
     if (name === "courses") {
-      if (!input.courses.includes(value)) {
-        input.courses.push(value);
+      if (!input.courses.map((m: any) => m.name === value).includes(true)) {
+        input.courses.push(
+          userSchool.courses.filter((m: any) => m.name === value)
+        );
       } else {
         alert("El curso ya esta seleccionada");
       }
     }
     if (name === "subjects") {
-      if (!input.subject.includes(value)) {
-        input.subject.push(value);
+      if (!input.subject.map((m: any) => m.name === value).includes(true)) {
+        input.subject.push(
+          userSchool.subjects.filter((m: any) => m.name === value)
+        );
       } else {
         alert("La materia ya esta seleccionada");
       }
     }
-    setInput({ ...input });
+    setInput({
+      ...input,
+      subject: input.subject.flat(),
+      courses: input.courses.flat(),
+    });
     event.target.value = "default";
   }
 
   function deleteFromList(event: any) {
-    if (input.courses.includes(event.target.value)) {
-      let copy = input.courses.filter((p: any) => p !== event.target.value);
+    if (
+      input.courses
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
+      let copy = input.courses.filter(
+        (p: any) => p.name !== event.target.value
+      );
       setInput({ ...input, courses: copy });
     }
-    if (input.subject.includes(event.target.value)) {
+    if (
+      input.subject
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
       let copy = input.subject.filter((g: any) => g !== event.target.value);
       setInput({ ...input, subject: copy });
     }
@@ -81,7 +99,7 @@ const useHelper = () => {
       schoolId: userSchool._id,
     };
     dispatch(createTeacher(teacher));
-    console.log(teacher);
+
     alert("El profesor se creo de manera exitosa");
     setInput({
       name: name,
