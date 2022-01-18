@@ -21,7 +21,7 @@ const useHelper = () => {
         ? navigate("/panel")
         : dispatch(getSchoolById(validate.user.school))
       : navigate("/login");
-  }, [navigate, validate.accessToken]);
+  }, [navigate, validate, dispatch, validate.accessToken]);
 
   return { validate, location, school };
 };
