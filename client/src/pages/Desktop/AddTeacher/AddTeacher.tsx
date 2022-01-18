@@ -2,21 +2,19 @@ import Button from "../../../components/Desktop/ReusableComponents/Button/Button
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
 import styles from "./AddTeacher.module.css";
 
-import useHelper from "./useHelper"
+import useHelper from "./useHelper";
 
 const AddTeacher: React.FC = () => {
-
-  const { 
+  const {
     handleInputChange,
-    handleNameChange, 
-    handleSubmit,  
-    input, 
-    name , 
+    handleNameChange,
+    handleSubmit,
+    input,
+    name,
     handleInputOnChangeList,
-    deleteFromList, 
-    courseState, 
-    subjectState, 
-    } = useHelper();
+    deleteFromList,
+    userSchool,
+  } = useHelper();
 
   return (
     <div className={styles.container}>
@@ -129,7 +127,6 @@ const AddTeacher: React.FC = () => {
           <Button text="Añadir Profesor" />
           </div>
         </form>
-            
       </div>
     </div>
   );
