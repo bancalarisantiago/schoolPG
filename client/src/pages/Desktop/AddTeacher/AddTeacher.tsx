@@ -6,6 +6,7 @@ import useHelper from "./useHelper"
 
 const AddTeacher: React.FC = () => {
 
+
   const { 
     handleInputChange,
     handleNameChange, 
@@ -16,7 +17,7 @@ const AddTeacher: React.FC = () => {
     deleteFromList, 
     courseState, 
     subjectState, 
-    clicked } = useHelper();
+    } = useHelper();
 
   
 
@@ -70,9 +71,12 @@ const AddTeacher: React.FC = () => {
             />
             <select
             name="subjects"
+            id="subjects"
+            defaultValue={"default"}
             onChange={handleInputOnChangeList}
             >
-              <option disabled selected={clicked.subject}>Seleccionar Materia</option>
+              <option value="default" disabled >Seleccionar Materia</option>
+              <option>prueba</option>
               {subjectState?.map((c:any) => 
                     <option key={c.name}>{c.name}</option> )}
             </select>
@@ -81,7 +85,7 @@ const AddTeacher: React.FC = () => {
               {input?.subject.map((p: any )=> {
                 let subject = input.subject.find((ele:any) => ele === p )
                 return <li key={`${subject}key`}>{subject}
-                <button type='button'  value={subject} onClick={deleteFromList}>X</button>
+                <button type='button' value={subject} onClick={deleteFromList}>X</button>
                 </li>
               }
               )}
@@ -89,28 +93,26 @@ const AddTeacher: React.FC = () => {
           </div>
             <select
             name="courses"
+            id="courses"
+            defaultValue={"default"}
             onChange={handleInputOnChangeList}
-            ><option disabled selected={clicked.course}>Seleccionar Curso</option>
+            ><option value="default" disabled >Seleccionar Curso</option>
               {courseState?.map((c:any) => 
                     <option key={c.name}>{c.name}</option> )}
-              
             </select>
-           
           <Button text="Añadir Profesor" />
         </form>
-
             <div>
               <ul>
               {input?.courses.map((p: any )=> {
                 let course = input.courses.find((ele:any) => ele === p )
                 return <li key={`${course}key`}>{course}
-                <button type='button'  value={course} onClick={deleteFromList}>X</button>
+                <button type='button' value={course} onClick={deleteFromList}>X</button>
                 </li>
               }
               )}
               </ul>
           </div>
-  
       </div>
     </div>
   );
