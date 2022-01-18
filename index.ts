@@ -7,8 +7,10 @@ import morgan from "morgan";
 const path =require("path")
 
 import router from "./routes/index";
+
+const PORT = process.env.PORT || 8080; // Step 1
 import mongoose from "mongoose";
-const uri =
+const uri = process.env.MONGODB_URI ||
   // "mongodb+srv://CorregidorOscar:81MycBZ303VyaTFp@cluster0.qejah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   "mongodb+srv://ischool:escuelita420@cluster0.pfkbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   
@@ -22,7 +24,8 @@ mongoose.connect(uri) // conexion a la base de datos
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  // origin: "http://localhost:3000",
+  origin: "https://pgschool.herokuapp.com",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -40,13 +43,21 @@ app.use("/api", router);
 //   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 // });
 // ... other app.use middleware 
-app.use(express.static(path.join(__dirname, "client", "build")))
+// app.use(express.static(path.join(__dirname, "client", "build")))
 
-// Right before your app.listen(), add this:
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-app.listen(5000, function () {
+// // Right before your app.listen(), add this:
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
+// Step 3
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static( 'client/build' ));
+
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+  });
+}
+app.listen(PORT, function () {
 	console.log('App is listening on port 5000');
 });
 export default app;
