@@ -33,19 +33,19 @@ app.use(cors(corsOptions)); // cors middleware sirve para permitir peticiones de
 app.use(morgan("dev"));
 app.use("/api", router);
 // https://www.mongodb.com/cloud/atlas
-// Step 1:
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
-// // ... other app.use middleware 
-// app.use(express.static(path.join(__dirname, "client", "build")))
-
-// // Right before your app.listen(), add this:
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// // Step 1:
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
+// // Step 2:
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 // });
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
+
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(5000, function () {
 	console.log('App is listening on port 5000');
 });
