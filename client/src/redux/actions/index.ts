@@ -4,9 +4,11 @@ import { Dispatch } from "redux";
 //types
 import { ICreateSchool, ICredential, ISchoolId, IUser , ICreateStudent, ICreateAdmin} from "../../interfaces";
 
+const PORT = process.env.PORT || 5000; // Step 1
+
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:5000/api",
+  baseURL: `http://localhost:${PORT}/api`,
 });
 
 export const GET_USER_LOGGED = "GET_USER_LOGGED";
