@@ -1,40 +1,73 @@
 .container {
   width: 97%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  justify-content: space-around;
+  /* border: 1px solid black; */
   padding: 10px;
+}
+.submain {
+  width: 100%;
+  height: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px gray;
+}
+.titlebox {
+  position: absolute;
+  top: -30px;
+  display: flex;
+  align-items: center;
+  width: 95%;
+  height: 10%;
+  background-image: var(---blue-gradient);
+  border-radius: 10px;
+  box-shadow: 0 3px 15px #3790ef8c;
+}
+.title {
+  position: relative;
+  padding-left: 3.5rem;
+  font-size: x-large;
+  font-weight: 700;
+  color: var(--semi-white);
 }
 .cards {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 90%;
+  column-gap: 16px;
 }
 .title {
   font-size: 2rem;
 }
 .inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+
   gap: 16px;
 }
 .formCard {
-  width: 400px;
-  border: 1px solid black;
+  width: 50%;
+  /* border: 1px solid black; */
   padding: 16px;
 }
 .infoCard {
-  width: 400px;
+  width: 50%;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 16px;
 }
-.card {
-  width: 400px;
 
-  border: 1px solid black;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.errorsP {
+  font-size: xx-small;
+  color: var(--red-palette-intensity9);
 }

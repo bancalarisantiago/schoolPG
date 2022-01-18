@@ -67,6 +67,7 @@
 .logo {
   width: 4rem;
   height: 4rem;
+  border-radius: 50%;
 }
 
 .title {
@@ -216,4 +217,32 @@
 
 .test {
   transition: 1s;
+}
+
+@media (max-width: 1600px) {
+  .title,
+  .management,
+  .option,
+  .optionselected,
+  .selected {
+    padding: 0.5rem 1.25rem;
+  }
+  .selected,
+  .management {
+    width: 10rem;
+  }
+  .option,
+  .optionselected {
+    font-size: medium;
+  }
+  /* .schoolname {
+    font-size: small;
+  }
+  .title {
+    font-size: medium;
+  } */
+  .more,
+  .less {
+    top: 0.5rem;
+  }
 }

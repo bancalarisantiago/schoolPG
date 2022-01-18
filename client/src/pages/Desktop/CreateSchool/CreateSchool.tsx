@@ -1,5 +1,6 @@
 //components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
+
 //helper
 import useHelper from "./useHelper";
 //css
@@ -175,7 +176,9 @@ const CreateSchool: React.FC = () => {
                 {location.streetName.length
                   ? location.streetName
                   : "Calle"}{" "}
-                {location.number.length ? location.number : "Numeracion"}
+                {location.streetNumber.length
+                  ? location.streetNumber
+                  : "Numeracion"}
               </li>
             </div>
           </ul>

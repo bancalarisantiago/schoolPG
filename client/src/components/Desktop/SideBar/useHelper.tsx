@@ -45,7 +45,11 @@ const useHelper = () => {
 
   const handleClick = (e: any) => {
     const { value } = e.currentTarget;
-    setShow(show.map((m, i) => (i === value ? !m : false)));
+    setShow(
+      show.map((m, i) =>
+        i === value ? (value === 6 ? (m === false ? !m : m) : !m) : false
+      )
+    );
   };
 
   const handleUnderline = (e: any) => {

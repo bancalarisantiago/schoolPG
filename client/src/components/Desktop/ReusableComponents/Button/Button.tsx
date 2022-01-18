@@ -5,13 +5,14 @@ interface IProps {
   onSubmit?: any;
   onClick?:any;
   value?:any
+  disabled?: boolean;
 }
 
-function Button({ text, onSubmit, onClick, value }: IProps) {
+function Button({ text, onSubmit, onClick, disabled }: IProps) {
   return (
-    <button className={styles.btn} onSubmit={onSubmit} onClick={onClick} value={value}>
+    <button onSubmit={onSubmit} onClick={onClick} className={`${styles.button} ${disabled ? styles.disabled : ""}`}>
       {text}
-      <span></span>
+      <span className={styles.span}></span>
     </button>
   );
 }

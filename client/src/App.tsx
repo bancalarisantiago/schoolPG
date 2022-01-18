@@ -23,12 +23,11 @@ import AddEvent from "./pages/Desktop/AddEvent/AddEvent";
 import UpdateEvent from "./pages/Desktop/UpdateEvent/UpdateEvent";
 import AddSubject from "./pages/Desktop/AddSubject/AddSubject";
 import UpdateSubject from "./pages/Desktop/UpdateSubject/UpdateSubject";
-import AboutUs from "./pages/Desktop/AboutUs/AboutUs"
-import General from "./pages/Desktop/General/General";
+/* import AboutUs from "./pages/Desktop/AboutUs/AboutUs"
+import General from "./pages/Desktop/General/General"; */
 import SchoolInfo from "./pages/Desktop/SchoolInfo/SchoolInfo";
 import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
-
 
 //Modal.setAppElement("#root")
 
@@ -38,8 +37,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.main}>
       <Routes>
-
-      <Route path="addCourse" element={<AddCourse />} />
+        <Route path="addCourse" element={<AddCourse />} />
 
         {location === "/login" && <Route path="/login" element={<Login />} />}
 
@@ -68,7 +66,6 @@ const App: React.FC = () => {
 
           <Route path="*" element={<Error />} />
           <Route path="profile" element={<Profile />} />
-
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

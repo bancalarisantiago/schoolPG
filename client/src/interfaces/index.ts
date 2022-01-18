@@ -10,11 +10,11 @@ export interface IState {
   userSession: any;
   userSchool: any;
   matchUsers: any;
-  students: any[]
-  teachers:any[]
-  backupData: any[]
-  courses: any[]
-  subjects: any[]
+  students: any[];
+  teachers: any[];
+  backupData: any[];
+  courses: any[];
+  subjects: any[];
 }
 
 export type SubmitEvent = React.SyntheticEvent;
@@ -43,6 +43,7 @@ export interface ICreateSchool {
   email: string;
   phone: string;
   cellphone: string;
+  userId: string;
 }
 
 //for components
@@ -71,12 +72,21 @@ interface Fullname {
   last: string;
 }
 export interface IStudentForm {
-    name: Fullname;
-    document: string;
-    email: string;
-    username: string;
-    password: string;
-    userType: string;
+  name: Fullname;
+  document: string;
+  email: string;
+  username: string;
+  password: string;
+  userType: string;
+}
+
+export interface IAdminForm {
+  name: Fullname;
+  document: string;
+  email: string;
+  username: string;
+  password: string;
+  userType: string;
 }
 
 export interface ITeacherForm {
@@ -90,6 +100,6 @@ export interface ITeacherForm {
   subject?: any;
 }
 
-export interface ICreateStudent {
+export interface ICreateStudent {}
 
-}
+export interface ICreateAdmin {}

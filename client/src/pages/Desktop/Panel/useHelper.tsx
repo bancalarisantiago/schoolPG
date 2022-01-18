@@ -12,14 +12,16 @@ const useHelper = () => {
   const dispatch = useDispatch();
   const validate = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
+  const school = useSelector((state: IState) => state.userSchool);
 
   useEffect(() => {
     !validate.accessToken && navigate("/login");
-    !validate.user.school
-      ? navigate("/create-school")
-      : dispatch(getSchoolById(validate.user.school));
-  }, [navigate, validate.accessToken, validate.user.school]);
-  const school = useSelector((state: IState) => state.userSchool);
+    validate.accessToken
+      ? !validate.user.school
+        ? navigate("/panel")
+        : dispatch(getSchoolById(validate.user.school))
+      : navigate("/login");
+  }, [navigate, validate, dispatch, validate.accessToken]);
 
   return { validate, location, school };
 };
