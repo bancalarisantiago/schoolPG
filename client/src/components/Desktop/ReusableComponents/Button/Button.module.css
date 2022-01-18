@@ -1,4 +1,4 @@
-button {
+.btn {
   border: none;
   display: block;
   position: relative;
@@ -6,6 +6,9 @@ button {
   font-size: 18px;
   background: transparent;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   overflow: hidden;
   color: royalblue;
@@ -20,7 +23,7 @@ button {
   padding: 5px;
 }
 
-button span {
+.btn span {
   position: absolute;
   left: 0;
   top: 0;
@@ -33,7 +36,7 @@ button span {
   border: 4px solid royalblue;
 }
 
-button span::before {
+.btn span::before {
   content: "";
   display: block;
   position: absolute;
@@ -46,16 +49,16 @@ button span::before {
   transition: all 0.3s;
 }
 
-button:hover span::before {
+.btn:hover span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
   background: royalblue;
 }
 
-button:hover {
+.btn:hover {
   color: white;
 }
 
-button:active span::before {
+.btn:active span::before {
   background: #2751cd;
 }

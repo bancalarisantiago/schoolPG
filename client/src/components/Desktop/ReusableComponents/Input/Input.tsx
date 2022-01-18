@@ -8,18 +8,20 @@ interface IProps {
   value?: string;
   disabled?: boolean;
   type?: string;
+  addClass?: string;
 }
 
-function Input({ name, autoComplete, value , placeholder, onChange}: IProps) {
+function Input({ name, autoComplete, value , placeholder, onChange, addClass}: IProps) {
+  
+  
   return (
     <div className={styles.group}>
       <input 
-      className={styles.input} 
+      className={styles.input}
       name={name}
       type="text" 
       value={value} 
       autoComplete={autoComplete} 
-      placeholder={placeholder}
       onChange={onChange} 
       required />
       <label className={styles.name}>{placeholder}</label>
