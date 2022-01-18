@@ -10,7 +10,6 @@ const useHelper = () => {
     const dispatch = useDispatch();
     const courseState: any = useSelector<IState>((state:any) => state.userSchool.courses)
     const subjectState: any = useSelector((state: any) => state.subjects)
-    const [ clicked, setClicked ] = useState({course: true, subject: true})
     const [ name, setName ] = useState({
         first: "",
         last: ""
@@ -43,28 +42,31 @@ const useHelper = () => {
         setInput({...input, name})
       };
 
+     
 
     function handleInputOnChangeList (event: any) {
       const { name, value } = event.target;
     
       if(name === 'courses') {
-        setClicked({...clicked, course: false})
-        if(input.courses.includes(value)) {
-        } else {
+        if(!input.courses.includes(value)) {
           input.courses.push(value)
+        } else {
+          alert("El curso ya esta seleccionada")
         }
       }
       if(name === 'subjects') {
-        setClicked({...clicked, subject: false})
-        if(input.subject.includes(value)) {
-        } else {
+        if(!input.subject.includes(value)) {   
           input.subject.push(value)
+        } else {
+          alert("La materia ya esta seleccionada")
         }
       }
       setInput({...input})
+      event.target.value = "default"
     }
 
     function deleteFromList(event:any) {
+          
       if(input.courses.includes(event.target.value)) {
         let copy = input.courses.filter((p:any) => p !== event.target.value)
         setInput({...input, courses : copy})
@@ -74,13 +76,25 @@ const useHelper = () => {
         setInput({...input, subject : copy})
       }
   }
-  
-
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    const teacher = {...input, password : input.document}
-   
+    const teacher = {...input, password : input.document}   
     dispatch(createTeacher(teacher));
+    alert("El profesor se creo de manera exitosa")
+    setInput({
+      name: name,
+      document: "",
+      email: "",
+      username: "",
+      userType: "teacher",
+      password: "",
+      courses: [],
+      subject: [],
+    })
+    setName({
+      first: "",
+      last: ""
+  })
   };
 
     return {
@@ -93,7 +107,6 @@ const useHelper = () => {
         deleteFromList,
         courseState,
         subjectState,
-        clicked
     }
 }
 

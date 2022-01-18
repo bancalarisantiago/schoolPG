@@ -16,15 +16,13 @@ const AddTeacher: React.FC = () => {
     deleteFromList, 
     courseState, 
     subjectState, 
-    clicked } = useHelper();
-
-  
+    } = useHelper();
 
   return (
     <div className={styles.container}>
       <div className={styles.submain}>
         <div className={styles.titlebox}>
-          <p className={styles.title}>Añadir Maestro</p>
+          <p className={styles.title}>Añadir Profesor</p>
         </div>
         <form className={styles.inputs} onSubmit={handleSubmit}>
           <Input 
@@ -70,9 +68,10 @@ const AddTeacher: React.FC = () => {
             />
             <select
             name="subjects"
+            defaultValue={"default"}
             onChange={handleInputOnChangeList}
             >
-              <option disabled selected={clicked.subject}>Seleccionar Materia</option>
+              <option value="default" disabled >Seleccionar Materia</option>
               {subjectState?.map((c:any) => 
                     <option key={c.name}>{c.name}</option> )}
             </select>
@@ -81,7 +80,7 @@ const AddTeacher: React.FC = () => {
               {input?.subject.map((p: any )=> {
                 let subject = input.subject.find((ele:any) => ele === p )
                 return <li key={`${subject}key`}>{subject}
-                <button type='button'  value={subject} onClick={deleteFromList}>X</button>
+                <button type='button' value={subject} onClick={deleteFromList}>X</button>
                 </li>
               }
               )}
@@ -89,28 +88,25 @@ const AddTeacher: React.FC = () => {
           </div>
             <select
             name="courses"
+            defaultValue={"default"}
             onChange={handleInputOnChangeList}
-            ><option disabled selected={clicked.course}>Seleccionar Curso</option>
+            ><option value="default" disabled >Seleccionar Curso</option>
               {courseState?.map((c:any) => 
                     <option key={c.name}>{c.name}</option> )}
-              
             </select>
-           
           <Button text="Añadir Profesor" />
         </form>
-
             <div>
               <ul>
               {input?.courses.map((p: any )=> {
                 let course = input.courses.find((ele:any) => ele === p )
                 return <li key={`${course}key`}>{course}
-                <button type='button'  value={course} onClick={deleteFromList}>X</button>
+                <button type='button' value={course} onClick={deleteFromList}>X</button>
                 </li>
               }
               )}
               </ul>
           </div>
-  
       </div>
     </div>
   );

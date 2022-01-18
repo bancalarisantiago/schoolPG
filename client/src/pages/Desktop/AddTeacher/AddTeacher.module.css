@@ -7,10 +7,11 @@
 }
 
 .submain {
-  width: 90%;
-  height: 65%;
+  width: 120%;
+  height: 100%;
   position: relative;
   display: flex;
+  top: 40px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
