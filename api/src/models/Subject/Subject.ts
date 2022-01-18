@@ -13,8 +13,8 @@ const schemaSubject = new Schema({
     type: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   },
   teachers: {
-    type: [{ type: Schema.Types.ObjectId, ref: "USer" }],
-  }
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  },
 });
 
 const Subject = mongoose.model<ISubject>("Subject", schemaSubject);
