@@ -57,5 +57,5 @@
     "@types/react-redux": "^7.1.22",
     "@types/redux-devtools-extension": "^2.13.2"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://pgschool.herokuapp.com"
 }
