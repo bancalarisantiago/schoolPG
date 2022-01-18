@@ -8,10 +8,10 @@
 
 .submain {
   width: 120%;
-  height: 100%;
+  height: 90%;
   position: relative;
   display: flex;
-  top: 40px;
+  top: 25px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -47,9 +47,83 @@
   width: 35px;
   height: 35px;
 }
+
+.box1 {
+  grid-area: box1;
+}
+.box2 {
+  grid-area: box2;
+}
+.box3 {
+  grid-area: box3;
+}
+.box4 {
+  grid-area: box4;
+  justify-self: center;
+}
+
+.box5 {
+  grid-area: box5;
+}
+
+.box6 {
+  grid-area: box6;
+}
+.box7 {
+  grid-area: box7;
+}
+.box8 {
+  grid-area: box8;
+  justify-self: center;
+}
+.box9 {
+  grid-area: box9;
+  height: 120px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.box10 {
+  grid-area: box10;
+  height: 120px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.box11 {
+  grid-area: box11;
+  margin: 0 auto;
+}
+
 .inputs {
   display: grid;
-  grid-template-columns: repeat(2rem, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 0.5fr 2fr 1fr;
   gap: 32px;
+  grid-template-areas:
+    "box1 box5 "
+    "box2 box6 "
+    "box3 box7 "
+    "box4 box8 "
+    "box9 box10"
+    "box11 box11";
+}
+.btnList {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  padding: 3px;
+  border: 3px solid rgb(255, 55, 55);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  color: rgb(255, 51, 51);
+}
+.li {
+  font-family: "Poppins";
+  color: #999;
+  padding: 5px;
 }
