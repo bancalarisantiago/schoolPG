@@ -50,6 +50,9 @@ export const createUser = async (req: Request, res: Response) => {
     phone,
     cellphone,
     picture,
+    schoolId,
+    courses,
+    subject,
   } = req.body;
   try {
     const newUser: IUser = new User({
@@ -66,8 +69,15 @@ export const createUser = async (req: Request, res: Response) => {
       cellphone,
       picture,
     });
+
     newUser.password = await newUser.encryptPassword(password);
     const savedUser = await newUser.save();
+
+    const school = await School.findByIdAndUpdate(new toId(schoolId), {
+      [userType]: new toId(newUser._id),
+    });
+
+    newUser.school = new toId(schoolId);
 
     //token
     const token: string = jwt.sign(
