@@ -100,6 +100,19 @@ export interface ITeacherForm {
   subject?: any;
 }
 
+export interface ISubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+}
+
+export interface ICreateSubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+  schoolId: string;
+}
+
 export interface ICreateStudent {}
 
 export interface ICreateAdmin {}

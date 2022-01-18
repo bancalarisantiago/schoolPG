@@ -6,6 +6,7 @@ import {
   CREATE_COURSE, 
   GET_USERS,
   GET_USER_BY_DNI,
+  GET_COURSES,
   GET_SUBJECTS } from "../actions";
 
 
@@ -29,6 +30,11 @@ cases[GET_USER_LOGGED] = (initialState: IState, payload: any) => ({
 cases[GET_SCHOOL] = (initialState: IState, payload: any) => ({
   ...initialState,
   userSchool: payload,
+});
+
+cases[GET_COURSES] = (initialState: IState, payload: any) => ({
+  ...initialState,
+  courses: payload,
 });
 
 cases[MATCH_USERS] = (initialState: IState, payload: any) => ({
