@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.ts",
-     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-     "dev": "concurrently \"tsc -w\" \"nodemon ./index.ts\""
+    "build": "cd client && npm run build",
+        "install-client": "cd client && npm install --only=dev && npm install",
+        "heroku-postbuild": "npm run install-client && npm run build",
+        "server": "nodemon index.ts",
+        "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+        "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
   "author": "",
   "license": "ISC",
