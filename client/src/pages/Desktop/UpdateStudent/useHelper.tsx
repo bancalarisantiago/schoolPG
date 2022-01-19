@@ -4,20 +4,6 @@ import { IState } from "../../../interfaces/index";
 
 interface IUTeacherInputs {
   [key: string]: string;
-  // name: string;
-  // lastName: string;
-  // userName: string;
-  // password: string;
-  // document: string;
-  // email: string;
-  // numberNumber: string;
-  // streetName: string;
-  // locality: string;
-  // postalCode: string;
-  // gender: string;
-  // birthdate: string;
-  // cellphone: string;
-  // picture: string;
 }
 const inputFieldValues = [
   { text: "Nombre", name: "name" },

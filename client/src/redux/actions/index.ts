@@ -2,8 +2,8 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 //types
-import { ICreateSchool, ICredential, ISchoolId, IUser , ICreateStudent, ICreateAdmin, ICreateSubject} from "../../interfaces";
 
+import { ICreateSchool, ICredential, ISchoolId, IUser , ICreateStudent, ICreateAdmin, ICreateSubject} from "../../interfaces";
 
 const instance = axios.create({
   withCredentials: true,
@@ -50,6 +50,7 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
     payload: r.data,
   });
 };
+
 
 export const createCourse = (course:any)=>{
   return async function (dispatch:any){
@@ -133,26 +134,28 @@ export const getSubject = ()=>{
   }
 }
 
-export const createSchool = (payload: ICreateSchool) => async () => {
-  const r = await instance.post("/school", payload);
-};
-
-
-export const createStudent = (payload: ICreateStudent) => async () => {
-  const r = await instance.post("/user", payload);
-
+const addRelationSubjectByCourse = (courseId: any, array: any) => {
+  return function () {
+    try {
+      array.map((subjectId: string) =>
+        axios.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`)
+      );
+      console.log(courseId, array);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const createSubject = (payload: ICreateSubject) => async () => {
   const r = await instance.post("/subject", payload);
 }
 
-export const createadmin = (payload: ICreateAdmin) => async () => {
-  const r = await instance.post("/user", payload);
+
+export const createSchool = (payload: ICreateSchool) => async () => {
+  await instance.post("/school", payload);
 };
 
-export const createTeacher= (payload: ICreateStudent) => async () => {
-  const r = await instance.post("/user", payload);
-
-  getUsers();
+export const createUser = (payload: ICreateStudent) => async () => {
+  await instance.post("/user", payload);
 };

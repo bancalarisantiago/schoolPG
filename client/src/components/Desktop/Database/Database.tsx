@@ -2,14 +2,17 @@
 import styles from "./Database.module.css";
 //helper
 import useHelper from "./useHelper";
+//assets
+import userDefault from "../../../assets/user.png";
+import info from "../../../assets/info.png";
 
 const Database: React.FC<{
   school: any;
   userType: string;
   schoolType: string;
 }> = ({ school, userType, schoolType }) => {
-  const { user, matchUsers, handleChange } = useHelper(schoolType);
-
+  const { user, matchUsers, show, handleChange, handleShow } =
+    useHelper(schoolType);
   return (
     <div className={styles.database}>
       <div className={styles.header}>
@@ -31,12 +34,13 @@ const Database: React.FC<{
             <div key={i} className={styles.user}>
               <div className={styles.namepic}>
                 <img
-                  src={m.picture}
+                  src={m.picture ? m.picture : userDefault}
                   alt="profilepic"
                   className={styles.profilepic}
                 />
-                <span className={styles.name}>
+                <span className={styles.name} onClick={handleShow}>
                   {m.name.first} {m.name.last}
+                  <img src={info} alt="userInfo" className={styles.userInfo} />
                 </span>
               </div>
 
@@ -51,7 +55,7 @@ const Database: React.FC<{
                 <div key={i} className={styles.user}>
                   <div className={styles.namepic}>
                     <img
-                      src={m.picture}
+                      src={m.picture ? m.picture : userDefault}
                       alt="profilepic"
                       className={styles.profilepic}
                     />
@@ -65,7 +69,26 @@ const Database: React.FC<{
                 </div>
               ))
             ) : (
-              <p>No hubo coincidencias</p>
+              <div className={styles.empty}>
+                <div className={styles.message}>
+                  <p className={styles.ptitle}>
+                    No hubo coincidencia de {userType}.
+                  </p>
+                  <p className={styles.help}>
+                    Pruebe los siguientes pasos en caso de considerar que es un
+                    error:
+                  </p>
+                  <ol className={styles.steps}>
+                    <li className={styles.step}>
+                      Compruebe los datos del {userType}
+                    </li>
+                    <li className={styles.step}>
+                      Corrobore que el {userType} se encuentra añadido al
+                      sistema
+                    </li>
+                  </ol>
+                </div>
+              </div>
             )}
           </div>
         )}
