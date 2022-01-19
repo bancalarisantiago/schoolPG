@@ -52,6 +52,7 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
 export const createCourse = (course:any)=>{
   return async function (dispatch:any){
        try{
+         console.log(course)
           const newCourse = await axios.post("http://localhost:5000/api/course", course)
           const student = await course.students.map( (student:any) => {
               const updateUser = axios.put(`http://localhost:5000/api/user/course/${newCourse.data._id}/${student}`)

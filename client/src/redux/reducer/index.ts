@@ -13,11 +13,8 @@ export const initialState: IState = {
   userSession: {},
   userSchool: {},
   matchUsers: {},
-  students:[],
-  teachers:[],
   backupData:[],
   courses:[],
-  subjects:[]
 } 
 const cases: any = {};
 
@@ -58,7 +55,8 @@ cases[GET_USER_BY_DNI] = (initialState:IState, payload:any) => {
 
   return {
     ...initialState,
-    students:toFilter.filter((e) => e.document.toString() === payload.document)
+    /* students:toFilter.filter((e) => e.document.toString() === payload.document) */
+    students: toFilter.filter((e:any) => e.includes(payload))
   }
 }
 

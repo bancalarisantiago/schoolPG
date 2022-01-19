@@ -55,6 +55,8 @@
 }
 
 .input {
+  width: 40%;
+  height: 50px;
   margin: 2rem;
 }
 
@@ -201,4 +203,9 @@
 }
 .closeButt:hover {
   color: darkslateblue;
+}
+
+.errorsP {
+  font-size: small;
+  color: var(--red-palette-intensity9);
 }
