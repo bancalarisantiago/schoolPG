@@ -10,6 +10,7 @@ export interface IState {
   userSession: any;
   userSchool: any;
   matchUsers: any;
+  userDetail: any;
   backupData: any[];
   courses: any[];
 }
@@ -18,7 +19,7 @@ export type SubmitEvent = React.SyntheticEvent;
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type ClickEvent = React.MouseEvent<HTMLElement>;
 export interface ICredential {
-  email: string;
+  userInfo: string;
   password: string;
 }
 
@@ -29,6 +30,7 @@ export interface ISchoolId {
 export interface IUser {
   userType: string;
   filter: string;
+  schoolId: string;
 }
 
 export interface ICreateSchool {
@@ -97,6 +99,22 @@ export interface ITeacherForm {
   subject?: any;
 }
 
+export interface ISubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+}
+
+export interface ICreateSubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+  schoolId: string;
+}
+
 export interface ICreateStudent {}
 
 export interface ICreateAdmin {}
+
+export interface ICreateUser {}
+

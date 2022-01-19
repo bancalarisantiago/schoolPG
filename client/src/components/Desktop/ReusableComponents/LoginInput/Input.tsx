@@ -26,7 +26,7 @@ export default function Input({
 
   const a = () => {
     if (name === "email") {
-      return credential.email;
+      return credential.userInfo;
     } else if (name === "password") {
       return credential.password;
     }

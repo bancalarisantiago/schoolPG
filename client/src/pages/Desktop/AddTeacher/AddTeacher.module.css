@@ -1,16 +1,41 @@
 .container {
-  height: 85%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  -webkit-animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+@-webkit-keyframes scale-in-center {
+  0% {
+    transform: scale(0);
 
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .submain {
-  width: 90%;
-  height: 65%;
+  width: 120%;
+  height: 110%;
   position: relative;
   display: flex;
+  top: 50px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -20,7 +45,7 @@
 }
 .titlebox {
   position: absolute;
-  top: -30px;
+  top: -40px;
   display: flex;
   align-items: center;
   width: 95%;
@@ -46,9 +71,134 @@
   width: 35px;
   height: 35px;
 }
+
+.box1 {
+  grid-area: box1;
+}
+.box2 {
+  grid-area: box2;
+}
+.box3 {
+  grid-area: box3;
+}
+.box4 {
+  grid-area: box4;
+  justify-self: center;
+}
+
+.box5 {
+  grid-area: box5;
+}
+
+.box6 {
+  grid-area: box6;
+}
+.box7 {
+  grid-area: box7;
+}
+.box8 {
+  grid-area: box8;
+  justify-self: center;
+}
+.box9 {
+  grid-area: box9;
+  height: 120px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.box10 {
+  grid-area: box10;
+  height: 120px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.box11 {
+  grid-area: box11;
+  margin: 0 auto;
+}
+
 .inputs {
   display: grid;
-  grid-template-columns: repeat(2rem, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 0.5fr 2fr 1fr;
   gap: 32px;
+  grid-template-areas:
+    "box1 box5 "
+    "box2 box6 "
+    "box3 box7 "
+    "box4 box8 "
+    "box9 box10"
+    "box11 box11";
+}
+.btnList {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  border: 3px solid rgb(255, 51, 51);
+  margin-left: 10px;
+  height: 24px;
+  width: 24px;
+  font-weight: 500;
+  border-radius: 50%;
+  color: rgb(255, 51, 51);
+}
+
+.li {
+  display: flex;
+  font-family: "Poppins";
+  color: #999;
+  padding: 5px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background: #fafafa;
+  background-image: none;
+  flex: 1;
+  padding: 0 0.2em;
+  color: #999;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  color: rgb(85, 85, 85);
+  width: 14em;
+  height: 2em;
+  line-height: 2;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 0.7em;
+  background: var(---blue-gradient);
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+.select:hover::after {
+  color: var(--semi-white);
 }

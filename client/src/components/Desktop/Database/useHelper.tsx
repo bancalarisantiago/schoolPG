@@ -9,8 +9,9 @@ import { getUserBy } from "../../../redux/actions";
 
 const useHelper = (schoolType: string) => {
   const dispatch = useDispatch();
-
+  const userSchool = useSelector((state: IState) => state.userSchool);
   const [user, setUser] = useState<string>("");
+  const [show, setShow] = useState<boolean>(false);
 
   const handleChange = async (e: ChangeEvent) => {
     const { value } = e.currentTarget;
@@ -20,12 +21,13 @@ const useHelper = (schoolType: string) => {
       getUserBy({
         userType: schoolType.substring(0, schoolType.length - 1),
         filter: value.toLocaleLowerCase(),
+        schoolId: userSchool._id,
       })
     );
   };
   const matchUsers = useSelector((state: IState) => state.matchUsers);
 
-  return { user, matchUsers, handleChange };
+  return { user, matchUsers, show, handleChange };
 };
 
 export default useHelper;

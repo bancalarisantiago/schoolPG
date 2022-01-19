@@ -176,7 +176,9 @@ const CreateSchool: React.FC = () => {
                 {location.streetName.length
                   ? location.streetName
                   : "Calle"}{" "}
-                {location.number.length ? location.number : "Numeracion"}
+                {location.streetNumber.length
+                  ? location.streetNumber
+                  : "Numeracion"}
               </li>
             </div>
           </ul>
@@ -198,7 +200,6 @@ const CreateSchool: React.FC = () => {
       </div>
     </div>
   );
-
 };
 
 export default CreateSchool;

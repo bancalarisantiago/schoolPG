@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { IState } from "../../../interfaces";
 
 const useHelper = () => {
-  const location: string = useLocation().pathname;
+  const location: any = useLocation().pathname;
   const dispatch = useDispatch();
   const validate = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const useHelper = () => {
         ? navigate("/panel")
         : dispatch(getSchoolById(validate.user.school))
       : navigate("/login");
-  }, [navigate, validate.accessToken]);
+  }, [navigate, validate, dispatch, validate.accessToken]);
 
   return { validate, location, school };
 };

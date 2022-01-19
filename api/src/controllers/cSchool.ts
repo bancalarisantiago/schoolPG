@@ -44,10 +44,10 @@ export const createSchool = async (req: Request, res: Response) => {
     });
     newSchool.save();
 
-    const user = await User.findByIdAndUpdate(userId, {
+    await User.findByIdAndUpdate(userId, {
       school: new toId(newSchool._id),
     });
-    const school = await School.findByIdAndUpdate(new toId(newSchool._id), {
+    await School.findByIdAndUpdate(new toId(newSchool._id), {
       admins: userId,
     });
 

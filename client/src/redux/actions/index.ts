@@ -1,8 +1,16 @@
-//from modules
+///from modules
 import axios from "axios";
 import { Dispatch } from "redux";
 //types
-import { ICreateSchool, ICredential, ISchoolId, IUser , ICreateStudent, ICreateAdmin} from "../../interfaces";
+import {
+  ICreateSchool,
+  ICredential,
+  ISchoolId,
+  IUser,
+  ICreateUser,
+  ICreateSubject
+
+} from "../../interfaces";
 
 const instance = axios.create({
   withCredentials: true,
@@ -12,11 +20,12 @@ const instance = axios.create({
 export const GET_USER_LOGGED = "GET_USER_LOGGED";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
-export const CREATE_COURSE = "CREATE_COURSE"
-export const GET_USERS = "GET_USERS"
-export const GET_USER_BY_DNI = "GET_USER_BY_DNI"
-export const GET_SUBJECTS = "GET_SUBJECTS"
+export const USER_DETAIL = "USER_DETAIL";
 
+export const CREATE_COURSE = "CREATE_COURSE";
+export const GET_USERS = "GET_USERS";
+export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
+export const GET_SUBJECTS = "GET_SUBJECTS";
 
 export const getUserByLogin =
   (payload: ICredential) => async (dispatch: Dispatch) => {
@@ -49,6 +58,7 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
   });
 };
 
+
 export const createCourse = (course:any)=>{
   return async function (dispatch:any){
        try{
@@ -65,75 +75,82 @@ export const createCourse = (course:any)=>{
   }
 }
 
-const addRelationSubjectByCourse = (courseId:any,array:any)=>{
-  return function (){   
-  try{
-    array.map((subjectId:string)=> axios.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`) )  
-    console.log(courseId, array)
-  }catch(error){
-      console.log(error)
-      }
-  }
-}
-
-export const getUsers = ()=>{
-  return async function (dispatch:any){
-  try{
-          const students =  await axios.get("http://localhost:5000/api/user")
-          dispatch({type: GET_USERS, payload: students.data})
-      } catch(err){
-      console.log(err)
-      }
-  }
-}
+export const getUserById = (payload: any) => async (dispatch: Dispatch) => {
+  new Promise<void>((res, rej) => {
+    dispatch({ type: USER_DETAIL, payload: {} });
+  });
+  const r = await instance.get(`/user/${payload}`);
+  dispatch({
+    type: USER_DETAIL,
+    payload: r.data,
+  });
+};
 
 
-export const getUsersByFilters = (props:Object)=>{
-  return async function (dispatch:any){
-  try{
-          const students =  await axios.get("http://localhost:5000/api/user", props)
-          dispatch({type: GET_USERS, payload: students.data})
-      } catch(err){
-      console.log(err)
-      }
-  }
-}
+const addRelationSubjectByCourse = (courseId: any, array: any) => {
+  return function () {
+    try {
+      array.map((subjectId: string) =>
+        axios.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`)
+      );
+      console.log(courseId, array);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-export const getUserByDni = (payload:any)=>{
-  return async function(dispatch:any){
-      try{
-          dispatch({type:GET_USER_BY_DNI, 
-              payload})
-      } catch(error){
-          console.log(error)
-      }
-  }
-}
+export const getUsers = () => {
+  return async function (dispatch: any) {
+    try {
+      const students = await axios.get("http://localhost:5000/api/user");
+      dispatch({ type: GET_USERS, payload: students.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
-export const getSubject = ()=>{
-  return async function(dispatch:any){
-      try{
-          const subjects = await axios.get("http://localhost:5000/api/subject")
-          dispatch({type: GET_SUBJECTS, payload: subjects.data})
-      }catch(error){
-          console.log(error)
-      }
-  }
-}
+export const getUsersByFilters = (props: Object) => {
+  return async function (dispatch: any) {
+    try {
+      const students = await axios.get("http://localhost:5000/api/user", props);
+      dispatch({ type: GET_USERS, payload: students.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getUserByDni = (payload: any) => {
+  return async function (dispatch: any) {
+    try {
+      dispatch({ type: GET_USER_BY_DNI, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getSubject = () => {
+  return async function (dispatch: any) {
+    try {
+      const subjects = await axios.get("http://localhost:5000/api/subject");
+      dispatch({ type: GET_SUBJECTS, payload: subjects.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const createSchool = (payload: ICreateSchool) => async () => {
-  const r = await instance.post("/school", payload);
+  await instance.post("/school", payload);
 };
 
-
-export const createStudent = (payload: ICreateStudent) => async () => {
-  const r = await instance.post("/user", payload);
+export const createUser = (payload: ICreateUser) => async () => {
+  await instance.post("/user", payload);
 };
 
-export const createadmin = (payload: ICreateAdmin) => async () => {
-  const r = await instance.post("/user", payload);
-};
-
-export const createTeacher= (payload: ICreateStudent) => async () => {
-  const r = await instance.post("/user", payload);
-};
+export const createSubject = (payload: ICreateSubject) => async () => {
+  const r = await instance.post("/subject", payload);
+}

@@ -1,10 +1,10 @@
 import styles from "./Button.module.css";
 
 interface IProps {
-
   text: string;
   onSubmit?: any;
-  onClick?:any;
+  onClick?: any;
+  value?: any;
   disabled?: boolean;
 }
 

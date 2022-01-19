@@ -1,13 +1,14 @@
 import { IState } from "../../interfaces";
-import { 
-  GET_USER_LOGGED, 
-  GET_SCHOOL, 
+import {
+  GET_USER_LOGGED,
+  GET_SCHOOL,
   MATCH_USERS,
-  CREATE_COURSE, 
+  USER_DETAIL,
+  CREATE_COURSE,
   GET_USERS,
   GET_USER_BY_DNI,
-  GET_SUBJECTS } from "../actions";
-
+  GET_SUBJECTS,
+} from "../actions";
 
 export const initialState: IState = {
   userSession: {},
@@ -15,7 +16,8 @@ export const initialState: IState = {
   matchUsers: {},
   backupData:[],
   courses:[],
-} 
+  userDetail: {},
+};
 const cases: any = {};
 
 cases[GET_USER_LOGGED] = (initialState: IState, payload: any) => ({
@@ -28,44 +30,52 @@ cases[GET_SCHOOL] = (initialState: IState, payload: any) => ({
   userSchool: payload,
 });
 
+
 cases[MATCH_USERS] = (initialState: IState, payload: any) => ({
   ...initialState,
   matchUsers: payload,
 });
 
+cases[USER_DETAIL] = (initialState: IState, payload: any) => ({
+  ...initialState,
+  userDetail: payload,
+});
 
-cases[CREATE_COURSE] = (payload:any) => {
+cases[CREATE_COURSE] = (payload: any) => {
   return {
     ...initialState,
-    courses: payload
-  }
-}
+    courses: payload,
+  };
+};
 
-cases[GET_USERS] = (initialState:IState, payload:any) =>{
+cases[GET_USERS] = (initialState: IState, payload: any) => {
   return {
     ...initialState,
     backupData: payload,
-    students: payload.filter((e:any)=> e.userType === "student" && e.course.length < 1),
-    teachers: payload.filter((e:any)=> e.userType === "teacher")
-  }
-}
+    students: payload.filter(
+      (e: any) => e.userType === "student" && e.course.length < 1
+    ),
+    teachers: payload.filter((e: any) => e.userType === "teacher"),
+  };
+};
 
-cases[GET_USER_BY_DNI] = (initialState:IState, payload:any) => {
-  const toFilter = initialState.backupData
+cases[GET_USER_BY_DNI] = (initialState: IState, payload: any) => {
+  const toFilter = initialState.backupData;
 
   return {
     ...initialState,
-    /* students:toFilter.filter((e) => e.document.toString() === payload.document) */
-    students: toFilter.filter((e:any) => e.includes(payload))
-  }
-}
+    students: toFilter.filter(
+      (e) => e.document.toString() === payload.document
+    ),
+  };
+};
 
-cases[GET_SUBJECTS] =(initialState:IState, payload:any) =>{
-  return{
+cases[GET_SUBJECTS] = (initialState: IState, payload: any) => {
+  return {
     ...initialState,
-    subjects: payload
-  }
-}
+    subjects: payload,
+  };
+};
 
 export default function rootReducer(
   state = initialState,
