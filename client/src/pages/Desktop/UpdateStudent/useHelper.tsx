@@ -38,6 +38,7 @@ const inputFieldValues = [
 
 const useHelper = () => {
   const school = useSelector((state: IState) => state.userSchool);
+  const [user, setUser] = useState<any>({});
   const [input, setInput] = useState<IUTeacherInputs>({
     name: "",
     lastName: "",
@@ -187,6 +188,13 @@ const useHelper = () => {
     else return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
+
+  const updateUser = (userinfo: any) => {
+    console.log("update", userinfo);
+
+    setSearching(false);
+    setUser(userinfo);
+  };
   return {
     inputFieldValues,
     handleChange,
@@ -196,6 +204,8 @@ const useHelper = () => {
     setSearching,
     input,
     school,
+    updateUser,
+    user,
   };
 };
 

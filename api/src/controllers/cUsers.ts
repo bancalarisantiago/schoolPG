@@ -231,14 +231,22 @@ export const getUserBy = async (req: Request, res: Response) => {
 
   const s = filter.toLowerCase();
   const regex = new RegExp(filter, "i");
-  const user = await User.find({ userType: userType }).find(
-    {
-      "name.first": { $regex: regex },
-    } || { "name.last": { $regex: regex } } || {
-        username: { $regex: regex },
-      } || { email: { $regex: regex } } || { document: { $regex: regex } } || {
-        cellphone: { $regex: regex },
-      }
+  const user = await User.find({ userType: userType }).find({
+    $or: 
+      [ 
+        {"name.first": regex}, 
+        {"name.last": regex } ,
+        { username: regex },
+        { email: regex } , { document:regex} , 
+        {cellphone: regex},
+      ] }
+    // {
+    //   "name.first": { $regex: s },
+    // } || { "name.last": { $regex: s } } || {
+    //     username: { $regex: s },
+    //   } || { email: { $regex: s } } || { document: { $regex: s } } || {
+    //     cellphone: { $regex: s },
+    //   }
   );
 
   user ? res.send(user) : res.send("User not found");

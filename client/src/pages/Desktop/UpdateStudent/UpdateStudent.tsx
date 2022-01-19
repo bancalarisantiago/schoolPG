@@ -6,6 +6,7 @@ import styles from "./UpdateStudent.module.css";
 import useHelper from "./useHelper";
 import ButtonBack from "../../../components/Desktop/ReusableComponents/ButtonBack/ButtonBack";
 import Database from "../../../components/Desktop/Database/Database";
+import Search from "../../../components/Desktop/Search/Search";
 
 const UpdateStudent: React.FC = () => {
   const {
@@ -17,18 +18,18 @@ const UpdateStudent: React.FC = () => {
     searching,
     setSearching,
     school,
+    updateUser,
+    user,
   } = useHelper();
 
   if (searching) {
     return (
-      <div>
-        searching <button onClick={() => setSearching(false)}>student</button>
-        {/* <Database
-          school={school}
-          userType={"estudiantes"}
-          schoolType={"students"}
-        /> */}
-      </div>
+      <Search
+        school={school}
+        userType={"estudiantes"}
+        schoolType={"students"}
+        onClick={updateUser}
+      />
     );
   }
   return (
@@ -74,7 +75,7 @@ const UpdateStudent: React.FC = () => {
                   placeholder={e.text}
                   name={e.name}
                   disabled={true}
-                  value={"Hola"}
+                  value={user[e.name]}
                 />
               ))}
               {/* <Input text="Nombre" name="name" value="Castro" disabled={true} />
