@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 import User from "../models/User/User";
 //from modules
 import jwt from "jsonwebtoken";
-import { IUser } from "models/User/IUser";
 
 //helpers
 const generateAccessToken = (id: any) => {

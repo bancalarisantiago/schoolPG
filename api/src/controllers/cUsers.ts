@@ -56,18 +56,6 @@ export const createUser = async (req: Request, res: Response) => {
     subject,
   } = req.body;
   try {
-    console.log(
-      name,
-      userType,
-      document,
-      username,
-      email,
-      password,
-      schoolId,
-      courses,
-      subject
-    );
-
     const newUser: IUser = new User({
       name,
       userType,

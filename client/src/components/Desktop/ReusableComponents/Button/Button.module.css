@@ -57,7 +57,7 @@
   color: white;
 }
 
-.button:active .span::before {
+.btn:active .span::before {
   background: #2751cd;
 }
 
