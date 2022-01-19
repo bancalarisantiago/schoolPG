@@ -1,0 +1,36 @@
+.main{
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(184, 218, 219, 0.65);
+  padding-top: 50px;
+  margin: 10px 10% 0px 10%;
+  padding: 100px 100px 30px 100px;
+  position: fixed;
+  border-style: solid;
+  border-color:#0096c7;
+}
+
+.titlebox{
+    position: fixed;
+  display: flex;
+  margin-top: -7%;
+  flex-direction: row;
+  z-index: -100;
+}
+
+.title{
+    font-size: 50px;
+  color: #000;
+  z-index: -100;
+  padding-right: 20px !important;
+}
+
+.inputName{
+    color: #eb8285;
+}
+
+.errorsP {
+  font-size: xx-small;
+  color: var(--red-palette-intensity9);
+}
