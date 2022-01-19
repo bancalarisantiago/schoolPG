@@ -1,11 +1,11 @@
 //from modules
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //types
 import { ChangeEvent, IState } from "../../../interfaces";
 //actions
-import { getUserBy } from "../../../redux/actions";
+import { getUserBy , deleteUserById, getSchoolById} from "../../../redux/actions";
 
 const useHelper = (schoolType: string) => {
   const dispatch = useDispatch();
@@ -26,8 +26,22 @@ const useHelper = (schoolType: string) => {
     );
   };
   const matchUsers = useSelector((state: IState) => state.matchUsers);
+  
+  function confirmDelete(event: any) {
+    let erase;
+    const userNameAndId = event.target.id.split("/")
 
-  return { user, matchUsers, show, handleChange };
+    if(window.confirm(`Desea eliminar a ${userNameAndId[0]}? `) == true) {
+      erase = "El usuario ha sido eliminado de la base datos"
+      dispatch(deleteUserById(userNameAndId[1],userSchool._id))
+      dispatch(getSchoolById(userSchool._id))
+      alert(erase)
+    } else {
+      erase = "Cancelar eliminacion"
+    }
+  }
+
+  return { user, matchUsers, show, handleChange , confirmDelete};
 };
 
 export default useHelper;
