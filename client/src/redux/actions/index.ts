@@ -21,7 +21,7 @@ export const GET_USER_LOGGED = "GET_USER_LOGGED";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
 export const USER_DETAIL = "USER_DETAIL";
-
+export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID"
 export const CREATE_COURSE = "CREATE_COURSE";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
@@ -89,8 +89,11 @@ export const createCourse = (course: any) => {
   };
 };
 
-export const deleteUserById = async (id: any, schoolId: any) => {
-   const user = await instance.delete(`http://localhost:5000/api/user/${id}`)
+export const deleteUserById =  (id: any) => async (dispatch: any) => {
+    await instance.delete(`http://localhost:5000/api/user/${id}`)
+    dispatch({
+      type: DELETE_USER_BY_ID
+    })
 }
 
 const addRelationSubjectByCourse = (courseId: any, array: any) => {

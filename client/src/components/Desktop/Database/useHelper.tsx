@@ -12,6 +12,7 @@ const useHelper = (schoolType: string) => {
   const userSchool = useSelector((state: IState) => state.userSchool);
   const [user, setUser] = useState<string>("");
   const [show, setShow] = useState<boolean>(false);
+  
 
   const handleChange = async (e: ChangeEvent) => {
     const { value } = e.currentTarget;
@@ -27,18 +28,16 @@ const useHelper = (schoolType: string) => {
   };
   const matchUsers = useSelector((state: IState) => state.matchUsers);
   
-  function confirmDelete(event: any) {
+ async function confirmDelete (event: any) {
     let erase;
     const userNameAndId = event.target.id.split("/")
-
-    if(window.confirm(`Desea eliminar a ${userNameAndId[0]}? `) == true) {
+      
+    if(window.confirm(`Desea eliminar a ${userNameAndId[0]}? `) === true) {
       erase = "El usuario ha sido eliminado de la base datos"
-      dispatch(deleteUserById(userNameAndId[1],userSchool._id))
-      dispatch(getSchoolById(userSchool._id))
+      dispatch(deleteUserById(userNameAndId[1]))
       alert(erase)
-    } else {
-      erase = "Cancelar eliminacion"
-    }
+    } 
+    dispatch(getSchoolById(userSchool._id))
   }
 
   return { user, matchUsers, show, handleChange , confirmDelete};
