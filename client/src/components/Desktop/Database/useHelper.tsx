@@ -27,11 +27,7 @@ const useHelper = (schoolType: string) => {
   };
   const matchUsers = useSelector((state: IState) => state.matchUsers);
 
-  const handleShow = (): void => {
-    setShow(!show);
-  };
-
-  return { user, matchUsers, show, handleChange, handleShow };
+  return { user, matchUsers, show, handleChange };
 };
 
 export default useHelper;

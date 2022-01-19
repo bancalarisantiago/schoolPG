@@ -50,7 +50,7 @@ const AddTeacher: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className={styles.box4}>
+          <div className={`${styles.box4} ${styles.select}`}>
             <select
               name="courses"
               defaultValue={"default"}
@@ -110,7 +110,7 @@ const AddTeacher: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className={styles.box8}>
+          <div className={`${styles.box8} ${styles.select}`}>
             <select
               name="subjects"
               defaultValue={"default"}
@@ -128,17 +128,16 @@ const AddTeacher: React.FC = () => {
             <ul>
               {input?.subject.map((p: any) => {
                 return (
-                  <li key={`${p.name}key`}>
-                    <div className={styles.divBtn}>
+                  <li className={styles.li} key={`${p.name}key`}>
                       {p.name}
                       <button
+                        className={styles.btn}
                         type="button"
                         value={p.name}
                         onClick={deleteFromList}
                       >
                         X
                       </button>
-                    </div>
                   </li>
                 );
               })}
