@@ -102,9 +102,19 @@
 }
 
 .name {
+  display: flex;
+  align-items: center;
   text-transform: capitalize;
   font-weight: 600;
   margin-left: 1rem;
+  cursor: pointer;
+}
+
+.userInfo {
+  margin-left: 0.7rem;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
 }
 
 .cellphone {
@@ -120,4 +130,52 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.message {
+  width: 80%;
+  height: 17%;
+  margin: 5%;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 4px solid #e74e2b;
+}
+.ptitle {
+  color: var(--error-color);
+  font-size: x-large;
+  margin: 1rem;
+  text-transform: capitalize;
+}
+.help {
+  color: gray;
+  font-size: large;
+  margin: 1rem;
+}
+.steps {
+  margin: 1rem;
+}
+.step {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+  margin: 1rem;
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
 }

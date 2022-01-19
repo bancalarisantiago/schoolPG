@@ -1,4 +1,3 @@
-rm
 .btn {
   border: none;
   display: block;
@@ -24,20 +23,16 @@ rm
   padding: 5px;
 }
 
-
-.button .span {
+.btn .span {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  /* width: 100%;
-  height: 100%; */
   background: transparent;
   z-index: -1;
   border: 4px solid royalblue;
 }
-
 
 .btn .span::before {
   content: "";
@@ -52,19 +47,15 @@ rm
   transition: all 0.3s;
 }
 
-
-
 .btn:hover .span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
   background: royalblue;
 }
 
-
 .btn:hover {
   color: white;
 }
-
 
 .button:active .span::before {
   background: #2751cd;

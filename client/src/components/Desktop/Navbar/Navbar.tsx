@@ -10,8 +10,17 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
   return (
     <div className={styles.header}>
       <div className={styles.name}>
-        <p className={styles.route}>/ {location.substring(1)}</p>
-        <p className={styles.reroute}>{location.substring(1)}</p>
+        {location.split("/").map((m: string, i: number) => {
+          return i !== 0 ? (
+            i === 1 ? (
+              <p className={styles.route}> {m} </p>
+            ) : (
+              <p className={styles.reRoute}> {m} </p>
+            )
+          ) : (
+            ""
+          );
+        })}
       </div>
 
       <div className={styles.options}>

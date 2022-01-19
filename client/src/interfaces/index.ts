@@ -21,7 +21,7 @@ export type SubmitEvent = React.SyntheticEvent;
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type ClickEvent = React.MouseEvent<HTMLElement>;
 export interface ICredential {
-  email: string;
+  userInfo: string;
   password: string;
 }
 
@@ -32,6 +32,7 @@ export interface ISchoolId {
 export interface IUser {
   userType: string;
   filter: string;
+  schoolId: string;
 }
 
 export interface ICreateSchool {
