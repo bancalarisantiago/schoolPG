@@ -17,8 +17,8 @@ export default function FormLogin(): JSX.Element {
         </p>
         <form onSubmit={handleSubmit}>
           <Input
-            placeHolder={"Correo Electronico"}
-            name={"email"}
+            placeHolder={"Correo Electronico / Usuario"}
+            name={"userInfo"}
             {...{ handleChange, credential }}
           />
           <Input

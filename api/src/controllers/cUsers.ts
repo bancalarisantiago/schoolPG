@@ -85,33 +85,41 @@ export const createUser = async (req: Request, res: Response) => {
     await User.findByIdAndUpdate(new toId(newUser._id), {
       school: new toId(schoolId),
       $push: {
-        course: courses.length
-          ? courses.map((m: any) => new toId(m._id)).flat()
+        course: courses
+          ? courses.length
+            ? courses.map((m: any) => new toId(m._id)).flat()
+            : []
           : [],
-        subject: subject.length
-          ? subject.map((m: any) => new toId(m._id)).flat()
+        subject: subject
+          ? subject.length
+            ? subject.map((m: any) => new toId(m._id)).flat()
+            : []
           : [],
       },
     });
 
-    courses.length
-      ? courses.forEach(
-          async (fe: any) =>
-            await Course.findByIdAndUpdate(new toId(fe._id), {
-              $push: {
-                [type]: new toId(newUser._id),
-              },
-            })
-        )
+    courses
+      ? courses.length
+        ? courses.forEach(
+            async (fe: any) =>
+              await Course.findByIdAndUpdate(new toId(fe._id), {
+                $push: {
+                  [type]: new toId(newUser._id),
+                },
+              })
+          )
+        : ""
       : "";
 
-    subject.length
-      ? subject.map(
-          async (m: any) =>
-            await Subject.findByIdAndUpdate(new toId(m._id), {
-              teachers: new toId(newUser._id),
-            })
-        )
+    subject
+      ? subject.length
+        ? subject.map(
+            async (m: any) =>
+              await Subject.findByIdAndUpdate(new toId(m._id), {
+                teachers: new toId(newUser._id),
+              })
+          )
+        : ""
       : "";
 
     //token
@@ -121,6 +129,7 @@ export const createUser = async (req: Request, res: Response) => {
     );
     res.setHeader("auth-token", token).json(savedUser);
   } catch (error: any) {
+    console.log(error);
     res.status(404).json({ message: error.message });
   }
 };
@@ -227,19 +236,24 @@ const addRelationUserToCourse = async (userId: string, courseId: string) => {
 };
 
 export const getUserBy = async (req: Request, res: Response) => {
-  const { userType, filter } = req.body;
+  const { userType, filter, schoolId } = req.body;
 
   const s = filter.toLowerCase();
   const regex = new RegExp(filter, "i");
-  const user = await User.find({ userType: userType }).find(
-    {
-      "name.first": { $regex: regex },
-    } || { "name.last": { $regex: regex } } || {
-        username: { $regex: regex },
-      } || { email: { $regex: regex } } || { document: { $regex: regex } } || {
-        cellphone: { $regex: regex },
-      }
-  );
+  const user = await User.find({ userType: userType })
+    .find({
+      school: schoolId,
+    })
+    .find({
+      $or: [
+        { "name.first": regex },
+        { "name.last": regex },
+        { username: regex },
+        { email: regex },
+        { document: regex },
+        { cellphone: regex },
+      ],
+    });
 
   user ? res.send(user) : res.send("User not found");
 };

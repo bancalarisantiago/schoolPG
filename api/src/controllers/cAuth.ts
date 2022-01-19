@@ -21,10 +21,13 @@ let refreshTokens: string[] = [];
 //after logout, array will be trashed
 
 export const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { userInfo, password } = req.body;
 
-  const user = await User.findOne({ email: email });
-  if (!user) return res.send("Email or password is wrong");
+  const user = await User.findOne({
+    $or: [{ username: userInfo }, { email: userInfo }],
+  });
+
+  if (!user) return res.send("Email, Username or password is wrong");
 
   const correctPassword: boolean = await user.validatePassword(password);
 

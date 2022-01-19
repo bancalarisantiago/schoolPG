@@ -17,7 +17,7 @@ const useHelper = () => {
   const userSession = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
   const [credential, setcredential] = useState<ICredential>({
-    email: "",
+    userInfo: "",
     password: "",
   });
 
