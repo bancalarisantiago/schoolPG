@@ -1,4 +1,4 @@
-//from modules
+///from modules
 import axios from "axios";
 import { Dispatch } from "redux";
 //types
@@ -8,6 +8,8 @@ import {
   ISchoolId,
   IUser,
   ICreateUser,
+  ICreateSubject
+
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -150,3 +152,7 @@ export const createSchool = (payload: ICreateSchool) => async () => {
 export const createUser = (payload: ICreateUser) => async () => {
   await instance.post("/user", payload);
 };
+
+export const createSubject = (payload: ICreateSubject) => async () => {
+  const r = await instance.post("/subject", payload);
+}

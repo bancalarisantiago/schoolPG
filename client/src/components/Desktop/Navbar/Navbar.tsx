@@ -16,12 +16,9 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
               i === 1 ? (
                 <p className={styles.route}> {m} </p>
               ) : (
-                <p className={styles.reRoute}> {m} </p>
+                 <p className={styles.reRoute}> {decodeURI(m)} </p>
               )
             ) : (
-              ""
-            )
-          ) : (
             ""
           );
         })}

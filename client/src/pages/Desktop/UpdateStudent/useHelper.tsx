@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { IState } from "../../../interfaces/index";
 
 interface IUTeacherInputs {
   [key: string]: string;
@@ -21,6 +23,7 @@ const inputFieldValues = [
 ];
 
 const useHelper = () => {
+  const school = useSelector((state: IState) => state.userSchool);
   const [input, setInput] = useState<IUTeacherInputs>({
     name: "",
     lastName: "",
@@ -33,10 +36,11 @@ const useHelper = () => {
     locality: "",
     postalCode: "",
     gender: "",
-    birthdate: "",
+    birthdate: "1996-11-28",
     cellphone: "",
     picture: "",
   });
+  const [searching, setSearching] = useState(true);
   const [errors, setErrors] = useState<IUTeacherInputs>({
     name: "",
     lastName: "",
@@ -68,8 +72,8 @@ const useHelper = () => {
       }
       case "lastName": {
         let lastName = "";
-        if (!input.lastName) lastName = "Apellido es requerido.";
-        else if (input.lastName.length < 3)
+        if (!input[name]) lastName = "Apellido es requerido.";
+        else if (input[name].length < 3)
           lastName = "Apellido debe tener mas de 2 letras";
         return { ...errors, lastName };
       }
@@ -155,9 +159,10 @@ const useHelper = () => {
       ...input,
       [name]: value,
     });
+    console.log("type", typeof value);
+    console.log("school", school);
 
     setErrors(validate({ ...input, [name]: value }, name));
-    console.log("type", value);
   };
 
   let disabled = useMemo(() => {
@@ -173,6 +178,10 @@ const useHelper = () => {
     handleChange,
     disabled,
     errors,
+    searching,
+    setSearching,
+    input,
+    school,
   };
 };
 

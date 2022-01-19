@@ -55,7 +55,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[0] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-student">
+          <NavLink to="añadir-alumno">
             <li
               className={underline[0] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -65,7 +65,7 @@ const Sidebar: React.FC = () => {
             </li>
           </NavLink>
 
-          <NavLink to="update-student">
+          <NavLink to="modificar-alumno">
             <li
               className={underline[1] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[1] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-teacher">
+          <NavLink to="añadir-profesor">
             <li
               className={underline[2] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -97,7 +97,7 @@ const Sidebar: React.FC = () => {
               añadir profesor
             </li>
           </NavLink>
-          <NavLink to="update-teacher">
+          <NavLink to="modificar-profesor">
             <li
               className={underline[3] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -120,7 +120,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[2] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-admin">
+          <NavLink to="añadir-admin">
             <li
               className={underline[4] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -129,7 +129,7 @@ const Sidebar: React.FC = () => {
               añadir admin
             </li>
           </NavLink>
-          <NavLink to="update-admin">
+          <NavLink to="modificar-admin">
             <li
               className={underline[5] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -152,7 +152,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[3] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-course">
+          <NavLink to="añadir-curso">
             <li
               className={underline[6] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -161,7 +161,7 @@ const Sidebar: React.FC = () => {
               añadir curso
             </li>
           </NavLink>
-          <NavLink to="update-course">
+          <NavLink to="modificar-curso">
             <li
               className={underline[7] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -184,7 +184,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[4] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-subject">
+          <NavLink to="añadir-materias">
             <li
               className={underline[8] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -193,7 +193,7 @@ const Sidebar: React.FC = () => {
               añadir materias
             </li>
           </NavLink>
-          <NavLink to="update-subject">
+          <NavLink to="modificar-materias">
             <li
               className={underline[9] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -216,7 +216,7 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[5] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="add-event">
+          <NavLink to="añadir-evento">
             <li
               className={underline[10] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
@@ -225,7 +225,7 @@ const Sidebar: React.FC = () => {
               añadir evento
             </li>
           </NavLink>
-          <NavLink to="update-event">
+          <NavLink to="modificar-calendario">
             <li
               className={underline[11] ? styles.optionselected : styles.option}
               onClick={handleUnderline}

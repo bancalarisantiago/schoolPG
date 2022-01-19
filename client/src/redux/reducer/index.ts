@@ -33,6 +33,7 @@ cases[GET_SCHOOL] = (initialState: IState, payload: any) => ({
   userSchool: payload,
 });
 
+
 cases[MATCH_USERS] = (initialState: IState, payload: any) => ({
   ...initialState,
   matchUsers: payload,

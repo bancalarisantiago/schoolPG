@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ITeacherForm, SubmitEvent } from "../../../interfaces";
 import { IState } from "../../../interfaces/index";
 import { createUser } from "../../../redux/actions";
+
 
 const useHelper = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ const useHelper = () => {
           userSchool.courses.filter((m: any) => m.name === value)
         );
       } else {
-        alert("El curso ya esta seleccionada");
+        alert("El curso ya esta seleccionado");
       }
     }
     if (name === "subjects") {
@@ -87,7 +89,7 @@ const useHelper = () => {
         .map((m: any) => m.name === event.target.value)
         .includes(true)
     ) {
-      let copy = input.subject.filter((g: any) => g !== event.target.value);
+      let copy = input.subject.filter((g: any) => g.name !== event.target.value);
       setInput({ ...input, subject: copy });
     }
   }
