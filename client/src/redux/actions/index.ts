@@ -58,6 +58,23 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
   });
 };
 
+
+export const createCourse = (course:any)=>{
+  return async function (dispatch:any){
+       try{
+         console.log(course)
+          const newCourse = await axios.post("http://localhost:5000/api/course", course)
+          const student = await course.students.map( (student:any) => {
+              const updateUser = axios.put(`http://localhost:5000/api/user/course/${newCourse.data._id}/${student}`)
+          })
+          await addRelationSubjectByCourse(newCourse.data._id, course.subjects)()
+        dispatch({type: CREATE_COURSE, payload: newCourse.data})
+      }catch(err){
+      console.log(err)
+      }
+  }
+}
+
 export const getUserById = (payload: any) => async (dispatch: Dispatch) => {
   new Promise<void>((res, rej) => {
     dispatch({ type: USER_DETAIL, payload: {} });
@@ -69,25 +86,6 @@ export const getUserById = (payload: any) => async (dispatch: Dispatch) => {
   });
 };
 
-export const createCourse = (course: any) => {
-  return async function (dispatch: any) {
-    try {
-      const newCourse = await axios.post(
-        "http://localhost:5000/api/course",
-        course
-      );
-      const student = await course.students.map((student: any) => {
-        const updateUser = axios.put(
-          `http://localhost:5000/api/user/course/${newCourse.data._id}/${student}`
-        );
-      });
-      await addRelationSubjectByCourse(newCourse.data._id, course.subjects)();
-      dispatch({ type: CREATE_COURSE, payload: newCourse.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
 
 export const deleteUserById =  (id: any) => async (dispatch: any) => {
     await instance.delete(`http://localhost:5000/api/user/${id}`)

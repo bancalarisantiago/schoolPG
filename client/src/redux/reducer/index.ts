@@ -15,12 +15,9 @@ export const initialState: IState = {
   userSession: {},
   userSchool: {},
   matchUsers: {},
+  backupData:[],
+  courses:[],
   userDetail: {},
-  students: [],
-  teachers: [],
-  backupData: [],
-  courses: [],
-  subjects: [],
 };
 const cases: any = {};
 
