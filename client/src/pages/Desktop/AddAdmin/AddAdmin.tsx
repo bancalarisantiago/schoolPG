@@ -56,7 +56,9 @@ const AddAdmin: React.FC = () => {
             value={input.email}
             onChange={handleInputChange}  
             />
-          <Button text="Añadir Admin" />
+          <div className={styles.box1}>
+            <Button text="Añadir Admin" />
+          </div>
         </form>
       </div>
     </div>

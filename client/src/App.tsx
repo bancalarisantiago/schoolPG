@@ -47,22 +47,22 @@ const App: React.FC = () => {
 
           <Route path="general" element={<SchoolInfo />} />
 
-          <Route path="añadir-alumno" element={<AddStudent />} />
+          <Route path="agregar-alumno" element={<AddStudent />} />
           <Route path="modificar-alumno" element={<UpdateStudent />} />
 
-          <Route path="añadir-profesor" element={<AddTeacher />} />
+          <Route path="agregar-profesor" element={<AddTeacher />} />
           <Route path="modificar-profesor" element={<UpdateTeacher />} />
 
-          <Route path="añadir-admin" element={<AddAdmin />} />
+          <Route path="agregar-admin" element={<AddAdmin />} />
           <Route path="modificar-admin" element={<UpdateAdmin />} />
 
-          <Route path="añadir-curso" element={<AddCourse />} />
+          <Route path="agregar-curso" element={<AddCourse />} />
           <Route path="modificar-curso" element={<UpdateCourse />} />
 
-          <Route path="añadir-evento" element={<AddEvent />} />
+          <Route path="agregar-evento" element={<AddEvent />} />
           <Route path="modificar-calendario" element={<UpdateEvent />} />
 
-          <Route path="añadir-materias" element={<AddSubject />} />
+          <Route path="agregar-materias" element={<AddSubject />} />
           <Route path="modificar-materias" element={<UpdateSubject />} />
 
           <Route path="profile" element={<Profile />} />

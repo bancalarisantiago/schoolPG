@@ -124,7 +124,7 @@ const AddTeacher: React.FC = () => {
               ))}
             </select>
           </div>
-          <div className={styles.box10}>
+          <div className={`${styles.box10} ${styles.tables}`}>
             <ul>
               {input?.subject.map((p: any) => {
                 return (

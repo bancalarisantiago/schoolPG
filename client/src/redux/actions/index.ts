@@ -21,7 +21,7 @@ export const GET_USER_LOGGED = "GET_USER_LOGGED";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
 export const USER_DETAIL = "USER_DETAIL";
-
+export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID"
 export const CREATE_COURSE = "CREATE_COURSE";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
@@ -89,13 +89,19 @@ export const createCourse = (course: any) => {
   };
 };
 
+export const deleteUserById =  (id: any) => async (dispatch: any) => {
+    await instance.delete(`http://localhost:5000/api/user/${id}`)
+    dispatch({
+      type: DELETE_USER_BY_ID
+    })
+}
+
 const addRelationSubjectByCourse = (courseId: any, array: any) => {
   return function () {
     try {
       array.map((subjectId: string) =>
-        axios.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`)
+        instance.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`)
       );
-      console.log(courseId, array);
     } catch (error) {
       console.log(error);
     }
@@ -105,7 +111,7 @@ const addRelationSubjectByCourse = (courseId: any, array: any) => {
 export const getUsers = () => {
   return async function (dispatch: any) {
     try {
-      const students = await axios.get("http://localhost:5000/api/user");
+      const students = await instance.get("http://localhost:5000/api/user");
       dispatch({ type: GET_USERS, payload: students.data });
     } catch (err) {
       console.log(err);
@@ -156,3 +162,4 @@ export const createUser = (payload: ICreateUser) => async () => {
 export const createSubject = (payload: ICreateSubject) => async () => {
   const r = await instance.post("/subject", payload);
 }
+
