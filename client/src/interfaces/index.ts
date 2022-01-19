@@ -117,3 +117,5 @@ export interface ICreateSubject {
 export interface ICreateStudent {}
 
 export interface ICreateAdmin {}
+
+export interface ICreateUser {}
