@@ -7,8 +7,7 @@ import {
   ICredential,
   ISchoolId,
   IUser,
-  ICreateStudent,
-  ICreateAdmin,
+  ICreateUser,
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -19,6 +18,8 @@ const instance = axios.create({
 export const GET_USER_LOGGED = "GET_USER_LOGGED";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
+export const USER_DETAIL = "USER_DETAIL";
+
 export const CREATE_COURSE = "CREATE_COURSE";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
@@ -51,6 +52,17 @@ export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
   const r = await instance.post("/user/search", payload);
   dispatch({
     type: MATCH_USERS,
+    payload: r.data,
+  });
+};
+
+export const getUserById = (payload: any) => async (dispatch: Dispatch) => {
+  new Promise<void>((res, rej) => {
+    dispatch({ type: USER_DETAIL, payload: {} });
+  });
+  const r = await instance.get(`/user/${payload}`);
+  dispatch({
+    type: USER_DETAIL,
     payload: r.data,
   });
 };
@@ -135,6 +147,6 @@ export const createSchool = (payload: ICreateSchool) => async () => {
   await instance.post("/school", payload);
 };
 
-export const createUser = (payload: ICreateStudent) => async () => {
+export const createUser = (payload: ICreateUser) => async () => {
   await instance.post("/user", payload);
 };

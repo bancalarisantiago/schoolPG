@@ -12,10 +12,14 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
       <div className={styles.name}>
         {location.split("/").map((m: string, i: number) => {
           return i !== 0 ? (
-            i === 1 ? (
-              <p className={styles.route}> {m} </p>
+            i < 3 ? (
+              i === 1 ? (
+                <p className={styles.route}> {m} </p>
+              ) : (
+                <p className={styles.reRoute}> {m} </p>
+              )
             ) : (
-              <p className={styles.reRoute}> {m} </p>
+              ""
             )
           ) : (
             ""

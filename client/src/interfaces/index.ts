@@ -10,6 +10,7 @@ export interface IState {
   userSession: any;
   userSchool: any;
   matchUsers: any;
+  userDetail: any;
   students: any[];
   teachers: any[];
   backupData: any[];
@@ -103,4 +104,4 @@ export interface ITeacherForm {
 
 export interface ICreateStudent {}
 
-export interface ICreateAdmin {}
+export interface ICreateUser {}

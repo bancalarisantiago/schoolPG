@@ -28,6 +28,7 @@ import General from "./pages/Desktop/General/General"; */
 import SchoolInfo from "./pages/Desktop/SchoolInfo/SchoolInfo";
 import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
+import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 
 //Modal.setAppElement("#root")
 
@@ -64,8 +65,10 @@ const App: React.FC = () => {
           <Route path="add-subject" element={<AddSubject />} />
           <Route path="update-subject" element={<UpdateSubject />} />
 
-          <Route path="*" element={<Error />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="detalle-usuario/:id" element={<UserDetail />} />
+
+          <Route path="*" element={<Error />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
