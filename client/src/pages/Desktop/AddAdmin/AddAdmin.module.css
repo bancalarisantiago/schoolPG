@@ -1,28 +1,42 @@
 .container {
-  height: 85%;
+  height: 95%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  -webkit-animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
   animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-@keyframes scale-in-center {
+
+@-webkit-keyframes scale-in-center {
   0% {
-    -webkit-transform: scale(0);
     transform: scale(0);
 
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+
+    opacity: 1;
+  }
+  100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
 .submain {
-  width: 90%;
-  height: 65%;
+  width: 50%;
+  height: 60%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -38,7 +52,7 @@
   display: flex;
   align-items: center;
   width: 95%;
-  height: 10%;
+  height: 12%;
   background-image: var(---blue-gradient);
   border-radius: 10px;
   box-shadow: 0 3px 15px #3790ef8c;
@@ -62,7 +76,20 @@
 }
 .inputs {
   display: grid;
-  grid-template-columns: repeat(2rem, 1fr);
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  gap: 32px;
+  gap: 45px;
+  grid-template-areas:
+    ". ."
+    ". ."
+    ". ."
+    "box1 box1";
+}
+.box1 {
+  grid-area: box1;
+}
+.box1 {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
 }
