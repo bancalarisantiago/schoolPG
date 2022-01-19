@@ -6,7 +6,7 @@ import {
   CREATE_COURSE, 
   GET_USERS,
   GET_USER_BY_DNI,
-  GET_SUBJECTS } from "../actions";
+  GET_SUBJECTS,PUT_USER } from "../actions";
 
 
 export const initialState: IState = {
@@ -69,6 +69,11 @@ cases[GET_SUBJECTS] =(initialState:IState, payload:any) =>{
   }
 }
 
+cases[PUT_USER] =(initialState:IState) =>{
+  return{
+    ...initialState
+  }
+}
 export default function rootReducer(
   state = initialState,
   { type, payload }: any

@@ -32,6 +32,7 @@ function Input({
         autoComplete={autoComplete}
         onChange={onChange}
         required
+        defaultValue={value}
       />
       <label className={`${styles.name} ${disabled ? styles.disabled : ""}`}>
         {placeholder}

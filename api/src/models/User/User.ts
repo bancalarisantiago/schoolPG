@@ -34,9 +34,7 @@ const schemaUser = new Schema({
     postalCode: { type: String },
   },
   birthdate: {
-    date: {
-      type: String,
-    },
+    type: String,
   },
   document: {
     type: String,

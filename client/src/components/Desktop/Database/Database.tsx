@@ -10,7 +10,8 @@ const Database: React.FC<{
   school: any;
   userType: string;
   schoolType: string;
-}> = ({ school, userType, schoolType }) => {
+  updateUser?: any;
+}> = ({ school, userType, schoolType, updateUser }) => {
   const { user, matchUsers, show, handleChange, handleShow } =
     useHelper(schoolType);
   return (
@@ -31,7 +32,7 @@ const Database: React.FC<{
         </div>
         {!user.length ? (
           school[schoolType].map((m: any, i: number) => (
-            <div key={i} className={styles.user}>
+            <div key={i} className={styles.user} onClick={() => updateUser(m)}>
               <div className={styles.namepic}>
                 <img
                   src={m.picture ? m.picture : userDefault}
@@ -46,6 +47,22 @@ const Database: React.FC<{
 
               <p className={styles.email}>{m.email}</p>
               <p className={styles.cellphone}>{m.cellphone}</p>
+              {/* <img src={edit} alt="edit" /> */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="24"
+                height="24"
+                className={"feather feather-edit"}
+              >
+                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+              </svg>
             </div>
           ))
         ) : (

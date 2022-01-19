@@ -6,7 +6,6 @@ import styles from "./UpdateStudent.module.css";
 import useHelper from "./useHelper";
 import ButtonBack from "../../../components/Desktop/ReusableComponents/ButtonBack/ButtonBack";
 import Database from "../../../components/Desktop/Database/Database";
-
 const UpdateStudent: React.FC = () => {
   const {
     inputFieldValues,
@@ -15,20 +14,21 @@ const UpdateStudent: React.FC = () => {
     input,
     errors,
     searching,
-    setSearching,
+    getBack,
     school,
+    updateUser,
+    user,
+    handleSubmit,
   } = useHelper();
 
   if (searching) {
     return (
-      <div>
-        searching <button onClick={() => setSearching(false)}>student</button>
-        {/* <Database
-          school={school}
-          userType={"estudiantes"}
-          schoolType={"students"}
-        /> */}
-      </div>
+      <Database
+        school={school}
+        userType={"estudiantes"}
+        schoolType={"students"}
+        updateUser={updateUser}
+      />
     );
   }
   return (
@@ -37,16 +37,16 @@ const UpdateStudent: React.FC = () => {
         <div className={styles.titlebox}>
           <p className={styles.title}>Actualizar Estudiante</p>
           <div className={styles.backbox}>
-            <ButtonBack onClick={() => setSearching(true)}>student</ButtonBack>
+            <ButtonBack onClick={getBack} />
           </div>
         </div>
         <div className={styles.cards}>
           <div className={styles.formCard}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className={styles.inputs}>
                 {inputFieldValues.map((e, ind) => {
                   return (
-                    <div>
+                    <div key={ind}>
                       <Input
                         type={e.type ? e.type : ""}
                         placeholder={e.text}
@@ -54,7 +54,6 @@ const UpdateStudent: React.FC = () => {
                         onChange={handleChange}
                         autoComplete="off"
                         value={input[e.name]}
-                        // disabled={e.name === "birthdate" ? true : false}
                       />
                       {errors[e.name] && (
                         <p className={styles.errorsP}>{errors[e.name]}</p>
@@ -69,96 +68,27 @@ const UpdateStudent: React.FC = () => {
           </div>
           <div className={styles.infoCard}>
             <div className={styles.inputs}>
-              {inputFieldValues.map((e) => (
-                <Input
-                  placeholder={e.text}
-                  name={e.name}
-                  disabled={true}
-                  value={"Hola"}
-                />
-              ))}
-              {/* <Input text="Nombre" name="name" value="Castro" disabled={true} />
-              <Input
-                text="Apellido"
-                name="lastName"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Nombre de Usuario"
-                name="userName"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Contraseña"
-                name="password"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="DNI"
-                type="number"
-                name="document"
-                value="123"
-                disabled={true}
-              />
-              <Input
-                text="e-mail"
-                name="email"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Calle"
-                name="streetName"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Numero"
-                // type="number"
-                name="streetNumber"
-                value="123"
-                disabled={true}
-              />
-              <Input
-                text="Localidad"
-                name="locality"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Codigo Postal"
-                name="postalCode"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Genero"
-                name="gender"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Cumpleaños"
-                // type="date"
-                name="birthdate"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Celular"
-                name="cellphone"
-                value="Castro"
-                disabled={true}
-              />
-              <Input
-                text="Foto"
-                name="picture"
-                value="Castro"
-                disabled={true}
-              /> */}
+              {inputFieldValues.map((e, ind) => {
+                let userInfo = user;
+                if (e.name === "first" || e.name === "last")
+                  userInfo = user.name;
+                else if (
+                  e.name === "streetName" ||
+                  e.name === "streetNumber" ||
+                  e.name === "locality" ||
+                  e.name === "postalCode"
+                )
+                  userInfo = user.location;
+
+                return (
+                  <Input
+                    placeholder={e.text}
+                    name={e.name}
+                    disabled={true}
+                    value={userInfo ? userInfo[e.name] : ""}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
