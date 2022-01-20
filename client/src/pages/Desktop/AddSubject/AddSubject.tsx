@@ -1,4 +1,3 @@
-//css
 import useHelper from "./useHelper";
 import styles from "./AddSubject.module.css";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
@@ -11,7 +10,7 @@ const AddSubject: React.FC = () => {
     handleInputChange,
     handleSelect,
     input,
-    handleDelete,
+    deleteFromList,
     userSchool,
     errors
   } = useHelper();
@@ -19,71 +18,98 @@ const AddSubject: React.FC = () => {
 
   return (
     <div className={styles.main}>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.titlebox}>
-          <p className={styles.title}>Añadir Subject</p>
-        </div>
-        <div>
-          <label className={styles.inputNames} htmlFor="name">
-            Nombre:{" "}
-          </label>
-          <Input
-            type="text"
-            placeholder="name"
-            name="name"
-            value={input.name}
-            onChange={handleInputChange}
-          />
-          {errors.name && (
-            <p className={styles.errorsP}>{errors.name}</p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="curso"><strong>Selecionar curso</strong></label>
-          <select onChange={handleSelect}>
-            {
-              userSchool.courses?.map((i: any) => (
-                <><option value={i.name}>{i.name}</option></>
-              ))
-            }
-            {errors.course && (
-              <p className={styles.errorsP}>{errors.course}</p>
+      <div className={styles.submain}>
+        <form className={styles.inputs} onSubmit={handleSubmit}>
+          <div className={styles.titlebox}>
+            <p className={styles.title}>Añadir Subject</p>
+          </div>
+          <div>
+            <label className={styles.box1} htmlFor="name">
+            </label>
+            <Input
+              placeholder="Nombre"
+              autoComplete="off"
+              name="name"
+              value={input.name}
+              onChange={handleInputChange}
+            />
+            {errors.name && (
+              <p className={styles.errorsP}>{errors.name}</p>
             )}
+          </div>
+          <div className={`${styles.box2} ${styles.select}`}>
+            <select
+              name="courses"
+              defaultValue={"default"}
+              onChange={handleSelect}>
+              <option value="default" disabled>
+                Seleccionar Curso
+              </option>
+              {userSchool.courses?.map((c: any) => (
+                <option key={c.name}>{c.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.box3}>
             <ul>
-              <li>{input.courses.map((i: any) => i + ", ")}</li>
+              {input?.courses.map((p: any) => {
+                return (
+                  <li className={styles.li} key={`${p.name}key`}>
+                    {p.name}
+                    <button
+                      className={styles.btn}
+                      type="button"
+                      value={p.name}
+                      onClick={deleteFromList}
+                    >
+                      X
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
-            {input.courses.map((el:any) => 
-              <div>
-                <p>{el}</p>
-                <button className="botonX" onClick={() => handleDelete(el)}>x</button>
-              </div>
-            )}
-          </select>
-          <label htmlFor="teachers"><strong>Teachers</strong></label>
-          <select onChange={handleSelect}>
-            {
-              userSchool.courses.teachers?.map((i: any) => (
-                <><option value={i.name}>{i.name}</option></>
-              ))
-            }
-            {errors.teacher && (
-              <p className={styles.errorsP}>{errors.teacher}</p>
-            )}
+          </div>
+          <div className={`${styles.box4} ${styles.select}`}>
+            <select
+              name="teachers"
+              defaultValue={"default"}
+              onChange={handleSelect}
+            >
+              <option value="default" disabled>
+                Seleccionar Teacher
+              </option>
+              {userSchool.teachers?.map((c: any, _id: any) => (
+                <option value={c._id} key={c._id}>{c.name.first}{c.name.last}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.box5}>
             <ul>
-              <li>{input.teachers.map((i: any) => i + ", ")}</li>
+              {input?.teachers.map((p: any) => {
+                return (
+                  <li className={styles.li} key={`${p.name}key`}>
+                    {p.name}
+                    <button
+                      className={styles.btn}
+                      type="button"
+                      value={p.name}
+                      onClick={deleteFromList}
+                    >
+                      X
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
-            {input.teachers.map((el: any) =>
-              <div>
-                <p>{el}</p>
-                <button className="botonX" onClick={() => handleDelete(el)}>x</button>
-              </div>
-            )}
-          </select>
-        </div>
-        <Button text="createSubject" />
-      </form>
-    </div>
+          </div>
+          <div className={styles.box6}>
+            <Button text="Añadir Materia" />
+          </div>
+        </form>
+      </div >
+    </div >
   );
 };
 
 export default AddSubject;
+
