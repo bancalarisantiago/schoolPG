@@ -5,28 +5,26 @@ import "../../../styles/theme.css";
 import useHelper from "./useHelper";
 
 //from modules
-
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
 //components
 import Sidebar from "../../../components/Desktop/SideBar/Sidebar";
 import Navbar from "../../../components/Desktop/Navbar/Navbar";
 
-
 const Panel: React.FC = () => {
-  const { validate, location } = useHelper();
-  const navigate = useNavigate();
-  useEffect(() => {
-    !validate.accessToken && navigate("/login");
-  }, []);
+  const { validate, location, showSidebar, handleShow } = useHelper();
+  console.log(showSidebar);
   return (
     <>
       {validate.accessToken ? (
         <div className={styles.main}>
-          <Sidebar />
+          <Sidebar showSidebar={showSidebar} />
           <div className={styles.content}>
-            <Navbar validate={validate} location={location} />
+            <Navbar
+              validate={validate}
+              location={location}
+              handleShow={handleShow}
+            />
             <Outlet />
           </div>
         </div>

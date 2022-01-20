@@ -2,11 +2,16 @@
 import styles from "./Navbar.module.css";
 //from modules
 import { NavLink } from "react-router-dom";
+//assets
+import menu from "../../../assets/menu (1).png";
+//interfaces
+import { IFullUser } from "../../../interfaces";
 
-const Navbar: React.FC<{ location: String; validate: any }> = ({
-  validate,
-  location,
-}) => {
+const Navbar: React.FC<{
+  location: String;
+  validate: IFullUser;
+  handleShow: any;
+}> = ({ validate, location, handleShow }) => {
   return (
     <div className={styles.header}>
       <div className={styles.name}>
@@ -47,7 +52,13 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
             <p className={styles.userprofile}> </p>
           </NavLink>
         )}
-        <p className={styles.configs}> </p>
+        <p className={styles.configs}></p>
+        <img
+          src={menu}
+          alt="menu"
+          className={styles.menu}
+          onClick={handleShow}
+        />
       </div>
     </div>
   );

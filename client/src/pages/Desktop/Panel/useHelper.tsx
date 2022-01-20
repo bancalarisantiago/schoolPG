@@ -1,5 +1,5 @@
 //from modules
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSchoolById } from "../../../redux/actions";
@@ -14,7 +14,7 @@ const useHelper = () => {
   const dispatch = useDispatch();
   const validate = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
-  const school = useSelector((state: IState) => state.userSchool);
+  const [showSidebar, setShowSideBar] = useState<boolean>(false);
 
   useEffect(() => {
     !validate.accessToken && navigate("/login");
@@ -30,6 +30,10 @@ const useHelper = () => {
       : navigate("/login");
   }, [navigate, validate, dispatch, validate.accessToken]);
 
+  const handleShow = () => {
+    setShowSideBar(!showSidebar);
+  };
+
   /*   axios.interceptors.request.use(async (config: any) => {
     const decodedToken: any = jwt_decode<JwtPayload>(validate.accessToken);
     let currentDate = new Date();
@@ -38,7 +42,7 @@ const useHelper = () => {
     }
   }); */
 
-  return { validate, location, school };
+  return { validate, location, showSidebar, handleShow };
 };
 
 export default useHelper;

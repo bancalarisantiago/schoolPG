@@ -59,6 +59,7 @@
 .pic {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   position: relative;
 }
 
@@ -99,4 +100,19 @@
   background: url("../../../assets/settings.png");
   background-size: contain;
   background-position: center;
+}
+
+.menu {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 6.7rem;
+  top: 14px;
+  cursor: pointer;
+}
+
+@media (min-width: 1080px) {
+  .menu {
+    display: none;
+  }
 }
