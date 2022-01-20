@@ -15,12 +15,11 @@ import {
 
 const useHelper = () => {
   const dispatch = useDispatch();
-
-  const school = useSelector((state: IState) => state.userSession);
+  const userSession = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!school.id) navigate("/panel/general");
+    if (!userSession.id) navigate("/panel/general");
   }, []);
 
   const [location, setLocation] = useState<Location>({
@@ -42,7 +41,6 @@ const useHelper = () => {
   });
 
   const handleInputChange = (e: any) => {
-    console.log(e.target.name, e.target.value);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -59,7 +57,15 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    dispatch(createSchool({ ...input, userId: school.user._id }));
+    dispatch(
+      createSchool({
+        createSchool: {
+          ...input,
+          userId: userSession.user._id,
+        },
+        accessToken: userSession.accessToken,
+      })
+    );
     navigate("/login");
   };
   // $ npm install @emailjs/browser --save

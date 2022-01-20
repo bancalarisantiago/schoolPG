@@ -21,22 +21,26 @@ const schemaCourse = new Schema({
   subjects: {
     type: [{ type: Schema.Types.ObjectId, ref: "Subject" }],
   },
-  classes: [{
-    date: {
-      type: String,
+  classes: [
+    {
+      date: {
+        type: String,
+      },
+      attendance: [
+        {
+          name: {
+            type: String,
+          },
+          attended: {
+            type: Boolean,
+          },
+          late: {
+            type: Boolean,
+          },
+        },
+      ],
     },
-    attendance: [{
-        name: {
-          type: String,
-        },
-        attended: {
-          type: Boolean,
-        },
-        late: {
-          type: Boolean,
-        }
-    }]
-  }]
+  ],
 });
 
 const Course = mongoose.model<ICourse>("Course", schemaCourse);

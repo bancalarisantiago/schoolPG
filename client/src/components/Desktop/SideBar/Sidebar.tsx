@@ -12,8 +12,15 @@ import { NavLink } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 
 const Sidebar: React.FC = () => {
-  const { show, underline, school, ctime, handleUnderline, handleClick } =
-    useHelper();
+  const {
+    show,
+    underline,
+    school,
+    ctime,
+    handleUnderline,
+    handleClick,
+    logOut,
+  } = useHelper();
   var d = new Date().toLocaleDateString();
   return (
     <div className={styles.sidebar}>
@@ -24,13 +31,21 @@ const Sidebar: React.FC = () => {
       </div>
 
       <div className={styles.logoDiv}>
-        {!school.logo ? (
-          <Spinner />
+        {school ? (
+          !school.logo ? (
+            <Spinner />
+          ) : (
+            <img src={school.logo} alt="logo" className={styles.logo} />
+          )
         ) : (
-          <img src={school.logo} alt="logo" className={styles.logo} />
+          <Spinner />
         )}
       </div>
-      <p className={styles.schoolname}>{school.name}</p>
+      {school ? (
+        <p className={styles.schoolname}>{school.name}</p>
+      ) : (
+        <p className={styles.schoolname}>Nombre De La Institucion</p>
+      )}
 
       <ul>
         <NavLink to="general">
@@ -235,6 +250,9 @@ const Sidebar: React.FC = () => {
             </li>
           </NavLink>
         </ul>
+        <li className={styles.management} onClick={logOut}>
+          Cerrar Sesión
+        </li>
       </ul>
     </div>
   );

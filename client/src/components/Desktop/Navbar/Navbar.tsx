@@ -11,16 +11,26 @@ const Navbar: React.FC<{ location: String; validate: any }> = ({
     <div className={styles.header}>
       <div className={styles.name}>
         {location.split("/").map((m: string, i: number) => {
-            return i !== 0 ? (
+          return i !== 0 ? (
+            i < 3 ? (
               i === 1 ? (
-                <p className={styles.route}> {m} </p>
+                <p className={styles.route} key={i}>
+                  {" "}
+                  {m}{" "}
+                </p>
               ) : (
-                <p className={styles.reRoute}> {decodeURI(m)} </p>
+                <p className={styles.reRoute} key={i}>
+                  {" "}
+                  {m}{" "}
+                </p>
               )
             ) : (
               ""
-            );
-          })}
+            )
+          ) : (
+            ""
+          );
+        })}
       </div>
 
       <div className={styles.options}>

@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //interfaces
 import { IStudentForm, SubmitEvent, IState } from "../../../interfaces";
-
+//actions
 import { createUser } from "../../../redux/actions";
 
 const useHelper = () => {
   const dispatch = useDispatch();
   const userSchool = useSelector((state: IState) => state.userSchool);
-
+  const userSession = useSelector((state: IState) => state.userSession);
   const [name, setName] = useState({
     first: "",
     last: "",
@@ -42,13 +42,15 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
+    const student = {
+      ...input,
+      name,
+      password: input.document,
+      schoolId: userSchool._id,
+    };
 
     dispatch(
-      createUser({
-        ...input,
-        password: input.document,
-        schoolId: userSchool._id,
-      })
+      createUser({ createUser: student, accessToken: userSession.accessToken })
     );
 
     setName({ first: "", last: "" });
@@ -61,6 +63,7 @@ const useHelper = () => {
       userType: "student",
       password: "",
     });
+    alert("El alumno fue creado con exito");
   };
 
   return {

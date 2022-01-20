@@ -13,5 +13,5 @@ router.post("/login", login);
 
 //private route
 router.post("/logout", logout);
-//router.post("/logout",tokenValidation, logout);
+
 export default router;

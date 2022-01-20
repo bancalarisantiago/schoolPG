@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import {Login, Panel, CreateSchool,AddStudent,UpdateStudent, AddTeacher, UpdateTeacher, AddAdmin,
   UpdateAdmin, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
   SchoolInfo, Error, Profile, UserDetail, }  from ".//routsApp"; 
+
 //Modal.setAppElement("#root")
 
 const App: React.FC = () => {
@@ -28,13 +29,37 @@ const App: React.FC = () => {
           <Route path="general" element={<SchoolInfo />} />
 
           <Route path="agregar-alumno" element={<AddStudent />} />
-          <Route path="modificar-alumno" element={<UpdateStudent />} />
+          <Route
+            path="modificar-alumno"
+            element={
+              <UpdateComponent
+                userType={"estudiantes"}
+                schoolType={"students"}
+              />
+            }
+          />
 
           <Route path="agregar-profesor" element={<AddTeacher />} />
-          <Route path="modificar-profesor" element={<UpdateTeacher />} />
+          <Route
+            path="modificar-profesor"
+            element={
+              <UpdateComponent
+                userType={"profesores"}
+                schoolType={"teachers"}
+              />
+            }
+          />
 
           <Route path="agregar-admin" element={<AddAdmin />} />
-          <Route path="modificar-admin" element={<UpdateAdmin />} />
+          <Route
+            path="modificar-admin"
+            element={
+              <UpdateComponent
+                userType={"administradores"}
+                schoolType={"admins"}
+              />
+            }
+          />
 
           <Route path="agregar-curso" element={<AddCourse />} />
           <Route path="modificar-curso" element={<UpdateCourse />} />

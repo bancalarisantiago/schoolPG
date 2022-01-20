@@ -11,25 +11,21 @@ import {
   deleteUserById,
   addUserToSchool,
   addUserToCourse,
-  addRelationTutorChild,
 } from "../controllers/cUsers";
 import { tokenValidation } from "../libs/verifyToken/verifyToken";
 
 const router = Router();
 
 //private routes
+router.get("/user/:id", tokenValidation, getUserById);
+router.post("/user/search", tokenValidation, getUserBy);
+router.post("/user", tokenValidation, createUser);
+router.put("/user/:id", tokenValidation, updateUser);
+
+//non private routes
 router.get("/user", getUsers);
-router.get("/user/:id", getUserById);
-router.post("/user/search", getUserBy);
 router.delete("/user/:id", deleteUserById);
-router.post("/user", createUser);
-//router.put("/user/relationTutorToChild", addRelationTutorChild)
-router.put("/user/:id", updateUser);
 router.put("/user/school/:schoolId/:userId", addUserToSchool);
 router.put("/user/course/:courseId/:userId", addUserToCourse);
 
-/* router.get("/user",tokenValidation, getUsers);
-router.post("/user",tokenValidation, createUser);
-router.put("/user/school",tokenValidation, addUserToSchool);
-router.put("/user/course",tokenValidation, addUserToCourse); */
 export default router;
