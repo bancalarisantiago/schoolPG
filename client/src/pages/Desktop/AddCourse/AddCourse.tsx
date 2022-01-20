@@ -18,11 +18,10 @@ const AddCourse: React.FC = () => {
     handleSearch,
     handleRefresh,
     handleDelete,
-    subjects,
+    errors,
+    school,
     state,
     stateDni,
-    student,
-    teachers,
     list,
   } = useHelper();
 
@@ -43,8 +42,10 @@ const AddCourse: React.FC = () => {
                   value={state.name}
                   onChange={handleInputChange}
                 />
+              {
+                errors.name && (<p className={styles.errorsP}>{errors.name}</p>)
+              }
               </div>
-
               <div className={styles.input}>
                 <Input
                   placeholder="Turnos"
@@ -53,8 +54,11 @@ const AddCourse: React.FC = () => {
                   value={state.shifts}
                   onChange={(e: any) => handleInputChange(e)}
                 />
+              {
+                errors.shifts && (<p className={styles.errorsP}>{errors.shifts}</p>)
+              }
               </div>
-              <Button text="Añadir Curso" />
+              <Button text="Añadir Curso" disabled={errors.button}/>
             </form>
           </div>
 
@@ -76,16 +80,17 @@ const AddCourse: React.FC = () => {
                   <button className={styles.buttTag}>Buscar</button>
                 </div>
               </form>
-
+              
               <div className={styles.selectCont}>
                 <select
                   name="Students"
                   id="Students"
+                  defaultValue={"default"}
                   onChange={handleSelect}
                   className={styles.selectTag}
                 >
-                  <option value="">Estudiantes</option>
-                  {student.map((e: any) => (
+                  <option value="default" disabled>Estudiantes</option>
+                  {school.students && school.students.map((e: any) => (
                     <option key={e._id} value={e._id}>
                       {e.name.first} {e.name.last}
                     </option>
@@ -123,11 +128,12 @@ const AddCourse: React.FC = () => {
                 <select
                   name="Teachers"
                   id="Teachers"
+                  defaultValue={"default"}
                   onChange={handleSelectTeacher}
                   className={styles.selectTag2}
                 >
                   <option value="default" disabled>Profesores</option>
-                  {teachers.map((e: any) => (
+                  {school.teachers && school.teachers.map((e: any) => (
                     <option key={e._id} value={e._id}>
                       {e.name.first} {e.name.last}
                     </option>
@@ -158,12 +164,13 @@ const AddCourse: React.FC = () => {
               <div className={styles.selectTeacher}>
                 <select
                   name="Subjects"
+                  defaultValue={"default"}
                   id="Subjects"
                   onChange={handleSelectSubjects}
                   className={styles.selectTag2}
                 >
                   <option value="default" disabled>Materias</option>
-                  {subjects.map((e: any) => (
+                  {school.subjects && school.subjects.map((e: any) => (
                     <option key={e._id} value={e._id}>
                       {e.name}
                     </option>

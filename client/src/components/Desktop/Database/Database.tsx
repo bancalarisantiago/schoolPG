@@ -15,9 +15,8 @@ const Database: React.FC<{
   userType: string;
   schoolType: string;
   updateUser?: any;
-
 }> = ({ school, userType, schoolType, updateUser }) => {
-  const { user, matchUsers, handleChange } = useHelper(schoolType);
+  const { user, matchUsers, handleChange, confirmDelete } = useHelper(schoolType);
 
   return (
     <div className={styles.database}>
@@ -59,12 +58,11 @@ const Database: React.FC<{
               <p className={styles.cellphone}>{m.cellphone}</p>
 
               <div>
-                <img src={edit} alt="editInfo" className={styles.userInfo} />
+                <img src={edit} alt="editInfo" className={styles.userInfo} onClick={() => updateUser(m)}/>
                 <NavLink to={`/panel/detalle-usuario/${m._id}`}>
                   <img src={info} alt="userInfo" className={styles.userInfo} />
                 </NavLink>
-
-                <img src={trash} alt="trashUser" className={styles.userInfo} onClick={() => updateUser(m)}/>
+                  <img src={trash} id={`${m.name.first} ${m.name.last}/${m._id}`} alt="trash-user" className={styles.userInfo} onClick={confirmDelete} />
               </div>
 
             </div>

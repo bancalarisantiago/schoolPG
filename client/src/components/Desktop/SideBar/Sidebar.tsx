@@ -55,13 +55,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[0] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-alumno">
+          <NavLink to="agregar-alumno">
             <li
               className={underline[0] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="0"
             >
-              añadir alumno
+              agregar alumno
             </li>
           </NavLink>
 
@@ -88,13 +88,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[1] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-profesor">
+          <NavLink to="agregar-profesor">
             <li
               className={underline[2] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="2"
             >
-              añadir profesor
+              agregar profesor
             </li>
           </NavLink>
           <NavLink to="modificar-profesor">
@@ -120,13 +120,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[2] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-admin">
+          <NavLink to="agregar-admin">
             <li
               className={underline[4] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="4"
             >
-              añadir admin
+              agregar admin
             </li>
           </NavLink>
           <NavLink to="modificar-admin">
@@ -152,13 +152,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[3] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-curso">
+          <NavLink to="agregar-curso">
             <li
               className={underline[6] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="6"
             >
-              añadir curso
+              agregar curso
             </li>
           </NavLink>
           <NavLink to="modificar-curso">
@@ -184,13 +184,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[4] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-materias">
+          <NavLink to="agregar-materias">
             <li
               className={underline[8] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="8"
             >
-              añadir materias
+              agregar materias
             </li>
           </NavLink>
           <NavLink to="modificar-materias">
@@ -216,13 +216,13 @@ const Sidebar: React.FC = () => {
           />
         </li>
         <ul className={show[5] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="añadir-evento">
+          <NavLink to="agregar-evento">
             <li
               className={underline[10] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="10"
             >
-              añadir evento
+              agregar evento
             </li>
           </NavLink>
           <NavLink to="modificar-calendario">

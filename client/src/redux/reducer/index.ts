@@ -8,7 +8,8 @@ import {
   GET_USERS,
   GET_USER_BY_DNI,
   GET_SUBJECTS,
-  PUT_USER 
+  PUT_USER,
+  DELETE_USER_BY_ID
 } from "../actions";
 
 
@@ -17,12 +18,9 @@ export const initialState: IState = {
   userSession: {},
   userSchool: {},
   matchUsers: {},
+  backupData:[],
+  courses:[],
   userDetail: {},
-  students: [],
-  teachers: [],
-  backupData: [],
-  courses: [],
-  subjects: [],
 };
 const cases: any = {};
 
@@ -64,6 +62,12 @@ cases[GET_USERS] = (initialState: IState, payload: any) => {
     teachers: payload.filter((e: any) => e.userType === "teacher"),
   };
 };
+
+cases[DELETE_USER_BY_ID] = (initialState: IState, payload: any) => {
+  return {
+    ...initialState
+  }
+}
 
 cases[GET_USER_BY_DNI] = (initialState: IState, payload: any) => {
   const toFilter = initialState.backupData;
