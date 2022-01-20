@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 //components
 import Spinner from "../Spinner/Spinner";
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
   const {
     show,
     underline,
@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
   } = useHelper();
   var d = new Date().toLocaleDateString();
   return (
-    <div className={styles.sidebar}>
+    <div className={showSidebar ? styles.sidebarShow : styles.sidebar}>
       <h2 className={styles.title}>Panel de Administracion</h2>
       <div className={styles.datehour}>
         <span className={styles.date}>{d}</span>
