@@ -27,7 +27,11 @@ export const getUsers = async (req: Request, res: Response) => {
 
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const populateQuery = [{ path: "course", model: "Course" }];
+  const populateQuery = [
+    { path: "course", model: "Course" },
+    { path: "subject", model: "Subject" },
+    { path: "school", model: "School" },
+  ];
   try {
     const user = await User.findById(id).populate(populateQuery).lean();
 
@@ -51,6 +55,7 @@ export const createUser = async (req: Request, res: Response) => {
     phone,
     cellphone,
     picture,
+    tutors,
     schoolId,
     courses,
     subject,
@@ -69,6 +74,7 @@ export const createUser = async (req: Request, res: Response) => {
       phone,
       cellphone,
       picture,
+      tutors,
     });
 
     newUser.password = await newUser.encryptPassword(password);

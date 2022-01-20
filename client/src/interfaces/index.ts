@@ -10,6 +10,7 @@ export interface IState {
   userSession: any;
   userSchool: any;
   matchUsers: any;
+  userDetail: any;
   students: any[];
   teachers: any[];
   backupData: any[];
@@ -101,6 +102,19 @@ export interface ITeacherForm {
   subject?: any;
 }
 
+export interface ISubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+}
+
+export interface ICreateSubject {
+  name: string;
+  courses: any[];
+  teachers: any[];
+  schoolId: string;
+}
+
 export interface ICreateStudent {}
 
 export interface ICreateAdmin {}
@@ -111,7 +125,6 @@ interface ILocation {
   locality: string;
   postalCode: string;
 }
-
 
 export interface IUserForm {
   name: Fullname;
@@ -129,3 +142,6 @@ export interface IUserSubmit{
   user: IUserForm,
   id: string
 }
+
+export interface ICreateUser {}
+

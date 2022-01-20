@@ -1,19 +1,24 @@
 //css
 import styles from "./Database.module.css";
+//from modules
+import { NavLink } from "react-router-dom";
 //helper
 import useHelper from "./useHelper";
 //assets
 import userDefault from "../../../assets/user.png";
 import info from "../../../assets/info.png";
+import edit from "../../../assets/edit.png";
+import trash from "../../../assets/delete.png";
 
 const Database: React.FC<{
   school: any;
   userType: string;
   schoolType: string;
   updateUser?: any;
+
 }> = ({ school, userType, schoolType, updateUser }) => {
-  const { user, matchUsers, show, handleChange, handleShow } =
-    useHelper(schoolType);
+  const { user, matchUsers, handleChange } = useHelper(schoolType);
+
   return (
     <div className={styles.database}>
       <div className={styles.header}>
@@ -29,40 +34,39 @@ const Database: React.FC<{
           <p className={styles.pname}>nombre</p>
           <p className={styles.pemail}>correo electronico</p>
           <p className={styles.ptel}>telefono</p>
+          <p className={styles.ptel}>acciones</p>
         </div>
         {!user.length ? (
           school[schoolType].map((m: any, i: number) => (
-            <div key={i} className={styles.user} onClick={() => updateUser(m)}>
+            <div key={i} className={styles.user} >
               <div className={styles.namepic}>
                 <img
                   src={m.picture ? m.picture : userDefault}
                   alt="profilepic"
                   className={styles.profilepic}
                 />
-                <span className={styles.name} onClick={handleShow}>
-                  {m.name.first} {m.name.last}
-                  <img src={info} alt="userInfo" className={styles.userInfo} />
-                </span>
+                <NavLink
+                  to={`/panel/detalle-usuario/${m._id}`}
+                  className={styles.navLink}
+                >
+                  <span className={styles.name}>
+                    {m.name.first} {m.name.last}
+                  </span>
+                </NavLink>
               </div>
 
               <p className={styles.email}>{m.email}</p>
               <p className={styles.cellphone}>{m.cellphone}</p>
-              {/* <img src={edit} alt="edit" /> */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                width="24"
-                height="24"
-                className={"feather feather-edit"}
-              >
-                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-              </svg>
+
+              <div>
+                <img src={edit} alt="editInfo" className={styles.userInfo} />
+                <NavLink to={`/panel/detalle-usuario/${m._id}`}>
+                  <img src={info} alt="userInfo" className={styles.userInfo} />
+                </NavLink>
+
+                <img src={trash} alt="trashUser" className={styles.userInfo} onClick={() => updateUser(m)}/>
+              </div>
+
             </div>
           ))
         ) : (
