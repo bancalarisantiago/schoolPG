@@ -15,6 +15,5 @@ export const tokenValidation = (
 
   const payload = jwt.verify(token, "token de minima seguridad") as IPayload;
 
-  req.userId = payload._id;
   next();
 };

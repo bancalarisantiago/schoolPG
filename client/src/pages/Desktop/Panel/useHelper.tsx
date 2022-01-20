@@ -1,9 +1,11 @@
 //from modules
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSchoolById } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
+/* import jwt_decode, { JwtPayload } from "jwt-decode";
+import axios from "axios"; */
 //types
 import { IState } from "../../../interfaces";
 
@@ -19,9 +21,22 @@ const useHelper = () => {
     validate.accessToken
       ? !validate.user.school
         ? navigate("/panel")
-        : dispatch(getSchoolById(validate.user.school))
+        : dispatch(
+            getSchoolById({
+              schoolId: validate.user.school,
+              accessToken: validate.accessToken,
+            })
+          )
       : navigate("/login");
   }, [navigate, validate, dispatch, validate.accessToken]);
+
+  /*   axios.interceptors.request.use(async (config: any) => {
+    const decodedToken: any = jwt_decode<JwtPayload>(validate.accessToken);
+    let currentDate = new Date();
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
+      dispatch(refreshToken(validate.refreshToken));
+    }
+  }); */
 
   return { validate, location, school };
 };

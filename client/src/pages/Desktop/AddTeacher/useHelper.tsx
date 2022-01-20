@@ -1,18 +1,14 @@
-
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ITeacherForm, SubmitEvent } from "../../../interfaces";
 import { IState } from "../../../interfaces/index";
 import { createUser } from "../../../redux/actions";
 
-
 const useHelper = () => {
   const dispatch = useDispatch();
 
-  const userSchool: any = useSelector<IState>(
-    (state: IState) => state.userSchool
-  );
-
+  const userSchool = useSelector((state: IState) => state.userSchool);
+  const userSession = useSelector((state: IState) => state.userSession);
   const [name, setName] = useState({
     first: "",
     last: "",
@@ -89,7 +85,9 @@ const useHelper = () => {
         .map((m: any) => m.name === event.target.value)
         .includes(true)
     ) {
-      let copy = input.subject.filter((g: any) => g.name !== event.target.value);
+      let copy = input.subject.filter(
+        (g: any) => g.name !== event.target.value
+      );
       setInput({ ...input, subject: copy });
     }
   }
@@ -97,10 +95,13 @@ const useHelper = () => {
     e.preventDefault();
     const teacher = {
       ...input,
+      name,
       password: input.document,
       schoolId: userSchool._id,
     };
-    dispatch(createUser(teacher));
+    dispatch(
+      createUser({ createUser: teacher, accessToken: userSession.accessToken })
+    );
 
     alert("El profesor se creo de manera exitosa");
     setInput({

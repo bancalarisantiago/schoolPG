@@ -10,26 +10,55 @@ import { ICourse } from "../models/Course/ICourse";
 import Course from "../models/Course/Course";
 import Subject from "../models/Subject/Subject";
 import School from "../models/School/School";
+import User from "../models/User/User";
 
 export const createCourse = async (req: Request, res: Response) => {
   const { name, shifts, students, teachers, subjects, schoolId }: ICourse =
     req.body;
-  console.log(schoolId);
   try {
     const newCourse = new Course({
       name,
       shifts,
-      students,
-      teachers,
-      subjects,
+      students: students.map((m: any) => new toId(m)),
+      teachers: teachers.map((m: any) => new toId(m)),
+      subjects: subjects.map((m: any) => new toId(m)),
     });
     newCourse.save();
-
-    const school = await School.findByIdAndUpdate(new toId(schoolId), {
+    await School.findByIdAndUpdate(new toId(schoolId), {
       $push: {
         courses: new toId(newCourse._id),
       },
     });
+
+    students && teachers
+      ? [students, teachers].flat().forEach(
+          async (m: any) =>
+            await User.findByIdAndUpdate(new toId(m), {
+              course: new toId(newCourse._id),
+              subject: subjects
+                ? subjects.length
+                  ? subjects.map((m: any) => new toId(m))
+                  : []
+                : [],
+            })
+        )
+      : [];
+
+    subjects
+      ? subjects.length
+        ? subjects.forEach(
+            async (m: any) =>
+              await Subject.findByIdAndUpdate(new toId(m), {
+                teachers: teachers
+                  ? teachers.length
+                    ? teachers.map((m: any) => new toId(m))
+                    : []
+                  : [],
+                courses: new toId(newCourse._id),
+              })
+          )
+        : []
+      : [];
 
     res.status(200).json(newCourse);
   } catch (error: any) {

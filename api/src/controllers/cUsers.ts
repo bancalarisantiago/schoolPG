@@ -62,7 +62,7 @@ export const createUser = async (req: Request, res: Response) => {
   } = req.body;
   try {
     const newUser: IUser = new User({
-      name,
+      name: { first: name.first, last: name.last + " " },
       userType,
       gender,
       location,
@@ -169,7 +169,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: "Event not found" });
     }
     const userDeleted = await user.delete();
-   return res.status(200).json(userDeleted);
+    return res.status(200).json(userDeleted);
   } catch (error) {
     console.log(error);
     res.status(404).json(error);

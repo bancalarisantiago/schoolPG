@@ -8,7 +8,6 @@ import defaultPic from "../../../assets/user.png";
 
 const UserDetail: React.FC = () => {
   const { userDetail, userTypeEs } = useHelper();
-  console.log(userDetail);
   return (
     <div className={styles.main}>
       {userDetail.name ? (
@@ -76,10 +75,8 @@ const UserDetail: React.FC = () => {
                 {userDetail.subject.length ? (
                   userDetail.subject.map((m: any, i: number) => {
                     return (
-                      <ul className={styles.list}>
-                        <li className={styles.liTag} key={i}>
-                          {m.name}
-                        </li>
+                      <ul className={styles.list} key={i}>
+                        <li className={styles.liTag}>{m.name}</li>
                       </ul>
                     );
                   })
