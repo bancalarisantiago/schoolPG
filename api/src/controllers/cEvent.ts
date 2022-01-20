@@ -1,5 +1,7 @@
-import { Response, Request } from "express"
-import Event from "../models/Event/Event"
+import { Response, Request } from "express";
+import { Types } from "mongoose";
+import Event from "../models/Event/Event";
+const toId = Types.ObjectId;
 
 export const getAllEvents = async (req: Request,res: Response) => {
         try {
@@ -15,11 +17,19 @@ export const getAllEvents = async (req: Request,res: Response) => {
 }
 
 export const createEvent = async (req: Request,res: Response) => {
-        const event = new Event(req.body);
-
+        const {user, title, start, end} = req.body
+            console.log(title)
         try{ 
-            const newEvent = await event.save();
-            res.status(200).json(newEvent)
+
+            // const newEvent = new Event({
+            //     user: new toId(user),
+            //     title,
+            //     start,
+            //     end
+            // })
+            // console.log(newEvent)
+            // newEvent.save();
+            // res.status(200).json(newEvent)
 
         } catch (error) {
             console.log(error);
