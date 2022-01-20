@@ -44,15 +44,14 @@ const useHelper = (schoolType: string, textInput?: any) => {
 
   const matchUsers = useSelector((state: IState) => state.matchUsers);
 
-  async function confirmDelete(id: string, first: string, last: string) {
-    if (window.confirm(`Desea eliminar a ${first} ${last}? `) === true) {
-      let erase = "El usuario ha sido eliminado de la base datos";
-      dispatch(
-        deleteUserById({ id: id, accessToken: userSession.accessToken })
-      );
-      alert(erase);
-    }
-    dispatch(getSchoolById(userSchool._id));
+ async function confirmDelete (id: any, first: any, last: any) {
+
+    if(window.confirm(`Desea eliminar a ${first} ${last}? `) === true) {
+      let  erase = "El usuario ha sido eliminado de la base datos"
+      dispatch(deleteUserById(id))
+      alert(erase)
+    } 
+    dispatch(getSchoolById(userSchool._id))
   }
 
   return { user, matchUsers, handleChange, confirmDelete };
