@@ -85,21 +85,29 @@ const useHelper = () => {
     setInput({ ...input });
   };
 
-  function handleDelete(el: any) {
-    setInput({
-      ...input,
-      courses: input.courses.filter((curs) => curs !== el),
-    });
+  function deleteFromList(event: any) {
+    if (
+      input.courses
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
+      let copy = input.courses.filter(
+        (p: any) => p.name !== event.target.value
+      );
+      setInput({ ...input, courses: copy });
+    }
+    if (
+      input.teachers
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
+      let copy = input.teachers.filter((g: any) => g.name !== event.target.value);
+      setInput({ ...input, teachers: copy });
+    }
   }
 
+
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setError(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
     dispatch(
       createSubject({
         createSubject: { ...input, schoolId: userSchool._id },
@@ -120,7 +128,7 @@ const useHelper = () => {
     handleInputChange,
     handleSelect,
     input,
-    handleDelete,
+    deleteFromList,
     userSchool,
     errors,
   };
