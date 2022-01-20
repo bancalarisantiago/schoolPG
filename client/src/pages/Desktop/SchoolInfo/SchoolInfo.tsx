@@ -8,7 +8,8 @@ import Loading from "../../../components/Desktop/ReusableComponents/Loading/Load
 
 const SchoolInfo: React.FC = () => {
   const { school, totalUsers } = useHelper();
-  if (school.name)
+  // if(school)
+  if (school && school.name)
     return (
       <div className={styles.main}>
         <div className={styles.info}>
@@ -52,6 +53,7 @@ const SchoolInfo: React.FC = () => {
         <Loading />
       </div>
     );
+  // else return <></>
 };
 
 export default SchoolInfo;

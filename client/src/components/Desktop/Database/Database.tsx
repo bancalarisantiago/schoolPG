@@ -16,7 +16,8 @@ const Database: React.FC<{
   schoolType: string;
   updateUser?: any;
 }> = ({ school, userType, schoolType, updateUser }) => {
-  const { user, matchUsers, handleChange, confirmDelete } = useHelper(schoolType);
+  const { user, matchUsers, handleChange, confirmDelete } =
+    useHelper(schoolType);
 
   return (
     <div className={styles.database}>
@@ -37,7 +38,7 @@ const Database: React.FC<{
         </div>
         {!user.length ? (
           school[schoolType].map((m: any, i: number) => (
-            <div key={i} className={styles.user} >
+            <div key={i} className={styles.user}>
               <div className={styles.namepic}>
                 <img
                   src={m.picture ? m.picture : userDefault}
@@ -58,13 +59,20 @@ const Database: React.FC<{
               <p className={styles.cellphone}>{m.cellphone}</p>
 
               <div>
-                <img src={edit} alt="editInfo" className={styles.userInfo} onClick={() => updateUser(m)}/>
+                <NavLink to={`/panel/modificar-alumno/${m._id}`}>
+                  <img src={edit} alt="editInfo" className={styles.userInfo} />
+                </NavLink>
                 <NavLink to={`/panel/detalle-usuario/${m._id}`}>
                   <img src={info} alt="userInfo" className={styles.userInfo} />
                 </NavLink>
-                  <img src={trash} id={`${m.name.first} ${m.name.last}/${m._id}`} alt="trash-user" className={styles.userInfo} onClick={confirmDelete} />
+                <img
+                  src={trash}
+                  id={`${m.name.first} ${m.name.last}/${m._id}`}
+                  alt="trash-user"
+                  className={styles.userInfo}
+                  onClick={confirmDelete}
+                />
               </div>
-
             </div>
           ))
         ) : (
@@ -85,6 +93,28 @@ const Database: React.FC<{
 
                   <p className={styles.email}>{m.email}</p>
                   <p className={styles.cellphone}>{m.cellphone}</p>
+                  <div>
+                    <img
+                      src={edit}
+                      alt="editInfo"
+                      className={styles.userInfo}
+                      onClick={() => updateUser(m)}
+                    />
+                    <NavLink to={`/panel/detalle-usuario/${m._id}`}>
+                      <img
+                        src={info}
+                        alt="userInfo"
+                        className={styles.userInfo}
+                      />
+                    </NavLink>
+                    <img
+                      src={trash}
+                      id={`${m.name.first} ${m.name.last}/${m._id}`}
+                      alt="trash-user"
+                      className={styles.userInfo}
+                      onClick={confirmDelete}
+                    />
+                  </div>
                 </div>
               ))
             ) : (

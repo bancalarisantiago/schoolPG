@@ -89,9 +89,15 @@
 
   /* border: 1px solid black; */
   padding: 16px;
+  opacity: 0.5;
 }
 
 .errorsP {
   font-size: xx-small;
   color: var(--red-palette-intensity9);
+}
+
+.inputAndPopover {
+  display: flex;
+  align-items: center;
 }

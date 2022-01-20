@@ -24,13 +24,22 @@ const Sidebar: React.FC = () => {
       </div>
 
       <div className={styles.logoDiv}>
-        {!school.logo ? (
-          <Spinner />
+        {school ? (
+          !school.logo ? (
+            <Spinner />
+          ) : (
+            <img src={school.logo} alt="logo" className={styles.logo} />
+          )
         ) : (
-          <img src={school.logo} alt="logo" className={styles.logo} />
+          <Spinner />
         )}
       </div>
-      <p className={styles.schoolname}>{school.name}</p>
+
+      {school ? (
+        <p className={styles.schoolname}>{school.name}</p>
+      ) : (
+        <p className={styles.schoolname}>Nombre de Escuela</p>
+      )}
 
       <ul>
         <NavLink to="general">

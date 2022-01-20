@@ -31,10 +31,12 @@ import Profile from "./pages/Desktop/Profile/Profile";
 import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 
 //Modal.setAppElement("#root")
+import appHelper from "./appHelper";
+import Database from "./components/Desktop/Database/Database";
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
-
+  const { school } = appHelper();
   return (
     <div className={styles.main}>
       <Routes>
@@ -48,7 +50,17 @@ const App: React.FC = () => {
           <Route path="general" element={<SchoolInfo />} />
 
           <Route path="agregar-alumno" element={<AddStudent />} />
-          <Route path="modificar-alumno" element={<UpdateStudent />} />
+          <Route
+            path="modificar-alumno"
+            element={
+              <Database
+                school={school}
+                userType={"estudiantes"}
+                schoolType={"students"}
+              />
+            }
+          />
+          <Route path="modificar-alumno/:id" element={<UpdateStudent />} />
 
           <Route path="agregar-profesor" element={<AddTeacher />} />
           <Route path="modificar-profesor" element={<UpdateTeacher />} />
