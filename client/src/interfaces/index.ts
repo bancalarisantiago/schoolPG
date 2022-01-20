@@ -1,11 +1,68 @@
-//Actions
-export interface IActions {
-  GET_USER_LOGGED: string;
-}
-
 //Models DB
 
 //Reducer
+
+export interface IFullUser {
+  user: {
+    name: {
+      first: string;
+      last: string;
+    };
+    location?: Location;
+    _id: string;
+    userType: string;
+    gender?: string;
+    birthdate?: string;
+    document: string;
+    username: string;
+    email: string;
+    password: string;
+    phone?: string;
+    cellphone?: string;
+    picture?: string;
+    course?: string[];
+    subject?: string;
+    school?: string;
+    tutors?: [];
+  };
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface ISchool {
+  _id: string;
+  name: string;
+  location: Location;
+  description: string;
+  orientation: string;
+  logo: string;
+  email: string;
+  phone: string;
+  cellphone: string;
+  admins: IFullUser[];
+  students: IFullUser[];
+  teachers: IFullUser[];
+  courses: ICourses[];
+  subjects: ISubject[];
+}
+
+export interface ICourses {
+  _id: string;
+  name: string;
+  shifts: string;
+  students: string[];
+  teachers: string[];
+  subjects: string[];
+  classes: any[];
+}
+
+export interface ISubject {
+  _id?: string;
+  name: string;
+  courses: string[];
+  teachers: string[];
+}
+
 export interface IState {
   userSession: any;
   userSchool: any;
@@ -183,12 +240,6 @@ export interface ITeacherForm {
   userType: string;
   courses?: any;
   subject?: any;
-}
-
-export interface ISubject {
-  name: string;
-  courses: any[];
-  teachers: any[];
 }
 
 interface ILocation {

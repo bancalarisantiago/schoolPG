@@ -30,8 +30,8 @@ export const createCourse = async (req: Request, res: Response) => {
       },
     });
 
-    students && teachers
-      ? [students, teachers].flat().forEach(
+    students
+      ? students.forEach(
           async (m: any) =>
             await User.findByIdAndUpdate(new toId(m), {
               course: new toId(newCourse._id),
@@ -40,6 +40,15 @@ export const createCourse = async (req: Request, res: Response) => {
                   ? subjects.map((m: any) => new toId(m))
                   : []
                 : [],
+            })
+        )
+      : [];
+
+    teachers
+      ? teachers.forEach(
+          async (m: any) =>
+            await User.findByIdAndUpdate(new toId(m), {
+              course: new toId(newCourse._id),
             })
         )
       : [];
