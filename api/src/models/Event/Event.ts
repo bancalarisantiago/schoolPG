@@ -9,19 +9,19 @@ const schemaEvent = new Schema({
     },
     fromTime: {
         type: String,
-        required: true
+       
     },
     tillTime: {
         type: String,
-        required: true
+        
     },
     start: {
         type: String,
-        required: true
+        
     },
     end: {
         type: String,
-        required: true
+        
     },
     user: {
         type: Schema.Types.ObjectId,
