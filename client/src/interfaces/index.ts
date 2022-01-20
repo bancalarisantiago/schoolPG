@@ -116,5 +116,29 @@ export interface ICreateStudent {}
 
 export interface ICreateAdmin {}
 
+interface ILocation {
+  streetNumber: string;
+  streetName: string;
+  locality: string;
+  postalCode: string;
+}
+
+export interface IUserForm {
+  name: Fullname;
+  gender: string;
+  location: ILocation;
+  birthdate: string;
+  document: string;
+  username: string;
+  email: string;
+  password: string;
+  cellphone: string;
+  picture: string;
+}
+export interface IUserSubmit{
+  user: IUserForm,
+  id: string
+}
+
 export interface ICreateUser {}
 

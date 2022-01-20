@@ -8,8 +8,11 @@ import {
   GET_USERS,
   GET_USER_BY_DNI,
   GET_SUBJECTS,
+  PUT_USER,
   DELETE_USER_BY_ID
 } from "../actions";
+
+
 
 export const initialState: IState = {
   userSession: {},
@@ -84,6 +87,11 @@ cases[GET_SUBJECTS] = (initialState: IState, payload: any) => {
   };
 };
 
+cases[PUT_USER] =(initialState:IState) =>{
+  return{
+    ...initialState
+  }
+}
 export default function rootReducer(
   state = initialState,
   { type, payload }: any

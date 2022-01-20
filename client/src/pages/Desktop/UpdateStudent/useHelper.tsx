@@ -1,14 +1,16 @@
+import { userInfo } from "os";
 import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { IState } from "../../../interfaces/index";
+import { useSelector, useDispatch } from "react-redux";
+import { IState, IUserSubmit } from "../../../interfaces/index";
+import { getSchoolById, getUsers, putUser } from "../../../redux/actions";
 
 interface IUTeacherInputs {
   [key: string]: string;
 }
 const inputFieldValues = [
-  { text: "Nombre", name: "name" },
-  { text: "Apellido", name: "lastName" },
-  { text: "Nombre de Usuario", name: "userName" },
+  { text: "Nombre", name: "first" },
+  { text: "Apellido", name: "last" },
+  { text: "Nombre de Usuario", name: "username" },
   { text: "Contraseña", name: "password" },
   { text: "DNI", type: "number", name: "document" },
   { text: "e-mail", name: "email" },
@@ -22,73 +24,58 @@ const inputFieldValues = [
   { text: "Foto", name: "picture" },
 ];
 
+const voidInputs = {
+  first: "",
+  last: "",
+  username: "",
+  password: "",
+  document: "",
+  email: "",
+  streetNumber: "",
+  streetName: "",
+  locality: "",
+  postalCode: "",
+  gender: "",
+  birthdate: "",
+  cellphone: "",
+  picture: "",
+};
 const useHelper = () => {
   const school = useSelector((state: IState) => state.userSchool);
-  const [input, setInput] = useState<IUTeacherInputs>({
-    name: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    document: "",
-    email: "",
-    streetNumber: "",
-    streetName: "",
-    locality: "",
-    postalCode: "",
-    gender: "",
-    birthdate: "1996-11-28",
-    cellphone: "",
-    picture: "",
-  });
+  const [user, setUser] = useState<any>({});
+  const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
   const [searching, setSearching] = useState(true);
-  const [errors, setErrors] = useState<IUTeacherInputs>({
-    name: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    document: "",
-    email: "",
-    streetNumber: "",
-    streetName: "",
-    locality: "",
-    postalCode: "",
-    gender: "",
-    birthdate: "",
-    cellphone: "",
-    picture: "",
-  });
+  const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
   const validate = (input: IUTeacherInputs, name: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const dniPattern = /^\d{8}(?:[-\s]\d{4})?$/;
     console.log("error", errors[name]);
 
     switch (name) {
-      case "name": {
-        let name = "";
-        if (!input.name) name = "Nombre es requerido.";
-        else if (input.name.length < 3)
-          name = "Nombre debe tener mas de 2 letras";
-        return { ...errors, name };
+      case "first": {
+        let first = "";
+        if (!input.first) first = "Nombre es requerido.";
+        else if (input.first.length < 3)
+          first = "Nombre debe tener mas de 2 letras";
+        return { ...errors, first };
       }
-      case "lastName": {
-        let lastName = "";
-        if (!input[name]) lastName = "Apellido es requerido.";
+      case "last": {
+        let last = "";
+        if (!input[name]) last = "Apellido es requerido.";
         else if (input[name].length < 3)
-          lastName = "Apellido debe tener mas de 2 letras";
-        return { ...errors, lastName };
+          last = "Apellido debe tener mas de 2 letras";
+        return { ...errors, last };
       }
-      case "userName": {
-        let userName = "";
-        if (!input.userName) userName = "Nombre de usuario es requerido.";
-        else if (!dniPattern.test(input.userName))
-          userName = "Nombre de usuario no valido";
-        return { ...errors, userName };
+      case "username": {
+        let username = "";
+        if (!input.username) username = "Nombre de usuario es requerido.";
+        return { ...errors, username };
       }
       case "password": {
         let password = "";
         if (!input.password) password = "Contraseña es requerido.";
-        else if (input.password.length < 8 || input.password.length > 15)
-          password = "Contraseña debe tener entre 8 y 15 caracteres";
+        // else if (input.password.length < 8 || input.password.length > 15)
+        //   password = "Contraseña debe tener entre 8 y 15 caracteres";
         return { ...errors, password };
       }
       case "document": {
@@ -127,8 +114,8 @@ const useHelper = () => {
       case "gender": {
         let gender = "";
         if (!input.gender) gender = "Numero de calle es requerido.";
-        else if (input.gender !== "male" && input.gender !== "female")
-          gender = "Genero no valido";
+        // else if (input.gender !== "male" && input.gender !== "female")
+        //   gender = "Genero no valido";
         return { ...errors, gender };
       }
       case "birthdate": {
@@ -139,8 +126,8 @@ const useHelper = () => {
       case "cellphone": {
         let cellphone = "";
         if (!input.cellphone) cellphone = "Numero de celular es requerido.";
-        else if (input.cellphone.length > 10)
-          cellphone = "Numero de celular debe tener menos de 11 digitos";
+        else if (input.cellphone.length > 14)
+          cellphone = "Numero de celular debe tener menos de 15 digitos";
         return { ...errors, cellphone };
       }
       case "picture": {
@@ -155,13 +142,12 @@ const useHelper = () => {
   };
   const handleChange = (e: any) => {
     const { name, value } = e.target;
+    console.log("value", typeof value, value);
+
     setInput({
       ...input,
       [name]: value,
     });
-    console.log("type", typeof value);
-    console.log("school", school);
-
     setErrors(validate({ ...input, [name]: value }, name));
   };
 
@@ -173,15 +159,79 @@ const useHelper = () => {
     else return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
+  const updateUser = (userInfo: any) => {
+    setSearching(false);
+    setUser(userInfo);
+    setInput({
+      first: userInfo.name ? userInfo.name.first : "",
+      last: userInfo.name ? userInfo.name.last : "",
+      username: userInfo.username || "",
+      password: userInfo.password || "",
+      document: userInfo.document || "",
+      email: userInfo.email || "",
+      streetNumber: userInfo.location ? userInfo.location.streetNumber : "",
+      streetName: userInfo.location ? userInfo.location.streetName : "",
+      locality: userInfo.location ? userInfo.location.locality : "",
+      postalCode: userInfo.location ? userInfo.location.postalCode : "",
+      gender: userInfo.gender || "",
+      birthdate: userInfo.birthdate || "",
+      cellphone: userInfo.cellphone || "",
+      picture: userInfo.picture || "",
+    });
+  };
+  const getBack = () => {
+    setInput(voidInputs);
+    setErrors(voidInputs);
+    setSearching(true);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const userSubmit: IUserSubmit = {
+      user: {
+        name: {
+          first: input.first,
+          last: input.last,
+        },
+        username: input.username,
+        password: input.password,
+        document: input.document,
+        email: input.email,
+        location: {
+          streetNumber: input.streetNumber,
+          streetName: input.streetName,
+          locality: input.locality,
+          postalCode: input.postalCode,
+        },
+        gender: input.gender,
+        birthdate: input.birthdate,
+        cellphone: input.cellphone,
+        picture: input.picture,
+      },
+      id: user._id,
+    };
+    await dispatch(putUser(userSubmit));
+    await dispatch(getSchoolById(user.school));
+    console.log("user", user);
+    console.log("userS", userSubmit);
+
+    getBack();
+  };
   return {
     inputFieldValues,
     handleChange,
     disabled,
     errors,
     searching,
-    setSearching,
+    getBack,
     input,
     school,
+    updateUser,
+    user,
+    handleSubmit,
   };
 };
 

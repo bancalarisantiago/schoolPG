@@ -7,9 +7,9 @@ import {
   ICredential,
   ISchoolId,
   IUser,
+  IUserSubmit,
   ICreateUser,
   ICreateSubject
-
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -26,6 +26,7 @@ export const CREATE_COURSE = "CREATE_COURSE";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
 export const GET_SUBJECTS = "GET_SUBJECTS";
+export const PUT_USER = 'PUT_USER'
 
 export const getUserByLogin =
   (payload: ICredential) => async (dispatch: Dispatch) => {
@@ -157,7 +158,22 @@ export const createUser = (payload: ICreateUser) => async () => {
   await instance.post("/user", payload);
 };
 
+export const putUser =
+  (payload: IUserSubmit) => async (dispatch: Dispatch) => {
+    try{
+      const r = await instance.put(`/user/${payload.id}`, payload.user);
+
+      dispatch({
+        type: PUT_USER,
+      });
+    }catch (error) {
+      console.log(error);
+    }
+    
+  };
+
 export const createSubject = (payload: ICreateSubject) => async () => {
   const r = await instance.post("/subject", payload);
 }
+
 
