@@ -62,7 +62,9 @@ const Database: React.FC<{
                 <NavLink to={`/panel/detalle-usuario/${m._id}`}>
                   <img src={info} alt="userInfo" className={styles.userInfo} />
                 </NavLink>
-                  <img src={trash} id={`${m.name.first} ${m.name.last}/${m._id}`} alt="trash-user" className={styles.userInfo} onClick={confirmDelete} />
+                  <img src={trash}  alt="trash-user" 
+                  className={styles.userInfo} 
+                  onClick={() => confirmDelete(m.id,m.name.first,m.name.last )} />
               </div>
 
             </div>
@@ -85,6 +87,15 @@ const Database: React.FC<{
 
                   <p className={styles.email}>{m.email}</p>
                   <p className={styles.cellphone}>{m.cellphone}</p>
+                  <div>
+                    <img src={edit} alt="editInfo" className={styles.userInfo} />
+                    <NavLink to={`/panel/detalle-usuario/${m._id}`}>
+                      <img src={info} alt="userInfo" className={styles.userInfo} />
+                    </NavLink>
+                      <img src={trash} alt="trash-user" 
+                      className={styles.userInfo} 
+                      />
+                  </div>
                 </div>
               ))
             ) : (
