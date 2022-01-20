@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 //import Modal from "react-modal"
 
 //pages
-import {Login, Panel, CreateSchool,AddStudent,UpdateStudent, AddTeacher, UpdateTeacher, AddAdmin,
-  UpdateAdmin, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
+import {Login, Panel, CreateSchool,AddStudent, AddTeacher, AddAdmin,
+  UpdateComponent, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
   SchoolInfo, Error, Profile, UserDetail, }  from ".//routsApp"; 
 
 //Modal.setAppElement("#root")
