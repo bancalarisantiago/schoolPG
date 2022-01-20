@@ -56,7 +56,18 @@ const useHelper = () => {
     const { value } = e.currentTarget;
     setUnderline(underline.map((m, i) => (i === value ? !m : false)));
   };
-  return { show, underline, school, ctime, handleUnderline, handleClick };
+
+  const logOut = () => {};
+
+  return {
+    show,
+    underline,
+    school,
+    ctime,
+    handleUnderline,
+    handleClick,
+    logOut,
+  };
 };
 
 export default useHelper;

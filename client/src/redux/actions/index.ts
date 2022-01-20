@@ -6,10 +6,14 @@ import {
   ICreateSchool,
   ICredential,
   ISchoolId,
-  IUser,
-  IUserSubmit,
   ICreateUser,
-  ICreateSubject
+  ICreateSubject,
+  IGetUserById,
+  IGetUserBy,
+  ICreateCourse,
+  IDeleteUserById,
+  IUpdateUser,
+  IRefreshToken,
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -21,13 +25,42 @@ export const GET_USER_LOGGED = "GET_USER_LOGGED";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
 export const USER_DETAIL = "USER_DETAIL";
-export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID"
-export const CREATE_COURSE = "CREATE_COURSE";
-export const GET_USERS = "GET_USERS";
-export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
-export const GET_SUBJECTS = "GET_SUBJECTS";
-export const PUT_USER = 'PUT_USER'
+export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
+export const PUT_USER = "PUT_USER";
+/* export const REFRESH_TOKEN = "REFRESH_TOKEN"; */
 
+//get
+export const getSchoolById =
+  (payload: ISchoolId) => async (dispatch: Dispatch) => {
+    const r = await instance.get("/school/" + payload.schoolId, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
+    dispatch({
+      type: GET_SCHOOL,
+      payload: r.data,
+    });
+    return r.data;
+  };
+
+export const getUserById =
+  (payload: IGetUserById) => async (dispatch: Dispatch) => {
+    new Promise<void>((res, rej) => {
+      dispatch({ type: USER_DETAIL, payload: {} });
+    });
+    const r = await instance.get(`/user/${payload.userId}`, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
+    dispatch({
+      type: USER_DETAIL,
+      payload: r.data,
+    });
+  };
+
+//post
 export const getUserByLogin =
   (payload: ICredential) => async (dispatch: Dispatch) => {
     const r = await instance.post("/login", payload);
@@ -38,142 +71,95 @@ export const getUserByLogin =
     return r.data;
   };
 
-export const getSchoolById =
-  (payload: ISchoolId) => async (dispatch: Dispatch) => {
-    const r = await instance.get("/school/" + payload);
+export const getUserBy =
+  (payload: IGetUserBy) => async (dispatch: Dispatch) => {
+    new Promise<void>((res, rej) => {
+      dispatch({ type: MATCH_USERS, payload: {} });
+    });
+
+    const r = await instance.post("/user/search", payload.search, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
     dispatch({
-      type: GET_SCHOOL,
+      type: MATCH_USERS,
       payload: r.data,
     });
-    return r.data;
   };
-
-export const getUserBy = (payload: IUser) => async (dispatch: Dispatch) => {
-  new Promise<void>((res, rej) => {
-    dispatch({ type: MATCH_USERS, payload: {} });
-  });
-  const r = await instance.post("/user/search", payload);
-  dispatch({
-    type: MATCH_USERS,
-    payload: r.data,
-  });
-};
-
-
-export const createCourse = (course:any)=>{
-  return async function (dispatch:any){
-       try{
-         console.log(course)
-          const newCourse = await axios.post("http://localhost:5000/api/course", course)
-          const student = await course.students.map( (student:any) => {
-              const updateUser = axios.put(`http://localhost:5000/api/user/course/${newCourse.data._id}/${student}`)
-          })
-          await addRelationSubjectByCourse(newCourse.data._id, course.subjects)()
-        dispatch({type: CREATE_COURSE, payload: newCourse.data})
-      }catch(err){
-      console.log(err)
-      }
-  }
-}
-
-export const getUserById = (payload: any) => async (dispatch: Dispatch) => {
-  new Promise<void>((res, rej) => {
-    dispatch({ type: USER_DETAIL, payload: {} });
-  });
-  const r = await instance.get(`/user/${payload}`);
-  dispatch({
-    type: USER_DETAIL,
-    payload: r.data,
-  });
-};
-
-
-export const deleteUserById =  (id: any) => async (dispatch: any) => {
-    await instance.delete(`http://localhost:5000/api/user/${id}`)
-    dispatch({
-      type: DELETE_USER_BY_ID
-    })
-}
-
-const addRelationSubjectByCourse = (courseId: any, array: any) => {
-  return function () {
-    try {
-      array.map((subjectId: string) =>
-        instance.put(`http://localhost:5000/api/subject/${subjectId}/${courseId}`)
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const getUsers = () => {
-  return async function (dispatch: any) {
-    try {
-      const students = await instance.get("http://localhost:5000/api/user");
-      dispatch({ type: GET_USERS, payload: students.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-export const getUsersByFilters = (props: Object) => {
-  return async function (dispatch: any) {
-    try {
-      const students = await axios.get("http://localhost:5000/api/user", props);
-      dispatch({ type: GET_USERS, payload: students.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-export const getUserByDni = (payload: any) => {
-  return async function (dispatch: any) {
-    try {
-      dispatch({ type: GET_USER_BY_DNI, payload });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const getSubject = () => {
-  return async function (dispatch: any) {
-    try {
-      const subjects = await axios.get("http://localhost:5000/api/subject");
-      dispatch({ type: GET_SUBJECTS, payload: subjects.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 
 export const createSchool = (payload: ICreateSchool) => async () => {
-  await instance.post("/school", payload);
+  await instance.post("/school", payload.createSchool, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
 };
 
 export const createUser = (payload: ICreateUser) => async () => {
-  await instance.post("/user", payload);
+  await instance.post("/user", payload.createUser, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
 };
 
-export const putUser =
-  (payload: IUserSubmit) => async (dispatch: Dispatch) => {
-    try{
-      const r = await instance.put(`/user/${payload.id}`, payload.user);
+export const createSubject = (payload: ICreateSubject) => async () => {
+  await instance.post("/subject", payload.createSubject, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
+};
 
-      dispatch({
-        type: PUT_USER,
-      });
-    }catch (error) {
-      console.log(error);
-    }
-    
+export const createCourse = (payload: ICreateCourse) => async () => {
+  await instance.post("/course", payload.createCourse, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
+};
+
+/* export const refreshToken =
+  (payload: IRefreshToken) => (dispatch: Dispatch) => async () => {
+    console.log(payload);
+    const r = await instance.post("/refresh", payload.refreshToken);
+    dispatch({
+      type: REFRESH_TOKEN,
+      payload: r.data,
+    });
+  };
+ */
+//delete
+export const deleteUserById =
+  (payload: IDeleteUserById) => async (dispatch: any) => {
+    await instance.delete(`/user/${payload.id}`, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
+    dispatch({
+      type: DELETE_USER_BY_ID,
+    });
   };
 
-export const createSubject = (payload: ICreateSubject) => async () => {
-  const r = await instance.post("/subject", payload);
-}
+//put
+export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
+  try {
+    await instance.put(
+      `/user/${payload.updateUser.id}`,
+      payload.updateUser.user,
+      {
+        headers: {
+          "auth-token": payload.accessToken,
+        },
+      }
+    );
 
-
+    dispatch({
+      type: PUT_USER,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

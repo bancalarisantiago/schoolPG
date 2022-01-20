@@ -1,27 +1,26 @@
-import useHelper from "./useHelper";
-import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
-
 //css
 import styles from "./AddCourse.module.css";
+//helper
+import useHelper from "./useHelper";
+//components
+import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
+//assets
+import user from "../../../assets/user.png";
+import remove from "../../../assets/delete.png";
+import bookmark from "../../../assets/bookmark.png";
 
 const AddCourse: React.FC = () => {
   const {
     handleSubmit,
-    handleDniChange,
     handleInputChange,
-    handleSelectTeacher,
-    handleDeleteTeacher,
-    handleSelectSubjects,
-    handleDeleteSubject,
     handleSelect,
-    handleSearch,
-    handleRefresh,
     handleDelete,
+    handleSearchbar,
     errors,
-    school,
+    userSchool,
+    matchUsers,
     state,
-    stateDni,
     list,
   } = useHelper();
 
@@ -42,9 +41,7 @@ const AddCourse: React.FC = () => {
                   value={state.name}
                   onChange={handleInputChange}
                 />
-              {
-                errors.name && (<p className={styles.errorsP}>{errors.name}</p>)
-              }
+                {errors.name && <p className={styles.errorsP}>{errors.name}</p>}
               </div>
               <div className={styles.input}>
                 <Input
@@ -54,67 +51,92 @@ const AddCourse: React.FC = () => {
                   value={state.shifts}
                   onChange={(e: any) => handleInputChange(e)}
                 />
-              {
-                errors.shifts && (<p className={styles.errorsP}>{errors.shifts}</p>)
-              }
+                {errors.shifts && (
+                  <p className={styles.errorsP}>{errors.shifts}</p>
+                )}
               </div>
-              <Button text="Añadir Curso" disabled={errors.button}/>
+              <Button text="Añadir Curso" disabled={errors.button} />
             </form>
           </div>
 
           <div className={styles.selectStudents}>
             <div className={styles.divCont}>
-              <form
-                onSubmit={(e) => handleSearch(e)}
-                className={styles.searchbar}
-              >
-                <div className={styles.input}>
-                  <Input
-                    type="text"
-                    placeholder="Busqueda..."
-                    value={stateDni.document}
-                    onChange={(e: any) => handleDniChange(e)}
-                  />
-                </div>
-                <div className={styles.butt}>
-                  <button className={styles.buttTag}>Buscar</button>
-                </div>
-              </form>
-              
+              <div className={styles.searchbar}>
+                <Input
+                  type="text"
+                  placeholder="Busqueda..."
+                  onChange={handleSearchbar}
+                />
+                {Object.keys(matchUsers).length ? (
+                  <div className={styles.results}>
+                    {matchUsers.map((m: any, i: number) =>
+                      !m.course.length ? (
+                        <p
+                          key={i}
+                          className={styles.nameSearchbar}
+                          onClick={() => handleSelect(m._id, "students")}
+                        >
+                          <img
+                            src={m.picture ? m.picture : user}
+                            alt="user"
+                            className={styles.user}
+                          />
+                          {m.name.first} {m.name.last} - {m.document} -{" "}
+                          {m.username}
+                        </p>
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+
               <div className={styles.selectCont}>
                 <select
                   name="Students"
                   id="Students"
                   defaultValue={"default"}
-                  onChange={handleSelect}
+                  onChange={(e) => handleSelect(e, "students")}
                   className={styles.selectTag}
                 >
-                  <option value="default" disabled>Estudiantes</option>
-                  {school.students && school.students.map((e: any) => (
-                    <option key={e._id} value={e._id}>
-                      {e.name.first} {e.name.last}
-                    </option>
-                  ))}
+                  <option value="default" disabled>
+                    Estudiantes
+                  </option>
+                  {userSchool.students &&
+                    userSchool.students.map((e: any) =>
+                      !e.course.length ? (
+                        <option key={e._id} value={e._id}>
+                          {e.name.first} {e.name.last}
+                        </option>
+                      ) : (
+                        ""
+                      )
+                    )}
                 </select>
-                <button onClick={handleRefresh} className={styles.buttTag}>
-                  Recargar Lista
-                </button>
               </div>
 
               <div className={styles.list}>
-                {list.student &&
-                  list.student.map((e) => (
-                    <div key={e._id} className={styles.student}>
-                      <span className={styles.name}>
-                        {e.name.first} {e.name.last}
-                      </span>
-                      <button
-                        onClick={() => handleDelete(e._id)}
-                        className={styles.close}
-                      >
-                        X
-                      </button>
-                    </div>
+                {list.students &&
+                  list.students.map((e) => (
+                    <p
+                      className={styles.nameList}
+                      onClick={() => handleDelete(e._id, "students")}
+                    >
+                      <img
+                        src={e.picture ? e.picture : user}
+                        alt="user"
+                        className={styles.user}
+                      />
+                      {e.name.first} {e.name.last} - {e.document}
+                      <img
+                        src={remove}
+                        alt="remove"
+                        className={styles.remove}
+                      />
+                    </p>
                   ))}
               </div>
             </div>
@@ -129,31 +151,39 @@ const AddCourse: React.FC = () => {
                   name="Teachers"
                   id="Teachers"
                   defaultValue={"default"}
-                  onChange={handleSelectTeacher}
+                  onChange={(e) => handleSelect(e, "teachers")}
                   className={styles.selectTag2}
                 >
-                  <option value="default" disabled>Profesores</option>
-                  {school.teachers && school.teachers.map((e: any) => (
-                    <option key={e._id} value={e._id}>
-                      {e.name.first} {e.name.last}
-                    </option>
-                  ))}
+                  <option value="default" disabled>
+                    Profesores
+                  </option>
+                  {userSchool.teachers &&
+                    userSchool.teachers.map((e: any) => (
+                      <option key={e._id} value={e._id}>
+                        {e.name.first} {e.name.last}
+                      </option>
+                    ))}
                 </select>
               </div>
-              <div className={styles.newList}>
+              <div className={styles.list}>
                 {list.teachers &&
                   list.teachers.map((e) => (
-                    <div key={e._id} className={styles.teacher}>
-                      <span className={styles.name}>
-                        {e.name.first} {e.name.last}
-                      </span>
-                      <button
-                        onClick={() => handleDeleteTeacher(e._id)}
-                        className={styles.closeButt}
-                      >
-                        X
-                      </button>
-                    </div>
+                    <p
+                      className={styles.nameList}
+                      onClick={() => handleDelete(e._id, "teachers")}
+                    >
+                      <img
+                        src={e.picture ? e.picture : user}
+                        alt="user"
+                        className={styles.user}
+                      />
+                      {e.name.first} {e.name.last} - {e.document}
+                      <img
+                        src={remove}
+                        alt="remove"
+                        className={styles.remove}
+                      />
+                    </p>
                   ))}
               </div>
             </div>
@@ -166,29 +196,35 @@ const AddCourse: React.FC = () => {
                   name="Subjects"
                   defaultValue={"default"}
                   id="Subjects"
-                  onChange={handleSelectSubjects}
+                  onChange={(e) => handleSelect(e, "subjects")}
                   className={styles.selectTag2}
                 >
-                  <option value="default" disabled>Materias</option>
-                  {school.subjects && school.subjects.map((e: any) => (
-                    <option key={e._id} value={e._id}>
-                      {e.name}
-                    </option>
-                  ))}
+                  <option value="default" disabled>
+                    Materias
+                  </option>
+                  {userSchool.subjects &&
+                    userSchool.subjects.map((e: any) => (
+                      <option key={e._id} value={e._id}>
+                        {e.name}
+                      </option>
+                    ))}
                 </select>
               </div>
-              <div className={styles.newList}>
+              <div className={styles.list}>
                 {list.subjects &&
                   list.subjects.map((e) => (
-                    <div key={e._id} className={styles.teacher}>
-                      <span className={styles.name}>{e.name}</span>
-                      <button
-                        onClick={() => handleDeleteSubject(e._id)}
-                        className={styles.closeButt}
-                      >
-                        X
-                      </button>
-                    </div>
+                    <p
+                      className={styles.nameList}
+                      onClick={() => handleDelete(e._id, "subjects")}
+                    >
+                      <img src={bookmark} alt="book" className={styles.user} />
+                      {e.name}
+                      <img
+                        src={remove}
+                        alt="remove"
+                        className={styles.remove}
+                      />
+                    </p>
                   ))}
               </div>
             </div>

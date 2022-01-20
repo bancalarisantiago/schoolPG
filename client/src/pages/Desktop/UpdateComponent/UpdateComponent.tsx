@@ -1,12 +1,23 @@
 //css
-import { useMemo, useState } from "react";
+import styles from "./UpdateComponent.module.css";
+
+//from modules
+import { useState } from "react";
+//import { useMemo, useState } from "react";
+
+//helper
+import useHelper from "./useHelper";
+
+//components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
-import styles from "./UpdateStudent.module.css";
-import useHelper from "./useHelper";
 import ButtonBack from "../../../components/Desktop/ReusableComponents/ButtonBack/ButtonBack";
 import Database from "../../../components/Desktop/Database/Database";
-const UpdateStudent: React.FC = () => {
+
+const UpdateComponent: React.FC<{ userType: string; schoolType: string }> = ({
+  userType,
+  schoolType,
+}) => {
   const {
     inputFieldValues,
     handleChange,
@@ -25,8 +36,8 @@ const UpdateStudent: React.FC = () => {
     return (
       <Database
         school={school}
-        userType={"estudiantes"}
-        schoolType={"students"}
+        userType={userType}
+        schoolType={schoolType}
         updateUser={updateUser}
       />
     );
@@ -35,7 +46,7 @@ const UpdateStudent: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.submain}>
         <div className={styles.titlebox}>
-          <p className={styles.title}>Actualizar Estudiante</p>
+          <p className={styles.title}>Actualizar {userType}</p>
           <div className={styles.backbox}>
             <ButtonBack onClick={getBack} />
           </div>
@@ -97,4 +108,4 @@ const UpdateStudent: React.FC = () => {
   );
 };
 
-export default UpdateStudent;
+export default UpdateComponent;

@@ -11,20 +11,35 @@ export interface IState {
   userSchool: any;
   matchUsers: any;
   userDetail: any;
-  backupData: any[];
-  courses: any[];
 }
 
 export type SubmitEvent = React.SyntheticEvent;
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type ClickEvent = React.MouseEvent<HTMLElement>;
+
+//for payloads
 export interface ICredential {
   userInfo: string;
   password: string;
 }
 
 export interface ISchoolId {
-  id: string;
+  schoolId: string;
+  accessToken: string;
+}
+
+export interface IGetUserById {
+  userId: string;
+  accessToken: string;
+}
+
+export interface IGetUserBy {
+  search: {
+    userType: string;
+    filter: string;
+    schoolId: string;
+  };
+  accessToken: string;
 }
 
 export interface IUser {
@@ -34,18 +49,19 @@ export interface IUser {
 }
 
 export interface ICreateSchool {
-  name: string;
-  location: Location;
-  description: string;
-  orientation: string;
-  logo: string;
-  email: string;
-  phone: string;
-  cellphone: string;
-  userId: string;
+  createSchool: {
+    name: string;
+    location: Location;
+    description: string;
+    orientation: string;
+    logo: string;
+    email: string;
+    phone: string;
+    cellphone: string;
+    userId: string;
+  };
+  accessToken: string;
 }
-
-//for components
 
 export interface Location {
   number: string;
@@ -53,6 +69,76 @@ export interface Location {
   streetName: string;
   locality: string;
   postalCode: string;
+}
+
+export interface ICreateUser {
+  createUser: {
+    name: {
+      first: string;
+      last: string;
+    };
+    document: string;
+    email: string;
+    username: string;
+    userType: string;
+    password: string;
+    schoolId: string;
+    courses?: string[];
+    subject?: string[];
+  };
+  accessToken: string;
+}
+
+export interface ICreateSubject {
+  createSubject: {
+    name: string;
+    courses: string[];
+    teachers: string[];
+    schoolId: string;
+  };
+  accessToken: string;
+}
+
+export interface ICreateCourse {
+  createCourse: {
+    name: string;
+    shifts: string;
+    students: string[];
+    teachers: string[];
+    subjects: string[];
+    schoolId: string;
+  };
+  accessToken: string;
+}
+
+export interface IDeleteUserById {
+  id: string;
+  accessToken: string;
+}
+
+export interface IUpdateUser {
+  updateUser: IUserSubmit;
+  accessToken: string;
+}
+
+export interface IRefreshToken {
+  refreshToken: string;
+}
+
+//for components
+
+export interface IStateAddCourse {
+  name: string;
+  shifts: string;
+  students: string[];
+  teachers: string[];
+  subjects: string[];
+}
+
+export interface IListState {
+  students: any[];
+  teachers: any[];
+  subjects: any[];
 }
 
 export interface Schools {
@@ -105,17 +191,6 @@ export interface ISubject {
   teachers: any[];
 }
 
-export interface ICreateSubject {
-  name: string;
-  courses: any[];
-  teachers: any[];
-  schoolId: string;
-}
-
-export interface ICreateStudent {}
-
-export interface ICreateAdmin {}
-
 interface ILocation {
   streetNumber: string;
   streetName: string;
@@ -135,10 +210,7 @@ export interface IUserForm {
   cellphone: string;
   picture: string;
 }
-export interface IUserSubmit{
-  user: IUserForm,
-  id: string
+export interface IUserSubmit {
+  user: IUserForm;
+  id: string;
 }
-
-export interface ICreateUser {}
-

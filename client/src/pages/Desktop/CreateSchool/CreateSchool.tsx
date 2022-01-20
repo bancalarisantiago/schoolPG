@@ -11,7 +11,7 @@ import Logo from "../../../assets/logo.png";
 const CreateSchool: React.FC = () => {
   const { handleChange, handleInputChange, handleSubmit, input, location } =
     useHelper();
-  console.log(input);
+
   return (
     <div className={styles.main}>
       <div className={styles.formDiv}>
@@ -126,7 +126,7 @@ const CreateSchool: React.FC = () => {
                 />
               </div>
               <div className={styles.butDiv}>
-                <Button text={"CreateSchool"} />
+                <Button text={"Crear Escuela"} />
               </div>
             </div>
           </form>

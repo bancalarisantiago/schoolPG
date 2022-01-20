@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { IAdminForm, SubmitEvent } from "../../../interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { IAdminForm, IState, SubmitEvent } from "../../../interfaces";
 
 import { createUser } from "../../../redux/actions";
 
 const useHelper = () => {
   const dispatch = useDispatch();
-
+  const userSession = useSelector((state: IState) => state.userSession);
+  const userSchool = useSelector((state: IState) => state.userSchool);
   const [name, setName] = useState({
     first: "",
     last: "",
@@ -39,9 +40,29 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    const admin = { ...input, password: input.document };
+    const admin = {
+      ...input,
+      name,
+      password: input.document,
+      schoolId: userSchool._id,
+    };
 
-    dispatch(createUser(admin));
+    dispatch(
+      createUser({ createUser: admin, accessToken: userSession.accessToken })
+    );
+
+    setInput({
+      name: name,
+      document: "",
+      email: "",
+      username: "",
+      userType: "admin",
+      password: "",
+    });
+    setName({
+      first: "",
+      last: "",
+    });
   };
 
   return {

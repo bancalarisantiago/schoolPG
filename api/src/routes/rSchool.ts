@@ -13,12 +13,11 @@ import {
 const router = Router();
 
 //private routes
-router.get("/school", getAllSchools);
-router.get("/school/:id", getSchoolById);
-router.post("/school", createSchool);
-router.put("/school/:id", updateSchool);
+router.get("/school/:id", tokenValidation, getSchoolById);
+router.post("/school", tokenValidation, createSchool);
 
-/* router.get("/school",tokenValidation, getAllSchools);
-router.post("/school",tokenValidation, createSchool); */
+//non private routes
+router.get("/school", getAllSchools);
+router.put("/school/:id", updateSchool);
 
 export default router;

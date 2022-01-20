@@ -1,25 +1,18 @@
-import { IState } from "../../interfaces";
+import { IRefreshToken, IState } from "../../interfaces";
 import {
   GET_USER_LOGGED,
   GET_SCHOOL,
   MATCH_USERS,
   USER_DETAIL,
-  CREATE_COURSE,
-  GET_USERS,
-  GET_USER_BY_DNI,
-  GET_SUBJECTS,
   PUT_USER,
-  DELETE_USER_BY_ID
+  DELETE_USER_BY_ID,
+  /* REFRESH_TOKEN, */
 } from "../actions";
-
-
 
 export const initialState: IState = {
   userSession: {},
   userSchool: {},
   matchUsers: {},
-  backupData:[],
-  courses:[],
   userDetail: {},
 };
 const cases: any = {};
@@ -34,7 +27,6 @@ cases[GET_SCHOOL] = (initialState: IState, payload: any) => ({
   userSchool: payload,
 });
 
-
 cases[MATCH_USERS] = (initialState: IState, payload: any) => ({
   ...initialState,
   matchUsers: payload,
@@ -45,53 +37,27 @@ cases[USER_DETAIL] = (initialState: IState, payload: any) => ({
   userDetail: payload,
 });
 
-cases[CREATE_COURSE] = (payload: any) => {
-  return {
-    ...initialState,
-    courses: payload,
-  };
-};
-
-cases[GET_USERS] = (initialState: IState, payload: any) => {
-  return {
-    ...initialState,
-    backupData: payload,
-    students: payload.filter(
-      (e: any) => e.userType === "student" && e.course.length < 1
-    ),
-    teachers: payload.filter((e: any) => e.userType === "teacher"),
-  };
-};
-
 cases[DELETE_USER_BY_ID] = (initialState: IState, payload: any) => {
   return {
-    ...initialState
-  }
-}
-
-cases[GET_USER_BY_DNI] = (initialState: IState, payload: any) => {
-  const toFilter = initialState.backupData;
-
-  return {
     ...initialState,
-    students: toFilter.filter(
-      (e) => e.document.toString() === payload.document
-    ),
   };
 };
 
-cases[GET_SUBJECTS] = (initialState: IState, payload: any) => {
+cases[PUT_USER] = (initialState: IState) => {
   return {
     ...initialState,
-    subjects: payload,
   };
 };
 
-cases[PUT_USER] =(initialState:IState) =>{
-  return{
-    ...initialState
-  }
-}
+/* cases[REFRESH_TOKEN] = (initialState: IState, payload: any) => ({
+  ...initialState,
+  userSession: {
+    ...initialState.userSession,
+    accessToken: payload.accessToken,
+    refreshToken: payload.refreshToken,
+  },
+}); */
+
 export default function rootReducer(
   state = initialState,
   { type, payload }: any

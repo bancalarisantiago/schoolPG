@@ -1,8 +1,10 @@
+//from modules
 import { userInfo } from "os";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IState, IUserSubmit } from "../../../interfaces/index";
-import { getSchoolById, getUsers, putUser } from "../../../redux/actions";
+import { getSchoolById, putUser } from "../../../redux/actions";
 
 interface IUTeacherInputs {
   [key: string]: string;
@@ -41,11 +43,19 @@ const voidInputs = {
   picture: "",
 };
 const useHelper = () => {
+  const dispatch = useDispatch();
+  const location = useLocation().pathname;
   const school = useSelector((state: IState) => state.userSchool);
+  const userSession = useSelector((state: IState) => state.userSession);
   const [user, setUser] = useState<any>({});
   const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
   const [searching, setSearching] = useState(true);
   const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
+
+  useEffect(() => {
+    getBack();
+  }, [location]);
+
   const validate = (input: IUTeacherInputs, name: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const dniPattern = /^\d{8}(?:[-\s]\d{4})?$/;
@@ -185,8 +195,6 @@ const useHelper = () => {
     setSearching(true);
   };
 
-  const dispatch = useDispatch();
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -213,8 +221,15 @@ const useHelper = () => {
       },
       id: user._id,
     };
-    await dispatch(putUser(userSubmit));
-    await dispatch(getSchoolById(user.school));
+    await dispatch(
+      putUser({ updateUser: userSubmit, accessToken: userSession.accessToken })
+    );
+    await dispatch(
+      getSchoolById({
+        schoolId: user.school,
+        accessToken: userSession.accessToken,
+      })
+    );
     console.log("user", user);
     console.log("userS", userSubmit);
 

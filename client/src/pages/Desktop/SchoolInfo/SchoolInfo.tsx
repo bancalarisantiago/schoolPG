@@ -8,7 +8,8 @@ import Loading from "../../../components/Desktop/ReusableComponents/Loading/Load
 
 const SchoolInfo: React.FC = () => {
   const { school, totalUsers } = useHelper();
-  if (school.name)
+
+  if (school && school.name)
     return (
       <div className={styles.main}>
         <div className={styles.info}>
