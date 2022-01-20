@@ -140,14 +140,16 @@
 
 .btn {
   display: flex;
-  justify-content: center;
-  border: 3px solid rgb(255, 51, 51);
+  border: 1.5px solid rgb(255, 51, 51);
   margin-left: 10px;
   height: 24px;
   width: 24px;
   font-weight: 500;
   border-radius: 50%;
   color: rgb(255, 51, 51);
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .li {
