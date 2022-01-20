@@ -27,7 +27,16 @@ export const MATCH_USERS = "MATCH_USER";
 export const USER_DETAIL = "USER_DETAIL";
 export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
 export const PUT_USER = "PUT_USER";
+export const USER_LOGOUT = "USER_LOGOUT";
 /* export const REFRESH_TOKEN = "REFRESH_TOKEN"; */
+
+//logout
+export const logout = () => (dispatch: Dispatch) => {
+  console.log("logout");
+  return dispatch({
+    type: USER_LOGOUT,
+  });
+};
 
 //get
 export const getSchoolById =

@@ -18,8 +18,8 @@ const useHelper = () => {
 
   const [input, setInput] = useState<ISubject>({
     name: "",
-    courses: [],
-    teachers: [],
+    courses: [""],
+    teachers: [""],
   });
 
   const [errors, setError] = useState<IValidateError>({
@@ -106,7 +106,7 @@ const useHelper = () => {
         accessToken: userSession.accessToken,
       })
     );
-    console.log(input);
+
     setInput({
       name: "",
       courses: [],

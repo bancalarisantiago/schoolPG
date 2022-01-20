@@ -1,10 +1,14 @@
 //from modules
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //tipados
 import { IState } from "../../../interfaces";
+//actions
+import { logout } from "../../../redux/actions";
 
 const useHelper = () => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState<boolean[]>([
     false,
     false,
@@ -57,7 +61,10 @@ const useHelper = () => {
     setUnderline(underline.map((m, i) => (i === value ? !m : false)));
   };
 
-  const logOut = () => {};
+  const logOut = () => {
+    dispatch(logout());
+    window.location.reload();
+  };
 
   return {
     show,
