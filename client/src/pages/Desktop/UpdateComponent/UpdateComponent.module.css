@@ -95,3 +95,8 @@
   font-size: xx-small;
   color: var(--red-palette-intensity9);
 }
+
+.inputAndPopover {
+  display: flex;
+  align-items: center;
+}

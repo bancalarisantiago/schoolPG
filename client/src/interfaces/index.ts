@@ -86,7 +86,7 @@ export interface ISchoolId {
 }
 
 export interface IGetUserById {
-  userId: string;
+  userId?: string;
   accessToken: string;
 }
 

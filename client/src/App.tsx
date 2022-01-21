@@ -5,16 +5,35 @@ import React from "react";
 import { Routes, Route } from "react-router";
 import { useLocation } from "react-router-dom";
 //import Modal from "react-modal"
+import appHelper from "./appHelper";
 
 //pages
-import {Login, Panel, CreateSchool,AddStudent,UpdateStudent, AddTeacher, UpdateTeacher, AddAdmin,
-  UpdateAdmin, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
-  SchoolInfo, Error, Profile, UserDetail, }  from ".//routsApp"; 
+import {
+  Login,
+  Panel,
+  CreateSchool,
+  AddStudent,
+  AddTeacher,
+  AddAdmin,
+  UpdateComponent,
+  AddCourse,
+  UpdateCourse,
+  AddEvent,
+  UpdateEvent,
+  AddSubject,
+  UpdateSubject,
+  SchoolInfo,
+  Error,
+  Profile,
+  UserDetail,
+  Database,
+} from ".//routsApp";
 
 //Modal.setAppElement("#root")
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
+  const { school } = appHelper();
 
   return (
     <div className={styles.main}>
@@ -32,35 +51,47 @@ const App: React.FC = () => {
           <Route
             path="modificar-alumno"
             element={
-              <UpdateComponent
+              <Database
+                school={school}
                 userType={"estudiantes"}
                 schoolType={"students"}
               />
             }
           />
-
+          <Route
+            path="modificar-alumno/:id"
+            element={<UpdateComponent userType={"estudiantes"} />}
+          />
           <Route path="agregar-profesor" element={<AddTeacher />} />
           <Route
             path="modificar-profesor"
             element={
-              <UpdateComponent
+              <Database
+                school={school}
                 userType={"profesores"}
                 schoolType={"teachers"}
               />
             }
           />
-
+          <Route
+            path="modificar-profesor/:id"
+            element={<UpdateComponent userType={"profesores"} />}
+          />
           <Route path="agregar-admin" element={<AddAdmin />} />
           <Route
             path="modificar-admin"
             element={
-              <UpdateComponent
+              <Database
+                school={school}
                 userType={"administradores"}
                 schoolType={"admins"}
               />
             }
           />
-
+          <Route
+            path="modificar-admin/:id"
+            element={<UpdateComponent userType={"administradores"} />}
+          />
           <Route path="agregar-curso" element={<AddCourse />} />
           <Route path="modificar-curso" element={<UpdateCourse />} />
 

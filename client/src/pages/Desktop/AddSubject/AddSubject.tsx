@@ -1,8 +1,7 @@
 import useHelper from "./useHelper";
 import styles from "./AddSubject.module.css";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
-import Input from '../../../components/Desktop/ReusableComponents/Input/Input';
-
+import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
 
 const AddSubject: React.FC = () => {
   const {
@@ -12,9 +11,8 @@ const AddSubject: React.FC = () => {
     input,
     deleteFromList,
     userSchool,
-    errors
+    errors,
   } = useHelper();
-  console.log(input);
 
   return (
     <div className={styles.main}>
@@ -24,8 +22,7 @@ const AddSubject: React.FC = () => {
             <p className={styles.title}>Añadir Subject</p>
           </div>
           <div>
-            <label className={styles.box1} htmlFor="name">
-            </label>
+            <label className={styles.box1} htmlFor="name"></label>
             <Input
               placeholder="Nombre"
               autoComplete="off"
@@ -33,15 +30,14 @@ const AddSubject: React.FC = () => {
               value={input.name}
               onChange={handleInputChange}
             />
-            {errors.name && (
-              <p className={styles.errorsP}>{errors.name}</p>
-            )}
+            {errors.name && <p className={styles.errorsP}>{errors.name}</p>}
           </div>
           <div className={`${styles.box2} ${styles.select}`}>
             <select
               name="courses"
               defaultValue={"default"}
-              onChange={handleSelect}>
+              onChange={handleSelect}
+            >
               <option value="default" disabled>
                 Seleccionar Curso
               </option>
@@ -79,7 +75,10 @@ const AddSubject: React.FC = () => {
                 Seleccionar Teacher
               </option>
               {userSchool.teachers?.map((c: any, _id: any) => (
-                <option value={c._id} key={c._id}>{c.name.first}{c.name.last}</option>
+                <option value={c._id} key={c._id}>
+                  {c.name.first}
+                  {c.name.last}
+                </option>
               ))}
             </select>
           </div>
@@ -106,10 +105,9 @@ const AddSubject: React.FC = () => {
             <Button text="Añadir Materia" />
           </div>
         </form>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 
 export default AddSubject;
-
