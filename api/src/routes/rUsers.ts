@@ -21,10 +21,10 @@ router.get("/user/:id", tokenValidation, getUserById);
 router.post("/user/search", tokenValidation, getUserBy);
 router.post("/user", tokenValidation, createUser);
 router.put("/user/:id", tokenValidation, updateUser);
+router.delete("/user/:id",tokenValidation, deleteUserById);
 
 //non private routes
 router.get("/user", getUsers);
-router.delete("/user/:id", deleteUserById);
 router.put("/user/school/:schoolId/:userId", addUserToSchool);
 router.put("/user/course/:courseId/:userId", addUserToCourse);
 
