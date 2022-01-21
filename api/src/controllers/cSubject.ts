@@ -13,20 +13,48 @@ import Course from "../models/Course/Course";
 import School from "../models/School/School";
 
 export const createSubject = async (req: Request, res: Response) => {
-  const { name, schoolId } = req.body;
+  const { name, teachers, courses, schoolId } = req.body;
 
   try {
     const newSubject = new Subject({
       name,
+      teachers: teachers.map((m: any) => new toId(m._id)),
+      courses: courses.map((m: any) => new toId(m._id)),
     });
+
     newSubject.save();
 
     await School.findByIdAndUpdate(new toId(schoolId), {
-      subjects: new toId(newSubject._id),
+      $push: {
+        subjects: new toId(newSubject._id),
+      },
     });
+
+    teachers &&
+      teachers.length &&
+      teachers.map(
+        async (m: any) =>
+          await User.findByIdAndUpdate(new toId(m._id), {
+            $push: {
+              subject: new toId(newSubject._id),
+            },
+          })
+      );
+
+    courses &&
+      courses.length &&
+      courses.map(
+        async (m: any) =>
+          await Course.findByIdAndUpdate(new toId(m._id), {
+            $push: {
+              subjects: new toId(newSubject._id),
+            },
+          })
+      );
 
     res.status(200).json(newSubject);
   } catch (error: any) {
+    console.log(error);
     res.status(404).json({ message: error.message });
   }
 };

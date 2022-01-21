@@ -62,14 +62,17 @@ export const createUser = async (req: Request, res: Response) => {
   } = req.body;
   try {
     const newUser: IUser = new User({
-      name: { first: name.first, last: name.last + " " },
+      name: {
+        first: name.first.trim(),
+        last: name.last.trim(),
+      },
       userType,
       gender,
       location,
       birthdate,
       document,
-      username,
-      email,
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
       password,
       phone,
       cellphone,

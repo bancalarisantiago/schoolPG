@@ -10,7 +10,12 @@ interface IProps {
 
 function Button({ text, onSubmit, onClick, disabled }: IProps) {
   return (
-    <button onSubmit={onSubmit} onClick={onClick} disabled={disabled} className={`${styles.button} ${disabled ? styles.disabled : ""}`}>
+    <button
+      onSubmit={onSubmit}
+      onClick={onClick}
+      disabled={disabled}
+      className={`${styles.btn} ${disabled ? styles.disabled : ""}`}
+    >
       {text}
       <span className={styles.span}></span>
     </button>

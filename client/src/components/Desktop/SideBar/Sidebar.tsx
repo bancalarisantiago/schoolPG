@@ -47,7 +47,7 @@ const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
         <p className={styles.schoolname}>Nombre De La Institucion</p>
       )}
 
-      <ul>
+      <ul className={styles.help}>
         <NavLink to="general">
           <li
             className={show[6] ? styles.selected : styles.management}
@@ -250,7 +250,7 @@ const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
             </li>
           </NavLink>
         </ul>
-        <li className={styles.management} onClick={logOut}>
+        <li className={styles.logout} onClick={logOut}>
           Cerrar Sesión
         </li>
       </ul>
