@@ -1,7 +1,9 @@
-import useHelper from "./useHelper";
 import styles from "./AddSubject.module.css";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
+
+import useHelper from "./useHelper";
+
 
 const AddSubject: React.FC = () => {
   const {
@@ -36,27 +38,29 @@ const AddSubject: React.FC = () => {
             <select
               name="courses"
               defaultValue={"default"}
-              onChange={handleSelect}
+              onChange={(e) => handleSelect(e, "courses")}
             >
               <option value="default" disabled>
                 Seleccionar Curso
               </option>
               {userSchool.courses?.map((c: any) => (
-                <option key={c.name}>{c.name}</option>
+                <option key={c.name} value={c._id}>
+                  {c.name}
+                </option>
               ))}
             </select>
           </div>
           <div className={styles.box3}>
             <ul>
-              {input?.courses.map((p: any) => {
+              {input?.courses.map((p: any, i: number) => {
                 return (
-                  <li className={styles.li} key={`${p.name}key`}>
+                  <li className={styles.li} key={i}>
                     {p.name}
                     <button
                       className={styles.btn}
                       type="button"
-                      value={p.name}
-                      onClick={deleteFromList}
+                      value={p._id}
+                      onClick={(e) => deleteFromList(e, "courses")}
                     >
                       X
                     </button>
@@ -69,30 +73,29 @@ const AddSubject: React.FC = () => {
             <select
               name="teachers"
               defaultValue={"default"}
-              onChange={handleSelect}
+              onChange={(e) => handleSelect(e, "teachers")}
             >
               <option value="default" disabled>
-                Seleccionar Teacher
+                Seleccionar Profesor
               </option>
               {userSchool.teachers?.map((c: any, _id: any) => (
-                <option value={c._id} key={c._id}>
-                  {c.name.first}
-                  {c.name.last}
+                <option key={c._id} value={c._id}>
+                  {c.name.first} {c.name.last}
                 </option>
               ))}
             </select>
           </div>
           <div className={styles.box5}>
             <ul>
-              {input?.teachers.map((p: any) => {
+              {input?.teachers.map((p: any, i: number) => {
                 return (
-                  <li className={styles.li} key={`${p.name}key`}>
-                    {p.name}
+                  <li className={styles.li} key={i}>
+                    {p.name.first} {p.name.last}
                     <button
                       className={styles.btn}
                       type="button"
-                      value={p.name}
-                      onClick={deleteFromList}
+                      value={p._id}
+                      onClick={(e) => deleteFromList(e, "teachers")}
                     >
                       X
                     </button>
