@@ -13,7 +13,6 @@ import Navbar from "../../../components/Desktop/Navbar/Navbar";
 
 const Panel: React.FC = () => {
   const { validate, location, showSidebar, handleShow } = useHelper();
-  console.log(showSidebar);
   return (
     <>
       {validate.accessToken ? (
