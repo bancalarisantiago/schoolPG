@@ -1,9 +1,9 @@
 //css
 import styles from "./App.module.css";
 //from modules
-import React from "react";
+import {useEffect} from "react";
 import { Routes, Route } from "react-router";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 //import Modal from "react-modal"
 import appHelper from "./appHelper";
 
@@ -17,11 +17,16 @@ import {Login, Panel, CreateSchool,AddStudent, AddTeacher, AddAdmin,
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;
+  const navigate = useNavigate();
   const { school } = appHelper();
-
+  useEffect(()=>{
+    location === "/" && navigate("/login")
+  })
+  
   return (
+
     <div className={styles.main}>
-      <Routes>
+      <Routes>  
         <Route path="addCourse" element={<AddCourse />} />
 
         {location === "/login" && <Route path="/login" element={<Login />} />}
@@ -90,7 +95,6 @@ const App: React.FC = () => {
 
           <Route path="*" element={<Error />} />
         </Route>
-        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

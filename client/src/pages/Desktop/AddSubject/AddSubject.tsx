@@ -23,8 +23,7 @@ const AddSubject: React.FC = () => {
           <div className={styles.titlebox}>
             <p className={styles.title}>Añadir Subject</p>
           </div>
-          <div>
-            <label className={styles.box1} htmlFor="name"></label>
+          <div className={styles.box1}>
             <Input
               placeholder="Nombre"
               autoComplete="off"

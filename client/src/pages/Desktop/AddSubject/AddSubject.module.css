@@ -1,5 +1,5 @@
-.main{
-    height: 80%;
+.main {
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@
 }
 .submain {
   width: 120%;
-  height: 110%;
+  height: 80%;
   position: relative;
   display: flex;
   top: 50px;
@@ -44,9 +44,10 @@
   border-radius: 10px;
   box-shadow: 1px 5px 10px gray;
 }
-.titlebox{
-   position: absolute;
+.titlebox {
+  position: absolute;
   top: -40px;
+  left: 15px;
   display: flex;
   align-items: center;
   width: 95%;
@@ -56,7 +57,7 @@
   box-shadow: 0 3px 15px #3790ef8c;
 }
 
-.title{
+.title {
   position: relative;
   padding-left: 3.5rem;
   font-size: x-large;
@@ -77,27 +78,23 @@
 
 .box1 {
   grid-area: box1;
-  color: blueviolet;
-  justify-content: center;
-  background-color: brown;
 }
 .box2 {
   grid-area: box2;
 }
 .box3 {
   grid-area: box3;
-   height: 120px;
+  height: 120px;
   border: 1px solid #999;
   border-radius: 10px;
   overflow-y: scroll;
 }
 .box4 {
   grid-area: box4;
-  
 }
 .box5 {
   grid-area: box5;
-   height: 120px;
+  height: 120px;
   border: 1px solid #999;
   border-radius: 10px;
   overflow-y: scroll;
@@ -107,16 +104,16 @@
   margin: 0 auto;
 }
 
-.inputs{
-    display: grid;
+.inputs {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows:1fr 0.5fr 2fr 1fr;
+  grid-template-rows: 1fr 0.5fr 2fr 1fr;
   gap: 32px;
   grid-template-areas:
-     "box1 box1 "
+    "box1 box1 "
     "box2 box4 "
     "box3 box5 "
-    "box6 box6 "
+    "box6 box6 ";
 }
 .btnList {
   display: flex;
