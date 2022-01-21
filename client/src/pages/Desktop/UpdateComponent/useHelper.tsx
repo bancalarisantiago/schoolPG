@@ -1,10 +1,10 @@
 //from modules
-import { userInfo } from "os";
+
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { IState, IUserSubmit } from "../../../interfaces/index";
-import { getSchoolById, putUser } from "../../../redux/actions";
+import { getSchoolById, putUser, getUserById } from "../../../redux/actions";
 
 interface IUTeacherInputs {
   [key: string]: string;
@@ -43,23 +43,52 @@ const voidInputs = {
   picture: "",
 };
 const useHelper = () => {
+  // const dispatch = useDispatch();
+  // const location = useLocation().pathname;
+  // const school = useSelector((state: IState) => state.userSchool);
+  // const userSession = useSelector((state: IState) => state.userSession);
+  // const [user, setUser] = useState<any>({});
+  // const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
+  // const [searching, setSearching] = useState(true);
+  // const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const location = useLocation().pathname;
+  const navigate = useNavigate();
   const school = useSelector((state: IState) => state.userSchool);
-  const userSession = useSelector((state: IState) => state.userSession);
-  const [user, setUser] = useState<any>({});
+  const userInfo = useSelector((state: IState) => state.userDetail);
   const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
-  const [searching, setSearching] = useState(true);
   const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
+  const userSession = useSelector((state: IState) => state.userSession);
+
+  // useEffect(() => {
+  //   getBack();
+  // }, [location]);
+  useEffect(() => {
+    dispatch(getUserById({ userId: id, accessToken: userSession.accessToken }));
+  }, []);
 
   useEffect(() => {
-    getBack();
-  }, [location]);
+    setInput({
+      first: userInfo.name ? userInfo.name.first : "",
+      last: userInfo.name ? userInfo.name.last : "",
+      username: userInfo.username || "",
+      password: userInfo.password || "",
+      document: userInfo.document || "",
+      email: userInfo.email || "",
+      streetNumber: userInfo.location ? userInfo.location.streetNumber : "",
+      streetName: userInfo.location ? userInfo.location.streetName : "",
+      locality: userInfo.location ? userInfo.location.locality : "",
+      postalCode: userInfo.location ? userInfo.location.postalCode : "",
+      gender: userInfo.gender || "",
+      birthdate: userInfo.birthdate || "",
+      cellphone: userInfo.cellphone || "",
+      picture: userInfo.picture || "",
+    });
+  }, [userInfo]);
 
   const validate = (input: IUTeacherInputs, name: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const dniPattern = /^\d{8}(?:[-\s]\d{4})?$/;
-    console.log("error", errors[name]);
 
     switch (name) {
       case "first": {
@@ -152,7 +181,6 @@ const useHelper = () => {
   };
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    console.log("value", typeof value, value);
 
     setInput({
       ...input,
@@ -169,30 +197,31 @@ const useHelper = () => {
     else return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
-  const updateUser = (userInfo: any) => {
-    setSearching(false);
-    setUser(userInfo);
-    setInput({
-      first: userInfo.name ? userInfo.name.first : "",
-      last: userInfo.name ? userInfo.name.last : "",
-      username: userInfo.username || "",
-      password: userInfo.password || "",
-      document: userInfo.document || "",
-      email: userInfo.email || "",
-      streetNumber: userInfo.location ? userInfo.location.streetNumber : "",
-      streetName: userInfo.location ? userInfo.location.streetName : "",
-      locality: userInfo.location ? userInfo.location.locality : "",
-      postalCode: userInfo.location ? userInfo.location.postalCode : "",
-      gender: userInfo.gender || "",
-      birthdate: userInfo.birthdate || "",
-      cellphone: userInfo.cellphone || "",
-      picture: userInfo.picture || "",
-    });
-  };
+  // const updateUser = (userInfo: any) => {
+  //   setSearching(false);
+  //   setUser(userInfo);
+  //   setInput({
+  //     first: userInfo.name ? userInfo.name.first : "",
+  //     last: userInfo.name ? userInfo.name.last : "",
+  //     username: userInfo.username || "",
+  //     password: userInfo.password || "",
+  //     document: userInfo.document || "",
+  //     email: userInfo.email || "",
+  //     streetNumber: userInfo.location ? userInfo.location.streetNumber : "",
+  //     streetName: userInfo.location ? userInfo.location.streetName : "",
+  //     locality: userInfo.location ? userInfo.location.locality : "",
+  //     postalCode: userInfo.location ? userInfo.location.postalCode : "",
+  //     gender: userInfo.gender || "",
+  //     birthdate: userInfo.birthdate || "",
+  //     cellphone: userInfo.cellphone || "",
+  //     picture: userInfo.picture || "",
+  //   });
+  // };
   const getBack = () => {
     setInput(voidInputs);
     setErrors(voidInputs);
-    setSearching(true);
+    // eslint-disable-next-line no-restricted-globals
+    history.go(-1);
   };
 
   const handleSubmit = async (e: any) => {
@@ -219,34 +248,38 @@ const useHelper = () => {
         cellphone: input.cellphone,
         picture: input.picture,
       },
-      id: user._id,
+      id: userInfo._id,
     };
     await dispatch(
       putUser({ updateUser: userSubmit, accessToken: userSession.accessToken })
     );
+
     await dispatch(
       getSchoolById({
-        schoolId: user.school,
+        schoolId: userInfo.school._id,
         accessToken: userSession.accessToken,
       })
     );
-    console.log("user", user);
-    console.log("userS", userSubmit);
 
     getBack();
   };
+
+  const handleClick = (name: string, text: string) => {
+    setInput({ ...input, [name]: text });
+    setErrors(validate({ ...input, [name]: text }, name));
+  };
+
   return {
     inputFieldValues,
     handleChange,
     disabled,
     errors,
-    searching,
     getBack,
     input,
     school,
-    updateUser,
-    user,
+    userInfo,
     handleSubmit,
+    handleClick,
   };
 };
 

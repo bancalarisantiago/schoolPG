@@ -42,77 +42,106 @@ const Database: React.FC<{
           <p className={styles.ptel}>acciones</p>
         </div>
         {!user.length ? (
-          school[schoolType].map((m: any, i: number) => (
-            <div key={i} className={styles.user}>
-              <div className={styles.namepic}>
-                <img
-                  src={m.picture ? m.picture : userDefault}
-                  alt="profilepic"
-                  className={styles.profilepic}
-                />
-                <NavLink
-                  to={`/panel/detalle-usuario/${m._id}`}
-                  className={styles.navLink}
-                >
-                  <span className={styles.name}>
-                    {m.name.first} {m.name.last}
-                  </span>
-                </NavLink>
-              </div>
+          school[schoolType].map((m: any, i: number) => {
+            let route = "modificar-alumno";
+            if (schoolType === "admins") route = "modificar-admin";
+            if (schoolType === "teachers") route = "modificar-profesor";
 
-              <p className={styles.email}>{m.email}</p>
-              <p className={styles.cellphone}>{m.cellphone}</p>
-
-              <div>
-                <img
-                  src={edit}
-                  alt="editInfo"
-                  className={styles.userInfo}
-                  onClick={() => updateUser(m)}
-                />
-                <NavLink to={`/panel/detalle-usuario/${m._id}`}>
-                  <img src={info} alt="userInfo" className={styles.userInfo} />
-                </NavLink>
-                <img
-                  src={trash}
-                  alt="trash-user"
-                  className={styles.userInfo}
-                  onClick={() =>
-                    confirmDelete(m._id, m.name.first, m.name.last)
-                  }
-                />
-              </div>
-            </div>
-          ))
-        ) : (
-          <div>
-            {matchUsers.length ? (
-              matchUsers.map((m: any, i: number) => (
-                <div key={i} className={styles.user}>
-                  <div className={styles.namepic}>
-                    <img
-                      src={m.picture ? m.picture : userDefault}
-                      alt="profilepic"
-                      className={styles.profilepic}
-                    />
+            return (
+              <div key={i} className={styles.user}>
+                <div className={styles.namepic}>
+                  <img
+                    src={m.picture ? m.picture : userDefault}
+                    alt="profilepic"
+                    className={styles.profilepic}
+                  />
+                  <NavLink
+                    to={`/panel/detalle-usuario/${m._id}`}
+                    className={styles.navLink}
+                  >
                     <span className={styles.name}>
                       {m.name.first} {m.name.last}
                     </span>
-                  </div>
-
-                  <p className={styles.email}>{m.email}</p>
-                  <p className={styles.cellphone}>{m.cellphone}</p>
-                  <div>
-                    <img src={edit} alt="editInfo" className={styles.userInfo} />
-                    <NavLink to={`/panel/detalle-usuario/${m._id}`}>
-                      <img src={info} alt="userInfo" className={styles.userInfo} />
-                    </NavLink>
-                      <img src={trash} alt="trash-user" 
-                      className={styles.userInfo} 
-                      />
-                  </div>
+                  </NavLink>
                 </div>
-              ))
+
+                <p className={styles.email}>{m.email}</p>
+                <p className={styles.cellphone}>{m.cellphone}</p>
+
+                <div>
+                  <NavLink to={`/panel/${route}/${m._id}`}>
+                    <img
+                      src={edit}
+                      alt="editInfo"
+                      className={styles.userInfo}
+                    />
+                  </NavLink>
+                  <NavLink to={`/panel/detalle-usuario/${m._id}`}>
+                    <img
+                      src={info}
+                      alt="userInfo"
+                      className={styles.userInfo}
+                    />
+                  </NavLink>
+                  <img
+                    src={trash}
+                    alt="trash-user"
+                    className={styles.userInfo}
+                    onClick={() =>
+                      confirmDelete(m._id, m.name.first, m.name.last)
+                    }
+                  />
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            {matchUsers.length ? (
+              matchUsers.map((m: any, i: number) => {
+                let route = "modificar-alumno";
+                if (schoolType === "admins") route = "modificar-admin";
+                if (schoolType === "teachers") route = "modificar-profesor";
+
+                return (
+                  <div key={i} className={styles.user}>
+                    <div className={styles.namepic}>
+                      <img
+                        src={m.picture ? m.picture : userDefault}
+                        alt="profilepic"
+                        className={styles.profilepic}
+                      />
+                      <span className={styles.name}>
+                        {m.name.first} {m.name.last}
+                      </span>
+                    </div>
+
+                    <p className={styles.email}>{m.email}</p>
+                    <p className={styles.cellphone}>{m.cellphone}</p>
+                    <div>
+                      <NavLink to={`/panel/${route}//${m._id}`}>
+                        <img
+                          src={edit}
+                          alt="editInfo"
+                          className={styles.userInfo}
+                        />
+                      </NavLink>
+                      <NavLink to={`/panel/detalle-usuario/${m._id}`}>
+                        <img
+                          src={info}
+                          alt="userInfo"
+                          className={styles.userInfo}
+                        />
+                      </NavLink>
+                      <img
+                        src={trash}
+                        alt="trash-user"
+                        className={styles.userInfo}
+                      />
+                    </div>
+                  </div>
+                );
+              })
             ) : (
               <div className={styles.empty}>
                 <div className={styles.message}>
