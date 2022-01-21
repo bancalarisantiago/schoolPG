@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IState, ISubject } from "../../../interfaces";
 import { createSubject } from "../../../redux/actions/index";
-import { useNavigate } from "react-router-dom";
 
 const useHelper = () => {
   const dispatch = useDispatch();
   const userSchool = useSelector((state: IState) => state.userSchool);
   const userSession = useSelector((state: IState) => state.userSession);
-  const navigate = useNavigate();
 
   interface IValidateError {
     name: string;
@@ -18,8 +16,8 @@ const useHelper = () => {
 
   const [input, setInput] = useState<ISubject>({
     name: "",
-    courses: [""],
-    teachers: [""],
+    teachers: [],
+    courses: [],
   });
 
   const [errors, setError] = useState<IValidateError>({
@@ -54,7 +52,7 @@ const useHelper = () => {
     return errors;
   };
 
-  const handleInputChange = (e: any): any => {
+  const handleInputChange = (e: any) => {
     setError(
       validate({
         ...input,
@@ -67,60 +65,53 @@ const useHelper = () => {
     });
   };
 
-  const handleSelect = (e: any) => {
-    const { name, value } = e.target;
+  const handleSelect = (event: any, type: string) => {
+    let { value } = event.target;
 
-    if (name === "courses") {
-      if (input.courses.includes(value)) {
-      } else {
-        input.courses.push(value);
-      }
-    }
-    if (name === "teachers") {
-      if (input.teachers.includes(value)) {
-      } else {
-        input.teachers.push(value);
-      }
-    }
-    setInput({ ...input });
+    (type === "courses" || type === "teachers") &&
+    !input[type].map((m: any) => m._id === value).includes(true)
+      ? input[type].push(userSchool[type].filter((f: any) => f._id === value))
+      : alert(`El ${EntoEs(type)} ya esta seleccionado`);
+
+    event.target.value = "default";
+    setInput({
+      ...input,
+      teachers: input.teachers.flat(),
+      courses: input.courses.flat(),
+    });
   };
 
-  function deleteFromList(event: any) {
-    if (
-      input.courses
-        .map((m: any) => m.name === event.target.value)
-        .includes(true)
-    ) {
-      let copy = input.courses.filter(
-        (p: any) => p.name !== event.target.value
-      );
-      setInput({ ...input, courses: copy });
+  const EntoEs = (type: string) => {
+    switch (type) {
+      case "courses":
+        return "Curso";
+      case "teachers":
+        return "Profesor";
     }
-    if (
-      input.teachers
-        .map((m: any) => m.name === event.target.value)
-        .includes(true)
-    ) {
-      let copy = input.teachers.filter((g: any) => g.name !== event.target.value);
-      setInput({ ...input, teachers: copy });
-    }
+  };
+
+  function deleteFromList(event: any, type: string) {
+    const { value } = event.target;
+    (type === "teachers" || type === "courses") &&
+      setInput({
+        ...input,
+        [type]: input[type].filter((f: any) => f._id !== value),
+      });
   }
 
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     dispatch(
       createSubject({
         createSubject: { ...input, schoolId: userSchool._id },
         accessToken: userSession.accessToken,
       })
     );
-
     setInput({
       name: "",
       courses: [],
       teachers: [],
     });
-    navigate("/panel/general");
+    alert("La materia se creo exitosamente");
   };
 
   return {

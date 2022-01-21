@@ -1,8 +1,7 @@
-import useHelper from "./useHelper";
 import styles from "./AddSubject.module.css";
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
-import Input from '../../../components/Desktop/ReusableComponents/Input/Input';
-
+import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
+import useHelper from "./useHelper";
 
 const AddSubject: React.FC = () => {
   const {
@@ -12,10 +11,8 @@ const AddSubject: React.FC = () => {
     input,
     deleteFromList,
     userSchool,
-    errors
+    errors,
   } = useHelper();
-  console.log(input);
-
   return (
     <div className={styles.main}>
       <div className={styles.submain}>
@@ -24,8 +21,7 @@ const AddSubject: React.FC = () => {
             <p className={styles.title}>Añadir Subject</p>
           </div>
           <div>
-            <label className={styles.box1} htmlFor="name">
-            </label>
+            <label className={styles.box1} htmlFor="name"></label>
             <Input
               placeholder="Nombre"
               autoComplete="off"
@@ -33,34 +29,35 @@ const AddSubject: React.FC = () => {
               value={input.name}
               onChange={handleInputChange}
             />
-            {errors.name && (
-              <p className={styles.errorsP}>{errors.name}</p>
-            )}
+            {errors.name && <p className={styles.errorsP}>{errors.name}</p>}
           </div>
           <div className={`${styles.box2} ${styles.select}`}>
             <select
               name="courses"
               defaultValue={"default"}
-              onChange={handleSelect}>
+              onChange={(e) => handleSelect(e, "courses")}
+            >
               <option value="default" disabled>
                 Seleccionar Curso
               </option>
               {userSchool.courses?.map((c: any) => (
-                <option key={c.name}>{c.name}</option>
+                <option key={c.name} value={c._id}>
+                  {c.name}
+                </option>
               ))}
             </select>
           </div>
           <div className={styles.box3}>
             <ul>
-              {input?.courses.map((p: any) => {
+              {input?.courses.map((p: any, i: number) => {
                 return (
-                  <li className={styles.li} key={`${p.name}key`}>
+                  <li className={styles.li} key={i}>
                     {p.name}
                     <button
                       className={styles.btn}
                       type="button"
-                      value={p.name}
-                      onClick={deleteFromList}
+                      value={p._id}
+                      onClick={(e) => deleteFromList(e, "courses")}
                     >
                       X
                     </button>
@@ -73,27 +70,29 @@ const AddSubject: React.FC = () => {
             <select
               name="teachers"
               defaultValue={"default"}
-              onChange={handleSelect}
+              onChange={(e) => handleSelect(e, "teachers")}
             >
               <option value="default" disabled>
-                Seleccionar Teacher
+                Seleccionar Profesor
               </option>
               {userSchool.teachers?.map((c: any, _id: any) => (
-                <option value={c._id} key={c._id}>{c.name.first}{c.name.last}</option>
+                <option key={c._id} value={c._id}>
+                  {c.name.first} {c.name.last}
+                </option>
               ))}
             </select>
           </div>
           <div className={styles.box5}>
             <ul>
-              {input?.teachers.map((p: any) => {
+              {input?.teachers.map((p: any, i: number) => {
                 return (
-                  <li className={styles.li} key={`${p.name}key`}>
-                    {p.name}
+                  <li className={styles.li} key={i}>
+                    {p.name.first} {p.name.last}
                     <button
                       className={styles.btn}
                       type="button"
-                      value={p.name}
-                      onClick={deleteFromList}
+                      value={p._id}
+                      onClick={(e) => deleteFromList(e, "teachers")}
                     >
                       X
                     </button>
@@ -106,10 +105,9 @@ const AddSubject: React.FC = () => {
             <Button text="Añadir Materia" />
           </div>
         </form>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 
 export default AddSubject;
-

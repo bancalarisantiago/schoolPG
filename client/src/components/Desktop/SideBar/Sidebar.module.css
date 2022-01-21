@@ -24,6 +24,26 @@
   flex-direction: column;
   align-items: center;
   transition: 1.5s;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.sidebarShow::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 35, 35, 0.3);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.sidebar::-webkit-scrollbar,
+.sidebarShow::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb,
+.sidebarShow::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 35, 35, 0.3);
+  background-color: #555;
 }
 
 @media (max-width: 1080px) {
@@ -101,7 +121,8 @@
 }
 
 .management,
-.selected {
+.selected,
+.logout {
   position: relative;
   cursor: pointer;
   margin-bottom: 0.5rem;
@@ -111,6 +132,28 @@
   background-color: gray;
 }
 
+.logout {
+  border: 2px solid #e74e2b;
+  color: var(--semi-white);
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.logout::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  background: url("../../../assets/logout.png");
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+}
+.logout:hover {
+  background: #e74d2b6e;
+}
 .selected {
   background-image: linear-gradient(
     to right top,
@@ -180,29 +223,8 @@
 }
 
 .dropdownHide {
-  /*   position: absolute;
-    right: 10px;
-    animation: hide 0.4s linear;
-    visibility: hidden; */
   display: none;
 }
-/* 
-  @keyframes hide {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
-    50% {
-      transform: translateY(-1rem);
-      opacity: 0.6666;
-      visibility: visible;
-    }
-    100% {
-      transform: translateY(-2rem);
-      opacity: 0.3333;
-    }
-  } */
 
 .dropdownShow {
   animation: show 0.5s linear;
@@ -227,29 +249,23 @@
 }
 
 @media (max-width: 1600px) {
-  .title,
+  /* .title,
   .management,
   .option,
   .optionselected,
   .selected {
     padding: 0.5rem 1.25rem;
-  }
+  } */
   .selected,
   .management {
     width: 10rem;
   }
-  .option,
+  /* .option,
   .optionselected {
     font-size: medium;
-  }
-  /* .schoolname {
-    font-size: small;
-  }
-  .title {
-    font-size: medium;
   } */
-  .more,
+  /* .more,
   .less {
     top: 0.5rem;
-  }
+  } */
 }

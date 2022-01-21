@@ -129,15 +129,15 @@ const AddTeacher: React.FC = () => {
               {input?.subject.map((p: any) => {
                 return (
                   <li className={styles.li} key={`${p.name}key`}>
-                      {p.name}
-                      <button
-                        className={styles.btn}
-                        type="button"
-                        value={p.name}
-                        onClick={deleteFromList}
-                      >
-                        X
-                      </button>
+                    {p.name}
+                    <button
+                      className={styles.btn}
+                      type="button"
+                      value={p.name}
+                      onClick={deleteFromList}
+                    >
+                      X
+                    </button>
                   </li>
                 );
               })}
