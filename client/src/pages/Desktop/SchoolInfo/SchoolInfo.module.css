@@ -9,6 +9,21 @@
   /* -webkit-animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
           animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; */
 }
+.calendarContainer {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  width: 98%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 @-webkit-keyframes fadein {
   from {

@@ -21,7 +21,7 @@ const AddSubject: React.FC = () => {
       <div className={styles.submain}>
         <form className={styles.inputs} onSubmit={handleSubmit}>
           <div className={styles.titlebox}>
-            <p className={styles.title}>Añadir Subject</p>
+            <p className={styles.title}>Añadir Materia</p>
           </div>
           <div className={styles.box1}>
             <Input

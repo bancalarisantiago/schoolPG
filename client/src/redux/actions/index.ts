@@ -173,3 +173,9 @@ export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
     console.log(error);
   }
 };
+
+
+export const createEvent =  (payload: string) => async (dispatch: Dispatch) => {
+
+  await console.log(payload)
+} 

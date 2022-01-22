@@ -78,6 +78,8 @@
 
 .box1 {
   grid-area: box1;
+  margin: 0 auto;
+  width: 300px;
 }
 .box2 {
   grid-area: box2;
@@ -123,7 +125,7 @@
 .btn {
   display: flex;
   justify-content: center;
-  border: 3px solid rgb(255, 51, 51);
+  border: 2px solid rgb(255, 51, 51);
   margin-left: 10px;
   height: 24px;
   width: 24px;
