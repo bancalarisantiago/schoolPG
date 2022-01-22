@@ -4,7 +4,7 @@ import styles from "./App.module.css";
 import {useEffect} from "react";
 import { Routes, Route } from "react-router";
 import { useLocation, useNavigate } from "react-router-dom";
-//import Modal from "react-modal"
+import Modal from "react-modal"
 import appHelper from "./appHelper";
 
 //pages
@@ -13,7 +13,7 @@ import {Login, Panel, CreateSchool,AddStudent, AddTeacher, AddAdmin,
   SchoolInfo, Error, Profile, UserDetail,Database }  from ".//routsApp"; 
 
 
-//Modal.setAppElement("#root")
+Modal.setAppElement("#root")
 
 const App: React.FC = () => {
   const location: string = useLocation().pathname;

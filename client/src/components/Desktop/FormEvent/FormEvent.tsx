@@ -1,32 +1,34 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import Datetime from "react-datetime"
-
+import axios from "axios";
 interface EventProps {
     isOpen: any;
     onClose: any;
     onEventAdded: any;
+    eventCreated: any;
 }
 
 
-const Event: React.FC<EventProps> = ({isOpen, onClose, onEventAdded}) => {
+const Event: React.FC<EventProps> = ({isOpen, onClose, onEventAdded, eventCreated}) => {
 
         const [title, setTitle] = useState("")
         const [start, setStart] = useState(new Date())
         const [end, setEnd] = useState(new Date())
+        
 
 
-        const onSubmit = (event: any) => {
+        const onSubmit = async  (event: any) => {
             event.preventDefault();
-                
             onEventAdded({
                 title,
                 start,
-                end
+                end,
             })
             onClose()
         }
-    
+
+       
     return (
         <Modal isOpen={isOpen}
         onRequestClose={onClose}>
@@ -40,7 +42,7 @@ const Event: React.FC<EventProps> = ({isOpen, onClose, onEventAdded}) => {
                 <label>End Date</label>
             <Datetime value={end} onChange={(date:any) => setEnd(date)}/>
             </div>
-            <button >Add Event</button>
+            <button>Add Event</button>
             </form>
         </Modal>
     )

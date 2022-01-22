@@ -16,11 +16,11 @@ const schemaEvent = new Schema({
         
     },
     start: {
-        type: String,
+        type: Date,
         
     },
     end: {
-        type: String,
+        type: Date,
         
     },
     user: {

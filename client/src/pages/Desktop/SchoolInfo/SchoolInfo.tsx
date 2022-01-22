@@ -5,7 +5,7 @@ import useHelper from "./useHelper";
 //components
 import Database from "../../../components/Desktop/Database/Database";
 import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
-
+import Calendar from "../../../components/Desktop/Calendar/Calendar"
 const SchoolInfo: React.FC = () => {
   const { school, totalUsers } = useHelper();
 
@@ -29,6 +29,12 @@ const SchoolInfo: React.FC = () => {
             <p className={styles.statname}>Administradores</p>
             <p className={styles.statnum}>{school.admins.length}</p>
           </div>
+        </div>
+        <div className={styles.calendarContainer}>
+          <Calendar/>
+            <div className={styles.weatherApi}>
+              <img src={"https://upload.wikimedia.org/wikipedia/en/b/bc/Weather_on_iOS.png"}/>
+            </div>  
         </div>
         <Database
           school={school}

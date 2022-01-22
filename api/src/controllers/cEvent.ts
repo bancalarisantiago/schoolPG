@@ -18,19 +18,20 @@ export const getAllEvents = async (req: Request,res: Response) => {
 
 export const createEvent = async (req: Request,res: Response) => {
         const {user, title, start, end} = req.body
-            console.log(title)
+            console.log(req.body, "back")
         try{ 
 
-            // const newEvent = new Event({
-            //     user: new toId(user),
-            //     title,
-            //     start,
-            //     end
-            // })
-            // console.log(newEvent)
-            // newEvent.save();
-            // res.status(200).json(newEvent)
-
+        //     const newEvent = new Event({
+        //         title,
+        //         start,
+        //         end,
+        //         user: new toId(user),
+        //     })
+            
+        //    await newEvent.save();
+        //     res.status(200).json(newEvent)
+            console.log("NO FUNCA");
+            
         } catch (error) {
             console.log(error);
             res.status(404).json(error)

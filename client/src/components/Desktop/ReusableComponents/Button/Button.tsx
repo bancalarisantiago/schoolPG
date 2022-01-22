@@ -2,13 +2,14 @@ import styles from "./Button.module.css";
 
 interface IProps {
   text: string;
+  children?: any;
   onSubmit?: any;
   onClick?: any;
   value?: any;
   disabled?: boolean;
 }
 
-function Button({ text, onSubmit, onClick, disabled }: IProps) {
+function Button({ text, onSubmit, onClick, disabled , children}: IProps) {
   return (
     <button
       onSubmit={onSubmit}
