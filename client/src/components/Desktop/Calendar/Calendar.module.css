@@ -1,6 +1,12 @@
-.wrapper {
+.calendar {
   width: 600px;
   margin: 40px;
+}
+
+.fc .fc-button-primary {
+  color: #fff;
+  color: var(--fc-button-text-color, #fff);
+  background-color: #3790ef;
 }
 
 .btn {

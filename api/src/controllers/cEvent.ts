@@ -6,7 +6,7 @@ const toId = Types.ObjectId;
 export const getAllEvents = async (req: Request,res: Response) => {
         try {
             const allEvents = await Event.find({});
-
+                
             res.status(200).json(allEvents)
         } catch(error) {
             console.log(error)
@@ -18,19 +18,17 @@ export const getAllEvents = async (req: Request,res: Response) => {
 
 export const createEvent = async (req: Request,res: Response) => {
         const {user, title, start, end} = req.body
-            console.log(req.body, "back")
+    
         try{ 
-
-        //     const newEvent = new Event({
-        //         title,
-        //         start,
-        //         end,
-        //         user: new toId(user),
-        //     })
+            const newEvent = new Event({
+                title,
+                start,
+                end,
+                user: new toId(user),
+            })
             
-        //    await newEvent.save();
-        //     res.status(200).json(newEvent)
-            console.log("NO FUNCA");
+           await newEvent.save();
+            res.status(200).json(newEvent)
             
         } catch (error) {
             console.log(error);

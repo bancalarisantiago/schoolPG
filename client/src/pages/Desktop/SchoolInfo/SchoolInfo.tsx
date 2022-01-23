@@ -32,9 +32,6 @@ const SchoolInfo: React.FC = () => {
         </div>
         <div className={styles.calendarContainer}>
           <Calendar/>
-            <div className={styles.weatherApi}>
-              <img src={"https://upload.wikimedia.org/wikipedia/en/b/bc/Weather_on_iOS.png"}/>
-            </div>  
         </div>
         <Database
           school={school}
