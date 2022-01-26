@@ -28,6 +28,8 @@ export const USER_DETAIL = "USER_DETAIL";
 export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
 export const PUT_USER = "PUT_USER";
 export const USER_LOGOUT = "USER_LOGOUT";
+export const CREATE_EVENT = "CREATE_EVENT"
+export const GET_EVENTS = "GET_EVENTS"
 /* export const REFRESH_TOKEN = "REFRESH_TOKEN"; */
 
 //logout
@@ -176,6 +178,18 @@ export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
 
 
 export const createEvent =  (payload: string) => async (dispatch: Dispatch) => {
-
-  await console.log(payload)
+    
+    const newEvent = await instance.post("/event", payload);
+  return dispatch({
+    type: CREATE_EVENT,
+    payload
+  })
 } 
+
+export const getEvents = () => async (dispatch: Dispatch) => {
+  const events = await instance.get("/event")
+  return dispatch({
+    type: GET_EVENTS,
+    payload: events,
+  })
+}

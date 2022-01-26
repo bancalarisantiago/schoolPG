@@ -6,6 +6,8 @@ import useHelper from "./useHelper";
 import Database from "../../../components/Desktop/Database/Database";
 import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
 import Calendar from "../../../components/Desktop/Calendar/Calendar"
+
+import {useState, useEffect} from "react"
 const SchoolInfo: React.FC = () => {
   const { school, totalUsers } = useHelper();
 
@@ -31,10 +33,15 @@ const SchoolInfo: React.FC = () => {
           </div>
         </div>
         <div className={styles.calendarContainer}>
-          <Calendar/>
-            <div className={styles.weatherApi}>
-              <img src={"https://upload.wikimedia.org/wikipedia/en/b/bc/Weather_on_iOS.png"}/>
-            </div>  
+            <div className={styles.calendar}>
+              <Calendar />
+            </div>
+        </div>
+            <div className={styles.apiContainer}>
+                <img src={"https://upload.wikimedia.org/wikipedia/en/b/bc/Weather_on_iOS.png"}/>
+            </div>
+        <div>
+          
         </div>
         <Database
           school={school}

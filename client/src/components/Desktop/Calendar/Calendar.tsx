@@ -1,69 +1,76 @@
-import { useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { createEvent } from "../../../redux/actions/index"
+import useHelper from "./useHelper"
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import listPlugin from '@fullcalendar/list';
 import interactionPlugin from "@fullcalendar/interaction";
 import FormEvent from "../FormEvent/FormEvent";
 import axios from "axios";
 //import moment from "moment"
-
+import {useState, useEffect} from "react"
 //Components
 import Button from "../ReusableComponents/Button/Button"
+//Styles
+import styles from "./Calendar.module.css"
+
 
 const Calendar: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [events, setEvents] = useState({});
-  const calendarRef: any = useRef(null);
-  const userId = useSelector((state: any) => state.userSession)
-  const dispatch = useDispatch()
+  
+const { calendarRef, eventsDb, setModalOpen, modalOpen, events, onEventAdded } = useHelper();
 
-  const onEventAdded = async (event: any) => {
-    let calendarApi = calendarRef.current.getApi();
-    const { title, end, start } = event;
-    calendarApi.addEvent(event);
-    setEvents(event);
-    dispatch(createEvent({...event, user: userId.user._id}))
-    
-    
-  };
-  const eventoPrueaba = [ {
-       title: 'Prueba 1',
-       start: '2022-01-21T17:53:54.057Z',
-       end: '2022-01-21T17:53:54.057Z'
-     },{
-      title: 'Prueba 2',
-      start: '2022-01-21T17:53:54.057Z',
-      end: '2022-01-21T17:53:54.057Z'
-    } ]
 
-  const handleEventAdd = async function (events: any) {
+const [ option, setOption ] = useState("dayGridMonth");
 
-      
-    //await axios.post("http://localhost:5000/api/event", events);
-  };
 
-  const handleDateSet = async function (data: any) {
+useEffect(() => {
+ 
+},[option])
 
-   
-    const response = await axios.get("http://localhost:5000/api/event");
-  };
+function handleOptionChange (event: any) {
+  setOption(event.target.value)
+ event.target.value = "default"
+}
 
+  
   return (
+    < div className={styles.wrapper}>
     <section>
-      <Button 
-      text="Agregar Evento"
-      onClick={() => setModalOpen(true)}/>
-      <div style={{ position: "relative", zIndex: 0 }}>
-        <div>
-          <FullCalendar
-            ref={calendarRef}
-            plugins={[dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            eventAdd={(event) => handleEventAdd(event)}
-            datesSet={(date: any) => handleDateSet(date)}
-            themeSystem="bootstrap"
-          />
+      
+      <div >
+        <div className={styles.calendar}>
+          {option !== "listWeek" && option !== "dayGridWeek" ?
+        
+              <FullCalendar
+                ref={calendarRef}
+                aspectRatio={2}
+                plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
+                events={eventsDb}
+                initialView={`${option}`}
+                locale="es"
+                themeSystem="bootstrap"
+              />
+             : null }
+             
+             {option !== "dayGridMonth" &&  option !== "listWeek" ? 
+                  <FullCalendar
+                  ref={calendarRef}
+                  aspectRatio={2}
+                  plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
+                  events={eventsDb}
+                  initialView={`${option}`}
+                  locale="es"
+                  themeSystem="bootstrap"
+                />
+             : null} 
+             {option !== "dayGridMonth" &&  option !== "dayGridWeek" ? 
+             <FullCalendar
+                ref={calendarRef}
+                aspectRatio={2}
+                plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
+                events={eventsDb}
+                initialView={`${option}`}
+                locale="es"
+                themeSystem="bootstrap"
+              /> : null}
         </div>
       </div>
       <FormEvent
@@ -72,8 +79,23 @@ const Calendar: React.FC = () => {
         onEventAdded={(event: any) => onEventAdded(event)}
         eventCreated={events}
       />
-    </section>
+      
+    </section>  
+          <div className={styles.buttonsContainer}>
+                <div className={styles.select}>
+                  <select defaultValue="default" onChange={handleOptionChange}>
+                    <option value="default" disabled>Seleccionar Vista</option>
+                    <option value="dayGridMonth">Mes</option>
+                    <option value="listWeek">Dia</option>
+                    <option value="dayGridWeek">Semana</option>
+                  </select>
+                  </div>  
+          <Button 
+          text="Agregar Evento"
+          onClick={() => setModalOpen(true)}/>
+        </div>
+    </div>
   );
 };
 
-export default Calendar;
+export default Calendar
