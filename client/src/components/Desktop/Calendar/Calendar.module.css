@@ -1,18 +1,24 @@
 .calendar {
-  width: 600px;
+  width: auto;
   margin: 40px;
 }
 
-.fc .fc-button-primary {
-  color: #fff;
-  color: var(--fc-button-text-color, #fff);
-  background-color: #3790ef;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 10px;
 }
 
+.buttonsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 .btn {
   border: none;
-  display: block;
-  position: relative;
+  display: flex;
+
   padding: 0.7em 2.4em;
   font-size: 18px;
   background: transparent;
@@ -70,4 +76,50 @@
 
 .btn:active .span::before {
   background: #2751cd;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background: #fafafa;
+  background-image: none;
+  flex: 1;
+  padding: 0 0.2em;
+  color: #999;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  color: rgb(85, 85, 85);
+  width: 14em;
+  height: 2em;
+  line-height: 2;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 0.7em;
+  background: var(---blue-gradient);
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+.select:hover::after {
+  color: var(--semi-white);
 }

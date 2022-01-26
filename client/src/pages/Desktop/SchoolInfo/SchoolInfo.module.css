@@ -15,16 +15,25 @@
   border-radius: 10px;
   background: #fafafa;
   box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
-  width: 98%;
+  width: 70%;
+  display: flex;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
-
+.apiContainer {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  width: 20%;
+  display: flex;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
 @-webkit-keyframes fadein {
   from {
     opacity: 0;
