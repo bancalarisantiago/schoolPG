@@ -13,6 +13,9 @@ import Button from "../ReusableComponents/Button/Button"
 import styles from "./Calendar.module.css"
 
 
+
+
+
 const Calendar: React.FC = () => {
   
 const { calendarRef, eventsDb, setModalOpen, modalOpen, events, onEventAdded } = useHelper();
@@ -41,7 +44,7 @@ function handleOptionChange (event: any) {
         
               <FullCalendar
                 ref={calendarRef}
-                aspectRatio={2}
+                aspectRatio={1.7}
                 plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
                 events={eventsDb}
                 initialView={`${option}`}
@@ -53,7 +56,7 @@ function handleOptionChange (event: any) {
              {option !== "dayGridMonth" &&  option !== "listWeek" ? 
                   <FullCalendar
                   ref={calendarRef}
-                  aspectRatio={2}
+                  aspectRatio={1.7}
                   plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
                   events={eventsDb}
                   initialView={`${option}`}
@@ -64,7 +67,7 @@ function handleOptionChange (event: any) {
              {option !== "dayGridMonth" &&  option !== "dayGridWeek" ? 
              <FullCalendar
                 ref={calendarRef}
-                aspectRatio={2}
+                aspectRatio={1.7}
                 plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
                 events={eventsDb}
                 initialView={`${option}`}
