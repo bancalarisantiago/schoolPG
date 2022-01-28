@@ -45,4 +45,6 @@
 }
 .message {
   text-align: center;
+  max-width: 150px;
+  overflow: scroll;
 }
