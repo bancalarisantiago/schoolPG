@@ -37,7 +37,6 @@ export default function FormLogin(): JSX.Element {
               <span className={styles.legal}> las politicas de privacidad</span>
             </p>
           </div>
-
           <Button content={"login"} />
         </form>
       </div>

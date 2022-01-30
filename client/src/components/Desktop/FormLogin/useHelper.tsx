@@ -14,8 +14,10 @@ import {
 
 const useHelper = () => {
   const dispatch = useDispatch();
+
   const userSession = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
+
   const [credential, setcredential] = useState<ICredential>({
     userInfo: "",
     password: "",
@@ -31,11 +33,10 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
-    const authLogin = await dispatch(getUserByLogin(credential));
 
-    typeof authLogin !== "string"
-      ? navigate("/panel")
-      : console.log({ message: "Email or password is invalid" });
+    const authLogin = dispatch(getUserByLogin(credential));
+
+    typeof authLogin !== "string" ? navigate("/panel") : console.log(authLogin);
   };
 
   return {

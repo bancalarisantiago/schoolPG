@@ -8,7 +8,7 @@ import {
   DELETE_USER_BY_ID,
   USER_LOGOUT,
   /* REFRESH_TOKEN, */
-  GET_EVENTS
+  GET_EVENTS,
 } from "../actions";
 
 export const initialState: IState = {
@@ -64,10 +64,10 @@ cases[USER_LOGOUT] = (initialState: IState) => {
 
 cases[GET_EVENTS] = (initialState: IState, payload: ISchool) => {
   return {
-  ...initialState,
-  events: payload,
-}
-}
+    ...initialState,
+    events: payload,
+  };
+};
 
 /* cases[REFRESH_TOKEN] = (initialState: IState, payload: any) => ({
   ...initialState,

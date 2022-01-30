@@ -122,7 +122,6 @@ export interface ICreateSchool {
 }
 
 export interface Location {
-  number: string;
   streetNumber: string;
   streetName: string;
   locality: string;
@@ -144,6 +143,11 @@ export interface ICreateUser {
     courses?: string[];
     subject?: string[];
   };
+  accessToken: string;
+}
+
+export interface IRefreshUser {
+  userId: string;
   accessToken: string;
 }
 

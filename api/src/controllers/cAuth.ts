@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 //helpers
 const generateAccessToken = (id: any) => {
   return jwt.sign({ _id: id }, "token de minima seguridad", {
-    expiresIn: 60 * 60,
+    expiresIn: 60 * 60 * 24,
   });
 };
 

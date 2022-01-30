@@ -246,7 +246,7 @@ const useHelper = () => {
     alert("El usuario fue modificado correctamente");
     getBack();
   };
-    
+
   const handleClick = (name: string, text: string) => {
     setInput({ ...input, [name]: text });
     setErrors(validate({ ...input, [name]: text }, name));
