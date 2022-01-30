@@ -1,0 +1,38 @@
+/* From cssbuttons.io by @nikk7007 */
+.button {
+  padding: 0.5em 1em;
+  border: 2px solid var(--imperial-red);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  font-size: medium;
+  transition: 0.3s;
+  z-index: 1;
+  color: var(--imperial-red);
+  cursor: pointer;
+}
+
+.button::before {
+  content: "";
+  width: 0;
+  height: 500%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--imperial-red);
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+
+.button:hover::before {
+  width: 110%;
+}
+
+.button:hover {
+  color: #111;
+  border: 2px solid transparent;
+}

@@ -254,6 +254,12 @@ interface ILocation {
   postalCode: string;
 }
 
+export interface ITutor{
+  name: string;
+  cellphone: string;
+  email: string;
+
+}
 export interface IUserForm {
   name: Fullname;
   gender: string;
@@ -265,6 +271,7 @@ export interface IUserForm {
   password: string;
   cellphone: string;
   picture: string;
+  tutors:ITutor[];
 }
 export interface IUserSubmit {
   user: IUserForm;
