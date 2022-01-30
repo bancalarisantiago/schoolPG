@@ -154,6 +154,14 @@ export const updateUser = async (req: Request, res: Response) => {
     const newUser = {
       ...req.body,
     };
+    //actualizar password
+    if(newUser.password.length <10){
+      console.log('cUser1',newUser);
+      newUser.password = await  new User().encryptPassword(newUser.password);
+    }
+      
+    console.log('cUser2',newUser);
+
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
     });

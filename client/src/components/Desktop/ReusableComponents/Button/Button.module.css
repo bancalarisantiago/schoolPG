@@ -3,7 +3,7 @@
   display: block;
   position: relative;
   padding: 0.7em 2.4em;
-  font-size: 18px;
+  font-size: large;
   background: transparent;
   cursor: pointer;
   -webkit-user-select: none;
@@ -15,12 +15,13 @@
   z-index: 1;
   font-family: inherit;
   font-weight: 500;
-  width: 150px;
-  height: 50px;
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  transition: 0.3s;
 }
 
 .btn .span {
@@ -39,12 +40,13 @@
   display: block;
   position: absolute;
   width: 8%;
-  height: 500%;
+  height: 800%;
   background: #fafafa;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-60deg);
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
+  transition: 0.5s ease;
 }
 
 .btn:hover .span::before {
@@ -62,10 +64,10 @@
 }
 
 .disabled:hover {
-  background: red;
+  background: var(--imperial-red);
   cursor: default;
 }
 .disabled:hover .span::before {
-  background: red;
+  background: var(--imperial-red);
   cursor: default;
 }
