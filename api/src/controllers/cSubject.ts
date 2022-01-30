@@ -89,8 +89,10 @@ export const deleteSubjectById = async (req: Request, res: Response) => {
     if (!subject) {
       return res.status(404).json({ msg: "Event not found" });
     }
-    const subjectDeleted = await subject.delete();
-    res.status(200).json(subjectDeleted);
+    console.log(subject);
+    /* const subjectDeleted = await subject.delete(); */
+
+    /* res.status(200).json(subjectDeleted); */
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
@@ -107,4 +109,69 @@ export const addCourseToSubject = async (req: Request, res: Response) => {
   subject
     ? res.send({ message: "relation was created succesfully" })
     : res.send({ error: "relation wasn'\t created succesfully" });
+};
+
+export const updateSubjectById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { course, teacher } = req.body;
+
+  try {
+    const subject = await Subject.findOne({ _id: id });
+
+    const courses = JSON.parse(course);
+    const teachers = JSON.parse(teacher);
+
+    if (course) {
+      subject?.teachers.length &&
+        subject.teachers.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $pull: {
+                subject: id,
+              },
+            })
+        );
+      subject?.courses.length &&
+        subject.courses.forEach(
+          async (fe: any) =>
+            await Course.findByIdAndUpdate(fe, {
+              $pull: {
+                subjects: id,
+              },
+            })
+        );
+      await Subject.findByIdAndUpdate(id, {
+        teachers: teachers,
+        courses: courses,
+      });
+
+      teachers &&
+        teachers.length &&
+        teachers.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $push: {
+                subject: id,
+              },
+            })
+        );
+
+      courses &&
+        courses.length &&
+        courses.forEach(
+          async (fe: any) =>
+            await Course.findByIdAndUpdate(fe, {
+              $push: {
+                subjects: id,
+              },
+            })
+        );
+      res.status(200).json(subject);
+    } else {
+      res.send("El id de la materia no es valido");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(404).json(error);
+  }
 };

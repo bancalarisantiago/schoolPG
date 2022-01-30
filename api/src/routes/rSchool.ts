@@ -13,9 +13,9 @@ import {
 const router = Router();
 
 //private routes
-router.get("/school/:id", tokenValidation, getSchoolById);
+//router.get("/school/:id", tokenValidation, getSchoolById);
 router.post("/school", tokenValidation, createSchool);
-
+router.get("/school/:id", getSchoolById);
 //non private routes
 router.get("/school", getAllSchools);
 router.put("/school/:id", updateSchool);

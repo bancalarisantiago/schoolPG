@@ -60,9 +60,6 @@ const useHelper = () => {
   const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
   const userSession = useSelector((state: IState) => state.userSession);
 
-  // useEffect(() => {
-  //   getBack();
-  // }, [location]);
   useEffect(() => {
     dispatch(getUserById({ userId: id, accessToken: userSession.accessToken }));
   }, []);
@@ -263,7 +260,7 @@ const useHelper = () => {
 
     getBack();
   };
-    
+
   const handleClick = (name: string, text: string) => {
     setInput({ ...input, [name]: text });
     setErrors(validate({ ...input, [name]: text }, name));

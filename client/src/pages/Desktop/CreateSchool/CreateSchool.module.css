@@ -38,7 +38,7 @@
 .preview {
   width: 96%;
   height: 96%;
-  background-color: var(--semi-white);
+  background-color: #fafafa;
   border-radius: 10px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .form {
-  background-color: var(--semi-white);
+  background-color: #fafafa;
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
 }
@@ -75,7 +75,7 @@
   font-size: large;
   font-weight: 600;
   padding-left: 2rem;
-  color: var(--semi-white);
+  color: #fafafa;
 }
 
 .inputsDiv {
@@ -95,7 +95,7 @@
   margin: 1rem;
   height: 2.5rem;
   padding-left: 1rem;
-  background-color: var(--semi-white);
+  background-color: #fafafa;
   border-bottom: 2px solid var(--blue-palette-intensity5);
 }
 .inputTag::placeholder {
@@ -116,7 +116,7 @@
 
 .textareaTag {
   width: 40%;
-  background-color: var(--semi-white);
+  background-color: #fafafa;
   border: 2px solid var(--blue-palette-intensity5);
   border-radius: 10px;
   overflow: auto;

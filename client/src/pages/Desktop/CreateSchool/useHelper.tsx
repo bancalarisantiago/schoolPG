@@ -12,6 +12,7 @@ import {
   SubmitEvent,
   IState,
 } from "../../../interfaces/";
+import axios from "axios";
 
 const useHelper = () => {
   const dispatch = useDispatch();
@@ -19,11 +20,10 @@ const useHelper = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userSession.id) navigate("/panel/general");
+    if (userSession.user.school) navigate("/panel/general");
   }, []);
 
   const [location, setLocation] = useState<Location>({
-    number: "",
     streetNumber: "",
     streetName: "",
     locality: "",
@@ -57,16 +57,30 @@ const useHelper = () => {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
-    dispatch(
-      createSchool({
-        createSchool: {
-          ...input,
-          userId: userSession.user._id,
-        },
-        accessToken: userSession.accessToken,
-      })
-    );
-    navigate("/login");
+
+    if (
+      Object.values(input).includes("") ||
+      Object.values(location).includes("")
+    ) {
+      return alert("Los campos no pueden estar vacios.");
+    } else {
+      dispatch(
+        createSchool({
+          createSchool: {
+            ...input,
+            userId: userSession.user._id,
+          },
+          accessToken: userSession.accessToken,
+        })
+      );
+      if (
+        window.confirm(
+          `Para completar el registro debera loguearse nuevamente`
+        ) === true
+      ) {
+        navigate("/login");
+      }
+    }
   };
   // $ npm install @emailjs/browser --save
 
