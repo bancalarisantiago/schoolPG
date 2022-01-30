@@ -1,6 +1,5 @@
 //css
 import styles from "./Panel.module.css";
-import "../../../styles/theme.css";
 //helper
 import useHelper from "./useHelper";
 
