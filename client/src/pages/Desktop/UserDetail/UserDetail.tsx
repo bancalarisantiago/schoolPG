@@ -8,6 +8,7 @@ import defaultPic from "../../../assets/user.png";
 
 const UserDetail: React.FC = () => {
   const { userDetail, userTypeEs } = useHelper();
+  console.log(userDetail.user);
   return (
     <div className={styles.main}>
       {userDetail.name ? (

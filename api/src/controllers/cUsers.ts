@@ -34,18 +34,8 @@ export const getUserById = async (req: Request, res: Response) => {
   ];
   try {
     const user = await User.findById(id).populate(populateQuery).lean();
-
-    const accessToken = jwt.sign({ _id: id }, "token de minima seguridad", {
-      expiresIn: 60 * 60 * 24,
-    });
-    const refreshToken = jwt.sign(
-      { _id: id },
-      "token de minima seguridad para refrescado"
-    );
-
-    res
-      .setHeader("auth-token", accessToken)
-      .json({ user, accessToken, refreshToken });
+    
+    res.status(200).json(user);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
