@@ -49,8 +49,6 @@ useEffect(()=>{console.log(input)},[input])
 
     function deleteFromList(event: any) {
 
-        
-
         if (
           input.courses
             .map((m: any) => m.name === event.target.value)
