@@ -84,15 +84,34 @@ export const getSubjectById = async (req: Request, res: Response) => {
 
 export const deleteSubjectById = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   try {
     const subject = await Subject.findById(id);
-    if (!subject) {
-      return res.status(404).json({ msg: "Event not found" });
-    }
     console.log(subject);
-    /* const subjectDeleted = await subject.delete(); */
+    if (!subject) {
+      return res.status(404).json({ msg: "Subject not found" });
+    }
+    subject.courses.length &&
+      subject.courses.map(
+        async (m: any) =>
+          await Course.findByIdAndUpdate(m, {
+            $pull: {
+              subjects: id,
+            },
+          })
+      );
+    subject.teachers.length &&
+      subject.teachers.map(
+        async (m: any) =>
+          await User.findByIdAndUpdate(m, {
+            $pull: {
+              subject: id,
+            },
+          })
+      );
+    await subject.delete();
 
-    /* res.status(200).json(subjectDeleted); */
+    res.status(200).send("La materia fue borrada con exito");
   } catch (error) {
     console.log(error);
     res.status(404).json(error);

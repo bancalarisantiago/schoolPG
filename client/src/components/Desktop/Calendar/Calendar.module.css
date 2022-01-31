@@ -123,3 +123,9 @@ select::-ms-expand {
 .select:hover::after {
   color: var(--semi-white);
 }
+
+@media (max-width: 1400px) {
+  .calendar {
+    width: 100%;
+  }
+}

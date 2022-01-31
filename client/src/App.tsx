@@ -27,6 +27,7 @@ import {
   Profile,
   UserDetail,
   Database,
+  CourseDetail,
 } from ".//routsApp";
 
 Modal.setAppElement("#root");
@@ -107,6 +108,8 @@ const App: React.FC = () => {
 
           <Route path="profile" element={<Profile />} />
           <Route path="detalle-usuario/:id" element={<UserDetail />} />
+
+          <Route path="detalle-curso/:courseId" element={<CourseDetail />} />
 
           <Route path="*" element={<Error />} />
         </Route>

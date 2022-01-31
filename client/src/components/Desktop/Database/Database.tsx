@@ -68,7 +68,7 @@ const Database: React.FC<{
                 <p className={styles.email}>{m.email}</p>
                 <p className={styles.cellphone}>{m.cellphone}</p>
 
-                <div>
+                <div className={styles.actions}>
                   <NavLink to={`/panel/${route}/${m._id}`}>
                     <img
                       src={edit}

@@ -34,7 +34,7 @@ const useHelper = () => {
   const handleSubmit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
 
-    const authLogin = dispatch(getUserByLogin(credential));
+    const authLogin = await dispatch(getUserByLogin(credential));
 
     typeof authLogin !== "string" ? navigate("/panel") : console.log(authLogin);
   };

@@ -137,7 +137,9 @@ export const createUser = async (req: Request, res: Response) => {
         ? subject.map(
             async (m: any) =>
               await Subject.findByIdAndUpdate(new toId(m._id), {
-                teachers: new toId(newUser._id),
+                $push: {
+                  teachers: new toId(newUser._id),
+                },
               })
           )
         : ""
@@ -167,12 +169,12 @@ export const updateUser = async (req: Request, res: Response) => {
       ...req.body,
     };
     //actualizar password
-    if(newUser.password.length <10){
-      console.log('cUser1',newUser);
-      newUser.password = await  new User().encryptPassword(newUser.password);
+    if (newUser.password.length < 10) {
+      console.log("cUser1", newUser);
+      newUser.password = await new User().encryptPassword(newUser.password);
     }
-      
-    console.log('cUser2',newUser);
+
+    console.log("cUser2", newUser);
 
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
