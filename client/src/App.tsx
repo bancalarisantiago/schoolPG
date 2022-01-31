@@ -63,7 +63,7 @@ const App: React.FC = () => {
           />
           <Route
             path="modificar-profesor/:id"
-            element={<UpdateTeacher/>}
+            element={<UpdateComponent userType={"profesores"} />}
           />
           <Route path="agregar-admin" element={<AddAdmin />} />
           <Route

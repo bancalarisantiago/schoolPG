@@ -201,7 +201,7 @@ const useHelper = () => {
           }
           }
           if (name === "subjects") {
-              console.log(event.target.name)
+              
           if (!select.subject.map((m: any) => m.name === value).includes(true)) {
             select.subject.push(
                 school.subjects.filter((m: any) => m.name === value)

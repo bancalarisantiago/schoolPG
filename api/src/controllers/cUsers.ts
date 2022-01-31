@@ -200,7 +200,7 @@ export const updateUser = async (req: Request, res: Response) => {
             async (fe: any) =>
               await Course.findByIdAndUpdate(new toId(fe._id), {
                 $push: {
-                  teachers : new toId(newUser._id),
+                  teachers : new toId(id),
                 },
               })
           )
@@ -213,7 +213,7 @@ export const updateUser = async (req: Request, res: Response) => {
             async (m: any) =>
               await Subject.findByIdAndUpdate(new toId(m._id), {
                 $push: {
-                teachers: new toId(newUser._id),
+                teachers: new toId(id),
                 },
               })
           )
@@ -225,11 +225,10 @@ export const updateUser = async (req: Request, res: Response) => {
     };
     //actualizar password
     if(newUser.password.length <10){
-      console.log('cUser1',newUser);
       newUser.password = await  new User().encryptPassword(newUser.password);
     }
       
-
+      
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
     });
