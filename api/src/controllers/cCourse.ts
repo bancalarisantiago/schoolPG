@@ -137,12 +137,11 @@ export const deleteCourseById = async (req: Request, res: Response) => {
 
 export const attendanceUpdate = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { classAttend } = req.body;
 
   try {
     const course = await Course.findByIdAndUpdate(id, {
       $push: {
-        classes: classAttend,
+        classes: req.body,
       },
     });
 

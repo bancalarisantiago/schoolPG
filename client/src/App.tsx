@@ -10,8 +10,8 @@ import appHelper from "./appHelper";
 //pages
 
 import {Login, Panel, CreateSchool,AddStudent, AddTeacher, AddAdmin,
-  UpdateComponent, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
-  SchoolInfo, Error, Profile, UserDetail,Database, UpdateTeacher }  from ".//routsApp"; 
+  UpdateComponent, AddCourse, UpdateCourse, AddSubject, UpdateSubject,
+  SchoolInfo, Error, Profile, UserDetail,Database, UpdateTeacher, AddAttendance }  from ".//routsApp"; 
 
 Modal.setAppElement("#root");
 
@@ -83,14 +83,13 @@ const App: React.FC = () => {
           <Route path="agregar-curso" element={<AddCourse />} />
           <Route path="modificar-curso" element={<UpdateCourse />} />
 
-          <Route path="agregar-evento" element={<AddEvent />} />
-          <Route path="modificar-calendario" element={<UpdateEvent />} />
-
           <Route path="agregar-materias" element={<AddSubject />} />
           <Route path="modificar-materias" element={<UpdateSubject />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="detalle-usuario/:id" element={<UserDetail />} />
+
+          <Route path="tomar-asistencia" element={<AddAttendance/>} />
 
           <Route path="*" element={<Error />} />
         </Route>

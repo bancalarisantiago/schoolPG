@@ -1,4 +1,5 @@
 //from modules
+import { Timestamp } from "mongodb";
 import mongoose, { Schema } from "mongoose";
 
 //interface
@@ -26,19 +27,17 @@ const schemaCourse = new Schema({
       date: {
         type: String,
       },
-      attendance: [
-        {
-          name: {
-            type: String,
-          },
-          attended: {
-            type: Boolean,
-          },
-          late: {
-            type: Boolean,
-          },
+      attendance: [{
+        userId: {
+          type: Schema.Types.ObjectId, ref: "User"
         },
-      ],
+        attended: {
+          type: Boolean,
+        },
+        late: {
+          type: Boolean,
+        },
+      }],
     },
   ],
 });
