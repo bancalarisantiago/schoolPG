@@ -157,6 +157,24 @@ export const deleteUserById =
     });
   };
 
+export const deleteSubjectById = async (payload: any) => {
+  await instance.delete(`/subject/${payload.id}`, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
+};
+
+export const deleteCourseById =
+  (payload: any) => async (dispatch: Dispatch) => {
+    await instance.delete(`/course/${payload.id}`, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
+    dispatch({ type: DELETE_USER_BY_ID });
+  };
+
 //put
 export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
   try {

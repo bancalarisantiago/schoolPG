@@ -1,0 +1,107 @@
+.main {
+  margin-top: 2rem;
+  width: 98%;
+  min-height: 20rem;
+  max-height: max-content;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: var(---blue-gradient);
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  border-radius: 10px;
+  top: -30px;
+  width: 95%;
+  height: 5rem;
+}
+
+.title {
+  position: absolute;
+  left: 10px;
+  color: var(--semi-white);
+  font-size: large;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.goBack {
+  background-color: transparent;
+  position: absolute;
+  right: 1rem;
+}
+.backImg {
+  width: 50px;
+  height: 50px;
+}
+
+.userType {
+  font-size: larger;
+  padding-bottom: 0.5rem;
+  color: #7c7676;
+  border-bottom: 2px solid #adadad;
+}
+.teachers,
+.students,
+.subjects {
+  width: 90%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.user,
+.subject {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.name {
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.profilepic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.bookmark {
+  width: 50px;
+  height: 50px;
+}
+
+.navLink {
+  color: black;
+}
+
+.actions {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+}
+
+.userInfo,
+.subjectInfo {
+  margin: 0.5rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

@@ -16,11 +16,11 @@ const router = Router();
 
 //private routes
 router.post("/subject", tokenValidation, createSubject);
+router.delete("/subject/:id", tokenValidation, deleteSubjectById);
 
 //non private routes
 router.get("/subject", getSubjects);
 router.get("/subject/:id", getSubjectById);
-router.delete("/subject/:id", deleteSubjectById);
 //router.put("/subject/:subjectId/:courseId", addCourseToSubject);
 router.put("/subject/update/:id", updateSubjectById);
 

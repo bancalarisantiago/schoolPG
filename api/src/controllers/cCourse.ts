@@ -126,6 +126,37 @@ export const deleteCourseById = async (req: Request, res: Response) => {
     if (!course) {
       return res.status(404).json({ msg: "Event not found" });
     }
+
+    course.students.length &&
+      course.students.map(
+        async (m: any) =>
+          await User.findByIdAndUpdate(m, {
+            $pull: {
+              course: id,
+            },
+          })
+      );
+
+    course.teachers.length &&
+      course.teachers.map(
+        async (m: any) =>
+          await User.findByIdAndUpdate(m, {
+            $pull: {
+              course: id,
+            },
+          })
+      );
+
+    course.subjects.length &&
+      course.subjects.map(
+        async (m: any) =>
+          await Subject.findByIdAndUpdate(m, {
+            $pull: {
+              courses: id,
+            },
+          })
+      );
+
     await course.delete();
 
     res.status(200).json("Curso borrado con exito");

@@ -15,24 +15,28 @@ import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
 import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 import Database from "./components/Desktop/Database/Database";
-import UpdateTeacher from "./pages/Desktop/UpdateTeacher/UpdateTeacher"
+import AddAttendance from "./components/Desktop/AddAttendance/AddAttendance";
+import CourseDetail from "./pages/Desktop/CourseDetail/CourseDetail";
 export {
-    Login,
-    Panel,
-    CreateSchool,
-    AddStudent,
-    UpdateComponent,
-    AddTeacher,
-    AddAdmin,
-    AddCourse,
-    UpdateCourse,
-    AddSubject,
-    UpdateSubject,
-    SchoolInfo,
-    Error,
-    Profile,
-    UserDetail,
-    Database,
-    UpdateTeacher,
-    AddAttendance
+  Login,
+  Panel,
+  CreateSchool,
+  AddStudent,
+  UpdateComponent,
+  AddTeacher,
+  AddAdmin,
+  AddCourse,
+  UpdateCourse,
+  AddEvent,
+  UpdateEvent,
+  AddSubject,
+  UpdateSubject,
+  SchoolInfo,
+  Error,
+  Profile,
+  UserDetail,
+  Database,
+  CourseDetail,
+  AddAttendance
+
 };

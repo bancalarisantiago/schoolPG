@@ -15,8 +15,9 @@
   border-radius: 10px;
   background: #fafafa;
   box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
-  width: 70%;
+  width: 60%;
   display: flex;
+  justify-content: center;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -155,6 +156,12 @@
   align-items: center;
 }
 
+.time {
+  display: flex;
+  width: 100%;
+  height: 40rem;
+}
+
 @media (min-width: 510px) {
   .info {
     width: 99%;
@@ -176,6 +183,7 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
   .users,
   .students,
   .teachers,
@@ -196,4 +204,161 @@
     width: 23%;
     margin: 1rem 0;
   }
+}
+
+@media (max-width: 2000px) {
+  .time {
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+  }
+  .calendarContainer {
+    width: 95%;
+  }
+}
+
+.courses {
+  width: 98%;
+  height: max-content;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: var(---blue-gradient);
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  border-radius: 10px;
+  top: -30px;
+  width: 95%;
+  height: 5rem;
+}
+
+.title {
+  position: absolute;
+  left: 10px;
+  color: var(--semi-white);
+  font-size: x-large;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.search {
+  position: absolute;
+  text-align: center;
+  right: 20px;
+  width: 15rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background-color: var(--semi-white);
+}
+
+.tables,
+.tablesNonScroll {
+  width: 100%;
+  height: 32rem;
+  padding: 1rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.tablesNonScroll {
+  overflow-y: hidden;
+}
+
+.tables::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 35, 35, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.tables::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+.tables::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 35, 35, 0.3);
+  background-color: #555;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #adadad;
+}
+
+.pname,
+.pemail,
+.ptel {
+  text-align: center;
+  width: 33%;
+  margin-right: 2.5rem;
+  margin-left: 1rem;
+  text-transform: uppercase;
+  color: #adadad;
+}
+
+.course {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #adadad;
+}
+
+.namepic {
+  display: flex;
+  align-items: center;
+  width: 33%;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.actions {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+
+.userInfo {
+  margin: 0.5rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.shifts {
+  width: 33%;
+  text-align: center;
+}
+
+.coursePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.navLink {
+  color: black;
 }
