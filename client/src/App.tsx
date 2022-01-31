@@ -10,7 +10,7 @@ import appHelper from "./appHelper";
 //pages
 import {Login, Panel, CreateSchool,AddStudent, AddTeacher, AddAdmin,
   UpdateComponent, AddCourse, UpdateCourse, AddEvent, UpdateEvent, AddSubject, UpdateSubject,
-  SchoolInfo, Error, Profile, UserDetail,Database }  from ".//routsApp"; 
+  SchoolInfo, Error, Profile, UserDetail,Database, UpdateTeacher }  from ".//routsApp"; 
 
 
 Modal.setAppElement("#root")
@@ -64,7 +64,7 @@ const App: React.FC = () => {
           />
           <Route
             path="modificar-profesor/:id"
-            element={<UpdateComponent userType={"profesores"} />}
+            element={<UpdateTeacher/>}
           />
           <Route path="agregar-admin" element={<AddAdmin />} />
           <Route

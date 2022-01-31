@@ -19,7 +19,7 @@ const router = Router();
 //private routes
 router.get("/user/:id", tokenValidation, getUserById);
 router.post("/user/search", tokenValidation, getUserBy);
-router.post("/user", tokenValidation, createUser);
+router.post("/user",  createUser);
 router.put("/user/:id", tokenValidation, updateUser);
 router.delete("/user/:id",tokenValidation, deleteUserById);
 

@@ -16,7 +16,7 @@ import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
 import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 import Database from "./components/Desktop/Database/Database";
-
+import UpdateTeacher from "./pages/Desktop/UpdateTeacher/UpdateTeacher"
 export {
     Login,
     Panel,
@@ -35,5 +35,6 @@ export {
     Error,
     Profile,
     UserDetail,
-    Database
+    Database,
+    UpdateTeacher
 };
