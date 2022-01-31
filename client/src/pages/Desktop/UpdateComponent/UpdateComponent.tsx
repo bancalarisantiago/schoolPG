@@ -102,79 +102,80 @@ const UpdateComponent: React.FC<{ userType: string }> = ({ userType }) => {
                 <div className={styles.tutorsModal}>
                   <Modal show={show} handleClose={hideModal}>
                     <p>Profesor</p>
-                  {select.subject && 
-                    <div className={styles.subjectsContainer}>
-                    <div className={styles.select}>
-                        <select
-                          name="subjects"
-                          defaultValue={"default"}
-                          onChange={handleInputOnChangeList}
-                        >
-                          <option value="default" disabled>
-                            Seleccionar Materia
-                          </option>
-                          {school.subjects?.map((s: any) => (
-                            <option key={s.name}>{s.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className={styles.tables}>
-                        <ul>
-                          {select?.subject.map((p: any) => {
-                            return (
-                              <li className={styles.li} key={`${p.name}key`}>
-                                {p.name}
-                                <button
-                                  className={styles.btn}
-                                  type="button"
-                                  value={p.name}
-                                  onClick={deleteFromList}
-                                >
-                                  X
-                                </button>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      </div> }
-                      
-                      <div className={styles.containerCourse}>
+                    <div className={styles.optionsContainer}>
+                        {select.subject && 
+                        <div className={styles.subjectsContainer}>
                         <div className={styles.select}>
                             <select
-                            name="courses"
-                            defaultValue={"default"}
-                            onChange={handleInputOnChangeList}
+                              name="subjects"
+                              defaultValue={"default"}
+                              onChange={handleInputOnChangeList}
                             >
-                            <option value="default" disabled>
-                                Seleccionar Curso
-                            </option>
-                            {school.courses?.map((c: any) => (
-                                <option key={c.name}>{c.name}</option>
-                            ))}
+                              <option value="default" disabled>
+                                Seleccionar Materia
+                              </option>
+                              {school.subjects?.map((s: any) => (
+                                <option key={s.name}>{s.name}</option>
+                              ))}
                             </select>
-                        </div>
-                        <div >
+                          </div>
+                          <div className={styles.tables}>
                             <ul>
-                            {select?.courses.map((p: any) => {
+                              {select?.subject.map((p: any) => {
                                 return (
-                                <li className={styles.li} key={`${p.name}key`}>
+                                  <li className={styles.li} key={`${p.name}key`}>
                                     {p.name}
                                     <button
-                                    className={styles.btn}
-                                    type="button"
-                                    value={p.name}
-                                    onClick={deleteFromList}
+                                      className={styles.btn}
+                                      type="button"
+                                      value={p.name}
+                                      onClick={deleteFromList}
                                     >
-                                    X
+                                      X
                                     </button>
-                                </li>
+                                  </li>
                                 );
-                            })}
+                              })}
                             </ul>
+                          </div>
+                          </div> }
+                          {select.courses && 
+                          <div className={styles.courseContainer}>
+                            <div className={styles.select}>
+                                <select
+                                name="courses"
+                                defaultValue={"default"}
+                                onChange={handleInputOnChangeList}
+                                >
+                                <option value="default" disabled>
+                                    Seleccionar Curso
+                                </option>
+                                {school.courses?.map((c: any) => (
+                                    <option key={c.name}>{c.name}</option>
+                                ))}
+                                </select>
+                            </div>
+                            <div className={styles.tables}>
+                                <ul>
+                                {select?.courses.map((p: any) => {
+                                    return (
+                                    <li className={styles.li} key={`${p.name}key`}>
+                                        {p.name}
+                                        <button
+                                        className={styles.btn}
+                                        type="button"
+                                        value={p.name}
+                                        onClick={deleteFromList}
+                                        >
+                                        X
+                                        </button>
+                                    </li>
+                                    );
+                                })}
+                                </ul>
+                            </div>
+                            </div>}
                         </div>
-                      
-                      </div>
                   </Modal>
                   <UpdateButton onClick={showModal} text="Materias - Cursos" />
                   {/* <button type="button" onClick={showModal}>
