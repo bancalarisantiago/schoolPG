@@ -34,18 +34,7 @@ export const getUserById = async (req: Request, res: Response) => {
   ];
   try {
     const user = await User.findById(id).populate(populateQuery).lean();
-
-    const accessToken = jwt.sign({ _id: id }, "token de minima seguridad", {
-      expiresIn: 60 * 60 * 24,
-    });
-    const refreshToken = jwt.sign(
-      { _id: id },
-      "token de minima seguridad para refrescado"
-    );
-
-    res
-      .setHeader("auth-token", accessToken)
-      .json({ user, accessToken, refreshToken });
+    res.status(200).json(user);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
@@ -159,22 +148,78 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params; // req.body?
+  const { course, subject} = req.body;
 
+  
   try {
-    const user = await User.findById(id);
+    const user = await User.findOne({_id: id});
     if (!user) {
       return res.status(404).json({ msg: "Event not found" });
     }
+    
+      if(user) {
+        if (user.course ) {
+          user?.course.length &&
+            user.course.forEach(
+              async (fe: any) =>
+                await Course.findByIdAndUpdate(fe, {
+                  $pull: {
+                    teachers: id,
+                  },
+                })
+            );
+              }
+    
+          if(user.subject) {
+              user?.subject.length &&
+                user.subject.forEach(
+                  async (fe: any) =>
+                    await Subject.findByIdAndUpdate(fe, {
+                      $pull: {
+                        teachers: id,
+                      },
+                    })
+                );}
+      }
+   
+          
+
+    course
+      ? course.length
+        ? course.forEach(
+            async (fe: any) =>
+              await Course.findByIdAndUpdate(new toId(fe._id), {
+                $push: {
+                  teachers : new toId(id),
+                },
+              })
+          )
+        : ""
+      : "";
+
+    subject
+      ? subject.length
+        ? subject.map(
+            async (m: any) =>
+              await Subject.findByIdAndUpdate(new toId(m._id), {
+                $push: {
+                teachers: new toId(id),
+                },
+              })
+          )
+        : ""
+      : "";
+
     const newUser = {
-      ...req.body,
+      ...req.body, course: course, subject: subject
     };
     //actualizar password
-    if (newUser.password.length < 10) {
-      console.log("cUser1", newUser);
-      newUser.password = await new User().encryptPassword(newUser.password);
-    }
 
-    console.log("cUser2", newUser);
+    if(newUser.password.length <10){
+      newUser.password = await  new User().encryptPassword(newUser.password);
+    }
+      
+      
 
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
@@ -205,7 +250,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
 
     //delete subject realtion
     user?.userType === "teacher" &&
-      user?.subjects?.map(
+      user?.subject?.map(
         async (m: any) =>
           await Subject.findByIdAndUpdate(m, {
             $pull: {

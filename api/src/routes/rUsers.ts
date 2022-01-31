@@ -20,14 +20,12 @@ const router = Router();
 //router.get("/user/:id", tokenValidation, getUserById);
 router.get("/user/:id", getUserById);
 router.post("/user/search", tokenValidation, getUserBy);
+router.post("/user",  createUser);
 router.put("/user/:id", tokenValidation, updateUser);
 //router.delete("/user/:id", tokenValidation, deleteUserById);
 router.delete("/user/:id", deleteUserById);
 //non private routes
 router.get("/user", getUsers);
-
-router.post("/user", createUser);
-
 router.put("/user/school/:schoolId/:userId", addUserToSchool);
 router.put("/user/course/:courseId/:userId", addUserToCourse);
 

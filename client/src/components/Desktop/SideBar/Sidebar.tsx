@@ -222,7 +222,7 @@ const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
           value="5"
           onClick={handleClick}
         >
-          calendario
+          Asistencia 
           <img
             className={show[5] ? styles.less : styles.more}
             src={down}
@@ -230,22 +230,13 @@ const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
           />
         </li>
         <ul className={show[5] ? styles.dropdownShow : styles.dropdownHide}>
-          <NavLink to="agregar-evento">
+          <NavLink to="tomar-asistencia">
             <li
               className={underline[10] ? styles.optionselected : styles.option}
               onClick={handleUnderline}
               value="10"
             >
-              agregar evento
-            </li>
-          </NavLink>
-          <NavLink to="modificar-calendario">
-            <li
-              className={underline[11] ? styles.optionselected : styles.option}
-              onClick={handleUnderline}
-              value="11"
-            >
-              modificar calendario
+              Tomar asistencia
             </li>
           </NavLink>
         </ul>
