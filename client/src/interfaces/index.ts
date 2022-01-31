@@ -122,7 +122,6 @@ export interface ICreateSchool {
 }
 
 export interface Location {
-  number: string;
   streetNumber: string;
   streetName: string;
   locality: string;
@@ -144,6 +143,11 @@ export interface ICreateUser {
     courses?: string[];
     subject?: string[];
   };
+  accessToken: string;
+}
+
+export interface IRefreshUser {
+  userId: string;
   accessToken: string;
 }
 
@@ -250,6 +254,12 @@ interface ILocation {
   postalCode: string;
 }
 
+export interface ITutor{
+  name: string;
+  cellphone: string;
+  email: string;
+
+}
 export interface IUserForm {
   name: Fullname;
   gender: string;
@@ -261,6 +271,7 @@ export interface IUserForm {
   password: string;
   cellphone: string;
   picture: string;
+  tutors:ITutor[];
 }
 export interface IUserSubmit {
   user: IUserForm;

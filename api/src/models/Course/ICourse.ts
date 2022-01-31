@@ -11,7 +11,6 @@ interface classDate {
 }
 export interface ICourse extends Document {
   name: string;
-  schoolId: Types.ObjectId;
   students: Types.ObjectId[];
   teachers: Types.ObjectId[];
   subjects: Types.ObjectId[];

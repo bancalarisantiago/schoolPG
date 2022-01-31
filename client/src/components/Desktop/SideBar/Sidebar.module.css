@@ -249,23 +249,25 @@
 }
 
 @media (max-width: 1600px) {
-  /* .title,
+  .title,
   .management,
   .option,
   .optionselected,
   .selected {
     padding: 0.5rem 1.25rem;
-  } */
+  }
+
   .selected,
   .management {
     width: 10rem;
   }
-  /* .option,
+
+  .option,
   .optionselected {
     font-size: medium;
-  } */
-  /* .more,
+  }
+  .more,
   .less {
     top: 0.5rem;
-  } */
+  }
 }

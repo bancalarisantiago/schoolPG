@@ -14,6 +14,7 @@ import {
   IDeleteUserById,
   IUpdateUser,
   IRefreshToken,
+  IRefreshUser,
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -22,14 +23,15 @@ const instance = axios.create({
 });
 
 export const GET_USER_LOGGED = "GET_USER_LOGGED";
+export const REFRESH_USER = "REFRESH_USER";
 export const GET_SCHOOL = "GET_SCHOOL";
 export const MATCH_USERS = "MATCH_USER";
 export const USER_DETAIL = "USER_DETAIL";
 export const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
 export const PUT_USER = "PUT_USER";
 export const USER_LOGOUT = "USER_LOGOUT";
-export const CREATE_EVENT = "CREATE_EVENT"
-export const GET_EVENTS = "GET_EVENTS"
+export const CREATE_EVENT = "CREATE_EVENT";
+export const GET_EVENTS = "GET_EVENTS";
 /* export const REFRESH_TOKEN = "REFRESH_TOKEN"; */
 
 //logout
@@ -176,20 +178,18 @@ export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
   }
 };
 
-
-export const createEvent =  (payload: string) => async (dispatch: Dispatch) => {
-    
-    const newEvent = await instance.post("/event", payload);
+export const createEvent = (payload: string) => async (dispatch: Dispatch) => {
+  const newEvent = await instance.post("/event", payload);
   return dispatch({
     type: CREATE_EVENT,
-    payload
-  })
-} 
+    payload,
+  });
+};
 
 export const getEvents = () => async (dispatch: Dispatch) => {
-  const events = await instance.get("/event")
+  const events = await instance.get("/event");
   return dispatch({
     type: GET_EVENTS,
     payload: events,
-  })
-}
+  });
+};

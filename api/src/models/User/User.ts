@@ -80,10 +80,10 @@ const schemaUser = new Schema({
   ],
   subject: [
     {
-    type: mongoose.Types.ObjectId,
-    ref: "Course",
-  }
-],
+      type: mongoose.Types.ObjectId,
+      ref: "Course",
+    },
+  ],
 });
 
 schemaUser.methods.encryptPassword = async (

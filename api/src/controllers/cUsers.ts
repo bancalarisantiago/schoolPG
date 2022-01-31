@@ -35,7 +35,17 @@ export const getUserById = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(id).populate(populateQuery).lean();
 
-    res.status(200).json(user);
+    const accessToken = jwt.sign({ _id: id }, "token de minima seguridad", {
+      expiresIn: 60 * 60 * 24,
+    });
+    const refreshToken = jwt.sign(
+      { _id: id },
+      "token de minima seguridad para refrescado"
+    );
+
+    res
+      .setHeader("auth-token", accessToken)
+      .json({ user, accessToken, refreshToken });
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
@@ -85,27 +95,29 @@ export const createUser = async (req: Request, res: Response) => {
 
     const type = userType + "s";
 
-    await School.findByIdAndUpdate(new toId(schoolId), {
-      $push: {
-        [type]: new toId(newUser._id),
-      },
-    });
+    schoolId &&
+      (await School.findByIdAndUpdate(new toId(schoolId), {
+        $push: {
+          [type]: new toId(newUser._id),
+        },
+      }));
 
-    await User.findByIdAndUpdate(new toId(newUser._id), {
-      school: new toId(schoolId),
-      $push: {
-        course: courses
-          ? courses.length
-            ? courses.map((m: any) => new toId(m._id)).flat()
-            : []
-          : [],
-        subject: subject
-          ? subject.length
-            ? subject.map((m: any) => new toId(m._id)).flat()
-            : []
-          : [],
-      },
-    });
+    schoolId &&
+      (await User.findByIdAndUpdate(new toId(newUser._id), {
+        school: new toId(schoolId),
+        $push: {
+          course: courses
+            ? courses.length
+              ? courses.map((m: any) => new toId(m._id)).flat()
+              : []
+            : [],
+          subject: subject
+            ? subject.length
+              ? subject.map((m: any) => new toId(m._id)).flat()
+              : []
+            : [],
+        },
+      }));
 
     courses
       ? courses.length
@@ -154,6 +166,14 @@ export const updateUser = async (req: Request, res: Response) => {
     const newUser = {
       ...req.body,
     };
+    //actualizar password
+    if(newUser.password.length <10){
+      console.log('cUser1',newUser);
+      newUser.password = await  new User().encryptPassword(newUser.password);
+    }
+      
+    console.log('cUser2',newUser);
+
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
     });
@@ -168,6 +188,37 @@ export const deleteUserById = async (req: Request, res: Response) => {
   const { id } = req.params; // req.body?
   try {
     const user = await User.findById(id);
+
+    const userType = user?.userType + "s";
+
+    //delete course relation
+    user?.course?.map(
+      async (m: any) =>
+        await Course.findByIdAndUpdate(m, {
+          $pull: {
+            [userType]: id,
+          },
+        })
+    );
+
+    //delete subject realtion
+    user?.userType === "teacher" &&
+      user?.subjects?.map(
+        async (m: any) =>
+          await Subject.findByIdAndUpdate(m, {
+            $pull: {
+              teachers: id,
+            },
+          })
+      );
+
+    //delete school relation
+    await School.findByIdAndUpdate(user?.school, {
+      $pull: {
+        [userType]: id,
+      },
+    });
+
     if (!user) {
       return res.status(404).json({ msg: "Event not found" });
     }

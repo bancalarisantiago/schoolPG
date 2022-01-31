@@ -1,5 +1,6 @@
 //from modules
 
+import { EventInput } from "@fullcalendar/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -13,17 +14,17 @@ const inputFieldValues = [
   { text: "Nombre", name: "first" },
   { text: "Apellido", name: "last" },
   { text: "Nombre de Usuario", name: "username" },
-  { text: "Contraseña", name: "password" },
+  // { text: "Contraseña", name: "password" },
   { text: "DNI", type: "number", name: "document" },
   { text: "e-mail", name: "email" },
+  { text: "Celular", type: "number", name: "cellphone" },
   { text: "Calle", name: "streetName" },
   { text: "Numero", type: "number", name: "streetNumber" },
   { text: "Localidad", name: "locality" },
   { text: "Codigo Postal", type: "number", name: "postalCode" },
   { text: "Genero", name: "gender" },
   { text: "Cumpleaños", type: "date", name: "birthdate" },
-  { text: "Celular", type: "number", name: "cellphone" },
-  { text: "Foto", name: "picture" },
+  // { text: "Foto", name: "picture" },
 ];
 
 const voidInputs = {
@@ -43,31 +44,33 @@ const voidInputs = {
   picture: "",
 };
 const useHelper = () => {
-  // const dispatch = useDispatch();
-  // const location = useLocation().pathname;
-  // const school = useSelector((state: IState) => state.userSchool);
-  // const userSession = useSelector((state: IState) => state.userSession);
-  // const [user, setUser] = useState<any>({});
-  // const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
-  // const [searching, setSearching] = useState(true);
-  // const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const school = useSelector((state: IState) => state.userSchool);
   const userInfo = useSelector((state: IState) => state.userDetail);
-  const [input, setInput] = useState<IUTeacherInputs>(voidInputs);
-  const [errors, setErrors] = useState<IUTeacherInputs>(voidInputs);
   const userSession = useSelector((state: IState) => state.userSession);
 
-  // useEffect(() => {
-  //   getBack();
-  // }, [location]);
+  const [input, setInput] = useState<any>({ ...voidInputs, tutors: [] });
+  const [errors, setErrors] = useState<any>(voidInputs);
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     dispatch(getUserById({ userId: id, accessToken: userSession.accessToken }));
   }, []);
 
   useEffect(() => {
+    let tutors = [
+      { name: "", cellphone: "", email: "" },
+      { name: "", cellphone: "", email: "" },
+    ];
+    if (userInfo.tutors && userInfo.tutors[1] && userInfo.tutors[0])
+      tutors = [...userInfo.tutors];
+    if (userInfo.tutors && !userInfo.tutors[1] && userInfo.tutors[0])
+      tutors = [
+        { ...userInfo.tutors[0] },
+        { name: "", cellphone: "", email: "" },
+      ];
     setInput({
       first: userInfo.name ? userInfo.name.first : "",
       last: userInfo.name ? userInfo.name.last : "",
@@ -83,6 +86,7 @@ const useHelper = () => {
       birthdate: userInfo.birthdate || "",
       cellphone: userInfo.cellphone || "",
       picture: userInfo.picture || "",
+      tutors: tutors,
     });
   }, [userInfo]);
 
@@ -113,8 +117,7 @@ const useHelper = () => {
       case "password": {
         let password = "";
         if (!input.password) password = "Contraseña es requerido.";
-        // else if (input.password.length < 8 || input.password.length > 15)
-        //   password = "Contraseña debe tener entre 8 y 15 caracteres";
+
         return { ...errors, password };
       }
       case "document": {
@@ -130,58 +133,56 @@ const useHelper = () => {
         else if (!emailPattern.test(input.email)) email = "Email no valido";
         return { ...errors, email };
       }
-      case "streetName": {
-        let streetName = "";
-        if (!input.streetName) streetName = "Calle es requerido.";
-        return { ...errors, streetName };
-      }
-      case "streetNumber": {
-        let streetNumber = "";
-        if (!input.streetNumber) streetNumber = "Numero de calle es requerido.";
-        return { ...errors, streetNumber };
-      }
-      case "locality": {
-        let locality = "";
-        if (!input.locality) locality = "Localidad es requerida.";
-        return { ...errors, locality };
-      }
-      case "postalCode": {
-        let postalCode = "";
-        if (!input.postalCode) postalCode = "Codigo Postal es requerido.";
-        return { ...errors, postalCode };
-      }
-      case "gender": {
-        let gender = "";
-        if (!input.gender) gender = "Numero de calle es requerido.";
-        // else if (input.gender !== "male" && input.gender !== "female")
-        //   gender = "Genero no valido";
-        return { ...errors, gender };
-      }
-      case "birthdate": {
-        let birthdate = "";
-        if (!input.birthdate) birthdate = "Nacimiento es requerido.";
-        return { ...errors, birthdate };
-      }
-      case "cellphone": {
-        let cellphone = "";
-        if (!input.cellphone) cellphone = "Numero de celular es requerido.";
-        else if (input.cellphone.length > 14)
-          cellphone = "Numero de celular debe tener menos de 15 digitos";
-        return { ...errors, cellphone };
-      }
-      case "picture": {
-        let picture = "";
-        if (!input.picture) picture = "Foto es requerida.";
-        return { ...errors, picture };
-      }
+      // case "streetName": {
+      //   let streetName = "";
+      //   if (!input.streetName) streetName = "Calle es requerido.";
+      //   return { ...errors, streetName };
+      // }
+      // case "streetNumber": {
+      //   let streetNumber = "";
+      //   if (!input.streetNumber) streetNumber = "Numero de calle es requerido.";
+      //   return { ...errors, streetNumber };
+      // }
+      // case "locality": {
+      //   let locality = "";
+      //   if (!input.locality) locality = "Localidad es requerida.";
+      //   return { ...errors, locality };
+      // }
+      // case "postalCode": {
+      //   let postalCode = "";
+      //   if (!input.postalCode) postalCode = "Codigo Postal es requerido.";
+      //   return { ...errors, postalCode };
+      // }
+      // case "gender": {
+      //   let gender = "";
+      //   if (!input.gender) gender = "Genero es requerido.";
+      //   return { ...errors, gender };
+      // }
+      // case "birthdate": {
+      //   let birthdate = "";
+      //   if (!input.birthdate) birthdate = "Nacimiento es requerido.";
+      //   return { ...errors, birthdate };
+      // }
+      // case "cellphone": {
+      //   let cellphone = "";
+      //   if (!input.cellphone) cellphone = "Numero de celular es requerido.";
+      //   else if (input.cellphone.length > 14)
+      //     cellphone = "Numero de celular debe tener menos de 15 digitos";
+      //   return { ...errors, cellphone };
+      // }
+      // case "picture": {
+      //   let picture = "";
+      //   if (!input.picture) picture = "Foto es requerida.";
+      //   return { ...errors, picture };
+      // }
       default: {
         return errors;
       }
     }
   };
-  const handleChange = (e: any) => {
+  const handleChange = (e: EventInput) => {
     const { name, value } = e.target;
-
+    console.log("handle", input, errors);
     setInput({
       ...input,
       [name]: value,
@@ -193,33 +194,14 @@ const useHelper = () => {
     if (Object.keys(errors).find((e) => errors[e] !== "")) {
       return true;
     }
-    if (Object.keys(input).find((e) => input[e].toString() === "")) return true;
+    // if (Object.keys(input).find((e) => input[e].toString() === "")) return true;
     else return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
-  // const updateUser = (userInfo: any) => {
-  //   setSearching(false);
-  //   setUser(userInfo);
-  //   setInput({
-  //     first: userInfo.name ? userInfo.name.first : "",
-  //     last: userInfo.name ? userInfo.name.last : "",
-  //     username: userInfo.username || "",
-  //     password: userInfo.password || "",
-  //     document: userInfo.document || "",
-  //     email: userInfo.email || "",
-  //     streetNumber: userInfo.location ? userInfo.location.streetNumber : "",
-  //     streetName: userInfo.location ? userInfo.location.streetName : "",
-  //     locality: userInfo.location ? userInfo.location.locality : "",
-  //     postalCode: userInfo.location ? userInfo.location.postalCode : "",
-  //     gender: userInfo.gender || "",
-  //     birthdate: userInfo.birthdate || "",
-  //     cellphone: userInfo.cellphone || "",
-  //     picture: userInfo.picture || "",
-  //   });
-  // };
+
   const getBack = () => {
-    setInput(voidInputs);
-    setErrors(voidInputs);
+    // setInput(voidInputs);
+    // setErrors(voidInputs);
     // eslint-disable-next-line no-restricted-globals
     history.go(-1);
   };
@@ -247,6 +229,7 @@ const useHelper = () => {
         birthdate: input.birthdate,
         cellphone: input.cellphone,
         picture: input.picture,
+        tutors: input.tutors,
       },
       id: userInfo._id,
     };
@@ -260,15 +243,65 @@ const useHelper = () => {
         accessToken: userSession.accessToken,
       })
     );
-
+    alert("El usuario fue modificado correctamente");
     getBack();
   };
-    
+
   const handleClick = (name: string, text: string) => {
     setInput({ ...input, [name]: text });
     setErrors(validate({ ...input, [name]: text }, name));
   };
 
+  const showModal = () => {
+    setShow(true);
+  };
+
+  const hideModal = () => {
+    setShow(false);
+  };
+
+  const resetPsw = () => {
+    if (input.document) {
+      setInput({ ...input, password: input.document });
+      alert(
+        `La contraseña fue restablecida al DNI, ${input.document}, confirme los cambios`
+      );
+    } else {
+      alert("Debe ingresar el DNI para restablecer la contraseña");
+    }
+  };
+
+  const tutorsHandleChange = (e: EventInput) => {
+    const { name, value } = e.target;
+
+    const [nameN, pos] = name.split(" ");
+    console.log(nameN, pos, value, input.tutors);
+    setInput({
+      ...input,
+      tutors: input.tutors.map((e: any, i: number) =>
+        i.toString() === pos ? { ...e, [nameN]: value } : e
+      ),
+      // tutors: [input.tutors[0], { ...input.tutors[pos], [nameN]: value }],
+    });
+    // if (pos === 1) {
+    //   setInput({
+    //     ...input,
+    //     tutors: input.tutors.map((e: any, i: number) =>
+    //       i.toString() === pos ? { ...e, [nameN]: value } : e
+    //     ),
+    //     // tutors: [input.tutors[0], { ...input.tutors[pos], [nameN]: value }],
+    //   });
+    // } else {
+    //   setInput({
+    //     ...input,
+    //     tutors: input.tutors.map((e: any, i: number) =>
+    //       i.toString() === pos ? { ...e, [nameN]: value } : e
+    //     ),
+    //     // tutors: [{ ...input.tutors[pos], [nameN]: value }, input.tutors[1]],
+    //   });
+    // }
+    // setErrors(validate({ ...input, [name]: value }, name));
+  };
   return {
     inputFieldValues,
     handleChange,
@@ -280,6 +313,11 @@ const useHelper = () => {
     userInfo,
     handleSubmit,
     handleClick,
+    show,
+    hideModal,
+    showModal,
+    resetPsw,
+    tutorsHandleChange,
   };
 };
 

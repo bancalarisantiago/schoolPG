@@ -42,7 +42,7 @@ const Database: React.FC<{
           <p className={styles.ptel}>acciones</p>
         </div>
         {!user.length ? (
-          school[schoolType].map((m: any, i: number) => {
+          school[schoolType]?.map((m: any, i: number) => {
             let route = "modificar-alumno";
             if (schoolType === "admins") route = "modificar-admin";
             if (schoolType === "teachers") route = "modificar-profesor";
@@ -98,7 +98,7 @@ const Database: React.FC<{
         ) : (
           <div>
             {matchUsers.length ? (
-              matchUsers.map((m: any, i: number) => {
+              matchUsers?.map((m: any, i: number) => {
                 let route = "modificar-alumno";
                 if (schoolType === "admins") route = "modificar-admin";
                 if (schoolType === "teachers") route = "modificar-profesor";

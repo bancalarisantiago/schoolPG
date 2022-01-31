@@ -18,9 +18,9 @@ interface Location {
 }
 
 interface Tutor {
-  name: string,
-  email: string,
-  cellphone: string
+  name: string;
+  email: string;
+  cellphone: string;
 }
 
 export interface IUser extends Document {

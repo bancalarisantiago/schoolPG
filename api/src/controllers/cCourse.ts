@@ -13,8 +13,7 @@ import School from "../models/School/School";
 import User from "../models/User/User";
 
 export const createCourse = async (req: Request, res: Response) => {
-  const { name, shifts, students, teachers, subjects, schoolId }: ICourse =
-    req.body;
+  const { name, shifts, students, teachers, subjects, schoolId } = req.body;
   try {
     const newCourse = new Course({
       name,
@@ -120,6 +119,22 @@ export const addSubjectToCourse = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteCourseById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const course = await Course.findById(id);
+    if (!course) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+    await course.delete();
+
+    res.status(200).json("Curso borrado con exito");
+  } catch (error) {
+    console.log(error);
+    res.status(404).json(error);
+  }
+};
+
 export const attendanceUpdate = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { classAttend } = req.body;
@@ -133,6 +148,93 @@ export const attendanceUpdate = async (req: Request, res: Response) => {
 
     res.status(200).json(course);
   } catch (error) {
+    res.status(404).json(error);
+  }
+};
+
+export const updateCourseById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { student, teacher, subject } = req.body;
+
+  try {
+    const course = await Course.findOne({ _id: id });
+
+    const students = JSON.parse(student);
+    const teachers = JSON.parse(teacher);
+    const subjects = JSON.parse(subject);
+
+    if (course) {
+      course?.students.length &&
+        course.students.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $pull: {
+                course: id,
+              },
+            })
+        );
+      course?.teachers.length &&
+        course.teachers.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $pull: {
+                course: id,
+              },
+            })
+        );
+      course?.subjects.length &&
+        course.subjects.forEach(
+          async (fe: any) =>
+            await Subject.findByIdAndUpdate(fe, {
+              $pull: {
+                courses: id,
+              },
+            })
+        );
+      await Course.findByIdAndUpdate(id, {
+        students: students,
+        teachers: teachers,
+        subjects: subjects,
+      });
+
+      students &&
+        students.length &&
+        students.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $push: {
+                course: id,
+              },
+            })
+        );
+
+      teachers &&
+        teachers.length &&
+        teachers.forEach(
+          async (fe: any) =>
+            await User.findByIdAndUpdate(fe, {
+              $push: {
+                course: id,
+              },
+            })
+        );
+
+      subjects &&
+        subjects.length &&
+        subjects.forEach(
+          async (fe: any) =>
+            await Subject.findByIdAndUpdate(fe, {
+              $push: {
+                courses: id,
+              },
+            })
+        );
+      res.status(200).json(course);
+    } else {
+      res.send("El id del curso no es valido");
+    }
+  } catch (error) {
+    console.log(error);
     res.status(404).json(error);
   }
 };
