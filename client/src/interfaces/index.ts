@@ -272,6 +272,8 @@ export interface IUserForm {
   cellphone: string;
   picture: string;
   tutors:ITutor[];
+  course?: any;
+  subject?: any; 
 }
 export interface IUserSubmit {
   user: IUserForm;
