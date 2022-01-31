@@ -18,7 +18,7 @@ const useHelper = () => {
   const dispatch = useDispatch();
   const userSession = useSelector((state: IState) => state.userSession);
   const navigate = useNavigate();
-
+   
   useEffect(() => {
     if (userSession.user.school) navigate("/panel/general");
   }, []);
