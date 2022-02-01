@@ -19,8 +19,6 @@ import {
   UpdateComponent,
   AddCourse,
   UpdateCourse,
-  AddEvent,
-  UpdateEvent,
   AddSubject,
   UpdateSubject,
   SchoolInfo,
@@ -29,10 +27,8 @@ import {
   UserDetail,
   Database,
   CourseDetail,
-    UpdateTeacher,
-    AddAttendance,
+  AddAttendance,
 } from ".//routsApp";
-
 
 Modal.setAppElement("#root");
 
@@ -112,8 +108,7 @@ const App: React.FC = () => {
 
           <Route path="detalle-curso/:courseId" element={<CourseDetail />} />
 
-          <Route path="tomar-asistencia" element={<AddAttendance/>} />
-
+          <Route path="tomar-asistencia" element={<AddAttendance />} />
 
           <Route path="*" element={<Error />} />
         </Route>

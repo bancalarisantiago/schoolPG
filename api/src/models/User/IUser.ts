@@ -42,6 +42,7 @@ export interface IUser extends Document {
   tutors?: Tutor[];
   course?: Types.ObjectId[];
   subject?: Types.ObjectId[];
+
   encryptPassword(password: string): Promise<string>;
   validatePassword(password: string): Promise<boolean>;
 }

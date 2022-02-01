@@ -6,8 +6,8 @@ import useHelper from "./useHelper";
 
 //libraries
 
-import { useSelector } from "react-redux"
-import { useState } from "react"
+import { useSelector } from "react-redux";
+import { useState } from "react";
 //components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";
@@ -38,11 +38,8 @@ const UpdateComponent: React.FC<{ userType: string }> = ({ userType }) => {
     school,
     select,
     deleteFromList,
-    handleInputOnChangeList
-
+    handleInputOnChangeList,
   } = useHelper();
-
-  
 
   // if (userType === "estudiantes") {
   return (
@@ -103,9 +100,9 @@ const UpdateComponent: React.FC<{ userType: string }> = ({ userType }) => {
                   <Modal show={show} handleClose={hideModal}>
                     <p>Profesor</p>
                     <div className={styles.optionsContainer}>
-                        {select.subject && 
+                      {select.subject && (
                         <div className={styles.subjectsContainer}>
-                        <div className={styles.select}>
+                          <div className={styles.select}>
                             <select
                               name="subjects"
                               defaultValue={"default"}
@@ -123,7 +120,10 @@ const UpdateComponent: React.FC<{ userType: string }> = ({ userType }) => {
                             <ul>
                               {select?.subject.map((p: any) => {
                                 return (
-                                  <li className={styles.li} key={`${p.name}key`}>
+                                  <li
+                                    className={styles.li}
+                                    key={`${p.name}key`}
+                                  >
                                     {p.name}
                                     <button
                                       className={styles.btn}
@@ -138,44 +138,49 @@ const UpdateComponent: React.FC<{ userType: string }> = ({ userType }) => {
                               })}
                             </ul>
                           </div>
-                          </div> }
-                          {select.courses && 
-                          <div className={styles.courseContainer}>
-                            <div className={styles.select}>
-                                <select
-                                name="courses"
-                                defaultValue={"default"}
-                                onChange={handleInputOnChangeList}
-                                >
-                                <option value="default" disabled>
-                                    Seleccionar Curso
-                                </option>
-                                {school.courses?.map((c: any) => (
-                                    <option key={c.name}>{c.name}</option>
-                                ))}
-                                </select>
-                            </div>
-                            <div className={styles.tables}>
-                                <ul>
-                                {select?.courses.map((p: any) => {
-                                    return (
-                                    <li className={styles.li} key={`${p.name}key`}>
-                                        {p.name}
-                                        <button
-                                        className={styles.btn}
-                                        type="button"
-                                        value={p.name}
-                                        onClick={deleteFromList}
-                                        >
-                                        X
-                                        </button>
-                                    </li>
-                                    );
-                                })}
-                                </ul>
-                            </div>
-                            </div>}
                         </div>
+                      )}
+                      {select.courses && (
+                        <div className={styles.courseContainer}>
+                          <div className={styles.select}>
+                            <select
+                              name="courses"
+                              defaultValue={"default"}
+                              onChange={handleInputOnChangeList}
+                            >
+                              <option value="default" disabled>
+                                Seleccionar Curso
+                              </option>
+                              {school.courses?.map((c: any) => (
+                                <option key={c.name}>{c.name}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className={styles.tables}>
+                            <ul>
+                              {select?.courses.map((p: any) => {
+                                return (
+                                  <li
+                                    className={styles.li}
+                                    key={`${p.name}key`}
+                                  >
+                                    {p.name}
+                                    <button
+                                      className={styles.btn}
+                                      type="button"
+                                      value={p.name}
+                                      onClick={deleteFromList}
+                                    >
+                                      X
+                                    </button>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </Modal>
                   <UpdateButton onClick={showModal} text="Materias - Cursos" />
                   {/* <button type="button" onClick={showModal}>

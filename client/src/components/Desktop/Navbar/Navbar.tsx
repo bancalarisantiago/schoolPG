@@ -40,7 +40,7 @@ const Navbar: React.FC<{
 
       <div className={styles.options}>
         {validate.user.picture ? (
-          <NavLink to="/panel/profile">
+          <NavLink to={`/panel/detalle-usuario/${validate.user._id}`}>
             <img
               src={validate.user.picture}
               className={styles.pic}
@@ -48,7 +48,7 @@ const Navbar: React.FC<{
             />
           </NavLink>
         ) : (
-          <NavLink to="/panel/profile">
+          <NavLink to={`/panel/detalle-usuario/${validate.user._id}`}>
             <p className={styles.userprofile}> </p>
           </NavLink>
         )}

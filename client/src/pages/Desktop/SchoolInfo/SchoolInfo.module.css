@@ -323,7 +323,8 @@
 .namepic {
   display: flex;
   align-items: center;
-  width: 33%;
+  width: 30%;
+  margin-left: 2rem;
 }
 
 .name {

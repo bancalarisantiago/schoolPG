@@ -83,7 +83,7 @@ export const getSubjectById = async (req: Request, res: Response) => {
 };
 
 export const deleteSubjectById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id, schoolId } = req.params;
 
   try {
     const subject = await Subject.findById(id);
@@ -91,6 +91,22 @@ export const deleteSubjectById = async (req: Request, res: Response) => {
     if (!subject) {
       return res.status(404).json({ msg: "Subject not found" });
     }
+
+    await User.updateMany(
+      { subject: { $elemMatch: { $eq: id } } },
+      {
+        $pull: {
+          subject: id,
+        },
+      }
+    );
+
+    await School.findByIdAndUpdate(schoolId, {
+      $pull: {
+        subjects: id,
+      },
+    });
+
     subject.courses.length &&
       subject.courses.map(
         async (m: any) =>

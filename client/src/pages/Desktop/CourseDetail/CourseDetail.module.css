@@ -1,12 +1,11 @@
 .main {
-  margin-top: 2rem;
   width: 98%;
   min-height: 20rem;
   max-height: max-content;
   background: #fafafa;
   border-radius: 10px;
   box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
-  margin-top: 4rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -31,7 +30,7 @@
   position: absolute;
   left: 10px;
   color: var(--semi-white);
-  font-size: large;
+  font-size: x-large;
   font-weight: 600;
   text-transform: capitalize;
 }

@@ -25,7 +25,7 @@ const schemaSchool = new Schema({
   },
   logo: {
     type: String,
-    required: true,
+    default: "../../../../client/src/assets/logo-sin-pie.png",
   },
   email: {
     type: String,

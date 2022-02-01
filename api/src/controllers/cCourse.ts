@@ -34,11 +34,13 @@ export const createCourse = async (req: Request, res: Response) => {
           async (m: any) =>
             await User.findByIdAndUpdate(new toId(m), {
               course: new toId(newCourse._id),
-              subject: subjects
-                ? subjects.length
-                  ? subjects.map((m: any) => new toId(m))
-                  : []
-                : [],
+              $push: {
+                subject: subjects
+                  ? subjects.length
+                    ? subjects.map((m: any) => new toId(m))
+                    : []
+                  : [],
+              },
             })
         )
       : [];
@@ -47,27 +49,19 @@ export const createCourse = async (req: Request, res: Response) => {
       ? teachers.forEach(
           async (m: any) =>
             await User.findByIdAndUpdate(new toId(m), {
-              course: new toId(newCourse._id),
+              $push: { course: new toId(newCourse._id) },
             })
         )
       : [];
 
     subjects
-      ? subjects.length
-        ? subjects.forEach(
-            async (m: any) =>
-              await Subject.findByIdAndUpdate(new toId(m), {
-                teachers: teachers
-                  ? teachers.length
-                    ? teachers.map((m: any) => new toId(m))
-                    : []
-                  : [],
-                courses: new toId(newCourse._id),
-              })
-          )
-        : []
+      ? subjects.forEach(
+          async (m: any) =>
+            await Subject.findByIdAndUpdate(new toId(m), {
+              $push: { courses: new toId(newCourse._id) },
+            })
+        )
       : [];
-
     res.status(200).json(newCourse);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
@@ -120,12 +114,19 @@ export const addSubjectToCourse = async (req: Request, res: Response) => {
 };
 
 export const deleteCourseById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id, schoolId } = req.params;
+
   try {
     const course = await Course.findById(id);
     if (!course) {
       return res.status(404).json({ msg: "Event not found" });
     }
+
+    await School.findByIdAndUpdate(schoolId, {
+      $pull: {
+        courses: id,
+      },
+    });
 
     course.students.length &&
       course.students.map(

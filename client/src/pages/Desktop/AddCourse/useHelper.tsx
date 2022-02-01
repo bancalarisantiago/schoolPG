@@ -1,16 +1,18 @@
 //from modules
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //interfaces
 import { IState, IStateAddCourse, IListState } from "../../../interfaces";
 //actions
-import { createCourse, getUserBy } from "../../../redux/actions";
+import { createCourse, getSchoolById, getUserBy } from "../../../redux/actions";
 
 const useHelper = () => {
   const userSession = useSelector((state: IState) => state.userSession);
   const userSchool = useSelector((state: IState) => state.userSchool);
   const matchUsers = useSelector((state: IState) => state.matchUsers);
   const dispatch = useDispatch();
+
+  useEffect(() => {}, [userSchool]);
 
   const [state, setState] = useState<IStateAddCourse>({
     name: "",
@@ -72,6 +74,13 @@ const useHelper = () => {
     dispatch(
       createCourse({
         createCourse: { ...state, schoolId: userSchool._id },
+        accessToken: userSession.accessToken,
+      })
+    );
+
+    dispatch(
+      getSchoolById({
+        schoolId: userSchool._id,
         accessToken: userSession.accessToken,
       })
     );

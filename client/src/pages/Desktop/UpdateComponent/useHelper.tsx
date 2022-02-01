@@ -53,15 +53,18 @@ const useHelper = () => {
   const [input, setInput] = useState<any>({ ...voidInputs, tutors: [] });
   const [errors, setErrors] = useState<any>(voidInputs);
   const [show, setShow] = useState(false);
-  const [ select, setSelect ] = useState({
-      courses: userInfo.course,
-      subject:  userInfo.subject
+  const [select, setSelect] = useState({
+    courses: userInfo.course,
+    subject: userInfo.subject,
   });
 
   useEffect(() => {
     dispatch(getUserById({ userId: id, accessToken: userSession.accessToken }));
-  }, []);
-
+    /* setSelect({
+      subject: [],
+      courses: [],
+    }); */
+  }, [dispatch, id, userSession.accessToken]);
   useEffect(() => {
     let tutors = [
       { name: "", cellphone: "", email: "" },
@@ -184,64 +187,57 @@ const useHelper = () => {
     }
   };
 
+  function handleInputOnChangeList(event: any) {
+    const { name, value } = event.target;
 
-  
-  
- 
-      function handleInputOnChangeList(event: any) {
-          const { name, value } = event.target;
-  
-          if (name === "courses") {
-          if (!select.courses.map((m: any) => m.name === value).includes(true)) {
-            select.courses.push(
-                school.courses.filter((m: any) => m.name === value)
-              );
-          } else {
-              alert("El curso ya esta seleccionado");
-          }
-          }
-          if (name === "subjects") {
-              
-          if (!select.subject.map((m: any) => m.name === value).includes(true)) {
-            select.subject.push(
-                school.subjects.filter((m: any) => m.name === value)
-              );
-          } else {
-              alert("La materia ya esta seleccionada");
-          }
-          }
-          setSelect({
-              ...select,
-              subject: select.subject.flat(),
-              courses: select.courses.flat()
-            });
-            event.target.value = "default";
+    if (name === "courses") {
+      if (!select.courses.map((m: any) => m.name === value).includes(true)) {
+        select.courses.push(
+          school.courses.filter((m: any) => m.name === value)
+        );
+      } else {
+        alert("El curso ya esta seleccionado");
       }
-      
-  
-      function deleteFromList(event: any) {
-  
-          if (
-            select.courses
-              .map((m: any) => m.name === event.target.value)
-              .includes(true)
-          ) {
-            let copy = select.courses.filter(
-              (p: any) => p.name !== event.target.value
-            );
-            setSelect({ ...select, courses: copy });
-          }
-          if (
-            select.subject
-              .map((m: any) => m.name === event.target.value)
-              .includes(true)
-          ) {
-            let copy = select.subject.filter(
-              (g: any) => g.name !== event.target.value
-            );
-            setSelect({ ...select, subject: copy });
-          }
-        }
+    }
+    if (name === "subjects") {
+      if (!select.subject.map((m: any) => m.name === value).includes(true)) {
+        select.subject.push(
+          school.subjects.filter((m: any) => m.name === value)
+        );
+      } else {
+        alert("La materia ya esta seleccionada");
+      }
+    }
+    setSelect({
+      ...select,
+      subject: select.subject.flat(),
+      courses: select.courses.flat(),
+    });
+    event.target.value = "default";
+  }
+
+  function deleteFromList(event: any) {
+    if (
+      select.courses
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
+      let copy = select.courses.filter(
+        (p: any) => p.name !== event.target.value
+      );
+      setSelect({ ...select, courses: copy });
+    }
+    if (
+      select.subject
+        .map((m: any) => m.name === event.target.value)
+        .includes(true)
+    ) {
+      let copy = select.subject.filter(
+        (g: any) => g.name !== event.target.value
+      );
+      setSelect({ ...select, subject: copy });
+    }
+  }
   const handleChange = (e: EventInput) => {
     const { name, value } = e.target;
     console.log("handle", input, errors);
@@ -293,21 +289,25 @@ const useHelper = () => {
         picture: input.picture,
         tutors: input.tutors,
         course: select.courses,
-        subject: select.subject
+        subject: select.subject,
       },
       id: userInfo._id,
     };
-    await dispatch(
+    dispatch(
       putUser({ updateUser: userSubmit, accessToken: userSession.accessToken })
     );
 
-    await dispatch(
+    dispatch(
       getSchoolById({
         schoolId: userInfo.school._id,
         accessToken: userSession.accessToken,
       })
     );
     alert("El usuario fue modificado correctamente");
+    setSelect({
+      subject: [],
+      courses: [],
+    });
     getBack();
   };
 
@@ -384,7 +384,7 @@ const useHelper = () => {
     tutorsHandleChange,
     select,
     deleteFromList,
-    handleInputOnChangeList
+    handleInputOnChangeList,
   };
 };
 

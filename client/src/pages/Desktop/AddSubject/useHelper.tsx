@@ -44,7 +44,7 @@ const useHelper = () => {
     if (!input.teachers) {
       errors.teacher = "Type a Teacher";
     } else if (input.teachers.length === 0) {
-      errors.teacher = "Tiene que eleguir un profesor";
+      errors.teacher = "Tiene que elegir un profesor";
     } else {
       errors.teacher = "";
     }
@@ -100,6 +100,7 @@ const useHelper = () => {
   }
 
   const handleSubmit = (e: any) => {
+    e.preventDefault();
     dispatch(
       createSubject({
         createSubject: { ...input, schoolId: userSchool._id },
