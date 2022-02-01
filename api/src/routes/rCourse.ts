@@ -18,7 +18,7 @@ const router = Router();
 
 //private routes
 router.post("/course", tokenValidation, createCourse);
-router.delete("/course/:id", tokenValidation, deleteCourseById);
+router.delete("/course/:id/:schoolId", tokenValidation, deleteCourseById);
 
 //non private routes
 router.get("/course", getCourses);

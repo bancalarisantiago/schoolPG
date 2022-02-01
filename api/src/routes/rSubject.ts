@@ -16,7 +16,7 @@ const router = Router();
 
 //private routes
 router.post("/subject", tokenValidation, createSubject);
-router.delete("/subject/:id", tokenValidation, deleteSubjectById);
+router.delete("/subject/:id/:schoolId", tokenValidation, deleteSubjectById);
 
 //non private routes
 router.get("/subject", getSubjects);

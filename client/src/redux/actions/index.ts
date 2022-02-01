@@ -158,7 +158,7 @@ export const deleteUserById =
   };
 
 export const deleteSubjectById = async (payload: any) => {
-  await instance.delete(`/subject/${payload.id}`, {
+  await instance.delete(`/subject/${payload.id}/${payload.schoolId}`, {
     headers: {
       "auth-token": payload.accessToken,
     },
@@ -167,7 +167,7 @@ export const deleteSubjectById = async (payload: any) => {
 
 export const deleteCourseById =
   (payload: any) => async (dispatch: Dispatch) => {
-    await instance.delete(`/course/${payload.id}`, {
+    await instance.delete(`/course/${payload.id}/${payload.schoolId}`, {
       headers: {
         "auth-token": payload.accessToken,
       },

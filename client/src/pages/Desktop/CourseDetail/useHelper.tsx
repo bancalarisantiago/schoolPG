@@ -14,6 +14,7 @@ const useHelper = () => {
   const navigate = useNavigate();
   const [course, setCourse] = useState<ICourses>();
   const userSession = useSelector((state: IState) => state.userSession);
+  const userSchool = useSelector((state: IState) => state.userSchool);
 
   useEffect(() => {
     fetchData();
@@ -23,7 +24,7 @@ const useHelper = () => {
       );
       setCourse(data);
     }
-  }, []);
+  }, [userSchool]);
 
   const confirmDelete = async (id: any, first: any, last: any) => {
     if (window.confirm(`Desea eliminar a ${first} ${last}? `) === true) {
@@ -44,6 +45,7 @@ const useHelper = () => {
       let erase = "La materia ha sido eliminada de la base datos";
       dispatch(
         deleteSubjectById({
+          schoolId: userSession.user.school,
           id: id,
           accessToken: userSession.accessToken,
         })

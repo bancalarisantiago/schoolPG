@@ -154,9 +154,9 @@ export interface IRefreshUser {
 export interface ICreateSubject {
   createSubject: {
     name: string;
-    courses: string[];
-    teachers: string[];
-    schoolId: string;
+    courses?: string[];
+    teachers?: string[];
+    schoolId?: string;
   };
   accessToken: string;
 }
@@ -254,11 +254,10 @@ interface ILocation {
   postalCode: string;
 }
 
-export interface ITutor{
+export interface ITutor {
   name: string;
   cellphone: string;
   email: string;
-
 }
 export interface IUserForm {
   name: Fullname;
@@ -271,9 +270,9 @@ export interface IUserForm {
   password: string;
   cellphone: string;
   picture: string;
-  tutors:ITutor[];
+  tutors: ITutor[];
   course?: any;
-  subject?: any; 
+  subject?: any;
 }
 export interface IUserSubmit {
   user: IUserForm;

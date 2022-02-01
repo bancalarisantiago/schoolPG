@@ -147,50 +147,48 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  const { id } = req.params; // req.body?
-  const { course, subject} = req.body;
+  const { id } = req.params;
+  const { course, subject } = req.body;
 
-  
   try {
-    const user = await User.findOne({_id: id});
+    const user = await User.findOne({ _id: id });
     if (!user) {
       return res.status(404).json({ msg: "Event not found" });
     }
-    
-      if(user) {
-        if (user.course ) {
-          user?.course.length &&
-            user.course.forEach(
-              async (fe: any) =>
-                await Course.findByIdAndUpdate(fe, {
-                  $pull: {
-                    teachers: id,
-                  },
-                })
-            );
-              }
-    
-          if(user.subject) {
-              user?.subject.length &&
-                user.subject.forEach(
-                  async (fe: any) =>
-                    await Subject.findByIdAndUpdate(fe, {
-                      $pull: {
-                        teachers: id,
-                      },
-                    })
-                );}
+
+    if (user) {
+      if (user.course) {
+        user?.course.length &&
+          user.course.map(
+            async (m: any) =>
+              await Course.findByIdAndUpdate(m, {
+                $pull: {
+                  teachers: id,
+                },
+              })
+          );
       }
-   
-          
+
+      if (user.subject) {
+        user?.subject.length &&
+          user.subject.map(
+            async (m: any) =>
+              await Subject.findByIdAndUpdate(m, {
+                $pull: {
+                  teachers: id,
+                },
+              })
+          );
+      }
+    }
 
     course
       ? course.length
-        ? course.forEach(
-            async (fe: any) =>
-              await Course.findByIdAndUpdate(new toId(fe._id), {
+        ? course.map(
+            async (m: any) =>
+              await Course.findByIdAndUpdate(new toId(m._id), {
                 $push: {
-                  teachers : new toId(id),
+                  teachers: new toId(id),
                 },
               })
           )
@@ -203,7 +201,7 @@ export const updateUser = async (req: Request, res: Response) => {
             async (m: any) =>
               await Subject.findByIdAndUpdate(new toId(m._id), {
                 $push: {
-                teachers: new toId(id),
+                  teachers: new toId(id),
                 },
               })
           )
@@ -211,15 +209,15 @@ export const updateUser = async (req: Request, res: Response) => {
       : "";
 
     const newUser = {
-      ...req.body, course: course, subject: subject
+      ...req.body,
+      course: course,
+      subject: subject,
     };
     //actualizar password
 
-    if(newUser.password.length <10){
-      newUser.password = await  new User().encryptPassword(newUser.password);
+    if (newUser.password.length < 10) {
+      newUser.password = await new User().encryptPassword(newUser.password);
     }
-      
-      
 
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true,
