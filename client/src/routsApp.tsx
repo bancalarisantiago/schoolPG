@@ -2,7 +2,7 @@ import Login from "./pages/Desktop/Login/Login";
 import Panel from "./pages/Desktop/Panel/Panel";
 import CreateSchool from "./pages/Desktop/CreateSchool/CreateSchool";
 import AddStudent from "./pages/Desktop/AddStudent/AddStudent";
-import AddAttendance from "./pages/Desktop/AddAttendance/AddAttendance";
+import AddAttendance from './pages/Desktop/AddAttendance/AddAttendance';
 import AddTeacher from "./pages/Desktop/AddTeacher/AddTeacher";
 import AddAdmin from "./pages/Desktop/AddAdmin/AddAdmin";
 import AddCourse from "./pages/Desktop/AddCourse/AddCourse";
@@ -15,8 +15,8 @@ import Error from "./pages/Desktop/Error/Error";
 import Profile from "./pages/Desktop/Profile/Profile";
 import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 import Database from "./components/Desktop/Database/Database";
-import AddAttendance from "./components/Desktop/AddAttendance/AddAttendance";
 import CourseDetail from "./pages/Desktop/CourseDetail/CourseDetail";
+import UpdateTeacher from './pages/Desktop/UpdateTeacher/UpdateTeacher';
 export {
   Login,
   Panel,
@@ -27,8 +27,7 @@ export {
   AddAdmin,
   AddCourse,
   UpdateCourse,
-  AddEvent,
-  UpdateEvent,
+  UpdateTeacher,
   AddSubject,
   UpdateSubject,
   SchoolInfo,

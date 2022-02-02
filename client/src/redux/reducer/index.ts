@@ -1,4 +1,5 @@
 import { IFullUser, ISchool, IState } from "../../interfaces";
+import { ISubject } from '../../interfaces/index';
 import {
   GET_USER_LOGGED,
   GET_SCHOOL,
@@ -9,6 +10,7 @@ import {
   USER_LOGOUT,
   /* REFRESH_TOKEN, */
   GET_EVENTS,
+  GET_SUBJECT_BY_ID,
 } from "../actions";
 
 export const initialState: IState = {
@@ -17,6 +19,7 @@ export const initialState: IState = {
   matchUsers: {},
   userDetail: {},
   events: [],
+  subjectDetail :{},
 };
 const cases: any = {};
 
@@ -68,6 +71,13 @@ cases[GET_EVENTS] = (initialState: IState, payload: ISchool) => {
     events: payload,
   };
 };
+
+cases[GET_SUBJECT_BY_ID] =(initialState:IState,payload:ISubject) => {
+  return {
+    ...initialState,
+    subjectDetail:payload,
+  }
+}
 
 /* cases[REFRESH_TOKEN] = (initialState: IState, payload: any) => ({
   ...initialState,

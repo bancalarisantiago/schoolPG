@@ -32,6 +32,7 @@ export const PUT_USER = "PUT_USER";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const CREATE_EVENT = "CREATE_EVENT";
 export const GET_EVENTS = "GET_EVENTS";
+export const GET_SUBJECT_BY_ID ="GET_SUBJECT_BY_ID";
 /* export const REFRESH_TOKEN = "REFRESH_TOKEN"; */
 
 //logout
@@ -211,3 +212,11 @@ export const getEvents = () => async (dispatch: Dispatch) => {
     payload: events,
   });
 };
+
+export const getSubjectById =(payload:any) => async (dispatch:Dispatch) => {
+  const subject = await instance.get(`/subject/${payload}`)
+  return dispatch({
+    type:GET_SUBJECT_BY_ID,
+    payload:subject
+  })
+}

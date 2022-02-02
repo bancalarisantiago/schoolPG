@@ -69,6 +69,7 @@ export interface IState {
   matchUsers: any;
   userDetail: any;
   events: any;
+  subjectDetail:any;
 }
 
 export type SubmitEvent = React.SyntheticEvent;

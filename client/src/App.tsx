@@ -19,8 +19,6 @@ import {
   UpdateComponent,
   AddCourse,
   UpdateCourse,
-  AddEvent,
-  UpdateEvent,
   AddSubject,
   UpdateSubject,
   SchoolInfo,
