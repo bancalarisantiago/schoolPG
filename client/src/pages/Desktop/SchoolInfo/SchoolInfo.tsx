@@ -9,11 +9,7 @@ import Database from "../../../components/Desktop/Database/Database";
 import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
 import Calendar from "../../../components/Desktop/Calendar/Calendar";
 import DataBaseCourse from "../DataBaseCourse/DataBaseCourse"
-//assets
-// import course from "../../../assets/online-class.png";
-// import info from "../../../assets/info.png";
-// import edit from "../../../assets/edit.png";
-// import trash from "../../../assets/delete.png";
+
 
 const SchoolInfo: React.FC = () => {
   const { school, totalUsers, deleteCourse } = useHelper();
