@@ -28,6 +28,7 @@ import {
   Database,
   CourseDetail,
   AddAttendance,
+  ModifyCourse
 } from ".//routsApp";
 
 Modal.setAppElement("#root");
@@ -99,7 +100,7 @@ const App: React.FC = () => {
           />
           <Route path="agregar-curso" element={<AddCourse />} />
           <Route path="modificar-curso" element={<UpdateCourse />} />
-
+          <Route path="modificar-curso/:id" element={<ModifyCourse />} />
           <Route path="agregar-materias" element={<AddSubject />} />
           <Route path="modificar-materias" element={<UpdateSubject />} />
 

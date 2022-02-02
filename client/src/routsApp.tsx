@@ -16,6 +16,7 @@ import Profile from "./pages/Desktop/Profile/Profile";
 import UserDetail from "./pages/Desktop/UserDetail/UserDetail";
 import Database from "./components/Desktop/Database/Database";
 import CourseDetail from "./pages/Desktop/CourseDetail/CourseDetail";
+import ModifyCourse from "./pages/Desktop/ModifyCourse/ModifyCourse"
 export {
   Login,
   Panel,
@@ -35,4 +36,5 @@ export {
   Database,
   CourseDetail,
   AddAttendance,
+  ModifyCourse
 };
