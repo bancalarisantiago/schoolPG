@@ -1,0 +1,154 @@
+.wrapper {
+  width: 70%;
+  height: 80%;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.title {
+  position: relative;
+  padding-left: 3.5rem;
+  font-size: x-large;
+  font-weight: 700;
+  color: var(--semi-white);
+}
+
+.backbox {
+  width: 120px;
+  height: 50px;
+  position: absolute;
+  right: 3.5rem;
+  top: 50%;
+  transform: translate(0, -25%);
+  /* font-size: x-large;
+  font-weight: 700; */
+}
+
+.titlebox {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  width: 55%;
+  height: 8%;
+  background-image: var(---blue-gradient);
+  border-radius: 10px;
+  box-shadow: 0 3px 15px #3790ef8c;
+}
+
+.selectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.inputsContainer {
+  margin: 15px auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.studentsContainer,
+.teachersContainer,
+.subjectsContainer,
+.btnContainer {
+  margin: 20px;
+}
+.input {
+  margin: 10px;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+.li {
+  display: flex;
+  font-family: "Poppins";
+  color: #999;
+  padding: 5px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background: #fafafa;
+  background-image: none;
+  flex: 1;
+  padding: 0 0.3em;
+  color: #999;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  margin: 5px;
+  color: rgb(85, 85, 85);
+  width: 14em;
+  height: 2em;
+  line-height: 2;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 0.7em;
+  background: var(---blue-gradient);
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+.select:hover::after {
+  color: var(--semi-white);
+}
+
+.btnList {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  display: flex;
+  border: 1.5px solid rgb(255, 51, 51);
+  margin-left: 10px;
+  height: 24px;
+  width: 24px;
+  font-weight: 500;
+  border-radius: 50%;
+  color: rgb(255, 51, 51);
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.tables {
+  height: 160px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    height: 150%;
+  }
+}

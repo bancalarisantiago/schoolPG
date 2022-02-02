@@ -134,6 +134,15 @@ export const createCourse = (payload: ICreateCourse) => async () => {
   });
 };
 
+export const modifyCourse = (payload: any) => async () => {
+
+  await instance.put(`/course/update/${payload.id}`, payload.course, {
+    headers: {
+      "auth-token": payload.accessToken,
+    },
+  });
+}
+
 /* export const refreshToken =
   (payload: IRefreshToken) => (dispatch: Dispatch) => async () => {
     console.log(payload);

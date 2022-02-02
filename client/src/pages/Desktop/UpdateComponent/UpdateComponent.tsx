@@ -4,10 +4,6 @@ import styles from "./UpdateComponent.module.css";
 //helper
 import useHelper from "./useHelper";
 
-//libraries
-
-import { useSelector } from "react-redux";
-import { useState } from "react";
 //components
 import Button from "../../../components/Desktop/ReusableComponents/Button/Button";
 import Input from "../../../components/Desktop/ReusableComponents/Input/Input";

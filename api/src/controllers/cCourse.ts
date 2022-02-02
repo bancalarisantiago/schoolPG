@@ -185,14 +185,11 @@ export const attendanceUpdate = async (req: Request, res: Response) => {
 
 export const updateCourseById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { student, teacher, subject } = req.body;
+  const { students, teachers, subjects, name, shifts } = req.body;
 
   try {
     const course = await Course.findOne({ _id: id });
-
-    const students = JSON.parse(student);
-    const teachers = JSON.parse(teacher);
-    const subjects = JSON.parse(subject);
+          
 
     if (course) {
       course?.students.length &&
@@ -260,7 +257,16 @@ export const updateCourseById = async (req: Request, res: Response) => {
               },
             })
         );
-      res.status(200).json(course);
+
+        const newCourse = await Course.updateOne({ _id: id }, {
+          $set: {
+            name: name,
+            shifts: shifts
+          }
+        });
+       
+       
+      res.status(200).json(newCourse);
     } else {
       res.send("El id del curso no es valido");
     }

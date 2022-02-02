@@ -1,12 +1,20 @@
 //css
-import styles from "./UpdateCourse.module.css";
+
+//Components
+
+import DataBaseCourse from "../DataBaseCourse/DataBaseCourse"
+
 
 const UpdateCourse: React.FC = () => {
   return (
-    <div>
-      <p>UpdateCourse</p>
-    </div>
-  );
+  
+        <>
+          <DataBaseCourse/>
+        </>
+  )
 };
 
 export default UpdateCourse;
+
+
+ 
