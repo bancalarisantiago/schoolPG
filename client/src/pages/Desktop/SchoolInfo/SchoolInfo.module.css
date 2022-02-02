@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap");
+
 .main {
   display: flex;
   justify-content: center;
@@ -22,19 +24,7 @@
   height: -moz-max-content;
   height: max-content;
 }
-.apiContainer {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  margin-left: 2rem;
-  border-radius: 10px;
-  background: #fafafa;
-  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
-  width: 20%;
-  display: flex;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-}
+
 @-webkit-keyframes fadein {
   from {
     opacity: 0;
@@ -52,29 +42,6 @@
   }
 }
 
-/* @-webkit-keyframes scale-in-center {
-  0% {
-    transform: scale(0);
-
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes scale-in-center {
-  0% {
-    transform: scale(0);
-
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-} */
 .info {
   display: flex;
   justify-content: space-between;
@@ -158,6 +125,7 @@
 
 .time {
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 40rem;
 }
@@ -203,17 +171,6 @@
   .tutors {
     width: 23%;
     margin: 1rem 0;
-  }
-}
-
-@media (max-width: 2000px) {
-  .time {
-    flex-direction: column;
-    align-items: center;
-    height: max-content;
-  }
-  .calendarContainer {
-    width: 95%;
   }
 }
 
@@ -362,4 +319,306 @@
 
 .navLink {
   color: black;
+}
+
+.apiContainer {
+  margin: 2rem 1rem 1rem 2rem;
+  border-radius: 10px;
+  background: #222831;
+  box-shadow: 1px 5px 10px rgba(128, 128, 128, 0.445);
+  width: 30%;
+  display: flex;
+  align-items: center;
+  height: 675px;
+}
+
+.clearSky,
+.clearSkyNight,
+.clearSkyNight2,
+.clearSkyNight3,
+.fewClouds,
+.fewCloudsNight,
+.scatteredClouds,
+.scatteredCloudsNight,
+.brokenClouds,
+.brokenCloudsNight,
+.showerRain,
+.showerRainNight,
+.rain,
+.rainNight,
+.thunderstorm,
+.thunderstormNight,
+.snow,
+.snowNight .mist,
+.mistNight {
+  width: 100%;
+  height: 103%;
+  border-radius: 20px;
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.clearSkyNight {
+  background: url("../../../assets/weatherBg/clearSkyNight.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.clearSkyNight2 {
+  background: url("../../../assets/weatherBg/clearSkyNight2.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.clearSkyNight3 {
+  background: url("../../../assets/weatherBg/clearSkyNight3.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.fewClouds {
+  background: url("../../../assets/weatherBg/cloudy.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.fewCloudsNight {
+  background: url("../../../assets/weatherBg/cloudyNight.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.scatteredClouds {
+  background: url("../../../assets/weatherBg/cloudy.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.scatteredCloudsNight {
+  background: url("../../../assets/weatherBg/cloudyNight.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.brokenClouds {
+  background: url("../../../assets/weatherBg/cloudy.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.brokenCloudsNight {
+  background: url("../../../assets/weatherBg/cloudyNight.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.showerRain {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.showerRainNight {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.rain {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.rainNight {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.thunderstorm {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.thunderstormNight {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.snow {
+  background: url("../../../assets/weatherBg/snow.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.snowNight {
+  background: url("../../../assets/weatherBg/snow.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.mist {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.mistNight {
+  background: url("../../../assets/weatherBg/clearSky.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  margin-left: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.day {
+  font-size: xx-large;
+  text-transform: capitalize;
+  color: #fafafa;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 1rem;
+  text-shadow: 5px 5px 5px rgb(70, 67, 67);
+}
+
+.date,
+.location,
+.description {
+  font-size: x-large;
+  text-transform: capitalize;
+  color: #fafafa;
+  text-shadow: 5px 5px 5px rgb(70, 67, 67);
+  font-weight: 600;
+  margin: 0rem 1rem 0 1rem;
+}
+
+.date {
+  margin-top: 2rem;
+}
+
+.temp {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fafafa;
+  text-shadow: 5px 5px 5px rgb(70, 67, 67);
+  margin-left: 1rem;
+  position: absolute;
+  bottom: 3rem;
+}
+
+.description {
+  position: absolute;
+  bottom: 1rem;
+}
+
+.right {
+  width: 60%;
+
+  height: 100%;
+  border-radius: 10px;
+  display: none;
+}
+
+.class,
+.classOne {
+  color: #fafafa;
+  font-size: large;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin: 0.5rem 2rem;
+  position: relative;
+}
+
+.classOne {
+  margin-top: 3rem;
+}
+
+.infoW {
+  position: absolute;
+  right: 0;
+  font-weight: 500;
+}
+
+.afterDays {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cont {
+  width: 90%;
+  height: 50%;
+  background-color: #2e343dbe;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardW {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.6s;
+  border-radius: 10px;
+}
+
+.afterT {
+  color: #fafafa;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.afterI {
+  margin-top: 1rem;
+  width: 2.5rem;
+}
+
+.afterD {
+  text-transform: capitalize;
+  color: #fafafa;
+  font-weight: 600;
+}
+.cardW:hover {
+  background: var(---blue-gradient);
+  border-radius: 10px;
+  transform: scale(1.2);
+}
+
+@media (max-width: 2000px) {
+  .time {
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+  }
+  .calendarContainer {
+    width: 95%;
+  }
+  .apiContainer {
+    width: 95%;
+    height: 512px;
+    margin: 2rem 0 0 0;
+  }
+  .clearSky,
+  .clearSkyNight,
+  .clearSkyNight2,
+  .clearSkyNight3,
+  .fewClouds,
+  .fewCloudsNight,
+  .scatteredClouds,
+  .scatteredCloudsNight,
+  .brokenClouds,
+  .brokenCloudsNight,
+  .showerRain,
+  .showerRainNight,
+  .rain,
+  .rainNight,
+  .thunderstorm,
+  .thunderstormNight,
+  .snow,
+  .snowNight .mist,
+  .mistNight {
+    width: 40%;
+    height: 104%;
+  }
+  .right {
+    display: inline;
+  }
 }

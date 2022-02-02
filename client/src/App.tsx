@@ -29,6 +29,7 @@ import {
   CourseDetail,
   AddAttendance,
 } from ".//routsApp";
+import axios from "axios";
 
 Modal.setAppElement("#root");
 

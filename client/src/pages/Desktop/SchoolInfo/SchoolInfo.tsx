@@ -15,8 +15,19 @@ import edit from "../../../assets/edit.png";
 import trash from "../../../assets/delete.png";
 
 const SchoolInfo: React.FC = () => {
-  const { school, totalUsers, deleteCourse } = useHelper();
-
+  const {
+    school,
+    weather,
+    number,
+    bg,
+    day,
+    dayByNum,
+    date,
+    totalUsers,
+    deleteCourse,
+  } = useHelper();
+  const aux = number(new Date());
+  //console.log(weather);
   if (school && school.name)
     return (
       <div className={styles.main}>
@@ -46,7 +57,78 @@ const SchoolInfo: React.FC = () => {
             </div>
           </div>
 
-          <div className={styles.apiContainer}>{}</div>
+          <div className={styles.apiContainer}>
+            {weather ? (
+              <>
+                <div className={styles[bg(weather.current.weather[0].icon)[0]]}>
+                  <p className={styles.day}>{day(new Date())}</p>
+                  <p className={styles.date}>
+                    <span>{date(new Date().toLocaleDateString())[0]}</span>
+                    <span> {date(new Date().toLocaleDateString())[1]}</span>
+                    <span> {date(new Date().toLocaleDateString())[2]}</span>
+                  </p>
+                  <p className={styles.location}>
+                    {weather.timezone.split("/")[1]},{" "}
+                    {weather.timezone.split("/")[2]}
+                  </p>
+                  <img
+                    src={bg(weather.current.weather[0].icon)[1]}
+                    alt="icon"
+                    className={styles.icon}
+                  />
+                  <p className={styles.temp}>
+                    {Math.floor(weather.current.temp)}°C
+                  </p>
+                  <p className={styles.description}>
+                    {weather.current.weather[0].description}
+                  </p>
+                </div>
+                <div className={styles.right}>
+                  <p className={styles.classOne}>
+                    humedad:{" "}
+                    <span className={styles.infoW}>
+                      {weather.current.humidity}%
+                    </span>
+                  </p>
+                  <p className={styles.class}>
+                    sensacion térmica:{" "}
+                    <span className={styles.infoW}>
+                      {Math.floor(weather.current.feels_like)}
+                    </span>
+                  </p>
+                  <p className={styles.class}>
+                    vientos:{" "}
+                    <span className={styles.infoW}>
+                      {weather.current.wind_speed} km/h
+                    </span>
+                  </p>
+                  <div className={styles.afterDays}>
+                    <div className={styles.cont}>
+                      {weather?.daily.map((m: any, i: number) => {
+                        if (i > aux && i <= aux + 4) {
+                          return (
+                            <div className={styles.cardW}>
+                              <img
+                                src={bg(m.weather[0].icon)[1]}
+                                alt="icon"
+                                className={styles.afterI}
+                              />
+                              <p className={styles.afterD}>{dayByNum(i)}</p>
+                              <p className={styles.afterT}>
+                                {Math.floor(m.temp.max)}°C
+                              </p>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
 
         <Database
