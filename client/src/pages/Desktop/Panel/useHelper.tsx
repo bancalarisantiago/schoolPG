@@ -11,7 +11,7 @@ import axios from "axios"; */
 const useHelper = () => {
   const location: any = useLocation().pathname;
   const dispatch = useDispatch();
-  var user = localStorage.getItem("user" || "");
+  var user = localStorage.getItem("user" || null);
   const navigate = useNavigate();
   const [showSidebar, setShowSideBar] = useState<boolean>(false);
   const validate = JSON.parse(user || "");
