@@ -222,7 +222,7 @@ const Sidebar: React.FC<{ showSidebar: boolean }> = ({ showSidebar }) => {
           value="5"
           onClick={handleClick}
         >
-          Asistencia 
+          Asistencia
           <img
             className={show[5] ? styles.less : styles.more}
             src={down}

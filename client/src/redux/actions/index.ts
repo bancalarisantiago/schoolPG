@@ -76,12 +76,20 @@ export const getUserById =
 //post
 export const getUserByLogin =
   (payload: ICredential) => async (dispatch: Dispatch) => {
-    const r = await instance.post("/login", payload);
-    dispatch({
-      type: GET_USER_LOGGED,
-      payload: r.data,
-    });
-    return r.data;
+    if (payload.password) {
+      const r = await instance.post("/login", payload);
+      dispatch({
+        type: GET_USER_LOGGED,
+        payload: r.data,
+      });
+      return r.data;
+    } else {
+      dispatch({
+        type: GET_USER_LOGGED,
+        payload: payload,
+      });
+      return payload;
+    }
   };
 
 export const getUserBy =

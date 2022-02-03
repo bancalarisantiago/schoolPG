@@ -77,8 +77,8 @@ export type ClickEvent = React.MouseEvent<HTMLElement>;
 
 //for payloads
 export interface ICredential {
-  userInfo: string;
-  password: string;
+  userInfo?: string;
+  password?: string;
 }
 
 export interface ISchoolId {

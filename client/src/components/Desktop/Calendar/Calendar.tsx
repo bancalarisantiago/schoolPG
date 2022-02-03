@@ -32,7 +32,7 @@ const Calendar: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <section>
+      <section className={styles.section}>
         <div>
           <div className={styles.calendar}>
             {option !== "listWeek" && option !== "dayGridWeek" ? (

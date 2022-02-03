@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getSchoolById } from "../../../redux/actions";
+import { getSchoolById, getUserByLogin } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
 /* import jwt_decode, { JwtPayload } from "jwt-decode";
 import axios from "axios"; */
@@ -12,12 +12,14 @@ import { IState } from "../../../interfaces";
 const useHelper = () => {
   const location: any = useLocation().pathname;
   const dispatch = useDispatch();
-  const validate = useSelector((state: IState) => state.userSession);
+  var user = localStorage.getItem("user" || "");
   const navigate = useNavigate();
   const [showSidebar, setShowSideBar] = useState<boolean>(false);
+  const validate = JSON.parse(user || "");
 
   useEffect(() => {
     !validate.accessToken && navigate("/login");
+    dispatch(getUserByLogin(validate));
     validate.accessToken
       ? !validate.user.school
         ? navigate("/panel")
@@ -28,7 +30,7 @@ const useHelper = () => {
             })
           )
       : navigate("/login");
-  }, [navigate, validate, dispatch, validate.accessToken]);
+  }, []);
 
   const handleShow = () => {
     setShowSideBar(!showSidebar);

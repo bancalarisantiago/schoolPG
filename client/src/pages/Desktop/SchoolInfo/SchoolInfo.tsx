@@ -104,7 +104,7 @@ const SchoolInfo: React.FC = () => {
                       {weather?.daily.map((m: any, i: number) => {
                         if (i > aux && i <= aux + 4) {
                           return (
-                            <div className={styles.cardW}>
+                            <div className={styles.cardW} key={i}>
                               <img
                                 src={bg(m.weather[0].icon)[1]}
                                 alt="icon"
@@ -116,6 +116,8 @@ const SchoolInfo: React.FC = () => {
                               </p>
                             </div>
                           );
+                        } else {
+                          return "";
                         }
                       })}
                     </div>
