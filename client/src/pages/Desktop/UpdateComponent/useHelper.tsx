@@ -3,7 +3,7 @@
 import { EventInput } from "@fullcalendar/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IState, IUserSubmit } from "../../../interfaces/index";
 import { getSchoolById, putUser, getUserById } from "../../../redux/actions";
 
@@ -46,7 +46,6 @@ const voidInputs = {
 const useHelper = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const school = useSelector((state: IState) => state.userSchool);
   const userInfo = useSelector((state: IState) => state.userDetail);
   const userSession = useSelector((state: IState) => state.userSession);
@@ -240,7 +239,7 @@ const useHelper = () => {
   }
   const handleChange = (e: EventInput) => {
     const { name, value } = e.target;
-    console.log("handle", input, errors);
+
     setInput({
       ...input,
       [name]: value,
@@ -339,7 +338,7 @@ const useHelper = () => {
     const { name, value } = e.target;
 
     const [nameN, pos] = name.split(" ");
-    console.log(nameN, pos, value, input.tutors);
+
     setInput({
       ...input,
       tutors: input.tutors.map((e: any, i: number) =>

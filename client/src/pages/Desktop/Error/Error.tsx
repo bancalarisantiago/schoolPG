@@ -1,5 +1,5 @@
 //css
-import styles from "./Error.module.css";
+//import styles from "./Error.module.css";
 
 const Error: React.FC = () => {
   return (

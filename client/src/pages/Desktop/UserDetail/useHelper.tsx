@@ -17,6 +17,8 @@ const useHelper = () => {
       dispatch(
         getUserById({ userId: id, accessToken: userSession.accessToken })
       );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const userTypeEs = (userTypeEn: string) => {

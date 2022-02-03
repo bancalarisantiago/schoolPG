@@ -23,6 +23,7 @@ const useHelper = () => {
         accessToken: userSession,
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSchool]);
 
   const [state, setState] = useState<IStateAddCourse>({

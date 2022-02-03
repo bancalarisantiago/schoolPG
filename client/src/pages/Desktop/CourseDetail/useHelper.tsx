@@ -24,6 +24,7 @@ const useHelper = () => {
       );
       setCourse(data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSchool]);
 
   const confirmDelete = async (id: any, first: any, last: any) => {

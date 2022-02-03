@@ -1,13 +1,12 @@
 //from modules
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getSchoolById, getUserByLogin } from "../../../redux/actions";
 import { useLocation } from "react-router-dom";
 /* import jwt_decode, { JwtPayload } from "jwt-decode";
 import axios from "axios"; */
 //types
-import { IState } from "../../../interfaces";
 
 const useHelper = () => {
   const location: any = useLocation().pathname;
@@ -30,6 +29,7 @@ const useHelper = () => {
             })
           )
       : navigate("/login");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleShow = () => {

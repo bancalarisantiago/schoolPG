@@ -1,7 +1,7 @@
 //from modules
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 //types
 import { ChangeEvent, IState } from "../../../interfaces";
 //actions
@@ -13,7 +13,6 @@ import {
 
 const useHelper = (schoolType: string, textInput?: any) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation().pathname;
   const userSession = useSelector((state: IState) => state.userSession);
   const userSchool = useSelector((state: IState) => state.userSchool);
@@ -22,6 +21,7 @@ const useHelper = (schoolType: string, textInput?: any) => {
   useEffect(() => {
     textInput.current.value = "";
     search("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const handleChange = async (e: ChangeEvent) => {
@@ -43,7 +43,7 @@ const useHelper = (schoolType: string, textInput?: any) => {
         })
       );
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 

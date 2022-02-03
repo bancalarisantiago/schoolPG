@@ -4,11 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //actions
-import {
-  deleteUserById,
-  deleteSubjectById,
-  deleteCourseById,
-} from "../../../redux/actions";
+import { deleteUserById, deleteCourseById } from "../../../redux/actions";
 //interfaces
 import { ISubject, IState } from "../../../interfaces";
 
@@ -28,6 +24,7 @@ const useHelper = () => {
       );
       setsubject(data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSchool]);
 
   const confirmDelete = async (id: any, first: any, last: any) => {

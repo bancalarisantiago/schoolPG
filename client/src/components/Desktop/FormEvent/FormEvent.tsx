@@ -1,7 +1,5 @@
-import { useState } from "react";
 import Modal from "react-modal";
 import Datetime from "react-datetime";
-import axios from "axios";
 import Button from "../ReusableComponents/Button/Button";
 import { customStyles, EventProps, useHelper } from "./useHelper";
 

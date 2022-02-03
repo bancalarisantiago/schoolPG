@@ -1,5 +1,4 @@
 //css
-import { Database } from "../../../routsApp";
 import styles from "../CourseDetail/CourseDetail.module.css";
 //from modules
 import { NavLink } from "react-router-dom";
