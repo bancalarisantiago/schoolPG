@@ -72,10 +72,18 @@ export const getSubjectById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const subject = await Subject.findById(id).populate({
-      path: "courses",
-      model: "Course",
-    });
+    const populateQuery = [
+      {
+        path: "courses",
+        model: "Course",
+      },
+      {
+        path: "teachers",
+        model: "User",
+      },
+    ];
+
+    const subject = await Subject.findById(id).populate(populateQuery);
     res.status(200).json(subject);
   } catch (error: any) {
     res.status(404).json({ message: error.message });

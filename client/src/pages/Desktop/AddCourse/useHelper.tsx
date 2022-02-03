@@ -12,7 +12,18 @@ const useHelper = () => {
   const matchUsers = useSelector((state: IState) => state.matchUsers);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [userSchool]);
+  useEffect(() => {
+    dispatch(
+      getUserBy({
+        search: {
+          userType: "student",
+          filter: "cancelarBusqueda",
+          schoolId: userSchool._id,
+        },
+        accessToken: userSession,
+      })
+    );
+  }, [userSchool]);
 
   const [state, setState] = useState<IStateAddCourse>({
     name: "",

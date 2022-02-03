@@ -28,9 +28,9 @@ import {
   Database,
   CourseDetail,
   AddAttendance,
-  ModifyCourse
+  ModifyCourse,
 } from ".//routsApp";
-import axios from "axios";
+import SubjectDetail from "./pages/Desktop/SubjectDetail/SubjectDetail";
 
 Modal.setAppElement("#root");
 
@@ -109,6 +109,10 @@ const App: React.FC = () => {
           <Route path="detalle-usuario/:id" element={<UserDetail />} />
 
           <Route path="detalle-curso/:courseId" element={<CourseDetail />} />
+          <Route
+            path="detalle-materia/:subjectId"
+            element={<SubjectDetail />}
+          />
 
           <Route path="tomar-asistencia" element={<AddAttendance />} />
 
