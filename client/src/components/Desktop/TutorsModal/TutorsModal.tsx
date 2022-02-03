@@ -1,5 +1,4 @@
 import Input from "../ReusableComponents/Input/Input";
-import { ITutor } from "../../../interfaces/index";
 import styles from "./TutorsModal.module.css";
 
 const TutorsModal: React.FC<{ tutors: any[]; onChange: any }> = ({

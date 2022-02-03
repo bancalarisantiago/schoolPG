@@ -1,7 +1,5 @@
 //css
 import styles from "./SchoolInfo.module.css";
-//from components
-import { NavLink } from "react-router-dom";
 //helper
 import useHelper from "./useHelper";
 //components
@@ -12,19 +10,10 @@ import DataBaseCourse from "../DataBaseCourse/DataBaseCourse";
 import DataBaseSubject from "../DataBaseSubject/DataBaseSubject";
 
 const SchoolInfo: React.FC = () => {
-  const {
-    school,
-    weather,
-    number,
-    bg,
-    day,
-    dayByNum,
-    date,
-    totalUsers,
-    deleteCourse,
-  } = useHelper();
+  const { school, weather, number, bg, day, dayByNum, date, totalUsers } =
+    useHelper();
   const aux = number(new Date());
-  //console.log(weather);
+
   if (school && school.name)
     return (
       <div className={styles.main}>

@@ -20,6 +20,7 @@ const useHelper = () => {
 
   useEffect(() => {
     if (userSession.user.school) navigate("/panel/general");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [location, setLocation] = useState<Location>({

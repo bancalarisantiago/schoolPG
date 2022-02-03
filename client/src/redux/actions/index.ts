@@ -13,8 +13,8 @@ import {
   ICreateCourse,
   IDeleteUserById,
   IUpdateUser,
-  IRefreshToken,
-  IRefreshUser,
+  /* IRefreshToken,
+  IRefreshUser, */
 } from "../../interfaces";
 
 const instance = axios.create({
@@ -36,7 +36,6 @@ export const GET_EVENTS = "GET_EVENTS";
 
 //logout
 export const logout = () => (dispatch: Dispatch) => {
-  console.log("logout");
   return dispatch({
     type: USER_LOGOUT,
   });
@@ -215,7 +214,7 @@ export const putUser = (payload: IUpdateUser) => async (dispatch: Dispatch) => {
 };
 
 export const createEvent = (payload: string) => async (dispatch: Dispatch) => {
-  const newEvent = await instance.post("/event", payload);
+  await instance.post("/event", payload);
   return dispatch({
     type: CREATE_EVENT,
     payload,
