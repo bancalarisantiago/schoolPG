@@ -37,6 +37,8 @@ const useHelper = () => {
     const authLogin = await dispatch(getUserByLogin(credential));
 
     typeof authLogin !== "string" ? navigate("/panel") : console.log(authLogin);
+
+    localStorage.setItem("user", JSON.stringify(authLogin));
   };
 
   return {

@@ -31,16 +31,20 @@ const useHelper = (schoolType: string, textInput?: any) => {
   };
 
   const search = (value: string) => {
-    return dispatch(
-      getUserBy({
-        search: {
-          userType: schoolType.substring(0, schoolType.length - 1),
-          filter: value.toLocaleLowerCase(),
-          schoolId: userSchool._id,
-        },
-        accessToken: userSession.accessToken,
-      })
-    );
+    try {
+      return dispatch(
+        getUserBy({
+          search: {
+            userType: schoolType.substring(0, schoolType.length - 1),
+            filter: value.toLocaleLowerCase(),
+            schoolId: userSchool._id,
+          },
+          accessToken: userSession.accessToken,
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const matchUsers = useSelector((state: IState) => state.matchUsers);
