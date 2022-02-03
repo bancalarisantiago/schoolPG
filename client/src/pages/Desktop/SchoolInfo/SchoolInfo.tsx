@@ -8,8 +8,8 @@ import useHelper from "./useHelper";
 import Database from "../../../components/Desktop/Database/Database";
 import Loading from "../../../components/Desktop/ReusableComponents/Loading/Loading";
 import Calendar from "../../../components/Desktop/Calendar/Calendar";
-import DataBaseCourse from "../DataBaseCourse/DataBaseCourse"
-
+import DataBaseCourse from "../DataBaseCourse/DataBaseCourse";
+import DataBaseSubject from "../DataBaseSubject/DataBaseSubject";
 
 const SchoolInfo: React.FC = () => {
   const {
@@ -143,8 +143,8 @@ const SchoolInfo: React.FC = () => {
           userType={"administradores"}
           schoolType={"admins"}
         />
-        <DataBaseCourse/>
-        
+        <DataBaseCourse />
+        <DataBaseSubject />
       </div>
     );
   else

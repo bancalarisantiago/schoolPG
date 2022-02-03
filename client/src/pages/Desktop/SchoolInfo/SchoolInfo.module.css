@@ -566,6 +566,11 @@
   font-weight: 600;
 }
 
+.subjectPic {
+  width: 40px;
+  height: 40px;
+}
+
 .afterI {
   margin-top: 1rem;
   width: 2.5rem;

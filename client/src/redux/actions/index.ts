@@ -86,7 +86,7 @@ export const getUserByLogin =
 
 export const getUserBy =
   (payload: IGetUserBy) => async (dispatch: Dispatch) => {
-    new Promise<void>((res, rej) => {
+    new Promise<void>((_, __) => {
       dispatch({ type: MATCH_USERS, payload: {} });
     });
 
@@ -135,13 +135,12 @@ export const createCourse = (payload: ICreateCourse) => async () => {
 };
 
 export const modifyCourse = (payload: any) => async () => {
-
   await instance.put(`/course/update/${payload.id}`, payload.course, {
     headers: {
       "auth-token": payload.accessToken,
     },
   });
-}
+};
 
 /* export const refreshToken =
   (payload: IRefreshToken) => (dispatch: Dispatch) => async () => {
@@ -166,13 +165,15 @@ export const deleteUserById =
     });
   };
 
-export const deleteSubjectById = async (payload: any) => {
-  await instance.delete(`/subject/${payload.id}/${payload.schoolId}`, {
-    headers: {
-      "auth-token": payload.accessToken,
-    },
-  });
-};
+export const deleteSubjectById =
+  (payload: any) => async (dispatch: Dispatch) => {
+    await instance.delete(`/subject/${payload.id}/${payload.schoolId}`, {
+      headers: {
+        "auth-token": payload.accessToken,
+      },
+    });
+    dispatch({ type: DELETE_USER_BY_ID });
+  };
 
 export const deleteCourseById =
   (payload: any) => async (dispatch: Dispatch) => {
